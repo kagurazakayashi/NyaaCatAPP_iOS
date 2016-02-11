@@ -49,6 +49,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		536E2FDF1C6C958800168F02 /* 数据解析 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "数据解析";
+			sourceTree = "<group>";
+		};
 		5399CC931C6BA0FF00022441 = {
 			isa = PBXGroup;
 			children = (
@@ -68,6 +75,7 @@
 		5399CC9E1C6BA0FF00022441 /* nyaacatapp */ = {
 			isa = PBXGroup;
 			children = (
+				536E2FDF1C6C958800168F02 /* 数据解析 */,
 				53C5958E1C6B564900C55E31 /* 登录和注册 */,
 				53C595871C6B4B6600C55E31 /* 等待画面 */,
 				53C595861C6B4B3F00C55E31 /* 主要框架 */,

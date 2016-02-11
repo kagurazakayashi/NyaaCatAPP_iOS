@@ -15,11 +15,14 @@ class MainVC: UIViewController, UIWebViewDelegate, LoginMenuVCDelegate {
     let 动态地图网址:String = "https://mcmap.90g.org"
     let 动态地图登录接口:String = "https://mcmap.90g.org/up/login"
     let 注册页面标题:String = "Minecraft Dynamic Map - Login/Register"
+    let 地图页面标题:String = "Minecraft Dynamic Map"
+    let 地图页面特征:String = "<!-- These 2 lines make us fullscreen on apple mobile products - remove if you don't like that -->"
     
     let 等待画面:WaitVC = WaitVC()
     let 登录菜单:LoginMenuVC = LoginMenuVC()
     var 提示框:UIAlertController? = nil
     var 网络模式:网络模式选项 = 网络模式选项.检查是否登录
+    var 定时器:NSTimer? = nil
     
     enum 网络模式选项 {
         case 检查是否登录
@@ -34,13 +37,18 @@ class MainVC: UIViewController, UIWebViewDelegate, LoginMenuVCDelegate {
         //self.presentViewController(等待画面, animated: true, completion: nil)
         self.view.addSubview(等待画面.view)
         后台网页加载器.delegate = self
-        检查登录网络请求()
+        检查登录网络请求(false)
     }
     
-    func 检查登录网络请求() {
+    func 检查登录网络请求(缓存:Bool) {
         let 要加载的网页URL:NSURL = NSURL(string: 动态地图网址)!
-        let 网络请求:NSURLRequest = NSURLRequest(URL: 要加载的网页URL, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringCacheData, timeoutInterval: 30)
-        后台网页加载器.loadRequest(网络请求)
+        var 网络请求:NSURLRequest? = nil
+        if (缓存 == false) {
+            网络请求 = NSURLRequest(URL: 要加载的网页URL, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringCacheData, timeoutInterval: 30)
+        } else {
+            网络请求 = NSURLRequest(URL: 要加载的网页URL, cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy, timeoutInterval: 30)
+        }
+        后台网页加载器.loadRequest(网络请求!)
         等待画面.副标题.text = "正在连接到地图服务器..."
     }
     
@@ -58,7 +66,14 @@ class MainVC: UIViewController, UIWebViewDelegate, LoginMenuVCDelegate {
             }
         } else if (网络模式 == 网络模式选项.提交登录请求) {
             let 网页标题:String? = 请求页面源码(true)
-            if (网页标题 != nil) {
+            if (网页标题 == 地图页面标题) {
+                let 网页内容:String? = 请求页面源码(false)
+                if (网页内容?.rangeOfString(地图页面特征) != nil) {
+                    等待画面.副标题.text = "登录成功"
+                    定时器 = NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: "定时器触发", userInfo: nil, repeats: true)
+                }
+            } else if (网页标题 != nil) {
+                检查登录网络请求(true)
                 NSLog("网页标题=" + 网页标题!)
             } else {
                 等待画面.副标题.text = "登录失败"
@@ -74,6 +89,11 @@ class MainVC: UIViewController, UIWebViewDelegate, LoginMenuVCDelegate {
         }
     }
     
+    func 定时器触发() {
+        let 网页内容:String? = 请求页面源码(false)
+        NSLog("网页内容="+网页内容!)
+    }
+    
     func 请求页面源码(只获取标题:Bool) -> String? {
         var 源代码JS请求:String = "document.title"
         if (只获取标题 == false) {
@@ -87,7 +107,7 @@ class MainVC: UIViewController, UIWebViewDelegate, LoginMenuVCDelegate {
         提示框 = UIAlertController(title: 等待画面.副标题.text, message: error?.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
         let okAction = UIAlertAction(title: "重试", style: UIAlertActionStyle.Default, handler: { (动作:UIAlertAction) -> Void in
             if (self.网络模式 == 网络模式选项.检查是否登录 || self.网络模式 == 网络模式选项.提交登录请求) {
-                self.检查登录网络请求()
+                self.检查登录网络请求(false)
             }
         })
         提示框!.addAction(okAction)
@@ -99,8 +119,9 @@ class MainVC: UIViewController, UIWebViewDelegate, LoginMenuVCDelegate {
         登录菜单.代理 = nil
         登录菜单.view.removeFromSuperview()
         网络模式 = 网络模式选项.提交登录请求
-        let 网络参数:String = "?j_username=" + 用户名 + "&j_password=" + 密码
-        let 要加载的网页URL:NSURL = NSURL(string: 动态地图网址 + 网络参数)!
+        let 网络参数:String = "j_username=" + 用户名 + "&j_password=" + 密码
+        let 包含参数的网址:String = 动态地图登录接口 + "?" + 网络参数
+        let 要加载的网页URL:NSURL = NSURL(string: 包含参数的网址)!
         let 网络请求:NSMutableURLRequest = NSMutableURLRequest(URL: 要加载的网页URL, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringCacheData, timeoutInterval: 30)
         网络请求.HTTPMethod = "GET"
         //网络请求.HTTPBody = 网络参数.dataUsingEncoding(NSUTF8StringEncoding)
