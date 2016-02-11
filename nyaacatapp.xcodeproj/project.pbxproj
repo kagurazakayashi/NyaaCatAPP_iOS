@@ -21,7 +21,18 @@
 		53C595921C6B585800C55E31 /* LoginMenuVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53C595901C6B585800C55E31 /* LoginMenuVC.xib */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		536E30101C6C9FFA00168F02 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 536E300C1C6C9FF900168F02 /* dynmapanalysistest.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 536E30021C6C9FF900168F02;
+			remoteInfo = dynmapanalysistest;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		536E300C1C6C9FF900168F02 /* dynmapanalysistest.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = dynmapanalysistest.xcodeproj; path = dynmapanalysistest/dynmapanalysistest.xcodeproj; sourceTree = "<group>"; };
 		5399CC9C1C6BA0FF00022441 /* nyaacatapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nyaacatapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5399CC9F1C6BA0FF00022441 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5399CCA41C6BA0FF00022441 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -56,11 +67,20 @@
 			name = "数据解析";
 			sourceTree = "<group>";
 		};
+		536E300D1C6C9FF900168F02 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				536E30111C6C9FFA00168F02 /* dynmapanalysistest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		5399CC931C6BA0FF00022441 = {
 			isa = PBXGroup;
 			children = (
 				5399CC9E1C6BA0FF00022441 /* nyaacatapp */,
 				5399CC9D1C6BA0FF00022441 /* Products */,
+				536E300C1C6C9FF900168F02 /* dynmapanalysistest.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -171,12 +191,28 @@
 			mainGroup = 5399CC931C6BA0FF00022441;
 			productRefGroup = 5399CC9D1C6BA0FF00022441 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 536E300D1C6C9FF900168F02 /* Products */;
+					ProjectRef = 536E300C1C6C9FF900168F02 /* dynmapanalysistest.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				5399CC9B1C6BA0FF00022441 /* nyaacatapp */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		536E30111C6C9FFA00168F02 /* dynmapanalysistest */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = dynmapanalysistest;
+			remoteRef = 536E30101C6C9FFA00168F02 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		5399CC9A1C6BA0FF00022441 /* Resources */ = {
