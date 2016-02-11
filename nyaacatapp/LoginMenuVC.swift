@@ -8,13 +8,19 @@
 
 import UIKit
 
+protocol LoginMenuVCDelegate {
+    func 返回登录请求(用户名:String,密码:String)
+}
+
 class LoginMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var 选项表格: UITableView!
-    var 行标题 = ["用户名：","密码：","记住用户名和密码","登录","","我还没注册过动态地图","我还没有入服"]
+    var 行标题 = ["用户名：","密码：","记住用户名和密码","登录","","我还没注册过动态地图","我还没有入服","游客登录"]
     var 提示框:UIAlertController? = nil
-    var 用户名:String = ""
-    var 密码:String = ""
+    var 用户名:String = "KagurazakaYashi"
+    var 密码:String = "123698745"
+    var 记住用户名和密码:Bool = false
+    var 代理:LoginMenuVCDelegate? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +70,12 @@ class LoginMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
                 隐藏密码 += "*"
             }
             单元格?.textLabel?.text = 行标题[行数] + 隐藏密码
+        } else if (行数 == 2) {
+            if (记住用户名和密码 == false) {
+                单元格?.textLabel?.text = 行标题[行数] + " OFF";
+            } else {
+                单元格?.textLabel?.text = 行标题[行数] + " ON";
+            }
         } else {
             单元格?.textLabel?.text = 行标题[行数]
         }
@@ -104,14 +116,11 @@ class LoginMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
             提示框!.addAction(okAction)
             
             self.presentViewController(提示框!, animated: true, completion: nil)
+        } else if (行数 == 2) {
+            记住用户名和密码 = !记住用户名和密码
+            选项表格.reloadData()
         } else if (行数 == 3) {
-            /*
-            NSURL *url = [NSURL URLWithString: @"http://"];
-            NSString *body = [NSString stringWithFormat: @"arg1=%@&arg2=%@", @"val1",@"val2"]; NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL: url];
-            [request setHTTPMethod: @"POST"];
-            [request setHTTPBody: [body dataUsingEncoding: NSUTF8StringEncoding]];
-            [webView loadRequest: request];
-*/
+            代理?.返回登录请求(用户名, 密码: 密码)
         }
     }
     
