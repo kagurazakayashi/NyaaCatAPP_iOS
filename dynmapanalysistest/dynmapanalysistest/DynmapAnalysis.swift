@@ -32,6 +32,7 @@ class DynmapAnalysis: NSObject {
         let 起始点到结束点字符串:String = 抽取区间(html, 起始字符串: "<ul class=\"playerlist\"", 结束字符串: "</ul><div class=\"scrolldown\"", 包含起始字符串: true, 包含结束字符串: true)
         let li分割:[String] = 起始点到结束点字符串.componentsSeparatedByString("<li class=\"player")
         var 在线玩家头像:[String] = Array<String>()
+        var 在线玩家名:[String] = Array<String>()
         var 在线玩家名带字体格式:[String] = Array<String>()
         for (var li分割循环 = 1; li分割循环 < li分割.count; li分割循环++) {
             let 当前li分割:String = li分割[li分割循环]
@@ -41,6 +42,8 @@ class DynmapAnalysis: NSObject {
             在线玩家头像.append(图片文件名)
             let 玩家名带格式:String = 抽取区间(当前li分割, 起始字符串: "title=\"Center on player\">", 结束字符串: "</a>", 包含起始字符串: false, 包含结束字符串: false)
             在线玩家名带字体格式.append(玩家名带格式)
+            let 玩家名:[String] = 去除HTML标签(玩家名带格式,需要合成: true)
+            在线玩家名.append(玩家名[0])
         }
         /*
         使用 在线玩家头像 时应补充：
@@ -52,11 +55,12 @@ class DynmapAnalysis: NSObject {
         let 网页尾:String = "</body></html>"
         */
         NSLog("在线玩家头像：\(在线玩家头像)")
+        NSLog("在线玩家名：\(在线玩家名)")
         NSLog("在线玩家名带字体格式：\(在线玩家名带字体格式)")
         
     }
     
-    //抽取区间(<#T##起始字符串: String##String#>, 结束字符串: <#T##String#>, 包含起始字符串: <#T##Bool#>, 包含结束字符串: <#T##Bool#>)
+    //抽取区间(<#T##输入字符串: String##String#>, 起始字符串: <#T##String#>, 结束字符串: <#T##String#>, 包含起始字符串: <#T##Bool#>, 包含结束字符串: <#T##Bool#>)
     func 抽取区间(输入字符串:String,起始字符串:String,结束字符串:String,包含起始字符串:Bool,包含结束字符串:Bool) -> String {
         let 起始点位置:Range = 输入字符串.rangeOfString(起始字符串)!
         var 起始点到结束点字符串:String = ""
@@ -95,6 +99,30 @@ class DynmapAnalysis: NSObject {
         NSLog("弹出提示信息：\(弹出提示信息)")
     }
     
+    func 去除HTML标签(输入html:String,需要合成:Bool) -> [String] {
+        var 输入参数:String = 输入html
+        var 输出参数:[String] = Array<String>()
+        let 输入参数分割:[String] = 输入参数.componentsSeparatedByString("<")
+        for (var 输入参数分割循环 = 0; 输入参数分割循环 < 输入参数分割.count; 输入参数分割循环++) {
+            let 当前输入参数分割:String = 输入参数分割[输入参数分割循环]
+            let 文本内容起始点位置:Range? = 当前输入参数分割.rangeOfString(">")
+            if (文本内容起始点位置 != nil) {
+                let 文本内容:String = 当前输入参数分割.substringFromIndex(文本内容起始点位置!.endIndex)
+                if (文本内容 != "") {
+                    输出参数.append(文本内容)
+                    //NSLog("\(文本内容)")
+                }
+            }
+        }
+        //NSLog("文本内容：\(输出参数)")
+        if (需要合成 == true) {
+            let 合成文本 = 输出参数.joinWithSeparator("")
+            return [合成文本]
+        }
+        return 输出参数
+    }
+    
+    /*
     func 去除HTML标签(输入html:String) -> String {
         var 输入参数:String = 输入html
         let 扫描器:NSScanner = NSScanner(string: 输入参数)
@@ -106,5 +134,5 @@ class DynmapAnalysis: NSObject {
         }
         return 输入参数
     }
-    
+    */
 }

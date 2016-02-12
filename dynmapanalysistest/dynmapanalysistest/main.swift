@@ -25,6 +25,7 @@ var contents: String? = nil
         dma.取得世界列表()
         dma.取得弹出提示()
         dma.取得在线玩家()
+//        dma.去除HTML标签(contents!)
     } else {
         print("contents null")
     }
