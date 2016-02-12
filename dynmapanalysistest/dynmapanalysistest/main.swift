@@ -22,7 +22,8 @@ var contents: String? = nil
     if (contents != nil) {
         let dma:DynmapAnalysis = DynmapAnalysis()
         dma.html = contents!
-        dma.start()
+        dma.取得世界列表()
+        //NSLog(dma.去除HTML标签(contents!))
     } else {
         print("contents null")
     }
