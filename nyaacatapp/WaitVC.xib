@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15E33e" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WaitVC" customModule="nyaacatapp" customModuleProvider="target">
@@ -17,7 +17,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" fixedFrame="YES" image="bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="co3-ea-yb8">
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" image="bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="co3-ea-yb8">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nyaa.cat" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p9L-oX-hys">
@@ -32,8 +32,11 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uxW-WM-tBS">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uxW-WM-tBS">
                     <rect key="frame" x="0.0" y="565" width="600" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="S1d-NT-cwP"/>
+                    </constraints>
                     <string key="text">©喵窝(Nyaa.Cat) 2015, All rights reserved.
 Code by KagurazakaYashi on Xcode7.2 with Like</string>
                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
@@ -45,6 +48,15 @@ Code by KagurazakaYashi on Xcode7.2 with Like</string>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="uxW-WM-tBS" secondAttribute="bottom" id="0BX-h5-ZoD"/>
+                <constraint firstAttribute="bottom" secondItem="co3-ea-yb8" secondAttribute="bottom" id="Mfr-0o-rcS"/>
+                <constraint firstAttribute="trailing" secondItem="co3-ea-yb8" secondAttribute="trailing" id="gVr-jv-zh6"/>
+                <constraint firstItem="co3-ea-yb8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="igQ-Bv-zEv"/>
+                <constraint firstItem="uxW-WM-tBS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="tUo-jn-H8Y"/>
+                <constraint firstAttribute="trailing" secondItem="uxW-WM-tBS" secondAttribute="trailing" id="vKg-Na-5E6"/>
+                <constraint firstItem="co3-ea-yb8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="wl3-n2-DWa"/>
+            </constraints>
         </view>
     </objects>
     <resources>

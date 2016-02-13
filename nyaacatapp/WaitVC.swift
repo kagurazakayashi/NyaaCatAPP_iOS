@@ -12,6 +12,7 @@ class WaitVC: UIViewController {
 
     @IBOutlet weak var 图标: UIImageView!
     @IBOutlet weak var 副标题: UILabel!
+
     var 图标原始位置:CGRect? = nil
     var 图标缩小位置:CGRect? = nil
     

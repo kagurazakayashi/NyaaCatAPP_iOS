@@ -35,6 +35,8 @@ class MainVC: UIViewController, UIWebViewDelegate, LoginMenuVCDelegate {
         super.viewDidLoad()
         self.view.addSubview(后台网页加载器)
         //self.presentViewController(等待画面, animated: true, completion: nil)
+        等待画面.view.frame = self.view.frame
+        登录菜单.view.frame = self.view.frame
         self.view.addSubview(等待画面.view)
         后台网页加载器.delegate = self
         检查登录网络请求(false)
@@ -49,11 +51,11 @@ class MainVC: UIViewController, UIWebViewDelegate, LoginMenuVCDelegate {
             网络请求 = NSURLRequest(URL: 要加载的网页URL, cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy, timeoutInterval: 30)
         }
         后台网页加载器.loadRequest(网络请求!)
-        等待画面.副标题.text = "正在连接到地图服务器..."
+        等待画面.副标题.text = "连接到地图服务器中喵"
     }
     
     func 打开动态地图登录菜单() {
-        等待画面.副标题.text = "请使用动态地图用户登录。"
+        等待画面.副标题.text = "请使用动态地图用户登录喵"
         登录菜单.代理 = self
         self.view.addSubview(登录菜单.view)
     }
@@ -69,16 +71,16 @@ class MainVC: UIViewController, UIWebViewDelegate, LoginMenuVCDelegate {
             if (网页标题 == 地图页面标题) {
                 let 网页内容:String? = 请求页面源码(false)
                 if (网页内容?.rangeOfString(地图页面特征) != nil) {
-                    等待画面.副标题.text = "登录成功"
+                    等待画面.副标题.text = "登录成功~撒花~"
                     定时器 = NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: "定时器触发", userInfo: nil, repeats: true)
                 }
             } else if (网页标题 != nil) {
                 检查登录网络请求(true)
                 NSLog("网页标题=" + 网页标题!)
             } else {
-                等待画面.副标题.text = "登录失败"
-                提示框 = UIAlertController(title: 等待画面.副标题.text, message: "服务暂时不可用或用户名密码不匹配", preferredStyle: UIAlertControllerStyle.Alert)
-                let okAction = UIAlertAction(title: "重试", style: UIAlertActionStyle.Default, handler: { (动作:UIAlertAction) -> Void in
+                等待画面.副标题.text = "登录失败喵"
+                提示框 = UIAlertController(title: 等待画面.副标题.text, message: "服务暂时不可用或用户名密码不匹配喵QAQ", preferredStyle: UIAlertControllerStyle.Alert)
+                let okAction = UIAlertAction(title: "重试喵", style: UIAlertActionStyle.Default, handler: { (动作:UIAlertAction) -> Void in
                     if (self.网络模式 == 网络模式选项.检查是否登录 || self.网络模式 == 网络模式选项.提交登录请求) {
                         self.打开动态地图登录菜单()
                     }
@@ -103,7 +105,7 @@ class MainVC: UIViewController, UIWebViewDelegate, LoginMenuVCDelegate {
     }
     
     func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
-        等待画面.副标题.text = "网络连接失败"
+        等待画面.副标题.text = "网络连接失败喵"
         提示框 = UIAlertController(title: 等待画面.副标题.text, message: error?.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
         let okAction = UIAlertAction(title: "重试", style: UIAlertActionStyle.Default, handler: { (动作:UIAlertAction) -> Void in
             if (self.网络模式 == 网络模式选项.检查是否登录 || self.网络模式 == 网络模式选项.提交登录请求) {
@@ -115,7 +117,7 @@ class MainVC: UIViewController, UIWebViewDelegate, LoginMenuVCDelegate {
     }
     
     func 返回登录请求(用户名:String,密码:String) {
-        等待画面.副标题.text = "正在登录..."
+        等待画面.副标题.text = "正在登录喵..."
         登录菜单.代理 = nil
         登录菜单.view.removeFromSuperview()
         网络模式 = 网络模式选项.提交登录请求
