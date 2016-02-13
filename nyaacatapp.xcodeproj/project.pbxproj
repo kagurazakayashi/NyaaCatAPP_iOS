@@ -29,6 +29,27 @@
 			remoteGlobalIDString = 536E30021C6C9FF900168F02;
 			remoteInfo = dynmapanalysistest;
 		};
+		8B728FF11C6F74B10068A775 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8B728FEA1C6F74B10068A775 /* uploadimgtosmmstest.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8B728FB91C6F74B00068A775;
+			remoteInfo = uploadimgtosmmstest;
+		};
+		8B728FF31C6F74B10068A775 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8B728FEA1C6F74B10068A775 /* uploadimgtosmmstest.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8B728FCD1C6F74B10068A775;
+			remoteInfo = uploadimgtosmmstestTests;
+		};
+		8B728FF51C6F74B10068A775 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8B728FEA1C6F74B10068A775 /* uploadimgtosmmstest.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8B728FD81C6F74B10068A775;
+			remoteInfo = uploadimgtosmmstestUITests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +68,7 @@
 		53C5958B1C6B4BE600C55E31 /* WaitVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WaitVC.xib; sourceTree = "<group>"; };
 		53C5958F1C6B585800C55E31 /* LoginMenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginMenuVC.swift; sourceTree = "<group>"; };
 		53C595901C6B585800C55E31 /* LoginMenuVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginMenuVC.xib; sourceTree = "<group>"; };
+		8B728FEA1C6F74B10068A775 /* uploadimgtosmmstest.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = uploadimgtosmmstest.xcodeproj; path = uploadimgtosmmstest/uploadimgtosmmstest.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +102,7 @@
 			children = (
 				5399CC9E1C6BA0FF00022441 /* nyaacatapp */,
 				5399CC9D1C6BA0FF00022441 /* Products */,
+				8B728FEA1C6F74B10068A775 /* uploadimgtosmmstest.xcodeproj */,
 				536E300C1C6C9FF900168F02 /* dynmapanalysistest.xcodeproj */,
 			);
 			sourceTree = "<group>";
@@ -145,6 +168,16 @@
 			name = "登录和注册";
 			sourceTree = "<group>";
 		};
+		8B728FEB1C6F74B10068A775 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8B728FF21C6F74B10068A775 /* uploadimgtosmmstest.app */,
+				8B728FF41C6F74B10068A775 /* uploadimgtosmmstestTests.xctest */,
+				8B728FF61C6F74B10068A775 /* uploadimgtosmmstestUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -196,6 +229,10 @@
 					ProductGroup = 536E300D1C6C9FF900168F02 /* Products */;
 					ProjectRef = 536E300C1C6C9FF900168F02 /* dynmapanalysistest.xcodeproj */;
 				},
+				{
+					ProductGroup = 8B728FEB1C6F74B10068A775 /* Products */;
+					ProjectRef = 8B728FEA1C6F74B10068A775 /* uploadimgtosmmstest.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -210,6 +247,27 @@
 			fileType = "compiled.mach-o.executable";
 			path = dynmapanalysistest;
 			remoteRef = 536E30101C6C9FFA00168F02 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8B728FF21C6F74B10068A775 /* uploadimgtosmmstest.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = uploadimgtosmmstest.app;
+			remoteRef = 8B728FF11C6F74B10068A775 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8B728FF41C6F74B10068A775 /* uploadimgtosmmstestTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = uploadimgtosmmstestTests.xctest;
+			remoteRef = 8B728FF31C6F74B10068A775 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8B728FF61C6F74B10068A775 /* uploadimgtosmmstestUITests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = uploadimgtosmmstestUITests.xctest;
+			remoteRef = 8B728FF51C6F74B10068A775 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
