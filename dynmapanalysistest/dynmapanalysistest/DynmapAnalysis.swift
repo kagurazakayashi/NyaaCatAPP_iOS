@@ -28,7 +28,7 @@ class DynmapAnalysis: NSObject {
         return 世界名称
     }
     
-    func 取得在线玩家() {
+    func 取得在线玩家() -> [[String]] {
         let 起始点到结束点字符串:String = 抽取区间(html, 起始字符串: "<ul class=\"playerlist\"", 结束字符串: "</ul><div class=\"scrolldown\"", 包含起始字符串: true, 包含结束字符串: true)
         let li分割:[String] = 起始点到结束点字符串.componentsSeparatedByString("<li class=\"player")
         var 在线玩家头像:[String] = Array<String>()
@@ -57,7 +57,40 @@ class DynmapAnalysis: NSObject {
         NSLog("在线玩家头像：\(在线玩家头像)")
         NSLog("在线玩家名：\(在线玩家名)")
         NSLog("在线玩家名带字体格式：\(在线玩家名带字体格式)")
-        
+        let 合并二维数组:[[String]] = [在线玩家名, 在线玩家头像, 在线玩家名带字体格式]
+        return 合并二维数组
+    }
+    
+    func 取得当前世界活动玩家状态() -> [[String]] {
+        let 活动玩家块起始 = "<div class=\"Marker playerMarker leaflet-marker-icon leaflet-clickable\""
+        let 活动玩家块 = 抽取区间(html, 起始字符串: 活动玩家块起始, 结束字符串: "<div class=\"leaflet-popup-pane\">", 包含起始字符串: true, 包含结束字符串: false)
+        let 活动玩家块分割:[String] = 活动玩家块.componentsSeparatedByString(活动玩家块起始)
+        var 在线玩家名称:[String] = Array<String>()
+        var 在线玩家血量宽度:[String] = Array<String>()
+        var 在线玩家护甲宽度:[String] = Array<String>()
+        var 在线玩家位置:[String] = Array<String>()
+        for (var 活动玩家块分割循环 = 1; 活动玩家块分割循环 < 活动玩家块分割.count; 活动玩家块分割循环++) {
+            let 当前活动玩家块分割:String = 活动玩家块分割[活动玩家块分割循环]
+            //NSLog("当前活动玩家块分割：\(当前活动玩家块分割)")
+            var 玩家名称:String = 抽取区间(当前活动玩家块分割, 起始字符串: "<span class=\"playerNameSm\">", 结束字符串: "<div c", 包含起始字符串: false, 包含结束字符串: false)
+            玩家名称 = 去除HTML标签(玩家名称, 需要合成: true)[0]
+            let 玩家translate3d位置描述:String = 抽取区间(当前活动玩家块分割, 起始字符串: "translate3d(", 结束字符串: "px, 0px);", 包含起始字符串: false, 包含结束字符串: false)
+            let 玩家translate3d位置数组:[String] = 玩家translate3d位置描述.componentsSeparatedByString("px, ")
+            let 玩家位置:String = 玩家translate3d位置数组.joinWithSeparator(",")
+            //NSLog("玩家translate3d位置：\(玩家translate3d位置)")
+            let 玩家血量宽度:String = 抽取区间(当前活动玩家块分割, 起始字符串: "<div class=\"playerHealth\" style=\"width: ", 结束字符串: "px;\">", 包含起始字符串: false, 包含结束字符串: false)
+            let 玩家护甲宽度:String = 抽取区间(当前活动玩家块分割, 起始字符串: "<div class=\"playerArmor\" style=\"width: ", 结束字符串: "px;\">", 包含起始字符串: false, 包含结束字符串: false)
+            在线玩家名称.append(玩家名称)
+            在线玩家血量宽度.append(玩家血量宽度)
+            在线玩家护甲宽度.append(玩家护甲宽度)
+            在线玩家位置.append(玩家位置)
+        }
+        NSLog("玩家名称：\(在线玩家名称)")
+        NSLog("玩家translate3d位置：\(在线玩家位置)")
+        NSLog("玩家血量宽度：\(在线玩家血量宽度)")
+        NSLog("玩家护甲宽度：\(在线玩家护甲宽度)")
+        let 合并二维数组:[[String]] = [在线玩家名称,在线玩家血量宽度,在线玩家护甲宽度,在线玩家位置]
+        return 合并二维数组
     }
     
     //抽取区间(<#T##输入字符串: String##String#>, 起始字符串: <#T##String#>, 结束字符串: <#T##String#>, 包含起始字符串: <#T##Bool#>, 包含结束字符串: <#T##Bool#>)
@@ -78,7 +111,7 @@ class DynmapAnalysis: NSObject {
         return 起始点到结束点字符串
     }
     
-    func 取得弹出提示() {
+    func 取得弹出提示() -> [NSObject] {
         //<div class="alertbox" style>Could not update map: error</div>
         var 对话框正在被显示:Bool = false
         var 起始点到结束点字符串:String = ""
@@ -97,10 +130,11 @@ class DynmapAnalysis: NSObject {
         }
         let 弹出提示信息:[NSObject] = [ 对话框正在被显示, 起始点到结束点字符串 ]
         NSLog("弹出提示信息：\(弹出提示信息)")
+        return 弹出提示信息
     }
     
     func 去除HTML标签(输入html:String,需要合成:Bool) -> [String] {
-        var 输入参数:String = 输入html
+        let 输入参数:String = 输入html
         var 输出参数:[String] = Array<String>()
         let 输入参数分割:[String] = 输入参数.componentsSeparatedByString("<")
         for (var 输入参数分割循环 = 0; 输入参数分割循环 < 输入参数分割.count; 输入参数分割循环++) {
