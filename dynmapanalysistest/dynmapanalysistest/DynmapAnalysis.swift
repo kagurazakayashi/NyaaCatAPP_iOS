@@ -13,6 +13,14 @@ class DynmapAnalysis: NSObject {
     
     var html:String = ""
     var 提取信息:NSMutableDictionary = NSMutableDictionary()
+    
+    override init() {
+        NSLog("构造：DynmapAnalysis")
+    }
+    
+    deinit {
+        NSLog("析构：DynmapAnalysis")
+    }
 
     func 取得世界列表() -> [String] {
         let 起始点到结束点字符串:String = 抽取区间(html, 起始字符串: "<ul class=\"worldlist\"", 结束字符串: "</a></li></ul></li></ul>", 包含起始字符串: true, 包含结束字符串: false)
@@ -26,6 +34,25 @@ class DynmapAnalysis: NSObject {
         }
         NSLog("取得世界名称：\(世界名称)")
         return 世界名称
+    }
+    
+    func 取得时间和天气() {
+        let 起始点到结束点字符串:String = 抽取区间(html, 起始字符串: "<div class=\"timeofday digitalclock", 结束字符串: "</div></div></div>", 包含起始字符串: false, 包含结束字符串: false)
+        let 时间字符串:String = 抽取区间(起始点到结束点字符串, 起始字符串: "\">", 结束字符串: "</div>", 包含起始字符串: false, 包含结束字符串: false)
+        let 天气字符串:String = 抽取区间(起始点到结束点字符串, 起始字符串: "weather ", 结束字符串: "\">", 包含起始字符串: false, 包含结束字符串: false)
+        let 天气分割:[String] = 天气字符串.componentsSeparatedByString("_")
+        var 天气:String = ""
+        var 时段:String = ""
+        if (天气分割.count == 2) {
+            天气 = 天气分割[0]
+            时段 = 天气分割[1]
+        } else {
+            天气 = 天气字符串
+        }
+        NSLog("时间：\(时间字符串)，时段：\(时段)，天气：\(天气)")
+        //let 时段中文数据:Dictionary<String,String> = ["day":"白天","night":"夜晚"]
+        //let 天气中文数据:Dictionary<String,String> = ["stormy":"雨","sunny":"晴","thunder":"雷"]
+        
     }
     
     func 取得在线玩家() -> [[String]] {

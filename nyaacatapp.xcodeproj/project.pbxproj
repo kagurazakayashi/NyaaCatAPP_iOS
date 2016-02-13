@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5357ED2D1C6F6D1C000DF41B /* stormy_day.png in Resources */ = {isa = PBXBuildFile; fileRef = 5357ED241C6F6D1C000DF41B /* stormy_day.png */; };
+		5357ED2E1C6F6D1C000DF41B /* stormy_night.png in Resources */ = {isa = PBXBuildFile; fileRef = 5357ED251C6F6D1C000DF41B /* stormy_night.png */; };
+		5357ED2F1C6F6D1C000DF41B /* stormy.png in Resources */ = {isa = PBXBuildFile; fileRef = 5357ED261C6F6D1C000DF41B /* stormy.png */; };
+		5357ED301C6F6D1C000DF41B /* sunny_day.png in Resources */ = {isa = PBXBuildFile; fileRef = 5357ED271C6F6D1C000DF41B /* sunny_day.png */; };
+		5357ED311C6F6D1C000DF41B /* sunny_night.png in Resources */ = {isa = PBXBuildFile; fileRef = 5357ED281C6F6D1C000DF41B /* sunny_night.png */; };
+		5357ED321C6F6D1C000DF41B /* sunny.png in Resources */ = {isa = PBXBuildFile; fileRef = 5357ED291C6F6D1C000DF41B /* sunny.png */; };
+		5357ED331C6F6D1C000DF41B /* thunder_day.png in Resources */ = {isa = PBXBuildFile; fileRef = 5357ED2A1C6F6D1C000DF41B /* thunder_day.png */; };
+		5357ED341C6F6D1C000DF41B /* thunder_night.png in Resources */ = {isa = PBXBuildFile; fileRef = 5357ED2B1C6F6D1C000DF41B /* thunder_night.png */; };
+		5357ED351C6F6D1C000DF41B /* thunder.png in Resources */ = {isa = PBXBuildFile; fileRef = 5357ED2C1C6F6D1C000DF41B /* thunder.png */; };
 		5399CCA01C6BA0FF00022441 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5399CC9F1C6BA0FF00022441 /* AppDelegate.swift */; };
 		5399CCA51C6BA0FF00022441 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5399CCA31C6BA0FF00022441 /* Main.storyboard */; };
 		5399CCA71C6BA0FF00022441 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5399CCA61C6BA0FF00022441 /* Assets.xcassets */; };
@@ -53,6 +62,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5357ED241C6F6D1C000DF41B /* stormy_day.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stormy_day.png; sourceTree = "<group>"; };
+		5357ED251C6F6D1C000DF41B /* stormy_night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stormy_night.png; sourceTree = "<group>"; };
+		5357ED261C6F6D1C000DF41B /* stormy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stormy.png; sourceTree = "<group>"; };
+		5357ED271C6F6D1C000DF41B /* sunny_day.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sunny_day.png; sourceTree = "<group>"; };
+		5357ED281C6F6D1C000DF41B /* sunny_night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sunny_night.png; sourceTree = "<group>"; };
+		5357ED291C6F6D1C000DF41B /* sunny.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sunny.png; sourceTree = "<group>"; };
+		5357ED2A1C6F6D1C000DF41B /* thunder_day.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thunder_day.png; sourceTree = "<group>"; };
+		5357ED2B1C6F6D1C000DF41B /* thunder_night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thunder_night.png; sourceTree = "<group>"; };
+		5357ED2C1C6F6D1C000DF41B /* thunder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thunder.png; sourceTree = "<group>"; };
 		536E300C1C6C9FF900168F02 /* dynmapanalysistest.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = dynmapanalysistest.xcodeproj; path = dynmapanalysistest/dynmapanalysistest.xcodeproj; sourceTree = "<group>"; };
 		5399CC9C1C6BA0FF00022441 /* nyaacatapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nyaacatapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5399CC9F1C6BA0FF00022441 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +100,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5357ED371C6F6D5D000DF41B /* weather */ = {
+			isa = PBXGroup;
+			children = (
+				5357ED241C6F6D1C000DF41B /* stormy_day.png */,
+				5357ED251C6F6D1C000DF41B /* stormy_night.png */,
+				5357ED261C6F6D1C000DF41B /* stormy.png */,
+				5357ED271C6F6D1C000DF41B /* sunny_day.png */,
+				5357ED281C6F6D1C000DF41B /* sunny_night.png */,
+				5357ED291C6F6D1C000DF41B /* sunny.png */,
+				5357ED2A1C6F6D1C000DF41B /* thunder_day.png */,
+				5357ED2B1C6F6D1C000DF41B /* thunder_night.png */,
+				5357ED2C1C6F6D1C000DF41B /* thunder.png */,
+			);
+			name = weather;
+			sourceTree = "<group>";
+		};
 		536E2FDF1C6C958800168F02 /* 数据解析 */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +166,7 @@
 		53C5957F1C6B4B1D00C55E31 /* 图片 */ = {
 			isa = PBXGroup;
 			children = (
+				5357ED371C6F6D5D000DF41B /* weather */,
 				53C595801C6B4B3300C55E31 /* bg.jpg */,
 				53C595811C6B4B3300C55E31 /* logo-c.png */,
 				53C595821C6B4B3300C55E31 /* logo.png */,
@@ -278,13 +313,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				5399CCAA1C6BA0FF00022441 /* LaunchScreen.storyboard in Resources */,
+				5357ED301C6F6D1C000DF41B /* sunny_day.png in Resources */,
 				5399CCA71C6BA0FF00022441 /* Assets.xcassets in Resources */,
+				5357ED2D1C6F6D1C000DF41B /* stormy_day.png in Resources */,
+				5357ED2E1C6F6D1C000DF41B /* stormy_night.png in Resources */,
 				53C5958D1C6B4BE600C55E31 /* WaitVC.xib in Resources */,
+				5357ED321C6F6D1C000DF41B /* sunny.png in Resources */,
 				53C595851C6B4B3300C55E31 /* logo.png in Resources */,
 				53C595841C6B4B3300C55E31 /* logo-c.png in Resources */,
+				5357ED331C6F6D1C000DF41B /* thunder_day.png in Resources */,
+				5357ED311C6F6D1C000DF41B /* sunny_night.png in Resources */,
 				53C595831C6B4B3300C55E31 /* bg.jpg in Resources */,
 				5399CCA51C6BA0FF00022441 /* Main.storyboard in Resources */,
 				53C595921C6B585800C55E31 /* LoginMenuVC.xib in Resources */,
+				5357ED341C6F6D1C000DF41B /* thunder_night.png in Resources */,
+				5357ED2F1C6F6D1C000DF41B /* stormy.png in Resources */,
+				5357ED351C6F6D1C000DF41B /* thunder.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -24,6 +24,7 @@ var contents: String? = nil
         dma.html = contents!
         dma.取得世界列表()
         dma.取得弹出提示()
+        dma.取得时间和天气()
 //        dma.取得在线玩家()
 //        dma.取得当前世界活动玩家状态()
         dma.取得在线玩家加当前世界活动状态()
