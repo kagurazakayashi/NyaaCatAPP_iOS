@@ -47,9 +47,8 @@ class LoginMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
         let 行数:Int = indexPath.row
         var 单元格:UITableViewCell? = tableView.dequeueReusableCellWithIdentifier(单元格ID)
         if(单元格 == nil) {
-            单元格 = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: 单元格ID)
+            单元格 = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: 单元格ID)
             单元格?.backgroundColor = UIColor.clearColor()
-            
             单元格?.detailTextLabel?.textColor = UIColor.lightGrayColor()
         }
         if(行数 == 3) {
@@ -57,10 +56,10 @@ class LoginMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
             单元格?.frame = CGRectMake(0, 0, tableView.frame.size.width, tableView.frame.size.height)
             单元格?.textLabel?.frame = 单元格!.frame
             
-            单元格?.textLabel?.textAlignment = NSTextAlignment.Center;
+            单元格?.textLabel?.textAlignment = NSTextAlignment.Center
         } else {
             单元格?.textLabel?.textColor = UIColor.whiteColor()
-            单元格?.textLabel?.textAlignment = NSTextAlignment.Left;
+            单元格?.textLabel?.textAlignment = NSTextAlignment.Left
         }
         if (行数 == 0) {
             单元格?.textLabel?.text = 行标题[行数] + 用户名
