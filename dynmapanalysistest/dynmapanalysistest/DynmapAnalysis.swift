@@ -54,11 +54,71 @@ class DynmapAnalysis: NSObject {
         let 网页头:String = "<html><meta http-equiv=Content-Type content=\"text/html;charset=utf-8\"><body>"
         let 网页尾:String = "</body></html>"
         */
-        NSLog("在线玩家头像：\(在线玩家头像)")
-        NSLog("在线玩家名：\(在线玩家名)")
-        NSLog("在线玩家名带字体格式：\(在线玩家名带字体格式)")
+//        NSLog("在线玩家头像：\(在线玩家头像)")
+//        NSLog("在线玩家名：\(在线玩家名)")
+//        NSLog("在线玩家名带字体格式：\(在线玩家名带字体格式)")
         let 合并二维数组:[[String]] = [在线玩家名, 在线玩家头像, 在线玩家名带字体格式]
         return 合并二维数组
+    }
+    
+    //返回值= 在线玩家名:[在线玩家头像, 在线玩家名带字体格式,在线玩家血量宽度,在线玩家护甲宽度,在线玩家位置]
+    func 取得在线玩家加当前世界活动状态() -> Dictionary<String,[String]> {
+        var 在线玩家:Dictionary<String,[String]> = 转换玩家二维数组格式(取得在线玩家())
+        var 活动玩家:Dictionary<String,[String]> = 转换玩家二维数组格式(取得当前世界活动玩家状态())
+        for key in 活动玩家.keys
+        {
+            var 在线玩家当前值:[String] = 在线玩家[key]!
+            let 活动玩家当前值:[String] = 活动玩家[key]!
+            for (var i = 0; i < 活动玩家当前值.count; i++) {
+                在线玩家当前值.append(活动玩家当前值[i])
+            }
+            在线玩家[key] = 在线玩家当前值
+        }
+        NSLog("在线玩家\(在线玩家.count)=\(在线玩家)");
+        return 在线玩家
+//        let 修改前玩家数量:Int = 在线玩家.count
+//        for (var 在线玩家循环 = 1; 在线玩家循环 < 修改前玩家数量; 在线玩家循环++) {
+//            var 当前在线玩家:[String] = 在线玩家[在线玩家循环]
+//            let 当前在线玩家名称:String = 当前在线玩家[0]
+//            for (var 世界活动玩家状态循环 = 0; 世界活动玩家状态循环 < 世界活动玩家状态.count; 世界活动玩家状态循环++) {
+//                var 当前世界活动玩家状态:[String] = 世界活动玩家状态[世界活动玩家状态循环]
+//                let 当前世界活动玩家名称:String = 当前世界活动玩家状态[0]
+//                if (当前世界活动玩家名称 == 当前在线玩家名称) {
+//                    NSLog("添加详情到：\(当前世界活动玩家名称)")
+//                    let 修改前属性数量:Int = 当前世界活动玩家状态.count
+//                    for (var 当前世界活动玩家状态循环 = 0; 当前世界活动玩家状态循环 < 修改前属性数量; 当前世界活动玩家状态循环++) {
+//                        let 当前要补充的属性:String = 当前世界活动玩家状态[当前世界活动玩家状态循环]
+//                        当前世界活动玩家状态.append(当前要补充的属性)
+//                        在线玩家[在线玩家循环] = 当前世界活动玩家状态
+//                        //当前在线玩家.append(当前要补充的属性)
+//                    }
+//                }
+//            }
+//        }
+//        NSLog("在线玩家：\(在线玩家.count)：\(在线玩家)")
+        //NSLog("新在线玩家：\(新在线玩家.count)：\(新在线玩家)")
+    }
+    
+    func 转换玩家二维数组格式(数组:[[String]]) -> Dictionary<String,[String]> {
+        let 在线玩家二维数组:[[String]] = 数组
+        let 在线玩家名:[String] = 在线玩家二维数组[0]
+        var 玩家信息:Dictionary<String,[String]> = Dictionary<String,[String]>()
+        for (var 在线玩家名循环 = 0; 在线玩家名循环 < 在线玩家名.count; 在线玩家名循环++) {
+            var 当前玩家信息:[String] = Array<String>()
+            var 当前玩家名:String = ""
+            for (var 在线玩家二维数组循环 = 0; 在线玩家二维数组循环 < 在线玩家二维数组.count; 在线玩家二维数组循环++) {
+                let 当前玩家名数组:[String] = 在线玩家二维数组[在线玩家二维数组循环]
+                let 当前信息:String = 当前玩家名数组[在线玩家名循环]
+                if (在线玩家二维数组循环 > 0) {
+                    当前玩家信息.append(当前信息)
+                } else {
+                    当前玩家名 = 当前信息
+                }
+            }
+            玩家信息[当前玩家名] = 当前玩家信息
+        }
+        //NSLog("玩家信息：\(玩家信息)")
+        return 玩家信息
     }
     
     func 取得当前世界活动玩家状态() -> [[String]] {
@@ -85,10 +145,10 @@ class DynmapAnalysis: NSObject {
             在线玩家护甲宽度.append(玩家护甲宽度)
             在线玩家位置.append(玩家位置)
         }
-        NSLog("玩家名称：\(在线玩家名称)")
-        NSLog("玩家translate3d位置：\(在线玩家位置)")
-        NSLog("玩家血量宽度：\(在线玩家血量宽度)")
-        NSLog("玩家护甲宽度：\(在线玩家护甲宽度)")
+//        NSLog("玩家名称：\(在线玩家名称)")
+//        NSLog("玩家translate3d位置：\(在线玩家位置)")
+//        NSLog("玩家血量宽度：\(在线玩家血量宽度)")
+//        NSLog("玩家护甲宽度：\(在线玩家护甲宽度)")
         let 合并二维数组:[[String]] = [在线玩家名称,在线玩家血量宽度,在线玩家护甲宽度,在线玩家位置]
         return 合并二维数组
     }
