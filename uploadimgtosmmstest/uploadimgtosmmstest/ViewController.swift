@@ -64,14 +64,27 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigat
         上传请求.HTTPMethod="POST"
 
         let boundary:String = "-nyaacat"
-        let contentType:String = "multipart/form-data;boundary="+boundary
-        上传请求.addValue(contentType, forHTTPHeaderField: "Content-Type")
+        let contentType:String = String("multipart/form-data;charset=utf-8;boundary=\(boundary)")
+        上传请求.setValue(contentType, forHTTPHeaderField: "Content-Type")
         
-        let 上传内容 = UIImagePNGRepresentation(img)
+        let 上传内容:NSData = UIImagePNGRepresentation(img)!
         
-        let 请求 = NSURLSession.sharedSession()  //这个地方不太会喵……
+        let 上传队列 = NSMutableString()
+        上传队列.appendFormat("--\(boundary)\r\n")
+        上传队列.appendFormat("Content-Disposition:form-data;name=\"smfile\"\r\n\r\n")
+        上传队列.appendFormat("Content-Type:application/octet-stream\r\n")
+        上传队列.appendFormat("--\(boundary)\r\n")
+        上传队列.appendFormat("Content-Disposition:form-data;name=\"ssl\"\r\n\r\n")
+        上传队列.appendFormat("true\r\n")
+        
+        let 请求 = NSMutableData()
+        请求.appendData(上传队列.dataUsingEncoding(NSUTF8StringEncoding)!)
+        请求.appendData(上传内容)
+        请求.appendData(NSString(format: "\r\n--\(boundary)--\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
+        
+        let 上传会话 = NSURLSession.sharedSession()  //这个地方不太会喵……
 
-        let 上传任务 = 请求.uploadTaskWithRequest(上传请求, fromData: 上传内容){
+        let 上传任务 = 上传会话.uploadTaskWithRequest(上传请求, fromData: 请求){
             (data:NSData?, reponse:NSURLResponse?, error:NSError?) ->Void in
             print("done")
 
