@@ -38,23 +38,6 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigat
 
         
     }
-
-    //上传
-    
-//    func 上传图片(img:UIImage){
-//        
-//        let 请求地址 = NSURL(string: "https://sm.ms/api/upload")
-//        let 上传请求 = NSURLRequest(URL: 请求地址!)
-//        
-//        let 请求 = NSURLSession.sharedSession()
-//        
-//        let 上传内容 = UIImagePNGRepresentation(img)
-//        
-
-//        }
-//        
-//        上传任务.resume()
-//    }
     
     func upload(img:UIImage)
     {
@@ -65,24 +48,24 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigat
 
         let boundary:String = "-nyaacat"
         let contentType:String = String("multipart/form-data;charset=utf-8;boundary=\(boundary)")
-        上传请求.setValue(contentType, forHTTPHeaderField: "Content-Type")
+        上传请求.addValue(contentType, forHTTPHeaderField: "Content-Type")
+
         
         let 上传内容:NSData = UIImagePNGRepresentation(img)!
         
         let 上传队列 = NSMutableString()
         上传队列.appendFormat("--\(boundary)\r\n")
-        上传队列.appendFormat("Content-Disposition:form-data;name=\"smfile\";filename=\"nyaa.png\"\r\n\r\n")
-        上传队列.appendFormat("Content-Type:image/png\r\n")
-        上传队列.appendFormat("--\(boundary)\r\n")
-        上传队列.appendFormat("Content-Disposition:form-data;name=\"ssl\"\r\n\r\n")
-        上传队列.appendFormat("true\r\n")
+        上传队列.appendFormat("Content-Disposition:form-data;name=\"smfile\";filename=\"nyaa.png\"\r\n")
+        上传队列.appendFormat("Content-Type:image/png\r\n\r\n")
+        print(上传队列)
         
         let 请求 = NSMutableData()
         请求.appendData(上传队列.dataUsingEncoding(NSUTF8StringEncoding)!)
         请求.appendData(上传内容)
         请求.appendData(NSString(format: "\r\n--\(boundary)--\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
+        上传请求.HTTPBody = 请求
         
-        let 上传会话 = NSURLSession.sharedSession()  //这个地方不太会喵……
+        let 上传会话 = NSURLSession.sharedSession()
 
         let 上传任务 = 上传会话.uploadTaskWithRequest(上传请求, fromData: 请求){
             (data:NSData?, reponse:NSURLResponse?, error:NSError?) ->Void in
@@ -114,8 +97,8 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigat
         } else {
             let 数据字典:NSDictionary = 解析字典.valueForKey("data") as! NSDictionary
             print(数据字典)
-        let 图片地址 = 数据字典.objectForKey("url")
-            print(图片地址)
+        let 图片地址 = 数据字典.objectForKey("url")!
+            print("![](\(图片地址))")
         }
     }
     
