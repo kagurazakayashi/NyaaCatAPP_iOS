@@ -93,38 +93,30 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigat
             } else{
                 let 回应:String = NSString(data: data!, encoding: NSUTF8StringEncoding) as! String
                 print(回应)
+                self.解析json(回应)
             }
-            
         }
-        
         上传任务.resume()
         
-        
-//        
-//        上传数据.appendData(NSString(format:"\r\n--\(boundary)\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
-//        
-//        上传数据.appendData(NSString(format:"Content-Disposition:form-data;name=\"userfile\";filename=\"dd.jpg\"\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
-//        
-//        上传数据.appendData(NSString(format:"Content-Type:application/octet-stream\r\n\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
-//        
-//        上传数据.appendData(图片数据!)
-//        
-//        上传数据.appendData(NSString(format:"\r\n--\(boundary)").dataUsingEncoding(NSUTF8StringEncoding)!)
-//        
-//        上传请求.HTTPBody = 上传数据
-//        
-//        let 队列 = NSOperationQueue()
-//        
-//        NSURLConnection.sendAsynchronousRequest(上传请求, queue: 队列) { (回复, 数据, error) -> Void in
-//            if(error != nil){
-//                print(error)
-//            } else{
-//                let 回应:String = NSString(data: 数据!, encoding: NSUTF8StringEncoding) as! String
-//                print(回应)
-//            }
-//            
-//        }
-        
+    }
+    
+    func 解析json(json:String){
+        let 解析data = json.dataUsingEncoding(NSUTF8StringEncoding)
+        var 解析字典:NSDictionary = NSDictionary()
+        do {
+            解析字典 = try NSJSONSerialization.JSONObjectWithData(解析data!, options: NSJSONReadingOptions.MutableLeaves) as! NSDictionary
+        } catch _ {
+
+        }
+        let 解析状态 = 解析字典.objectForKey("code")!
+        if (解析状态.isEqualToString("") || 解析状态.isEqualToString("error")){
+            //失败
+        } else {
+            let 数据字典:NSDictionary = 解析字典.valueForKey("data") as! NSDictionary
+            print(数据字典)
+        let 图片地址 = 数据字典.objectForKey("url")
+            print(图片地址)
+        }
     }
     
 
