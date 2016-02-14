@@ -15,7 +15,7 @@ protocol LoginMenuVCDelegate {
 class LoginMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var 选项表格: UITableView!
-    var 行标题 = ["用户名：","密码：","记住用户名和密码","登录","","我还没注册过动态地图","我还没有入服","游客登录"]
+    var 行标题 = ["用户名：","密码：","记住用户名和密码","登录","","我还没注册过动态地图","我还没有入服","游客登录","论坛"]
     var 提示框:UIAlertController? = nil
     var 用户名:String = "KagurazakaYashi"
     var 密码:String = "123698745"
@@ -120,6 +120,8 @@ class LoginMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
             选项表格.reloadData()
         } else if (行数 == 3) {
             代理?.返回登录请求(用户名, 密码: 密码)
+        } else if (行数 == 8) {
+            self.navigationController?.pushViewController(BBSVC(), animated: true)
         }
     }
     
