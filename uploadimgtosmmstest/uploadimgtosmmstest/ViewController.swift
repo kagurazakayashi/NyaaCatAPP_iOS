@@ -71,8 +71,8 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigat
         
         let 上传队列 = NSMutableString()
         上传队列.appendFormat("--\(boundary)\r\n")
-        上传队列.appendFormat("Content-Disposition:form-data;name=\"smfile\"\r\n\r\n")
-        上传队列.appendFormat("Content-Type:application/octet-stream\r\n")
+        上传队列.appendFormat("Content-Disposition:form-data;name=\"smfile\";filename=\"nyaa.png\"\r\n\r\n")
+        上传队列.appendFormat("Content-Type:image/png\r\n")
         上传队列.appendFormat("--\(boundary)\r\n")
         上传队列.appendFormat("Content-Disposition:form-data;name=\"ssl\"\r\n\r\n")
         上传队列.appendFormat("true\r\n")
