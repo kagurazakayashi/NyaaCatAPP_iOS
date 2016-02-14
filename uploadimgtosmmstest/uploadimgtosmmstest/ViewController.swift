@@ -11,10 +11,6 @@ import UIKit
 class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
 
     @IBOutlet weak var 按钮: UIButton!
-    @IBOutlet weak var 回应String: UITextView!
-    @IBOutlet weak var MK格式文本: UITextView!
-    @IBOutlet weak var 图片: UIImageView!
-    var 回应 = String()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,8 +35,26 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigat
         self.dismissViewControllerAnimated(true, completion:nil);
         let gotImage = image
          upload(gotImage)//上传
+
+        
     }
 
+    //上传
+    
+//    func 上传图片(img:UIImage){
+//        
+//        let 请求地址 = NSURL(string: "https://sm.ms/api/upload")
+//        let 上传请求 = NSURLRequest(URL: 请求地址!)
+//        
+//        let 请求 = NSURLSession.sharedSession()
+//        
+//        let 上传内容 = UIImagePNGRepresentation(img)
+//        
+
+//        }
+//        
+//        上传任务.resume()
+//    }
     
     func upload(img:UIImage)
     {
@@ -57,8 +71,8 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigat
         
         let 上传队列 = NSMutableString()
         上传队列.appendFormat("--\(boundary)\r\n")
-        上传队列.appendFormat("Content-Disposition:form-data;name=\"smfile\";filename=\"nyaa.png\"\r\n\r\n")
-        上传队列.appendFormat("Content-Type:image/png\r\n")
+        上传队列.appendFormat("Content-Disposition:form-data;name=\"smfile\"\r\n\r\n")
+        上传队列.appendFormat("Content-Type:application/octet-stream\r\n")
         上传队列.appendFormat("--\(boundary)\r\n")
         上传队列.appendFormat("Content-Disposition:form-data;name=\"ssl\"\r\n\r\n")
         上传队列.appendFormat("true\r\n")
@@ -77,18 +91,40 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigat
             if(error != nil){
                 print(error)
             } else{
-                self.回应 = NSString(data: data!, encoding: NSUTF8StringEncoding) as! String
-                self.回应String.text = self.回应
-                self.显示下载图片()
+                let 回应:String = NSString(data: data!, encoding: NSUTF8StringEncoding) as! String
+                print(回应)
             }
+            
         }
+        
         上传任务.resume()
-    }
-    
-    func 显示下载图片(){
         
         
-    
+//        
+//        上传数据.appendData(NSString(format:"\r\n--\(boundary)\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
+//        
+//        上传数据.appendData(NSString(format:"Content-Disposition:form-data;name=\"userfile\";filename=\"dd.jpg\"\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
+//        
+//        上传数据.appendData(NSString(format:"Content-Type:application/octet-stream\r\n\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
+//        
+//        上传数据.appendData(图片数据!)
+//        
+//        上传数据.appendData(NSString(format:"\r\n--\(boundary)").dataUsingEncoding(NSUTF8StringEncoding)!)
+//        
+//        上传请求.HTTPBody = 上传数据
+//        
+//        let 队列 = NSOperationQueue()
+//        
+//        NSURLConnection.sendAsynchronousRequest(上传请求, queue: 队列) { (回复, 数据, error) -> Void in
+//            if(error != nil){
+//                print(error)
+//            } else{
+//                let 回应:String = NSString(data: 数据!, encoding: NSUTF8StringEncoding) as! String
+//                print(回应)
+//            }
+//            
+//        }
+        
     }
     
 
