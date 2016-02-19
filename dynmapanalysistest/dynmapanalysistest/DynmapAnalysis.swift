@@ -230,22 +230,27 @@ class DynmapAnalysis: NSObject {
         return 聊天
     }
     
-    func 取得商店列表() -> [[String]] {
+    func 取得商店和地点列表() -> [[[String]]] {
         var 商店:[[String]] = Array<Array<String>>()
-        let 商店块起始:String = "markerName_SignShopMarkers markerName16x16\">"
-        let 商店块:String = 抽取区间(html, 起始字符串: 商店块起始, 结束字符串: "markerName_markers", 包含起始字符串: true, 包含结束字符串: false)
+        var 地点:[[String]] = Array<Array<String>>()
+        let 商店块起始:String = "Marker mapMarker "
+        let 商店块结束:String = "playerMarker"
+        let 商店块:String = 抽取区间(html, 起始字符串: 商店块起始, 结束字符串: 商店块结束, 包含起始字符串: true, 包含结束字符串: false)
         let 商店块分割:[String] = 商店块.componentsSeparatedByString(商店块起始)
-        for 商店块分割循环 in 0...商店块分割.count-1 {
+        for 商店块分割循环 in 1...商店块分割.count-1 {
             let 商店描述:String = 商店块分割[商店块分割循环]
-            let 商店名结束点:Range? = 商店描述.rangeOfString("</span>")
-            if (商店名结束点 != nil) {
-                let 商店名:String = 商店描述.substringToIndex(商店名结束点!.startIndex)
-                let 商店位置:String = translate3d标签抽取(商店描述)
+            let 商店判定:Range? = 商店描述.rangeOfString("markerName_SignShopMarkers")
+            let 商店名:String = 抽取区间(商店描述, 起始字符串: "markerName16x16\">", 结束字符串: "</span>", 包含起始字符串: false, 包含结束字符串: false)
+            let 商店位置:String = translate3d标签抽取(商店描述)
+            if (商店判定 == nil) {
+                地点.append([商店名,商店位置])
+            } else {
                 商店.append([商店名,商店位置])
             }
         }
         NSLog("商店：\(商店)")
-        return 商店
+        NSLog("地点：\(地点)")
+        return [商店,地点]
     }
     
     //抽取区间(<#T##输入字符串: String##String#>, 起始字符串: <#T##String#>, 结束字符串: <#T##String#>, 包含起始字符串: <#T##Bool#>, 包含结束字符串: <#T##Bool#>)
