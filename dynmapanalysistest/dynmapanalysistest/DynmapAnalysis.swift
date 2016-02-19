@@ -96,7 +96,7 @@ class DynmapAnalysis: NSObject {
         {
             var 在线玩家当前值:[String] = 在线玩家[key]!
             let 活动玩家当前值:[String] = 活动玩家[key]!
-            for (var i = 0; i < 活动玩家当前值.count; i++) {
+            for i in 0...活动玩家当前值.count-1 {
                 在线玩家当前值.append(活动玩家当前值[i])
             }
             在线玩家[key] = 在线玩家当前值
@@ -150,8 +150,8 @@ class DynmapAnalysis: NSObject {
     }
     
     func 取得当前世界活动玩家状态() -> [[String]] {
-        let 活动玩家块起始 = "<div class=\"Marker playerMarker leaflet-marker-icon leaflet-clickable\""
-        let 活动玩家块 = 抽取区间(html, 起始字符串: 活动玩家块起始, 结束字符串: "<div class=\"leaflet-popup-pane\">", 包含起始字符串: true, 包含结束字符串: false)
+        let 活动玩家块起始:String = "<div class=\"Marker playerMarker leaflet-marker-icon leaflet-clickable\""
+        let 活动玩家块:String = 抽取区间(html, 起始字符串: 活动玩家块起始, 结束字符串: "<div class=\"leaflet-popup-pane\">", 包含起始字符串: true, 包含结束字符串: false)
         let 活动玩家块分割:[String] = 活动玩家块.componentsSeparatedByString(活动玩家块起始)
         var 在线玩家名称:[String] = Array<String>()
         var 在线玩家血量宽度:[String] = Array<String>()
@@ -181,20 +181,69 @@ class DynmapAnalysis: NSObject {
         return 合并二维数组
     }
     
-    //抽取区间(<#T##输入字符串: String##String#>, 起始字符串: <#T##String#>, 结束字符串: <#T##String#>, 包含起始字符串: <#T##Bool#>, 包含结束字符串: <#T##Bool#>)
-    func 抽取区间(输入字符串:String,起始字符串:String,结束字符串:String,包含起始字符串:Bool,包含结束字符串:Bool) -> String {
-        let 起始点位置:Range = 输入字符串.rangeOfString(起始字符串)!
-        var 起始点到结束点字符串:String = ""
-        if (包含起始字符串 == true) {
-            起始点到结束点字符串 = 输入字符串.substringFromIndex(起始点位置.startIndex)
-        } else {
-            起始点到结束点字符串 = 输入字符串.substringFromIndex(起始点位置.endIndex)
+    func 取得当前聊天记录() {
+        let 聊天信息块:String = 抽取区间(html, 起始字符串: "<div class=\"messagelist", 结束字符串: "</div><button", 包含起始字符串: false, 包含结束字符串: true)
+        let 聊天信息块分割:[String] = 聊天信息块.componentsSeparatedByString("</div>")
+        var 聊天:[[String]] = Array<Array<String>>()
+        for 聊天信息块分割循环 in 0...聊天信息块分割.count-1 {
+            var 已处理:Bool = false
+            let 当前聊天信息块:String = 聊天信息块分割[聊天信息块分割循环]
+            let 聊天图标单元:String = "<div class=\"messageicon\">"
+            let 当前聊天信息块分割:[String] = 当前聊天信息块.componentsSeparatedByString(聊天图标单元)
+            if (当前聊天信息块分割.count > 0) { //玩家消息
+                let 分割信息字段:[String] = 当前聊天信息块.componentsSeparatedByString("<span class=\"message")
+                if (分割信息字段.count > 1) {
+                    var 来自第三方聊天软件:String = "0"
+                    var 玩家头像:String = 抽取区间(分割信息字段[1], 起始字符串: "icon\">", 结束字符串: "</span>", 包含起始字符串: false, 包含结束字符串: false)
+                    if (玩家头像 != "") {
+                        玩家头像 = 抽取区间(玩家头像, 起始字符串: "<img src=\"", 结束字符串: "\" class=", 包含起始字符串: false, 包含结束字符串: false)
+                    }
+                    var 玩家名称:String = 抽取区间(分割信息字段[2], 起始字符串: "text\"> ", 结束字符串: "</span>", 包含起始字符串: false, 包含结束字符串: false)
+                    var 玩家消息:String = 抽取区间(分割信息字段[3], 起始字符串: "text\">", 结束字符串: "</span>", 包含起始字符串: false, 包含结束字符串: false)
+                    if (玩家名称 == "") {
+                        来自第三方聊天软件 = "1"
+                        let 玩家消息分割:[String] = 玩家消息.componentsSeparatedByString("] ")
+                        玩家名称 = 抽取区间(玩家消息分割[0], 起始字符串: "[", 结束字符串: "", 包含起始字符串: false, 包含结束字符串: false)
+                        玩家消息 = 玩家消息分割[1]
+                    }
+//                    NSLog("玩家头像：\(玩家头像)")
+//                    NSLog("玩家名称：\(玩家名称)")
+//                    NSLog("来自第三方聊天软件：\(来自第三方聊天软件)")
+//                    NSLog("玩家消息：\(玩家消息)")
+                    聊天.append([玩家头像,玩家名称,来自第三方聊天软件,玩家消息])
+                    已处理 = true
+                }
+                if (已处理 == false) { //系统消息
+                    NSLog("当前聊天信息块2：\(当前聊天信息块)")
+                }
+            } else { //系统消息
+                NSLog("当前聊天信息块1：\(当前聊天信息块)")
+            }
         }
-        let 搜索结束点:Range = 起始点到结束点字符串.rangeOfString(结束字符串)!
-        if (包含结束字符串 != true) {
-            起始点到结束点字符串 = 起始点到结束点字符串.substringToIndex(搜索结束点.startIndex)
-        } else {
-            起始点到结束点字符串 = 起始点到结束点字符串.substringToIndex(搜索结束点.endIndex)
+        
+    }
+    
+    //抽取区间(<#T##输入字符串: String##String#>, 起始字符串: <#T##String#>, 结束字符串: <#T##String#>, 包含起始字符串: <#T##Bool#>, 包含结束字符串: <#T##Bool#>)
+    func 抽取区间(输入字符串:String,起始字符串:String,结束字符串:String?,包含起始字符串:Bool,包含结束字符串:Bool) -> String {
+        var 起始点到结束点字符串:String = ""
+        //if (起始字符串 != nil && 起始字符串 != "") {}
+        let 起始点位置:Range? = 输入字符串.rangeOfString(起始字符串)
+        if (起始点位置 != nil) {
+            if (包含起始字符串 == true) {
+                起始点到结束点字符串 = 输入字符串.substringFromIndex(起始点位置!.startIndex)
+            } else {
+                起始点到结束点字符串 = 输入字符串.substringFromIndex(起始点位置!.endIndex)
+            }
+            if (结束字符串 != nil && 结束字符串 != "") {
+                let 搜索结束点:Range? = 起始点到结束点字符串.rangeOfString(结束字符串!)
+                if (搜索结束点 != nil) {
+                    if (包含结束字符串 != true) {
+                        起始点到结束点字符串 = 起始点到结束点字符串.substringToIndex(搜索结束点!.startIndex)
+                    } else {
+                        起始点到结束点字符串 = 起始点到结束点字符串.substringToIndex(搜索结束点!.endIndex)
+                    }
+                }
+            }
         }
         return 起始点到结束点字符串
     }

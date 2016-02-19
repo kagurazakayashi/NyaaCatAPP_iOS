@@ -22,13 +22,14 @@ var contents: String? = nil
     if (contents != nil) {
         let dma:DynmapAnalysis = DynmapAnalysis()
         dma.html = contents!
-        dma.取得世界列表()
-        dma.取得弹出提示()
-        dma.取得时间和天气()
-//        dma.取得在线玩家()
-//        dma.取得当前世界活动玩家状态()
-        dma.取得在线玩家加当前世界活动状态()
-//        dma.去除HTML标签(contents!)
+//        dma.取得世界列表()
+//        dma.取得弹出提示()
+//        dma.取得时间和天气()
+////        dma.取得在线玩家()
+////        dma.取得当前世界活动玩家状态()
+//        dma.取得在线玩家加当前世界活动状态()
+        dma.取得当前聊天记录()
+////        dma.去除HTML标签(contents!)
     } else {
         print("contents null")
     }
