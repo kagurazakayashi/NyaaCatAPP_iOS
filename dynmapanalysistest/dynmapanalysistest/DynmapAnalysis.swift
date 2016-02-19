@@ -181,7 +181,7 @@ class DynmapAnalysis: NSObject {
         return 合并二维数组
     }
     
-    func 取得当前聊天记录() {
+    func 取得当前聊天记录() -> [[String]] {
         let 聊天信息块:String = 抽取区间(html, 起始字符串: "<div class=\"messagelist", 结束字符串: "</div><button", 包含起始字符串: false, 包含结束字符串: true)
         let 聊天信息块分割:[String] = 聊天信息块.componentsSeparatedByString("</div>")
         var 聊天:[[String]] = Array<Array<String>>()
@@ -192,8 +192,8 @@ class DynmapAnalysis: NSObject {
             let 当前聊天信息块分割:[String] = 当前聊天信息块.componentsSeparatedByString(聊天图标单元)
             if (当前聊天信息块分割.count > 0) { //玩家消息
                 let 分割信息字段:[String] = 当前聊天信息块.componentsSeparatedByString("<span class=\"message")
+                var 类型:String = "0" //0=游戏内聊天，1=上下线消息，2=电报等第三方平台
                 if (分割信息字段.count > 1) {
-                    var 来自第三方聊天软件:String = "0"
                     var 玩家头像:String = 抽取区间(分割信息字段[1], 起始字符串: "icon\">", 结束字符串: "</span>", 包含起始字符串: false, 包含结束字符串: false)
                     if (玩家头像 != "") {
                         玩家头像 = 抽取区间(玩家头像, 起始字符串: "<img src=\"", 结束字符串: "\" class=", 包含起始字符串: false, 包含结束字符串: false)
@@ -201,7 +201,7 @@ class DynmapAnalysis: NSObject {
                     var 玩家名称:String = 抽取区间(分割信息字段[2], 起始字符串: "text\"> ", 结束字符串: "</span>", 包含起始字符串: false, 包含结束字符串: false)
                     var 玩家消息:String = 抽取区间(分割信息字段[3], 起始字符串: "text\">", 结束字符串: "</span>", 包含起始字符串: false, 包含结束字符串: false)
                     if (玩家名称 == "") {
-                        来自第三方聊天软件 = "1"
+                        类型 = "2"
                         let 玩家消息分割:[String] = 玩家消息.componentsSeparatedByString("] ")
                         玩家名称 = 抽取区间(玩家消息分割[0], 起始字符串: "[", 结束字符串: "", 包含起始字符串: false, 包含结束字符串: false)
                         玩家消息 = 玩家消息分割[1]
@@ -210,17 +210,26 @@ class DynmapAnalysis: NSObject {
 //                    NSLog("玩家名称：\(玩家名称)")
 //                    NSLog("来自第三方聊天软件：\(来自第三方聊天软件)")
 //                    NSLog("玩家消息：\(玩家消息)")
-                    聊天.append([玩家头像,玩家名称,来自第三方聊天软件,玩家消息])
+                    聊天.append([玩家头像,玩家名称,类型,玩家消息])
                     已处理 = true
                 }
                 if (已处理 == false) { //系统消息
-                    NSLog("当前聊天信息块2：\(当前聊天信息块)")
+                    let 上下线提示分割:[String] = 当前聊天信息块.componentsSeparatedByString("</span> ")
+                    let 上下线玩家名:String = 抽取区间(上下线提示分割[0], 起始字符串: "<div class=\"messagerow\">", 结束字符串: "", 包含起始字符串: false, 包含结束字符串: false)
+                    if (上下线提示分割.count > 1) {
+                        let 上下线行为:String = 上下线提示分割[1]
+//                        NSLog("上下线玩家名：\(上下线玩家名)")
+//                        NSLog("上下线行为：\(上下线行为)")
+                        聊天.append(["",上下线玩家名,"1",上下线行为])
+                        已处理 = true
+                    }
                 }
             } else { //系统消息
-                NSLog("当前聊天信息块1：\(当前聊天信息块)")
+                NSLog("[ERR]溢出聊天信息块：\(当前聊天信息块)")
             }
         }
-        
+        NSLog("聊天：\(聊天)")
+        return 聊天
     }
     
     //抽取区间(<#T##输入字符串: String##String#>, 起始字符串: <#T##String#>, 结束字符串: <#T##String#>, 包含起始字符串: <#T##Bool#>, 包含结束字符串: <#T##Bool#>)
