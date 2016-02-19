@@ -26,7 +26,7 @@ class DynmapAnalysis: NSObject {
         let 起始点到结束点字符串:String = 抽取区间(html, 起始字符串: "<ul class=\"worldlist\"", 结束字符串: "</a></li></ul></li></ul>", 包含起始字符串: true, 包含结束字符串: false)
         let classworld分割:[String] = 起始点到结束点字符串.componentsSeparatedByString("<li class=\"world\">")
         var 世界名称:[String] = Array<String>()
-        for (var classworld分割循环 = 1; classworld分割循环 < classworld分割.count; classworld分割循环++) {
+        for classworld分割循环 in 1...classworld分割.count-1 {
             var 当前classworld分割:String = classworld分割[classworld分割循环]
             let 当前地图名称结束位置:Range = 当前classworld分割.rangeOfString("<")!
             当前classworld分割 = 当前classworld分割.substringToIndex(当前地图名称结束位置.startIndex)
@@ -61,7 +61,7 @@ class DynmapAnalysis: NSObject {
         var 在线玩家头像:[String] = Array<String>()
         var 在线玩家名:[String] = Array<String>()
         var 在线玩家名带字体格式:[String] = Array<String>()
-        for (var li分割循环 = 1; li分割循环 < li分割.count; li分割循环++) {
+        for li分割循环 in 1...li分割.count-1 {
             let 当前li分割:String = li分割[li分割循环]
             let 图片相对路径:String = 抽取区间(当前li分割, 起始字符串: "<img src=\"", 结束字符串: "\"></span><a href=\"#\"", 包含起始字符串: false, 包含结束字符串: false)
             let 图片相对路径分割:[String] = 图片相对路径.componentsSeparatedByString("/")
@@ -103,6 +103,7 @@ class DynmapAnalysis: NSObject {
         }
         NSLog("在线玩家\(在线玩家.count)=\(在线玩家)");
         return 在线玩家
+        //果然不用字典用数组的话好麻烦：
 //        let 修改前玩家数量:Int = 在线玩家.count
 //        for (var 在线玩家循环 = 1; 在线玩家循环 < 修改前玩家数量; 在线玩家循环++) {
 //            var 当前在线玩家:[String] = 在线玩家[在线玩家循环]
@@ -130,10 +131,10 @@ class DynmapAnalysis: NSObject {
         let 在线玩家二维数组:[[String]] = 数组
         let 在线玩家名:[String] = 在线玩家二维数组[0]
         var 玩家信息:Dictionary<String,[String]> = Dictionary<String,[String]>()
-        for (var 在线玩家名循环 = 0; 在线玩家名循环 < 在线玩家名.count; 在线玩家名循环++) {
+        for 在线玩家名循环 in 0...在线玩家名.count-1 {
             var 当前玩家信息:[String] = Array<String>()
             var 当前玩家名:String = ""
-            for (var 在线玩家二维数组循环 = 0; 在线玩家二维数组循环 < 在线玩家二维数组.count; 在线玩家二维数组循环++) {
+            for 在线玩家二维数组循环 in 0...在线玩家二维数组.count-1 {
                 let 当前玩家名数组:[String] = 在线玩家二维数组[在线玩家二维数组循环]
                 let 当前信息:String = 当前玩家名数组[在线玩家名循环]
                 if (在线玩家二维数组循环 > 0) {
@@ -156,7 +157,7 @@ class DynmapAnalysis: NSObject {
         var 在线玩家血量宽度:[String] = Array<String>()
         var 在线玩家护甲宽度:[String] = Array<String>()
         var 在线玩家位置:[String] = Array<String>()
-        for (var 活动玩家块分割循环 = 1; 活动玩家块分割循环 < 活动玩家块分割.count; 活动玩家块分割循环++) {
+        for 活动玩家块分割循环 in 1...活动玩家块分割.count-1 {
             let 当前活动玩家块分割:String = 活动玩家块分割[活动玩家块分割循环]
             //NSLog("当前活动玩家块分割：\(当前活动玩家块分割)")
             var 玩家名称:String = 抽取区间(当前活动玩家块分割, 起始字符串: "<span class=\"playerNameSm\">", 结束字符串: "<div c", 包含起始字符串: false, 包含结束字符串: false)
@@ -224,7 +225,7 @@ class DynmapAnalysis: NSObject {
         let 输入参数:String = 输入html
         var 输出参数:[String] = Array<String>()
         let 输入参数分割:[String] = 输入参数.componentsSeparatedByString("<")
-        for (var 输入参数分割循环 = 0; 输入参数分割循环 < 输入参数分割.count; 输入参数分割循环++) {
+        for 输入参数分割循环 in 0...输入参数分割.count-1 {
             let 当前输入参数分割:String = 输入参数分割[输入参数分割循环]
             let 文本内容起始点位置:Range? = 当前输入参数分割.rangeOfString(">")
             if (文本内容起始点位置 != nil) {
