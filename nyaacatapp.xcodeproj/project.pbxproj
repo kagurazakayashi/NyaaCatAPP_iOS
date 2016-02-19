@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		530DB2AD1C77C998006CDBD2 /* signshop_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 530DB2AC1C77C998006CDBD2 /* signshop_icon.png */; };
+		530DB2B31C77C9DE006CDBD2 /* home_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 530DB2B21C77C9DE006CDBD2 /* home_icon.png */; };
 		5357ED2D1C6F6D1C000DF41B /* stormy_day.png in Resources */ = {isa = PBXBuildFile; fileRef = 5357ED241C6F6D1C000DF41B /* stormy_day.png */; };
 		5357ED2E1C6F6D1C000DF41B /* stormy_night.png in Resources */ = {isa = PBXBuildFile; fileRef = 5357ED251C6F6D1C000DF41B /* stormy_night.png */; };
 		5357ED2F1C6F6D1C000DF41B /* stormy.png in Resources */ = {isa = PBXBuildFile; fileRef = 5357ED261C6F6D1C000DF41B /* stormy.png */; };
@@ -64,6 +66,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		530DB2AC1C77C998006CDBD2 /* signshop_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signshop_icon.png; sourceTree = "<group>"; };
+		530DB2B21C77C9DE006CDBD2 /* home_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_icon.png; sourceTree = "<group>"; };
 		5357ED241C6F6D1C000DF41B /* stormy_day.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stormy_day.png; sourceTree = "<group>"; };
 		5357ED251C6F6D1C000DF41B /* stormy_night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stormy_night.png; sourceTree = "<group>"; };
 		5357ED261C6F6D1C000DF41B /* stormy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stormy.png; sourceTree = "<group>"; };
@@ -171,6 +175,8 @@
 		53C5957F1C6B4B1D00C55E31 /* 图片 */ = {
 			isa = PBXGroup;
 			children = (
+				530DB2B21C77C9DE006CDBD2 /* home_icon.png */,
+				530DB2AC1C77C998006CDBD2 /* signshop_icon.png */,
 				5357ED371C6F6D5D000DF41B /* weather */,
 				53C595801C6B4B3300C55E31 /* bg.jpg */,
 				53C595811C6B4B3300C55E31 /* logo-c.png */,
@@ -331,6 +337,7 @@
 				5399CCA71C6BA0FF00022441 /* Assets.xcassets in Resources */,
 				5357ED2D1C6F6D1C000DF41B /* stormy_day.png in Resources */,
 				5357ED2E1C6F6D1C000DF41B /* stormy_night.png in Resources */,
+				530DB2AD1C77C998006CDBD2 /* signshop_icon.png in Resources */,
 				53C5958D1C6B4BE600C55E31 /* WaitVC.xib in Resources */,
 				5357ED321C6F6D1C000DF41B /* sunny.png in Resources */,
 				53C595851C6B4B3300C55E31 /* logo.png in Resources */,
@@ -338,6 +345,7 @@
 				5357ED331C6F6D1C000DF41B /* thunder_day.png in Resources */,
 				5357ED311C6F6D1C000DF41B /* sunny_night.png in Resources */,
 				53C595831C6B4B3300C55E31 /* bg.jpg in Resources */,
+				530DB2B31C77C9DE006CDBD2 /* home_icon.png in Resources */,
 				5399CCA51C6BA0FF00022441 /* Main.storyboard in Resources */,
 				53C595921C6B585800C55E31 /* LoginMenuVC.xib in Resources */,
 				8BA1F3311C709867003BC1EC /* BBSVC.xib in Resources */,

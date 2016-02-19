@@ -162,9 +162,7 @@ class DynmapAnalysis: NSObject {
             //NSLog("当前活动玩家块分割：\(当前活动玩家块分割)")
             var 玩家名称:String = 抽取区间(当前活动玩家块分割, 起始字符串: "<span class=\"playerNameSm\">", 结束字符串: "<div c", 包含起始字符串: false, 包含结束字符串: false)
             玩家名称 = 去除HTML标签(玩家名称, 需要合成: true)[0]
-            let 玩家translate3d位置描述:String = 抽取区间(当前活动玩家块分割, 起始字符串: "translate3d(", 结束字符串: "px, 0px);", 包含起始字符串: false, 包含结束字符串: false)
-            let 玩家translate3d位置数组:[String] = 玩家translate3d位置描述.componentsSeparatedByString("px, ")
-            let 玩家位置:String = 玩家translate3d位置数组.joinWithSeparator(",")
+            let 玩家位置:String = translate3d标签抽取(当前活动玩家块分割)
             //NSLog("玩家translate3d位置：\(玩家translate3d位置)")
             let 玩家血量宽度:String = 抽取区间(当前活动玩家块分割, 起始字符串: "<div class=\"playerHealth\" style=\"width: ", 结束字符串: "px;\">", 包含起始字符串: false, 包含结束字符串: false)
             let 玩家护甲宽度:String = 抽取区间(当前活动玩家块分割, 起始字符串: "<div class=\"playerArmor\" style=\"width: ", 结束字符串: "px;\">", 包含起始字符串: false, 包含结束字符串: false)
@@ -232,6 +230,24 @@ class DynmapAnalysis: NSObject {
         return 聊天
     }
     
+    func 取得商店列表() -> [[String]] {
+        var 商店:[[String]] = Array<Array<String>>()
+        let 商店块起始:String = "markerName_SignShopMarkers markerName16x16\">"
+        let 商店块:String = 抽取区间(html, 起始字符串: 商店块起始, 结束字符串: "markerName_markers", 包含起始字符串: true, 包含结束字符串: false)
+        let 商店块分割:[String] = 商店块.componentsSeparatedByString(商店块起始)
+        for 商店块分割循环 in 0...商店块分割.count-1 {
+            let 商店描述:String = 商店块分割[商店块分割循环]
+            let 商店名结束点:Range? = 商店描述.rangeOfString("</span>")
+            if (商店名结束点 != nil) {
+                let 商店名:String = 商店描述.substringToIndex(商店名结束点!.startIndex)
+                let 商店位置:String = translate3d标签抽取(商店描述)
+                商店.append([商店名,商店位置])
+            }
+        }
+        NSLog("商店：\(商店)")
+        return 商店
+    }
+    
     //抽取区间(<#T##输入字符串: String##String#>, 起始字符串: <#T##String#>, 结束字符串: <#T##String#>, 包含起始字符串: <#T##Bool#>, 包含结束字符串: <#T##Bool#>)
     func 抽取区间(输入字符串:String,起始字符串:String,结束字符串:String?,包含起始字符串:Bool,包含结束字符串:Bool) -> String {
         var 起始点到结束点字符串:String = ""
@@ -255,6 +271,13 @@ class DynmapAnalysis: NSObject {
             }
         }
         return 起始点到结束点字符串
+    }
+    
+    func translate3d标签抽取(源:String) -> String {
+        let translate3d位置描述:String = 抽取区间(源, 起始字符串: "translate3d(", 结束字符串: "px, 0px);", 包含起始字符串: false, 包含结束字符串: false)
+        let translate3d位置数组:[String] = translate3d位置描述.componentsSeparatedByString("px, ")
+        let 位置描述:String = translate3d位置数组.joinWithSeparator(",")
+        return 位置描述
     }
     
     func 取得弹出提示() -> [NSObject] {
