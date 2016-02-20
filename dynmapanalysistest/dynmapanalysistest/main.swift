@@ -32,7 +32,13 @@ var contents: String? = nil
 //        dma.取得商店和地点列表()
 ////        dma.去除HTML标签(contents!)
         
-        
+        //内存压力测试
+        for i in 0...1000 {
+            NSLog("开始解析 \(i)")
+            let dmac:DynmapAnalysisController = DynmapAnalysisController()
+            dmac.html = contents!
+            dmac.start()
+        }
     } else {
         print("contents null")
     }

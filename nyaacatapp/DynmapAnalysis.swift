@@ -21,11 +21,21 @@ class DynmapAnalysis: NSObject {
 //    deinit {
 //        NSLog("析构：DynmapAnalysis")
 //    }
+    
+    func 有效性校验() -> Bool {
+        if (html?.rangeOfString("<div id=\"mcmap\" class=\"dynmap\">") != nil) {
+            return true
+        }
+        return false
+    }
 
     func 取得世界列表() -> [String] {
+        var 世界名称:[String] = Array<String>()
         let 起始点到结束点字符串:String = 抽取区间(html!, 起始字符串: "<ul class=\"worldlist\"", 结束字符串: "</a></li></ul></li></ul>", 包含起始字符串: true, 包含结束字符串: false)
         let classworld分割:[String] = 起始点到结束点字符串.componentsSeparatedByString("<li class=\"world\">")
-        var 世界名称:[String] = Array<String>()
+        if (classworld分割.count < 2) {
+            return 世界名称
+        }
         for classworld分割循环 in 1...classworld分割.count-1 {
             autoreleasepool {
                 var 当前classworld分割:String = classworld分割[classworld分割循环]
@@ -63,6 +73,9 @@ class DynmapAnalysis: NSObject {
         var 在线玩家头像:[String] = Array<String>()
         var 在线玩家名:[String] = Array<String>()
         var 在线玩家名带字体格式:[String] = Array<String>()
+        if (li分割.count < 2) {
+            return [在线玩家名, 在线玩家头像, 在线玩家名带字体格式]
+        }
         for li分割循环 in 1...li分割.count-1 {
             autoreleasepool {
                 let 当前li分割:String = li分割[li分割循环]
@@ -139,6 +152,9 @@ class DynmapAnalysis: NSObject {
         let 在线玩家二维数组:[[String]] = 数组
         let 在线玩家名:[String] = 在线玩家二维数组[0]
         var 玩家信息:Dictionary<String,[String]> = Dictionary<String,[String]>()
+        if (在线玩家名.count < 1) {
+            return 玩家信息
+        }
         for 在线玩家名循环 in 0...在线玩家名.count-1 {
             autoreleasepool {
                 var 当前玩家信息:[String] = Array<String>()
@@ -169,6 +185,9 @@ class DynmapAnalysis: NSObject {
         var 在线玩家血量宽度:[String] = Array<String>()
         var 在线玩家护甲宽度:[String] = Array<String>()
         var 在线玩家位置:[String] = Array<String>()
+        if (活动玩家块分割.count < 2) {
+            return [在线玩家名称,在线玩家血量宽度,在线玩家护甲宽度,在线玩家位置]
+        }
         for 活动玩家块分割循环 in 1...活动玩家块分割.count-1 {
             autoreleasepool {
                 let 当前活动玩家块分割:String = 活动玩家块分割[活动玩家块分割循环]
@@ -197,6 +216,9 @@ class DynmapAnalysis: NSObject {
         let 聊天信息块:String = 抽取区间(html!, 起始字符串: "<div class=\"messagelist", 结束字符串: "</div><button", 包含起始字符串: false, 包含结束字符串: true)
         let 聊天信息块分割:[String] = 聊天信息块.componentsSeparatedByString("</div>")
         var 聊天:[[String]] = Array<Array<String>>()
+        if (聊天信息块分割.count < 1) {
+            return 聊天
+        }
         for 聊天信息块分割循环 in 0...聊天信息块分割.count-1 {
             autoreleasepool {
                 var 已处理:Bool = false
@@ -253,6 +275,9 @@ class DynmapAnalysis: NSObject {
         let 商店块结束:String = "playerMarker"
         let 商店块:String = 抽取区间(html!, 起始字符串: 商店块起始, 结束字符串: 商店块结束, 包含起始字符串: true, 包含结束字符串: false)
         let 商店块分割:[String] = 商店块.componentsSeparatedByString(商店块起始)
+        if (商店块分割.count < 2) {
+            return [商店,地点]
+        }
         for 商店块分割循环 in 1...商店块分割.count-1 {
             autoreleasepool {
                 let 商店描述:String = 商店块分割[商店块分割循环]

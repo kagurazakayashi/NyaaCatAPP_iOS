@@ -18,6 +18,8 @@ class MainVC: UIViewController, UIWebViewDelegate, LoginMenuVCDelegate {
     let 地图页面标题:String = "Minecraft Dynamic Map"
     let 地图页面特征:String = "<!-- These 2 lines make us fullscreen on apple mobile products - remove if you don't like that -->"
     
+    var 刷新速度:NSTimeInterval = 1.0 //1.0标准，3.0节能，0.2模拟器压力测试，0.5真机压力测试
+    
     let 等待画面:WaitVC = WaitVC()
     let 登录菜单:LoginMenuVC = LoginMenuVC()
     var 提示框:UIAlertController? = nil
@@ -73,7 +75,7 @@ class MainVC: UIViewController, UIWebViewDelegate, LoginMenuVCDelegate {
                 let 网页内容:String? = 请求页面源码(false)
                 if (网页内容?.rangeOfString(地图页面特征) != nil) {
                     等待画面.副标题.text = "登录成功~撒花~"
-                    定时器 = NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: "定时器触发", userInfo: nil, repeats: true)
+                    定时器 = NSTimer.scheduledTimerWithTimeInterval(刷新速度, target: self, selector: "定时器触发", userInfo: nil, repeats: true)
                 }
             } else if (网页标题 != nil) {
                 检查登录网络请求(true)
