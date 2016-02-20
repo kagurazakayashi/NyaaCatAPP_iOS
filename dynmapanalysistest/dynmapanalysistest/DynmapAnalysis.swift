@@ -32,11 +32,11 @@ class DynmapAnalysis: NSObject {
             当前classworld分割 = 当前classworld分割.substringToIndex(当前地图名称结束位置.startIndex)
             世界名称.append(当前classworld分割)
         }
-        NSLog("取得世界名称：\(世界名称)")
+//        NSLog("取得世界名称：\(世界名称)")
         return 世界名称
     }
     
-    func 取得时间和天气() {
+    func 取得时间和天气() -> [String] {
         let 起始点到结束点字符串:String = 抽取区间(html, 起始字符串: "<div class=\"timeofday digitalclock", 结束字符串: "</div></div></div>", 包含起始字符串: false, 包含结束字符串: false)
         let 时间字符串:String = 抽取区间(起始点到结束点字符串, 起始字符串: "\">", 结束字符串: "</div>", 包含起始字符串: false, 包含结束字符串: false)
         let 天气字符串:String = 抽取区间(起始点到结束点字符串, 起始字符串: "weather ", 结束字符串: "\">", 包含起始字符串: false, 包含结束字符串: false)
@@ -49,10 +49,10 @@ class DynmapAnalysis: NSObject {
         } else {
             天气 = 天气字符串
         }
-        NSLog("时间：\(时间字符串)，时段：\(时段)，天气：\(天气)")
+//        NSLog("时间：\(时间字符串)，时段：\(时段)，天气：\(天气)")
         //let 时段中文数据:Dictionary<String,String> = ["day":"白天","night":"夜晚"]
         //let 天气中文数据:Dictionary<String,String> = ["stormy":"雨","sunny":"晴","thunder":"雷"]
-        
+        return [时间字符串,时段,天气]
     }
     
     func 取得在线玩家() -> [[String]] {
@@ -89,7 +89,7 @@ class DynmapAnalysis: NSObject {
     }
     
     //返回值= 在线玩家名:[在线玩家头像, 在线玩家名带字体格式,在线玩家血量宽度,在线玩家护甲宽度,在线玩家位置]
-    func 取得在线玩家加当前世界活动状态() -> Dictionary<String,[String]> {
+    func 取得在线玩家和当前世界活动状态() -> Dictionary<String,[String]> {
         var 在线玩家:Dictionary<String,[String]> = 转换玩家二维数组格式(取得在线玩家())
         var 活动玩家:Dictionary<String,[String]> = 转换玩家二维数组格式(取得当前世界活动玩家状态())
         for key in 活动玩家.keys
@@ -101,7 +101,7 @@ class DynmapAnalysis: NSObject {
             }
             在线玩家[key] = 在线玩家当前值
         }
-        NSLog("在线玩家\(在线玩家.count)=\(在线玩家)");
+//        NSLog("在线玩家\(在线玩家.count)=\(在线玩家)");
         return 在线玩家
         //果然不用字典用数组的话好麻烦：
 //        let 修改前玩家数量:Int = 在线玩家.count
@@ -226,7 +226,7 @@ class DynmapAnalysis: NSObject {
                 NSLog("[ERR]溢出聊天信息块：\(当前聊天信息块)")
             }
         }
-        NSLog("聊天：\(聊天)")
+//        NSLog("聊天：\(聊天)")
         return 聊天
     }
     
@@ -248,8 +248,8 @@ class DynmapAnalysis: NSObject {
                 商店.append([商店名,商店位置])
             }
         }
-        NSLog("商店：\(商店)")
-        NSLog("地点：\(地点)")
+//        NSLog("商店：\(商店)")
+//        NSLog("地点：\(地点)")
         return [商店,地点]
     }
     

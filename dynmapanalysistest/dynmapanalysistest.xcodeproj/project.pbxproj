@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		533A70F81C780E07005EAC90 /* DynmapAnalysisController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533A70F71C780E07005EAC90 /* DynmapAnalysisController.swift */; };
 		536E30061C6C9FF900168F02 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536E30051C6C9FF900168F02 /* main.swift */; };
 		536E30131C6CA06700168F02 /* DynmapAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536E30121C6CA06700168F02 /* DynmapAnalysis.swift */; };
 		536E301A1C6CAA8B00168F02 /* html.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 536E30171C6CA8FD00168F02 /* html.txt */; };
@@ -26,6 +27,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		533A70F71C780E07005EAC90 /* DynmapAnalysisController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynmapAnalysisController.swift; sourceTree = "<group>"; };
 		536E30021C6C9FF900168F02 /* dynmapanalysistest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = dynmapanalysistest; sourceTree = BUILT_PRODUCTS_DIR; };
 		536E30051C6C9FF900168F02 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		536E30121C6CA06700168F02 /* DynmapAnalysis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynmapAnalysis.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				536E30171C6CA8FD00168F02 /* html.txt */,
 				536E30051C6C9FF900168F02 /* main.swift */,
 				536E30121C6CA06700168F02 /* DynmapAnalysis.swift */,
+				533A70F71C780E07005EAC90 /* DynmapAnalysisController.swift */,
 			);
 			path = dynmapanalysistest;
 			sourceTree = "<group>";
@@ -128,6 +131,7 @@
 			files = (
 				536E30131C6CA06700168F02 /* DynmapAnalysis.swift in Sources */,
 				536E30061C6C9FF900168F02 /* main.swift in Sources */,
+				533A70F81C780E07005EAC90 /* DynmapAnalysisController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
