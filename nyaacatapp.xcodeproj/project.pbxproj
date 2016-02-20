@@ -35,7 +35,6 @@
 		53C595911C6B585800C55E31 /* LoginMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C5958F1C6B585800C55E31 /* LoginMenuVC.swift */; };
 		53C595921C6B585800C55E31 /* LoginMenuVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53C595901C6B585800C55E31 /* LoginMenuVC.xib */; };
 		8BA1F32F1C7091B7003BC1EC /* BBSVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA1F32E1C7091B7003BC1EC /* BBSVC.swift */; };
-		8BA1F3311C709867003BC1EC /* BBSVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA1F3301C709867003BC1EC /* BBSVC.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,7 +101,6 @@
 		53C595901C6B585800C55E31 /* LoginMenuVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginMenuVC.xib; sourceTree = "<group>"; };
 		8B728FEA1C6F74B10068A775 /* uploadimgtosmmstest.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = uploadimgtosmmstest.xcodeproj; path = uploadimgtosmmstest/uploadimgtosmmstest.xcodeproj; sourceTree = "<group>"; };
 		8BA1F32E1C7091B7003BC1EC /* BBSVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSVC.swift; sourceTree = "<group>"; };
-		8BA1F3301C709867003BC1EC /* BBSVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,7 +246,6 @@
 			isa = PBXGroup;
 			children = (
 				8BA1F32E1C7091B7003BC1EC /* BBSVC.swift */,
-				8BA1F3301C709867003BC1EC /* BBSVC.xib */,
 			);
 			name = "论坛";
 			sourceTree = "<group>";
@@ -368,7 +365,6 @@
 				530DB2B31C77C9DE006CDBD2 /* home_icon.png in Resources */,
 				5399CCA51C6BA0FF00022441 /* Main.storyboard in Resources */,
 				53C595921C6B585800C55E31 /* LoginMenuVC.xib in Resources */,
-				8BA1F3311C709867003BC1EC /* BBSVC.xib in Resources */,
 				5357ED341C6F6D1C000DF41B /* thunder_night.png in Resources */,
 				5357ED2F1C6F6D1C000DF41B /* stormy.png in Resources */,
 				5357ED351C6F6D1C000DF41B /* thunder.png in Resources */,

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6Ti-ue-IEU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15E39d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6Ti-ue-IEU">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -18,7 +18,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IrE-MO-WHt" id="EKM-M9-gct">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -33,6 +33,42 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WPJ-eg-6RA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1500" y="-132"/>
+        </scene>
+        <!--论坛-->
+        <scene sceneID="YhF-uF-cA6">
+            <objects>
+                <navigationController id="tz5-F1-fQE" userLabel="论坛" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="论坛" selectedImage="logo.png" id="7aE-ym-gqf"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="emU-fR-Swa">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="djv-s6-ff4" kind="relationship" relationship="rootViewController" id="alb-zK-UnS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s9w-uM-mTq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="812" y="605"/>
+        </scene>
+        <!--NyaaBBS-->
+        <scene sceneID="gtA-fW-gTp">
+            <objects>
+                <viewController id="djv-s6-ff4" userLabel="NyaaBBS" customClass="BBSVC" customModule="nyaacatapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9jT-Sv-h0h"/>
+                        <viewControllerLayoutGuide type="bottom" id="gTr-7o-SxU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nQ9-T9-dtH">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="o9A-Jq-lkt"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fk4-ex-kJb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1500" y="605"/>
         </scene>
         <!--聊天-->
         <scene sceneID="eZU-Yn-OOA">
@@ -62,6 +98,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="Dz2-Df-0tC" kind="relationship" relationship="viewControllers" id="s2I-mt-bxG"/>
+                        <segue destination="tz5-F1-fQE" kind="relationship" relationship="viewControllers" id="HeU-SV-IbJ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vgO-ee-5Rl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -71,5 +108,6 @@
     </scenes>
     <resources>
         <image name="home_icon.png" width="16" height="16"/>
+        <image name="logo.png" width="666" height="522"/>
     </resources>
 </document>
