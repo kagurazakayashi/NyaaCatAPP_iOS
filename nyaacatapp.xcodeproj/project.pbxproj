@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		530DB2AD1C77C998006CDBD2 /* signshop_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 530DB2AC1C77C998006CDBD2 /* signshop_icon.png */; };
 		530DB2B31C77C9DE006CDBD2 /* home_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 530DB2B21C77C9DE006CDBD2 /* home_icon.png */; };
+		533A70FB1C781B60005EAC90 /* DynmapAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533A70F91C781B60005EAC90 /* DynmapAnalysis.swift */; };
+		533A70FC1C781B60005EAC90 /* DynmapAnalysisController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533A70FA1C781B60005EAC90 /* DynmapAnalysisController.swift */; };
 		5357ED2D1C6F6D1C000DF41B /* stormy_day.png in Resources */ = {isa = PBXBuildFile; fileRef = 5357ED241C6F6D1C000DF41B /* stormy_day.png */; };
 		5357ED2E1C6F6D1C000DF41B /* stormy_night.png in Resources */ = {isa = PBXBuildFile; fileRef = 5357ED251C6F6D1C000DF41B /* stormy_night.png */; };
 		5357ED2F1C6F6D1C000DF41B /* stormy.png in Resources */ = {isa = PBXBuildFile; fileRef = 5357ED261C6F6D1C000DF41B /* stormy.png */; };
@@ -68,6 +70,8 @@
 /* Begin PBXFileReference section */
 		530DB2AC1C77C998006CDBD2 /* signshop_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signshop_icon.png; sourceTree = "<group>"; };
 		530DB2B21C77C9DE006CDBD2 /* home_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_icon.png; sourceTree = "<group>"; };
+		533A70F91C781B60005EAC90 /* DynmapAnalysis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynmapAnalysis.swift; sourceTree = "<group>"; };
+		533A70FA1C781B60005EAC90 /* DynmapAnalysisController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynmapAnalysisController.swift; sourceTree = "<group>"; };
 		5357ED241C6F6D1C000DF41B /* stormy_day.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stormy_day.png; sourceTree = "<group>"; };
 		5357ED251C6F6D1C000DF41B /* stormy_night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stormy_night.png; sourceTree = "<group>"; };
 		5357ED261C6F6D1C000DF41B /* stormy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stormy.png; sourceTree = "<group>"; };
@@ -127,6 +131,8 @@
 		536E2FDF1C6C958800168F02 /* 数据解析 */ = {
 			isa = PBXGroup;
 			children = (
+				533A70F91C781B60005EAC90 /* DynmapAnalysis.swift */,
+				533A70FA1C781B60005EAC90 /* DynmapAnalysisController.swift */,
 			);
 			name = "数据解析";
 			sourceTree = "<group>";
@@ -362,8 +368,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				533A70FC1C781B60005EAC90 /* DynmapAnalysisController.swift in Sources */,
 				5399CCA01C6BA0FF00022441 /* AppDelegate.swift in Sources */,
 				8BA1F32F1C7091B7003BC1EC /* BBSVC.swift in Sources */,
+				533A70FB1C781B60005EAC90 /* DynmapAnalysis.swift in Sources */,
 				53C5957E1C6B3DC500C55E31 /* MainVC.swift in Sources */,
 				53C5958C1C6B4BE600C55E31 /* WaitVC.swift in Sources */,
 				53C595911C6B585800C55E31 /* LoginMenuVC.swift in Sources */,

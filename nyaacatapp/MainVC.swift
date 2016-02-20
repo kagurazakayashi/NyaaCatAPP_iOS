@@ -23,6 +23,7 @@ class MainVC: UIViewController, UIWebViewDelegate, LoginMenuVCDelegate {
     var 提示框:UIAlertController? = nil
     var 网络模式:网络模式选项 = 网络模式选项.检查是否登录
     var 定时器:NSTimer? = nil
+    var 解析引擎:DynmapAnalysisController = DynmapAnalysisController()
     
     enum 网络模式选项 {
         case 检查是否登录
@@ -93,7 +94,10 @@ class MainVC: UIViewController, UIWebViewDelegate, LoginMenuVCDelegate {
     
     func 定时器触发() {
         let 网页内容:String? = 请求页面源码(false)
-        NSLog("网页内容="+网页内容!)
+        if (网页内容 != nil) {
+            解析引擎.html = 网页内容!
+            解析引擎.start()
+        }
     }
     
     func 请求页面源码(只获取标题:Bool) -> String? {
