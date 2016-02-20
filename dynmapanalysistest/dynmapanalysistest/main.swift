@@ -20,9 +20,6 @@ var contents: String? = nil
         contents = nil
     }
     if (contents != nil) {
-        let dmac:DynmapAnalysisController = DynmapAnalysisController()
-        dmac.html = contents!
-        dmac.start()
 //        let dma:DynmapAnalysis = DynmapAnalysis()
 //        dma.html = contents!
 //        dma.取得世界列表()
@@ -34,9 +31,8 @@ var contents: String? = nil
 //        dma.取得当前聊天记录()
 //        dma.取得商店和地点列表()
 ////        dma.去除HTML标签(contents!)
-        while(true) {
-            
-        }
+        
+        
     } else {
         print("contents null")
     }
