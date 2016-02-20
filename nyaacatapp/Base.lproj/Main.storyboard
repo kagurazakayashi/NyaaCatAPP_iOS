@@ -1,27 +1,75 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6Ti-ue-IEU">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
-        <!--MainVC-->
-        <scene sceneID="tne-QT-ifu">
+        <!--在线聊天-->
+        <scene sceneID="GKZ-Q7-arc">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MainVC" customModule="nyaacatapp" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                <tableViewController title="在线聊天" id="8IN-wD-EGg" customClass="DMChatTVC" customModule="nyaacatapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="hoo-0u-Dbo">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="IrE-MO-WHt">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IrE-MO-WHt" id="EKM-M9-gct">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="8IN-wD-EGg" id="iyr-Av-rLN"/>
+                            <outlet property="delegate" destination="8IN-wD-EGg" id="12c-AL-WE6"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="💬 游戏内聊天" id="13O-oG-Q2t"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WPJ-eg-6RA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="384" y="244"/>
+            <point key="canvasLocation" x="1500" y="-132"/>
+        </scene>
+        <!--聊天-->
+        <scene sceneID="eZU-Yn-OOA">
+            <objects>
+                <navigationController id="Dz2-Df-0tC" customClass="DMChatNC" customModule="nyaacatapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="聊天" image="home_icon.png" id="kpT-GW-TOv"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Awd-oO-Ubk">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="8IN-wD-EGg" kind="relationship" relationship="rootViewController" id="Mpn-NT-hBp"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="La4-IJ-x7A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="812" y="-132"/>
+        </scene>
+        <!--MainTBC-->
+        <scene sceneID="KGj-5E-hZA">
+            <objects>
+                <tabBarController id="6Ti-ue-IEU" customClass="MainTBC" customModule="nyaacatapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="HdR-zX-H9C">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="Dz2-Df-0tC" kind="relationship" relationship="viewControllers" id="s2I-mt-bxG"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vgO-ee-5Rl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="44" y="238"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="home_icon.png" width="16" height="16"/>
+    </resources>
 </document>

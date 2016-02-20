@@ -1,17 +1,15 @@
 //
-//  MainVC.swift
+//  MainTBC.swift
 //  nyaacatapp
 //
-//  Created by 神楽坂雅詩 on 16/2/10.
+//  Created by 神楽坂雅詩 on 16/2/20.
 //  Copyright © 2016年 KagurazakaYashi. All rights reserved.
 //
-
-
 
 import UIKit
 import WebKit
 
-class MainVC: UIViewController, WKNavigationDelegate, LoginMenuVCDelegate {
+class MainTBC: UITabBarController, WKNavigationDelegate, LoginMenuVCDelegate, DynmapAnalysisControllerDelegate {
     
     let 动态地图网址:String = "https://mcmap.90g.org"
     let 动态地图登录接口:String = "https://mcmap.90g.org/up/login"
@@ -21,6 +19,7 @@ class MainVC: UIViewController, WKNavigationDelegate, LoginMenuVCDelegate {
     
     
     var 刷新速度:NSTimeInterval = 1.0 //1.0标准，3.0节能，0.2模拟器压力测试，0.5真机压力测试
+    var 综合信息:Dictionary<String,NSObject>? = nil
     
     let 等待画面:WaitVC = WaitVC()
     let 登录菜单:LoginMenuVC = LoginMenuVC()
@@ -36,17 +35,20 @@ class MainVC: UIViewController, WKNavigationDelegate, LoginMenuVCDelegate {
     }
     
     //var 后台网页加载器:UIWebView = UIWebView(frame: CGRectMake(0,0,100,200))
-    var 后台网页加载器:WKWebView = WKWebView(frame: CGRectMake(0,0,100,200))
-
+    var 后台网页加载器:WKWebView = WKWebView(frame: CGRectMake(0,0,0,0))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        tabBar.barTintColor = 全局_导航栏颜色
+        //navigationBar.layer.contents = (id)[UIImage imageWithColor:youColor].CGImage;
+        tabBar.tintColor = UIColor.whiteColor()
         self.view.addSubview(后台网页加载器)
         //self.presentViewController(等待画面, animated: true, completion: nil)
         等待画面.view.frame = self.view.frame
         登录菜单.view.frame = self.view.frame
-        self.view.addSubview(等待画面.view)
         后台网页加载器.navigationDelegate = self
         
+        self.view.addSubview(等待画面.view)
         检查登录网络请求(false)
     }
     
@@ -101,6 +103,7 @@ class MainVC: UIViewController, WKNavigationDelegate, LoginMenuVCDelegate {
                     等待画面.副标题.text = "登录成功~撒花~"
                     网络模式 = 网络模式选项.监视页面信息
                     定时器 = NSTimer.scheduledTimerWithTimeInterval(刷新速度, target: self, selector: "定时器触发", userInfo: nil, repeats: true)
+                    等待画面.停止 = true
                 }
             } else if (网页标题 != nil) {
                 检查登录网络请求(true)
@@ -147,21 +150,13 @@ class MainVC: UIViewController, WKNavigationDelegate, LoginMenuVCDelegate {
         //网络请求.HTTPBody = 网络参数.dataUsingEncoding(NSUTF8StringEncoding)
         后台网页加载器.loadRequest(网络请求)
     }
-
+    
+    func 解析完成(综合信息输入:Dictionary<String,NSObject>?,信息数据量 信息数据量输入:Dictionary<String,Int>?) {
+        综合信息 = 综合信息输入
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         //后台网页加载器.reload()
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -9,6 +9,7 @@
 import UIKit
 
 @UIApplicationMain
+
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
@@ -41,6 +42,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
 }
+
+//全局
+let 全局_导航栏颜色:UIColor = UIColor(red: 1, green: 153/255, blue: 204/255, alpha: 1)
 

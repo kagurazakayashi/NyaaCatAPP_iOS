@@ -11,6 +11,9 @@
 		530DB2B31C77C9DE006CDBD2 /* home_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 530DB2B21C77C9DE006CDBD2 /* home_icon.png */; };
 		533A70FB1C781B60005EAC90 /* DynmapAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533A70F91C781B60005EAC90 /* DynmapAnalysis.swift */; };
 		533A70FC1C781B60005EAC90 /* DynmapAnalysisController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533A70FA1C781B60005EAC90 /* DynmapAnalysisController.swift */; };
+		533A71041C789CA3005EAC90 /* MainTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533A71031C789CA3005EAC90 /* MainTBC.swift */; };
+		533A71071C78A0DE005EAC90 /* DMChatNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533A71061C78A0DE005EAC90 /* DMChatNC.swift */; };
+		533A71091C78A0F1005EAC90 /* DMChatTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533A71081C78A0F1005EAC90 /* DMChatTVC.swift */; };
 		5357ED2D1C6F6D1C000DF41B /* stormy_day.png in Resources */ = {isa = PBXBuildFile; fileRef = 5357ED241C6F6D1C000DF41B /* stormy_day.png */; };
 		5357ED2E1C6F6D1C000DF41B /* stormy_night.png in Resources */ = {isa = PBXBuildFile; fileRef = 5357ED251C6F6D1C000DF41B /* stormy_night.png */; };
 		5357ED2F1C6F6D1C000DF41B /* stormy.png in Resources */ = {isa = PBXBuildFile; fileRef = 5357ED261C6F6D1C000DF41B /* stormy.png */; };
@@ -24,9 +27,8 @@
 		5399CCA51C6BA0FF00022441 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5399CCA31C6BA0FF00022441 /* Main.storyboard */; };
 		5399CCA71C6BA0FF00022441 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5399CCA61C6BA0FF00022441 /* Assets.xcassets */; };
 		5399CCAA1C6BA0FF00022441 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5399CCA81C6BA0FF00022441 /* LaunchScreen.storyboard */; };
-		53C5957E1C6B3DC500C55E31 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C5957D1C6B3DC500C55E31 /* MainVC.swift */; };
 		53C595831C6B4B3300C55E31 /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 53C595801C6B4B3300C55E31 /* bg.jpg */; };
-		53C595841C6B4B3300C55E31 /* logo-c.png in Resources */ = {isa = PBXBuildFile; fileRef = 53C595811C6B4B3300C55E31 /* logo-c.png */; };
+		53C595841C6B4B3300C55E31 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 53C595811C6B4B3300C55E31 /* icon.png */; };
 		53C595851C6B4B3300C55E31 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 53C595821C6B4B3300C55E31 /* logo.png */; };
 		53C5958C1C6B4BE600C55E31 /* WaitVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C5958A1C6B4BE600C55E31 /* WaitVC.swift */; };
 		53C5958D1C6B4BE600C55E31 /* WaitVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53C5958B1C6B4BE600C55E31 /* WaitVC.xib */; };
@@ -72,6 +74,9 @@
 		530DB2B21C77C9DE006CDBD2 /* home_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_icon.png; sourceTree = "<group>"; };
 		533A70F91C781B60005EAC90 /* DynmapAnalysis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynmapAnalysis.swift; sourceTree = "<group>"; };
 		533A70FA1C781B60005EAC90 /* DynmapAnalysisController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynmapAnalysisController.swift; sourceTree = "<group>"; };
+		533A71031C789CA3005EAC90 /* MainTBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTBC.swift; sourceTree = "<group>"; };
+		533A71061C78A0DE005EAC90 /* DMChatNC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMChatNC.swift; sourceTree = "<group>"; };
+		533A71081C78A0F1005EAC90 /* DMChatTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMChatTVC.swift; sourceTree = "<group>"; };
 		5357ED241C6F6D1C000DF41B /* stormy_day.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stormy_day.png; sourceTree = "<group>"; };
 		5357ED251C6F6D1C000DF41B /* stormy_night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stormy_night.png; sourceTree = "<group>"; };
 		5357ED261C6F6D1C000DF41B /* stormy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stormy.png; sourceTree = "<group>"; };
@@ -88,9 +93,8 @@
 		5399CCA61C6BA0FF00022441 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5399CCA91C6BA0FF00022441 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5399CCAB1C6BA0FF00022441 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		53C5957D1C6B3DC500C55E31 /* MainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		53C595801C6B4B3300C55E31 /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpg; sourceTree = "<group>"; };
-		53C595811C6B4B3300C55E31 /* logo-c.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-c.png"; sourceTree = "<group>"; };
+		53C595811C6B4B3300C55E31 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		53C595821C6B4B3300C55E31 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		53C5958A1C6B4BE600C55E31 /* WaitVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitVC.swift; sourceTree = "<group>"; };
 		53C5958B1C6B4BE600C55E31 /* WaitVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WaitVC.xib; sourceTree = "<group>"; };
@@ -112,6 +116,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		533A71051C78A076005EAC90 /* 聊天 */ = {
+			isa = PBXGroup;
+			children = (
+				533A71061C78A0DE005EAC90 /* DMChatNC.swift */,
+				533A71081C78A0F1005EAC90 /* DMChatTVC.swift */,
+			);
+			name = "聊天";
+			sourceTree = "<group>";
+		};
 		5357ED371C6F6D5D000DF41B /* weather */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +179,7 @@
 		5399CC9E1C6BA0FF00022441 /* nyaacatapp */ = {
 			isa = PBXGroup;
 			children = (
+				533A71051C78A076005EAC90 /* 聊天 */,
 				8BA1F3251C709098003BC1EC /* 论坛 */,
 				536E2FDF1C6C958800168F02 /* 数据解析 */,
 				53C5958E1C6B564900C55E31 /* 登录和注册 */,
@@ -185,7 +199,7 @@
 				530DB2AC1C77C998006CDBD2 /* signshop_icon.png */,
 				5357ED371C6F6D5D000DF41B /* weather */,
 				53C595801C6B4B3300C55E31 /* bg.jpg */,
-				53C595811C6B4B3300C55E31 /* logo-c.png */,
+				53C595811C6B4B3300C55E31 /* icon.png */,
 				53C595821C6B4B3300C55E31 /* logo.png */,
 			);
 			name = "图片";
@@ -197,7 +211,7 @@
 				5399CC9F1C6BA0FF00022441 /* AppDelegate.swift */,
 				5399CCA31C6BA0FF00022441 /* Main.storyboard */,
 				5399CCA81C6BA0FF00022441 /* LaunchScreen.storyboard */,
-				53C5957D1C6B3DC500C55E31 /* MainVC.swift */,
+				533A71031C789CA3005EAC90 /* MainTBC.swift */,
 			);
 			name = "主要框架";
 			sourceTree = "<group>";
@@ -347,7 +361,7 @@
 				53C5958D1C6B4BE600C55E31 /* WaitVC.xib in Resources */,
 				5357ED321C6F6D1C000DF41B /* sunny.png in Resources */,
 				53C595851C6B4B3300C55E31 /* logo.png in Resources */,
-				53C595841C6B4B3300C55E31 /* logo-c.png in Resources */,
+				53C595841C6B4B3300C55E31 /* icon.png in Resources */,
 				5357ED331C6F6D1C000DF41B /* thunder_day.png in Resources */,
 				5357ED311C6F6D1C000DF41B /* sunny_night.png in Resources */,
 				53C595831C6B4B3300C55E31 /* bg.jpg in Resources */,
@@ -371,9 +385,11 @@
 				533A70FC1C781B60005EAC90 /* DynmapAnalysisController.swift in Sources */,
 				5399CCA01C6BA0FF00022441 /* AppDelegate.swift in Sources */,
 				8BA1F32F1C7091B7003BC1EC /* BBSVC.swift in Sources */,
+				533A71071C78A0DE005EAC90 /* DMChatNC.swift in Sources */,
 				533A70FB1C781B60005EAC90 /* DynmapAnalysis.swift in Sources */,
-				53C5957E1C6B3DC500C55E31 /* MainVC.swift in Sources */,
 				53C5958C1C6B4BE600C55E31 /* WaitVC.swift in Sources */,
+				533A71041C789CA3005EAC90 /* MainTBC.swift in Sources */,
+				533A71091C78A0F1005EAC90 /* DMChatTVC.swift in Sources */,
 				53C595911C6B585800C55E31 /* LoginMenuVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
