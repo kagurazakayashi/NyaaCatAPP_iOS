@@ -2,7 +2,7 @@
 //  DMChatNC.swift
 //  nyaacatapp
 //
-//  Created by 神楽坂雅詩 on 16/2/20.
+//  Created by 神楽坂雅詩 on 16/2/21.
 //  Copyright © 2016年 KagurazakaYashi. All rights reserved.
 //
 
@@ -11,11 +11,25 @@ import UIKit
 class DMChatNC: UINavigationController {
 
     override func viewDidLoad() {
-//        let 导航栏背景:UIView = UIView(frame: CGRectMake(0,-20,navigationBar.frame.size.width,navigationBar.frame.size.height+20))
-//        导航栏背景.backgroundColor = 全局_导航栏颜色
-//        navigationBar.insertSubview(导航栏背景, atIndex: 1)
+        super.viewDidLoad()
         navigationBar.barTintColor = 全局_导航栏颜色
         navigationBar.titleTextAttributes = [ NSForegroundColorAttributeName : UIColor.whiteColor()]
     }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
 }

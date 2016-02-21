@@ -72,6 +72,7 @@ class DynmapAnalysisController: NSObject {
             综合信息 = nil
             信息数据量!.removeAll()
             信息数据量 = nil
+            NSNotificationCenter.defaultCenter().postNotificationName("data", object: nil)
         }
     }
     

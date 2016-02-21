@@ -231,7 +231,9 @@ class DynmapAnalysis: NSObject {
                     if (分割信息字段.count > 1) {
                         var 玩家头像:String = 抽取区间(分割信息字段[1], 起始字符串: "icon\">", 结束字符串: "</span>", 包含起始字符串: false, 包含结束字符串: false)
                         if (玩家头像 != "") {
-                            玩家头像 = 抽取区间(玩家头像, 起始字符串: "<img src=\"", 结束字符串: "\" class=", 包含起始字符串: false, 包含结束字符串: false)
+                            let 图片相对路径 = 抽取区间(玩家头像, 起始字符串: "<img src=\"", 结束字符串: "\" class=", 包含起始字符串: false, 包含结束字符串: false)
+                            let 图片相对路径分割:[String] = 图片相对路径.componentsSeparatedByString("/")
+                            玩家头像 = 图片相对路径分割[图片相对路径分割.count-1]
                         }
                         var 玩家名称:String = 抽取区间(分割信息字段[2], 起始字符串: "text\"> ", 结束字符串: "</span>", 包含起始字符串: false, 包含结束字符串: false)
                         var 玩家消息:String = 抽取区间(分割信息字段[3], 起始字符串: "text\">", 结束字符串: "</span>", 包含起始字符串: false, 包含结束字符串: false)
