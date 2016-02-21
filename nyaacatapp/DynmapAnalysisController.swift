@@ -8,20 +8,20 @@
 
 import UIKit
 
-protocol DynmapAnalysisControllerDelegate {
-    func 解析完成(综合信息:Dictionary<String,NSObject>?,信息数据量:Dictionary<String,Int>?)
-}
+//protocol DynmapAnalysisControllerDelegate {
+//    func 解析完成(综合信息:Dictionary<String,NSObject>?,信息数据量:Dictionary<String,Int>?)
+//}
 
 class DynmapAnalysisController: NSObject {
     
-    var delegate:DynmapAnalysisControllerDelegate?
+//    var delegate:DynmapAnalysisControllerDelegate?
     var html:String? = nil
     var 综合信息:Dictionary<String,NSObject>? = nil
     var 信息数据量:Dictionary<String,Int>? = nil
     var 开始时间:Double = 0
     var 解析中:Bool = false
     let 数据量:Int = 7
-    let 数据名:[String] = ["世界列表","弹出提示","时间天气","在线玩家","聊天记录","商店","地点"]
+    let 数据名:[String] = ["世界列表","弹出提示","时间天气","在线玩家","聊天记录","商店","地点"] //,"log"
     /*
     1综合信息["世界列表"] = [String]
     2综合信息["弹出提示"] = [String]
@@ -58,13 +58,14 @@ class DynmapAnalysisController: NSObject {
         if (综合信息!.keys.count == 数据量) {
             解析中 = false
             let 消耗时间:Double = NSDate().timeIntervalSince1970 - 开始时间
-            var log:String = "解析完成，用时 \(消耗时间)"
+            var log:String = "解析用时 \(消耗时间)"
             for 当前数据名 in 数据名 {
                 log += "，\(当前数据名) \(信息数据量![当前数据名]!)"
             }
-            print(log)
+            综合信息!["log"] = log
             //返回综合信息
-            delegate?.解析完成(综合信息, 信息数据量: 信息数据量)
+//            delegate?.解析完成(综合信息, 信息数据量: 信息数据量)
+            全局_综合信息 = 综合信息
             //.release()
             html = nil
             综合信息!.removeAll()

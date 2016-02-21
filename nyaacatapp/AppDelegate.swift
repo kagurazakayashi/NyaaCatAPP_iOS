@@ -46,4 +46,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 //全局
 let 全局_导航栏颜色:UIColor = UIColor(red: 1, green: 153/255, blue: 204/255, alpha: 1)
-
+var 全局_刷新速度:NSTimeInterval = 1.0 //1.0标准，3.0节能，0.2模拟器压力测试，0.5真机压力测试
+var 全局_综合信息:Dictionary<String,NSObject>? = nil

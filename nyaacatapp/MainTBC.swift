@@ -9,17 +9,13 @@
 import UIKit
 import WebKit
 
-class MainTBC: UITabBarController, WKNavigationDelegate, LoginMenuVCDelegate, DynmapAnalysisControllerDelegate {
+class MainTBC: UITabBarController, WKNavigationDelegate, LoginMenuVCDelegate {
     
     let 动态地图网址:String = "https://mcmap.90g.org"
     let 动态地图登录接口:String = "https://mcmap.90g.org/up/login"
     let 注册页面标题:String = "Minecraft Dynamic Map - Login/Register"
     let 地图页面标题:String = "Minecraft Dynamic Map"
     let 地图页面特征:String = "<!-- These 2 lines make us fullscreen on apple mobile products - remove if you don't like that -->"
-    
-    
-    var 刷新速度:NSTimeInterval = 1.0 //1.0标准，3.0节能，0.2模拟器压力测试，0.5真机压力测试
-    var 综合信息:Dictionary<String,NSObject>? = nil
     
     let 等待画面:WaitVC = WaitVC()
     let 登录菜单:LoginMenuVC = LoginMenuVC()
@@ -45,11 +41,16 @@ class MainTBC: UITabBarController, WKNavigationDelegate, LoginMenuVCDelegate, Dy
         self.view.addSubview(后台网页加载器)
         //self.presentViewController(等待画面, animated: true, completion: nil)
         等待画面.view.frame = self.view.frame
-        登录菜单.view.frame = self.view.frame
         后台网页加载器.navigationDelegate = self
-        
         self.view.addSubview(等待画面.view)
         检查登录网络请求(false)
+        
+        //WKWebView内存使用测试
+//        for i in 0...100 {
+//            let testweb:WKWebView = WKWebView(frame: CGRectMake(0, 0, 100, 100))
+//            self.view.addSubview(testweb)
+//            testweb.loadRequest(NSURLRequest(URL: NSURL(string: "http://163.com")!, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringCacheData, timeoutInterval: 30))
+//        }
     }
     
     func 检查登录网络请求(缓存:Bool) {
@@ -68,6 +69,7 @@ class MainTBC: UITabBarController, WKNavigationDelegate, LoginMenuVCDelegate, Dy
         等待画面.副标题.text = "请使用动态地图用户登录喵"
         登录菜单.代理 = self
         self.view.addSubview(登录菜单.view)
+        登录菜单.进入动画(self.view.frame)
     }
     
     func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
@@ -102,7 +104,7 @@ class MainTBC: UITabBarController, WKNavigationDelegate, LoginMenuVCDelegate, Dy
                 if (网页内容?.rangeOfString(地图页面特征) != nil) {
                     等待画面.副标题.text = "登录成功~撒花~"
                     网络模式 = 网络模式选项.监视页面信息
-                    定时器 = NSTimer.scheduledTimerWithTimeInterval(刷新速度, target: self, selector: "定时器触发", userInfo: nil, repeats: true)
+                    定时器 = NSTimer.scheduledTimerWithTimeInterval(全局_刷新速度, target: self, selector: "定时器触发", userInfo: nil, repeats: true)
                     等待画面.停止 = true
                 }
             } else if (网页标题 != nil) {
@@ -140,7 +142,7 @@ class MainTBC: UITabBarController, WKNavigationDelegate, LoginMenuVCDelegate, Dy
     func 返回登录请求(用户名:String,密码:String) {
         等待画面.副标题.text = "正在登录喵..."
         登录菜单.代理 = nil
-        登录菜单.view.removeFromSuperview()
+        登录菜单.退出动画()
         网络模式 = 网络模式选项.提交登录请求
         let 网络参数:String = "j_username=" + 用户名 + "&j_password=" + 密码
         let 包含参数的网址:String = 动态地图登录接口 + "?" + 网络参数
@@ -151,9 +153,9 @@ class MainTBC: UITabBarController, WKNavigationDelegate, LoginMenuVCDelegate, Dy
         后台网页加载器.loadRequest(网络请求)
     }
     
-    func 解析完成(综合信息输入:Dictionary<String,NSObject>?,信息数据量 信息数据量输入:Dictionary<String,Int>?) {
-        综合信息 = 综合信息输入
-    }
+//    func 解析完成(综合信息输入:Dictionary<String,NSObject>?,信息数据量 信息数据量输入:Dictionary<String,Int>?) {
+//        全局_综合信息 = 综合信息输入
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

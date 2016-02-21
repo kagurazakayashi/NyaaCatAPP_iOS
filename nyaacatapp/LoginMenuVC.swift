@@ -137,6 +137,23 @@ class LoginMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
         
     }
     
+    func 进入动画(目标位置:CGRect) {
+        self.view.frame = CGRectMake(目标位置.origin.x + 目标位置.size.width, 目标位置.origin.y, 目标位置.size.width, 目标位置.size.height)
+        self.view.alpha = 0
+        UIView.animateWithDuration(0.8) { () -> Void in
+            self.view.alpha = 1
+            self.view.frame = CGRectMake(目标位置.origin.x, 目标位置.origin.y, 目标位置.size.width, 目标位置.size.height)
+        }
+    }
+    func 退出动画() {
+        UIView.animateWithDuration(0.8, animations: { () -> Void in
+            self.view.alpha = 0
+            self.view.frame = CGRectMake(self.view.frame.origin.x - self.view.frame.size.width, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height)
+            }) { (ani:Bool) -> Void in
+                self.view.removeFromSuperview()
+        }
+    }
+    
 
     /*
     // MARK: - Navigation
