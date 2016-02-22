@@ -60,9 +60,9 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
         浏览器设置.allowsAirPlayForMediaPlayback = false
         浏览器设置.requiresUserActionForMediaPlayback = false
         浏览器设置.suppressesIncrementalRendering = false
-        浏览器设置.applicationNameForUserAgent = "yashi_browser"
+        浏览器设置.applicationNameForUserAgent = "Mozilla/5.0 (kagurazaka-browser)"
         let 浏览器偏好设置:WKPreferences = WKPreferences()
-        //浏览器偏好设置.minimumFontSize = 12.0
+        浏览器偏好设置.minimumFontSize = 40.0
         浏览器偏好设置.javaScriptCanOpenWindowsAutomatically = false
         浏览器偏好设置.javaScriptEnabled = false
         //        let 用户脚本文本:String = "$('div img').remove();"
@@ -84,28 +84,27 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
         if (网络模式 == 网络模式选项.提交登录请求) {
             网络模式 = 网络模式选项.发送聊天消息
             //向服务器提交聊天消息
-            let 网络参数:String = "{\"message\" : \"" + 正在发送的消息! + "\", \"name\" : \"\"}"// + 全局_用户名!
-//            let 网络参数:String = "message=" + 正在发送的消息! + "&name="// + 全局_用户名!
+            let 网络参数:NSString = "{\"name\":\"\",\"message\":\"" + 正在发送的消息! + "\"}"
             NSLog("网络参数=%@", 网络参数)
             let 要加载的网页URL:NSURL = NSURL(string: 消息发送接口)!
             let 网络请求:NSMutableURLRequest = NSMutableURLRequest(URL: 要加载的网页URL, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringCacheData, timeoutInterval: 30)
-            let 网络参数数据 = 网络参数.dataUsingEncoding(NSUTF8StringEncoding)
+            let 网络参数数据:NSData = 网络参数.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!
             网络请求.HTTPMethod = "POST"
             //[urlRequest setValue: [NSString stringWithFormat:@"%@\r\n", @"http://XXXXXX HTTP/1.1"]];
-            网络请求.setValue("application/json, text/javascript, */; q=0.01", forHTTPHeaderField: "accept")
+            网络请求.setValue("application/json, text/javascript, */*; q=0.01", forHTTPHeaderField: "accept")
             网络请求.setValue("gzip, deflate", forHTTPHeaderField: "accept-encoding")
             网络请求.setValue("zh-CN,zh;q=0.8,en;q=0.6,ja;q=0.4", forHTTPHeaderField: "accept-language")
-            网络请求.setValue("\(网络参数数据?.length)", forHTTPHeaderField: "content-length")
+            网络请求.setValue("\(网络参数.length)", forHTTPHeaderField: "content-length")
             网络请求.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "content-type")
             网络请求.setValue("1", forHTTPHeaderField: "dnt")
-            网络请求.setValue("https://mcmap.90g.org", forHTTPHeaderField: "origin")
+            网络请求.setValue("https://mcmap.90g.org", forHTTPHeaderField: "host")
             网络请求.setValue("https://mcmap.90g.org/index.html", forHTTPHeaderField: "referer")
             网络请求.setValue("XMLHttpRequest", forHTTPHeaderField: "x-requested-with")
-            
-            
-            
+
             网络请求.HTTPBody = 网络参数数据
             后台网页加载器!.loadRequest(网络请求)
+            
+            
         } else {
             右上按钮!.enabled = true
         }
