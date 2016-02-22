@@ -60,6 +60,7 @@
 		8BA1F3511C7B0C64003BC1EC /* tbmsg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA1F34E1C7B0C64003BC1EC /* tbmsg.png */; };
 		8BA1F3521C7B0C64003BC1EC /* tbmsg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA1F34F1C7B0C64003BC1EC /* tbmsg@2x.png */; };
 		8BA1F3531C7B0C64003BC1EC /* tbmsg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA1F3501C7B0C64003BC1EC /* tbmsg@3x.png */; };
+		8BA1F3651C7B37AF003BC1EC /* MSWeakTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA1F3641C7B37AF003BC1EC /* MSWeakTimer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,6 +171,8 @@
 		8BA1F34E1C7B0C64003BC1EC /* tbmsg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tbmsg.png; sourceTree = "<group>"; };
 		8BA1F34F1C7B0C64003BC1EC /* tbmsg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tbmsg@2x.png"; sourceTree = "<group>"; };
 		8BA1F3501C7B0C64003BC1EC /* tbmsg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tbmsg@3x.png"; sourceTree = "<group>"; };
+		8BA1F3631C7B37AF003BC1EC /* MSWeakTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSWeakTimer.h; sourceTree = "<group>"; };
+		8BA1F3641C7B37AF003BC1EC /* MSWeakTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSWeakTimer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -277,6 +280,7 @@
 		53E7AB0F1C79C45E00A544B2 /* 第三方类库 */ = {
 			isa = PBXGroup;
 			children = (
+				8BA1F35E1C7B378F003BC1EC /* MSWeakTimer */,
 				53E7AB5B1C79E34B00A544B2 /* UIKit+AFNetworking */,
 				53E7AB471C79E2E400A544B2 /* AFNetworking */,
 				53E7AB7F1C79E41B00A544B2 /* SwiftOC.h */,
@@ -377,6 +381,15 @@
 				8BA1F32E1C7091B7003BC1EC /* BBSVC.swift */,
 			);
 			name = "论坛";
+			sourceTree = "<group>";
+		};
+		8BA1F35E1C7B378F003BC1EC /* MSWeakTimer */ = {
+			isa = PBXGroup;
+			children = (
+				8BA1F3631C7B37AF003BC1EC /* MSWeakTimer.h */,
+				8BA1F3641C7B37AF003BC1EC /* MSWeakTimer.m */,
+			);
+			name = MSWeakTimer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -525,6 +538,7 @@
 				8BA1F32F1C7091B7003BC1EC /* BBSVC.swift in Sources */,
 				53E7AB721C79E34B00A544B2 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				535DC6951C79B4F7005CB7E4 /* DMChatNC.swift in Sources */,
+				8BA1F3651C7B37AF003BC1EC /* MSWeakTimer.m in Sources */,
 				53E7AB731C79E34B00A544B2 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				53E7AB591C79E2E400A544B2 /* AFURLResponseSerialization.m in Sources */,
 				53E7AB751C79E34B00A544B2 /* UIImageView+AFNetworking.m in Sources */,
