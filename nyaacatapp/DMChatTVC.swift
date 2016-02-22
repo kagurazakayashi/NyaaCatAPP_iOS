@@ -86,16 +86,15 @@ class DMChatTVC: UITableViewController { //,UIScrollViewDelegate
             //"https://mcmap.90g.org/standalone/sendmessage.php"
 //            let 接口URL:NSURL = NSURL(string: 接口网址字符串)!
             let 网络会话管理器:AFHTTPSessionManager = AFHTTPSessionManager()
-            网络会话管理器.responseSerializer.acceptableContentTypes = NSSet(object: "text/html") as? Set<String>
+            网络会话管理器.responseSerializer.acceptableContentTypes = NSSet(object: "text/plain") as? Set<String>
             网络会话管理器.POST(接口网址字符串, parameters: 要发送的参数, progress: { (downloadProgress:NSProgress) -> Void in
                     NSLog("downloadProgress=%lld", downloadProgress.totalUnitCount);
                 }, success: { (task:NSURLSessionDataTask, responseObject:AnyObject?) -> Void in
                     if (responseObject != nil) {
-                        let 返回信息:String = responseObject as! String
-                        NSLog("success=%@", 返回信息);
+                        print(responseObject)
                     }
                 }, failure: { (task:NSURLSessionDataTask?, error:NSError) -> Void in
-                    NSLog("failure=%@",error);
+                    NSLog("failure=%@",error)
                     self.打开发送消息框(消息)
             })
         }
