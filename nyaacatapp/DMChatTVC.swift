@@ -20,14 +20,15 @@ class DMChatTVC: UITableViewController {
         let 背景图:UIImageView = UIImageView(frame: tableView.frame)
         背景图.image = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("bg", ofType: "jpg")!)!
         背景图.contentMode = .ScaleAspectFill
-        self.tableView.insertSubview(背景图, atIndex: 0)
+//        self.tableView.insertSubview(背景图, atIndex: 0)
+        self.tableView.backgroundView = 背景图
         self.tableView.backgroundColor = UIColor.clearColor()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "接收数据更新通知", name: "data", object: nil)
     }
     
     func 接收数据更新通知() {
         if (全局_综合信息 != nil) {
-            实时聊天数据 = 全局_综合信息!["聊天记录"] as! [[String]]
+            实时聊天数据 = 全局_综合信息!["聊天记录"] as? [[String]]
             tableView.reloadData()
         }
     }
@@ -53,8 +54,8 @@ class DMChatTVC: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         //let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
         let cell = tableView.dequeueReusableCellWithIdentifier("chatcell", forIndexPath: indexPath) as! DMChatTCell
-        var row = indexPath.row
-        //聊天.append([玩家头像,玩家名称,类型,玩家消息])
+        let row = indexPath.row
+                //聊天.append([玩家头像,玩家名称,类型,玩家消息])
         if (实时聊天数据 == nil || 实时聊天数据?.count == 0) {
             cell.头像.image = 默认头像
             cell.内容.loadHTMLString(合并html("<span style=\"color:#FF99CC\">没有数据</span>",内容文本: "暂时还没有人发送消息"), baseURL: nil)
@@ -82,14 +83,15 @@ class DMChatTVC: UITableViewController {
                 }
             }
             cell.内容.loadHTMLString(合并html(当前聊天[1],内容文本: 当前聊天[3]), baseURL: nil)
+            self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: true)
         }
-
         return cell
     }
     
     func 合并html(名字html:String,内容文本:String) -> String { //头像URL:String,
         //return "<!doctype html><html><head><meta charset=\"UTF-8\"></head><body><table width=\"100%\" border=\"0\"><tbody><tr><td width=\"64\"><img src=\"\(头像URL)\" width=\"64\" height=\"64\" alt=\"\"/></td><td align=\"left\" valign=\"top\">\(名字html)<p><span style=\"color:#FF99CC\">\(内容文本)</span></td></tr></tbody></table></body></html>"
-        return "<!doctype html><html><head><meta charset=\"UTF-8\"></head><body>\(名字html)<p><span style=\"color:#FF99CC\">\(内容文本)</span></body></html>"
+            return "<!doctype html><html><head><meta charset=\"UTF-8\"></head><body><span style=\"color:#FFF\">\(名字html)<p><span style=\"color:#FF99CC\">\(内容文本)</span></body></html>"
+        
     }
 
     /*

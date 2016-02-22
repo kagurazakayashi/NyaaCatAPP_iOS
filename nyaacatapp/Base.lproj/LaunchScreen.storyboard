@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15E39d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -20,37 +21,45 @@
                         <subviews>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" misplaced="YES" image="icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="m6f-ha-gWH">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="m6f-ha-gWH" secondAttribute="height" multiplier="1:1" id="vWD-On-gUk"/>
+                                </constraints>
+                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
                                     <rect key="frame" x="20" y="0.0" width="760" height="800"/>
                                 </variation>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="m6f-ha-gWH" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" constant="60" id="8p6-nd-xnG"/>
-                            <constraint firstItem="m6f-ha-gWH" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="9S7-FK-H7z"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="m6f-ha-gWH" secondAttribute="trailing" id="9nq-D3-wYJ"/>
-                            <constraint firstItem="m6f-ha-gWH" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailingMargin" constant="60" id="DA1-Pq-8gA"/>
-                            <constraint firstItem="m6f-ha-gWH" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" id="Jus-pX-lES"/>
-                            <constraint firstItem="m6f-ha-gWH" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="60" id="KST-V8-VkH"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="m6f-ha-gWH" secondAttribute="bottom" id="eWl-RZ-ktQ"/>
+                            <constraint firstItem="m6f-ha-gWH" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Ze5-6b-2t3" secondAttribute="trailingMargin" constant="100" id="Lob-IP-Rb7"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" relation="greaterThanOrEqual" secondItem="m6f-ha-gWH" secondAttribute="bottom" constant="100" id="R8Q-DQ-6RE"/>
+                            <constraint firstItem="m6f-ha-gWH" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Trv-Zc-T0K"/>
+                            <constraint firstItem="m6f-ha-gWH" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Vme-xa-unJ"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="m6f-ha-gWH" secondAttribute="trailing" constant="20" id="XL8-RH-UOw"/>
+                            <constraint firstItem="m6f-ha-gWH" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" constant="100" id="dNl-Nh-3nZ"/>
+                            <constraint firstItem="m6f-ha-gWH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="20" id="iSm-PU-ilB"/>
+                            <constraint firstItem="m6f-ha-gWH" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Ze5-6b-2t3" secondAttribute="top" constant="20" id="tIs-EF-IPk"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" relation="greaterThanOrEqual" secondItem="m6f-ha-gWH" secondAttribute="bottom" constant="20" id="uf1-wM-nVP"/>
+                            <constraint firstItem="m6f-ha-gWH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="100" id="va4-XQ-RUl"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="8p6-nd-xnG"/>
-                                <exclude reference="DA1-Pq-8gA"/>
-                                <exclude reference="KST-V8-VkH"/>
+                                <exclude reference="Lob-IP-Rb7"/>
+                                <exclude reference="dNl-Nh-3nZ"/>
+                                <exclude reference="va4-XQ-RUl"/>
+                                <exclude reference="R8Q-DQ-6RE"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
                             <mask key="constraints">
-                                <include reference="8p6-nd-xnG"/>
-                                <exclude reference="9S7-FK-H7z"/>
-                                <exclude reference="9nq-D3-wYJ"/>
-                                <include reference="DA1-Pq-8gA"/>
-                                <exclude reference="Jus-pX-lES"/>
-                                <include reference="KST-V8-VkH"/>
-                                <exclude reference="eWl-RZ-ktQ"/>
+                                <include reference="Lob-IP-Rb7"/>
+                                <exclude reference="XL8-RH-UOw"/>
+                                <include reference="dNl-Nh-3nZ"/>
+                                <exclude reference="iSm-PU-ilB"/>
+                                <exclude reference="tIs-EF-IPk"/>
+                                <include reference="va4-XQ-RUl"/>
+                                <include reference="R8Q-DQ-6RE"/>
+                                <exclude reference="uf1-wM-nVP"/>
                             </mask>
                         </variation>
                     </view>

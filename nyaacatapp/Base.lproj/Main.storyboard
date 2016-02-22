@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6Ti-ue-IEU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15E39d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6Ti-ue-IEU">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -18,7 +18,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IrE-MO-WHt" id="EKM-M9-gct">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="69"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="69.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -28,7 +28,7 @@
                             <outlet property="delegate" destination="8IN-wD-EGg" id="12c-AL-WE6"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="💬 游戏内聊天" id="13O-oG-Q2t"/>
+                    <navigationItem key="navigationItem" title="喵窝MC聊天🎵" id="13O-oG-Q2t"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WPJ-eg-6RA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -38,7 +38,7 @@
         <scene sceneID="YhF-uF-cA6">
             <objects>
                 <navigationController id="tz5-F1-fQE" userLabel="论坛" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="论坛" selectedImage="logo.png" id="7aE-ym-gqf"/>
+                    <tabBarItem key="tabBarItem" title="论坛" image="logobbs.png" id="7aE-ym-gqf"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="emU-fR-Swa">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -64,7 +64,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="o9A-Jq-lkt"/>
+                    <navigationItem key="navigationItem" title="NyaaBBS" id="o9A-Jq-lkt"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fk4-ex-kJb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -74,7 +74,7 @@
         <scene sceneID="eZU-Yn-OOA">
             <objects>
                 <navigationController id="Dz2-Df-0tC" customClass="DMChatNC" customModule="nyaacatapp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="聊天" image="home_icon.png" id="kpT-GW-TOv"/>
+                    <tabBarItem key="tabBarItem" title="聊天" image="tbmsg.png" id="kpT-GW-TOv"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Awd-oO-Ubk">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -107,7 +107,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="home_icon.png" width="16" height="16"/>
-        <image name="logo.png" width="666" height="522"/>
+        <image name="logobbs.png" width="30" height="24"/>
+        <image name="tbmsg.png" width="30" height="25"/>
     </resources>
 </document>

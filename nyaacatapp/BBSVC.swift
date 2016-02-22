@@ -9,23 +9,44 @@
 import WebKit
 import UIKit
 
-class BBSVC: UIViewController {
+class BBSVC: UIViewController, WKNavigationDelegate {
     
-    var 浏览器:WKWebView = WKWebView()
+    var 浏览器:WKWebView!
+    var 进度条:UIProgressView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.浏览器 = WKWebView(frame: self.view.frame)
-        self.浏览器.loadRequest(NSURLRequest(URL: NSURL(string: "https://bbs.nyaa.cat")!))
-        self.view.addSubview(self.浏览器)
         
+        self.浏览器 = WKWebView(frame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.width, self.view.frame.height))
+        self.浏览器.loadRequest(NSURLRequest(URL: NSURL(string: "https://bbs.nyaa.cat")!))
+        
+        self.浏览器.addObserver(self, forKeyPath: "estimatedProgress", options: .New, context: nil)
+        
+        self.进度条 = UIProgressView(progressViewStyle: .Bar)
+        self.进度条.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y + 64, self.view.frame.width,2)
+        self.进度条.backgroundColor = UIColor.whiteColor()
+        
+        self.view.addSubview(self.浏览器)
+        self.view.addSubview(进度条)
+    }
+    
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        if (keyPath == "estimatedProgress"){
+            self.进度条.setProgress(Float(浏览器.estimatedProgress), animated: true)
+        }
+        if (浏览器.estimatedProgress == 1){
+            UIView.animateWithDuration(0.5, animations: { () -> Void in
+                self.进度条.alpha = 0
+                }) { (已完成:Bool) -> Void in
+                    self.进度条.removeFromSuperview()
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
     /*
     // MARK: - Navigation

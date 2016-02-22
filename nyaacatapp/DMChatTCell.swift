@@ -24,8 +24,8 @@ class DMChatTCell: UITableViewCell {
 //            名字.frame = CGRectMake(0, 0, 名字底层.frame.size.width, 名字底层.frame.size.height)
 //            名字底层.addSubview(名字)
 //        }
-        self.backgroundColor = UIColor.clearColor()
-        头像.frame = CGRectMake(5, 5, 64, 64)
+        self.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.25)
+        头像.frame = CGRectMake(11, 11, 48, 48)
         头像.backgroundColor = UIColor.clearColor()
         头像.layer.masksToBounds = true
         头像.layer.cornerRadius = 头像.frame.size.width / 2
