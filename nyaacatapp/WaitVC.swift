@@ -37,7 +37,7 @@ class WaitVC: UIViewController {
                     self.图标动画(!前半段)
             }
         } else {
-            UIView.animateWithDuration(0.8, animations: { () -> Void in
+            UIView.animateWithDuration(0.6, animations: { () -> Void in
                 self.view.alpha = 0
                 self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y + self.view.frame.size.height, self.view.frame.size.width,  self.view.frame.size.height)
                 }) { (已完成:Bool) -> Void in
