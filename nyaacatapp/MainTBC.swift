@@ -22,8 +22,6 @@ class MainTBC: UITabBarController, WKNavigationDelegate, LoginMenuVCDelegate {
     var 提示框:UIAlertController? = nil
     var 网络模式:网络模式选项 = 网络模式选项.检查是否登录
     var 定时器:NSTimer? = nil
-    var 新定时器:MSWeakTimer? = nil
-//    var 新定时器
     var 解析引擎:DynmapAnalysisController = DynmapAnalysisController()
     
     enum 网络模式选项 {
@@ -152,8 +150,7 @@ class MainTBC: UITabBarController, WKNavigationDelegate, LoginMenuVCDelegate {
                 if (网页内容?.rangeOfString(地图页面特征) != nil) {
                     等待画面.副标题.text = "登录成功~撒花~"
                     网络模式 = 网络模式选项.监视页面信息
-                    新定时器 = MSWeakTimer.scheduledTimerWithTimeInterval(全局_刷新速度, target: self, selector: "定时器触发", userInfo: nil, repeats: true, dispatchQueue: dispatch_get_main_queue())
-//                    定时器 = NSTimer.scheduledTimerWithTimeInterval(全局_刷新速度, target: self, selector: "定时器触发", userInfo: nil, repeats: true)
+                    定时器 = NSTimer.scheduledTimerWithTimeInterval(全局_刷新速度, target: self, selector: "定时器触发", userInfo: nil, repeats: true)
                     等待画面.停止 = true
                 }
             } else if (网页标题 != nil) {
