@@ -41,33 +41,10 @@ class MainTBC: UITabBarController, WKNavigationDelegate, LoginMenuVCDelegate {
         //navigationBar.layer.contents = (id)[UIImage imageWithColor:youColor].CGImage;
         tabBar.tintColor = UIColor.whiteColor()
         
-        let 浏览器设置:WKWebViewConfiguration = WKWebViewConfiguration()
-        浏览器设置.allowsPictureInPictureMediaPlayback = false
-        浏览器设置.allowsInlineMediaPlayback = false
-        浏览器设置.allowsAirPlayForMediaPlayback = false
-        浏览器设置.requiresUserActionForMediaPlayback = false
-        浏览器设置.suppressesIncrementalRendering = false
-        浏览器设置.applicationNameForUserAgent = "yashi_browser"
-        let 浏览器偏好设置:WKPreferences = WKPreferences()
-        //浏览器偏好设置.minimumFontSize = 12.0
-        浏览器偏好设置.javaScriptCanOpenWindowsAutomatically = false
-        浏览器偏好设置.javaScriptEnabled = true
-//        let 用户脚本文本:String = "$('div img').remove();"
-//        let 用户脚本:WKUserScript = WKUserScript(source: 用户脚本文本, injectionTime: .AtDocumentEnd, forMainFrameOnly: false)
-//        浏览器设置.userContentController.addUserScript(用户脚本)
-        浏览器设置.preferences = 浏览器偏好设置
-        浏览器设置.selectionGranularity = .Dynamic
+        初始化WebView()
         
-        后台网页加载器 = WKWebView(frame: CGRect.zero, configuration: 浏览器设置)
-        后台网页加载器?.userInteractionEnabled = false
-        self.view.addSubview(后台网页加载器!)
         //self.presentViewController(等待画面, animated: true, completion: nil)
         等待画面.view.frame = self.view.frame
-        
-        后台网页加载器!.navigationDelegate = self
-//        后台网页加载器!.addObserver(self, forKeyPath: "estimatedProgress", options: .New, context: nil)
-//        后台网页加载器!.addObserver(self, forKeyPath: "title", options: .New, context: nil)
-        
         self.view.addSubview(等待画面.view) //release
 //        self.view.insertSubview(等待画面.view, belowSubview: 后台网页加载器!) //debug
         检查登录网络请求(false)
@@ -80,6 +57,33 @@ class MainTBC: UITabBarController, WKNavigationDelegate, LoginMenuVCDelegate {
 //        }
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "收到重载通知", name: "reloadwebview", object: nil)
+    }
+    
+    func 初始化WebView() {
+        let 浏览器设置:WKWebViewConfiguration = WKWebViewConfiguration()
+        浏览器设置.allowsPictureInPictureMediaPlayback = false
+        浏览器设置.allowsInlineMediaPlayback = false
+        浏览器设置.allowsAirPlayForMediaPlayback = false
+        浏览器设置.requiresUserActionForMediaPlayback = false
+        浏览器设置.suppressesIncrementalRendering = false
+        浏览器设置.applicationNameForUserAgent = "yashi_browser"
+        let 浏览器偏好设置:WKPreferences = WKPreferences()
+        //浏览器偏好设置.minimumFontSize = 12.0
+        浏览器偏好设置.javaScriptCanOpenWindowsAutomatically = false
+        浏览器偏好设置.javaScriptEnabled = true
+        //        let 用户脚本文本:String = "$('div img').remove();"
+        //        let 用户脚本:WKUserScript = WKUserScript(source: 用户脚本文本, injectionTime: .AtDocumentEnd, forMainFrameOnly: false)
+        //        浏览器设置.userContentController.addUserScript(用户脚本)
+        浏览器设置.preferences = 浏览器偏好设置
+        浏览器设置.selectionGranularity = .Dynamic
+        
+        后台网页加载器 = WKWebView(frame: CGRect.zero, configuration: 浏览器设置)
+        后台网页加载器?.userInteractionEnabled = false
+        self.view.addSubview(后台网页加载器!)
+        后台网页加载器!.navigationDelegate = self
+        
+        //        后台网页加载器!.addObserver(self, forKeyPath: "estimatedProgress", options: .New, context: nil)
+        //        后台网页加载器!.addObserver(self, forKeyPath: "title", options: .New, context: nil)
     }
     
     func 收到重载通知() {
@@ -159,6 +163,8 @@ class MainTBC: UITabBarController, WKNavigationDelegate, LoginMenuVCDelegate {
             } else if (网页标题 != nil) {
                 检查登录网络请求(true)
             } else {
+                全局_用户名 = nil
+                全局_密码 = nil
                 等待画面.副标题.text = "登录失败喵"
                 提示框 = UIAlertController(title: 等待画面.副标题.text, message: "服务暂时不可用或用户名密码不匹配喵QAQ", preferredStyle: UIAlertControllerStyle.Alert)
                 let okAction = UIAlertAction(title: "重试喵", style: UIAlertActionStyle.Default, handler: { (动作:UIAlertAction) -> Void in
@@ -200,8 +206,10 @@ class MainTBC: UITabBarController, WKNavigationDelegate, LoginMenuVCDelegate {
         let 包含参数的网址:String = 动态地图登录接口 + "?" + 网络参数
         let 要加载的网页URL:NSURL = NSURL(string: 包含参数的网址)!
         let 网络请求:NSMutableURLRequest = NSMutableURLRequest(URL: 要加载的网页URL, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringCacheData, timeoutInterval: 30)
-        网络请求.HTTPMethod = "GET"
+        网络请求.HTTPMethod = "POST"
         //网络请求.HTTPBody = 网络参数.dataUsingEncoding(NSUTF8StringEncoding)
+        全局_用户名 = 用户名
+        全局_密码 = 密码
         后台网页加载器!.loadRequest(网络请求)
     }
     

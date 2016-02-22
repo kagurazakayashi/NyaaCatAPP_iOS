@@ -7,8 +7,15 @@
 //
 
 import UIKit
+import WebKit
 
-class DMChatTVC: UITableViewController { //,UIScrollViewDelegate
+class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDelegate
+    
+    let 消息发送接口:String = "https://mcmap.90g.org/up/sendmessage"
+    let 动态地图登录接口:String = "https://mcmap.90g.org/up/login"
+    
+//    let 消息发送接口:String = "http://123.56.133.111:8123/up/sendmessage"
+//    let 动态地图登录接口:String = "http://123.56.133.111:8123/up/login"
     
     var 实时聊天数据:[[String]]? = nil
     var 默认头像:UIImage = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("seting-icon", ofType: "png")!)!
@@ -17,6 +24,14 @@ class DMChatTVC: UITableViewController { //,UIScrollViewDelegate
     var 左上按钮:UIBarButtonItem? = nil
     var 右上按钮:UIBarButtonItem? = nil
     var 聊天文字输入框:UIAlertController? = nil
+    var 后台网页加载器:WKWebView? = nil
+    var 正在发送的消息:String? = nil
+    var 网络模式:网络模式选项 = 网络模式选项.提交登录请求
+    
+    enum 网络模式选项 {
+        case 提交登录请求
+        case 发送聊天消息
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,25 +44,92 @@ class DMChatTVC: UITableViewController { //,UIScrollViewDelegate
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "接收数据更新通知", name: "data", object: nil)
         
+        初始化WebView()
+        
+        
         左上按钮 = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Trash, target: self, action: "左上按钮点击")
         navigationItem.leftBarButtonItem = 左上按钮
         右上按钮 = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "右上按钮点击")
         navigationItem.rightBarButtonItem = 右上按钮
     }
     
+    func 初始化WebView() {
+        let 浏览器设置:WKWebViewConfiguration = WKWebViewConfiguration()
+        浏览器设置.allowsPictureInPictureMediaPlayback = false
+        浏览器设置.allowsInlineMediaPlayback = false
+        浏览器设置.allowsAirPlayForMediaPlayback = false
+        浏览器设置.requiresUserActionForMediaPlayback = false
+        浏览器设置.suppressesIncrementalRendering = false
+        浏览器设置.applicationNameForUserAgent = "yashi_browser"
+        let 浏览器偏好设置:WKPreferences = WKPreferences()
+        //浏览器偏好设置.minimumFontSize = 12.0
+        浏览器偏好设置.javaScriptCanOpenWindowsAutomatically = false
+        浏览器偏好设置.javaScriptEnabled = false
+        //        let 用户脚本文本:String = "$('div img').remove();"
+        //        let 用户脚本:WKUserScript = WKUserScript(source: 用户脚本文本, injectionTime: .AtDocumentEnd, forMainFrameOnly: false)
+        //        浏览器设置.userContentController.addUserScript(用户脚本)
+        浏览器设置.preferences = 浏览器偏好设置
+        浏览器设置.selectionGranularity = .Dynamic
+        
+        后台网页加载器 = WKWebView(frame: CGRectMake(0, 0, 100, 100), configuration: 浏览器设置)
+        后台网页加载器?.userInteractionEnabled = false
+        self.view.addSubview(后台网页加载器!)
+        后台网页加载器!.navigationDelegate = self
+        
+        //        后台网页加载器!.addObserver(self, forKeyPath: "estimatedProgress", options: .New, context: nil)
+        //        后台网页加载器!.addObserver(self, forKeyPath: "title", options: .New, context: nil)
+    }
+    
+    func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
+        if (网络模式 == 网络模式选项.提交登录请求) {
+            网络模式 = 网络模式选项.发送聊天消息
+            //向服务器提交聊天消息
+            let 网络参数:String = "{\"message\" : \"" + 正在发送的消息! + "\", \"name\" : \"\"}"// + 全局_用户名!
+//            let 网络参数:String = "message=" + 正在发送的消息! + "&name="// + 全局_用户名!
+            NSLog("网络参数=%@", 网络参数)
+            let 要加载的网页URL:NSURL = NSURL(string: 消息发送接口)!
+            let 网络请求:NSMutableURLRequest = NSMutableURLRequest(URL: 要加载的网页URL, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringCacheData, timeoutInterval: 30)
+            let 网络参数数据 = 网络参数.dataUsingEncoding(NSUTF8StringEncoding)
+            网络请求.HTTPMethod = "POST"
+            //[urlRequest setValue: [NSString stringWithFormat:@"%@\r\n", @"http://XXXXXX HTTP/1.1"]];
+            网络请求.setValue("application/json, text/javascript, */; q=0.01", forHTTPHeaderField: "accept")
+            网络请求.setValue("gzip, deflate", forHTTPHeaderField: "accept-encoding")
+            网络请求.setValue("zh-CN,zh;q=0.8,en;q=0.6,ja;q=0.4", forHTTPHeaderField: "accept-language")
+            网络请求.setValue("\(网络参数数据?.length)", forHTTPHeaderField: "content-length")
+            网络请求.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "content-type")
+            网络请求.setValue("1", forHTTPHeaderField: "dnt")
+            网络请求.setValue("https://mcmap.90g.org", forHTTPHeaderField: "origin")
+            网络请求.setValue("https://mcmap.90g.org/index.html", forHTTPHeaderField: "referer")
+            网络请求.setValue("XMLHttpRequest", forHTTPHeaderField: "x-requested-with")
+            
+            
+            
+            网络请求.HTTPBody = 网络参数数据
+            后台网页加载器!.loadRequest(网络请求)
+        } else {
+            右上按钮!.enabled = true
+        }
+    }
+    
+    func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError) {
+        NSLog("消息发送失败=%@", error.localizedDescription)
+        打开发送消息框(正在发送的消息,错误描述: error.localizedDescription)
+        正在发送的消息 = nil
+    }
+    
     func 左上按钮点击() {
         NSNotificationCenter.defaultCenter().postNotificationName("reloadwebview", object: nil)
     }
     func 右上按钮点击() {
-        打开发送消息框(nil)
+        打开发送消息框(nil,错误描述: nil)
     }
     
-    func 打开发送消息框(重试消息:String?) {
+    func 打开发送消息框(重试消息:String?,错误描述:String?) {
         var 标题:String = "输入聊天信息"
         var 内容:String? = nil
         if (重试消息 != nil) {
             标题 = "消息发送失败"
-            内容 = "请重试或取消发送"
+            内容 = 错误描述
         }
         聊天文字输入框 = UIAlertController(title: 标题, message: 内容, preferredStyle: UIAlertControllerStyle.Alert)
         let cancelAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: { (动作:UIAlertAction) -> Void in
@@ -77,29 +159,38 @@ class DMChatTVC: UITableViewController { //,UIScrollViewDelegate
         聊天文字输入框 = nil
     }
     
-    func 发送消息(消息:String) -> Bool {
-        let 要发送的参数:Dictionary<String,String> = ["message":消息,"name":"KagurazakaYashi"]
-        let 要发送的参数数据:NSData? = try? NSJSONSerialization.dataWithJSONObject(要发送的参数, options: [])
-        if (要发送的参数数据 != nil) {
-//            let 要发送的JSON = NSString(data:要发送的参数数据!, encoding: NSUTF8StringEncoding)
-            let 接口网址字符串:String = "https://mcmap.90g.org/up/sendmessage"
-            //"https://mcmap.90g.org/standalone/sendmessage.php"
-//            let 接口URL:NSURL = NSURL(string: 接口网址字符串)!
-            let 网络会话管理器:AFHTTPSessionManager = AFHTTPSessionManager()
-            网络会话管理器.responseSerializer.acceptableContentTypes = NSSet(object: "text/html") as? Set<String>
-            网络会话管理器.POST(接口网址字符串, parameters: 要发送的参数, progress: { (downloadProgress:NSProgress) -> Void in
-                    NSLog("downloadProgress=%lld", downloadProgress.totalUnitCount);
-                }, success: { (task:NSURLSessionDataTask, responseObject:AnyObject?) -> Void in
-                    if (responseObject != nil) {
-                        let 返回信息:String = responseObject as! String
-                        NSLog("success=%@", 返回信息);
-                    }
-                }, failure: { (task:NSURLSessionDataTask?, error:NSError) -> Void in
-                    NSLog("failure=%@",error);
-                    self.打开发送消息框(消息)
-            })
-        }
-        return false
+    func 发送消息(消息:String) {
+        右上按钮!.enabled = false
+        正在发送的消息 = 消息
+        网络模式 = 网络模式选项.提交登录请求
+        let 网络参数:String = "j_username=" + 全局_用户名! + "&j_password=" + 全局_密码!
+        let 包含参数的网址:String = 动态地图登录接口 + "?" + 网络参数
+        let 要加载的网页URL:NSURL = NSURL(string: 包含参数的网址)!
+        let 网络请求:NSMutableURLRequest = NSMutableURLRequest(URL: 要加载的网页URL, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringCacheData, timeoutInterval: 10)
+        网络请求.HTTPMethod = "POST"
+        后台网页加载器!.loadRequest(网络请求)
+        
+//        let 要发送的参数:Dictionary<String,String> = ["message":消息,"name":"KagurazakaYashi"]
+//        let 要发送的参数数据:NSData? = try? NSJSONSerialization.dataWithJSONObject(要发送的参数, options: [])
+//        if (要发送的参数数据 != nil) {
+////            let 要发送的JSON = NSString(data:要发送的参数数据!, encoding: NSUTF8StringEncoding)
+//            let 接口网址字符串:String = "https://mcmap.90g.org/up/sendmessage/"
+//            //"https://mcmap.90g.org/standalone/sendmessage.php"
+////            let 接口URL:NSURL = NSURL(string: 接口网址字符串)!
+//            let 网络会话管理器:AFHTTPSessionManager = AFHTTPSessionManager()
+//            网络会话管理器.responseSerializer.acceptableContentTypes = NSSet(object: "text/html") as? Set<String>
+//            网络会话管理器.POST(接口网址字符串, parameters: 要发送的参数, progress: { (downloadProgress:NSProgress) -> Void in
+//                    NSLog("downloadProgress=%lld", downloadProgress.totalUnitCount);
+//                }, success: { (task:NSURLSessionDataTask, responseObject:AnyObject?) -> Void in
+//                    if (responseObject != nil) {
+//                        let 返回信息:String = responseObject as! String
+//                        NSLog("success=%@", 返回信息);
+//                    }
+//                }, failure: { (task:NSURLSessionDataTask?, error:NSError) -> Void in
+//                    NSLog("failure=%@",error);
+//                    self.打开发送消息框(消息)
+//            })
+//        }
     }
     
     func 接收数据更新通知() {

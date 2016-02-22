@@ -241,7 +241,12 @@ class DynmapAnalysis: NSObject {
                             类型 = "2"
                             let 玩家消息分割:[String] = 玩家消息.componentsSeparatedByString("] ")
                             玩家名称 = 抽取区间(玩家消息分割[0], 起始字符串: "[", 结束字符串: "", 包含起始字符串: false, 包含结束字符串: false)
-                            玩家消息 = 玩家消息分割[1]
+                            if (玩家消息分割.count > 1) {
+                                玩家消息 = 玩家消息分割[1]
+                            } else {
+                                玩家消息 = "<APP发生了错误QAQ>"
+                            }
+                            
                         }
                         //                    NSLog("玩家头像：\(玩家头像)")
                         //                    NSLog("玩家名称：\(玩家名称)")

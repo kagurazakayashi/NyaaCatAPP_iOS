@@ -49,3 +49,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 let 全局_导航栏颜色:UIColor = UIColor(red: 1, green: 153/255, blue: 204/255, alpha: 1)
 var 全局_刷新速度:NSTimeInterval = 2.5 //1.0快速，2.5标准, 6.0节能，0.2模拟器压力测试，0.5真机压力测试
 var 全局_综合信息:Dictionary<String,NSObject>? = nil
+var 全局_用户名:String? = nil
+var 全局_密码:String? = nil
+var 全局_游客模式:Bool = false
