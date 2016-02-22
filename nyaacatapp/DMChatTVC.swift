@@ -58,7 +58,7 @@ class DMChatTVC: UITableViewController {
                 //聊天.append([玩家头像,玩家名称,类型,玩家消息])
         if (实时聊天数据 == nil || 实时聊天数据?.count == 0) {
             cell.头像.image = 默认头像
-            cell.内容.loadHTMLString(合并html("<span style=\"color:#FF99CC\">没有数据</span>",内容文本: "暂时还没有人发送消息"), baseURL: nil)
+            cell.内容!.loadHTMLString(合并html("<span style=\"color:#FF99CC\">没有数据</span>",内容文本: "暂时还没有人发送消息"), baseURL: nil)
         } else {
             let 当前聊天:[String] = 实时聊天数据![row]
             //聊天.append([玩家头像,玩家名称,类型,玩家消息])
@@ -82,7 +82,7 @@ class DMChatTVC: UITableViewController {
                     cell.头像.image = 默认头像
                 }
             }
-            cell.内容.loadHTMLString(合并html(当前聊天[1],内容文本: 当前聊天[3]), baseURL: nil)
+            cell.内容!.loadHTMLString(合并html(当前聊天[1],内容文本: 当前聊天[3]), baseURL: nil)
             self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: true)
         }
         return cell

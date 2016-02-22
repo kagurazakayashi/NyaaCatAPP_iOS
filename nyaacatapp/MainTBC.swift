@@ -31,18 +31,43 @@ class MainTBC: UITabBarController, WKNavigationDelegate, LoginMenuVCDelegate {
     }
     
     //var 后台网页加载器:UIWebView = UIWebView(frame: CGRectMake(0,0,100,200))
-    var 后台网页加载器:WKWebView = WKWebView(frame: CGRectMake(0,0,0,0))
+    var 后台网页加载器:WKWebView? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBar.barTintColor = 全局_导航栏颜色
         //navigationBar.layer.contents = (id)[UIImage imageWithColor:youColor].CGImage;
         tabBar.tintColor = UIColor.whiteColor()
-        self.view.addSubview(后台网页加载器)
+        
+        let 浏览器设置:WKWebViewConfiguration = WKWebViewConfiguration()
+        浏览器设置.allowsPictureInPictureMediaPlayback = false
+        浏览器设置.allowsInlineMediaPlayback = false
+        浏览器设置.allowsAirPlayForMediaPlayback = false
+        浏览器设置.requiresUserActionForMediaPlayback = false
+        浏览器设置.suppressesIncrementalRendering = false
+        浏览器设置.applicationNameForUserAgent = "yashi_browser"
+        let 浏览器偏好设置:WKPreferences = WKPreferences()
+        //浏览器偏好设置.minimumFontSize = 12.0
+        浏览器偏好设置.javaScriptCanOpenWindowsAutomatically = false
+        浏览器偏好设置.javaScriptEnabled = true
+//        let 用户脚本文本:String = "$('div img').remove();"
+//        let 用户脚本:WKUserScript = WKUserScript(source: 用户脚本文本, injectionTime: .AtDocumentEnd, forMainFrameOnly: false)
+//        浏览器设置.userContentController.addUserScript(用户脚本)
+        浏览器设置.preferences = 浏览器偏好设置
+        浏览器设置.selectionGranularity = .Dynamic
+        
+        后台网页加载器 = WKWebView(frame: CGRect.zero, configuration: 浏览器设置)
+        后台网页加载器?.userInteractionEnabled = false
+        self.view.addSubview(后台网页加载器!)
         //self.presentViewController(等待画面, animated: true, completion: nil)
         等待画面.view.frame = self.view.frame
-        后台网页加载器.navigationDelegate = self
-        self.view.addSubview(等待画面.view)
+        
+        后台网页加载器!.navigationDelegate = self
+//        后台网页加载器!.addObserver(self, forKeyPath: "estimatedProgress", options: .New, context: nil)
+//        后台网页加载器!.addObserver(self, forKeyPath: "title", options: .New, context: nil)
+        
+        self.view.addSubview(等待画面.view) //release
+//        self.view.insertSubview(等待画面.view, belowSubview: 后台网页加载器!) //debug
         检查登录网络请求(false)
         
         //WKWebView内存使用测试
@@ -61,7 +86,7 @@ class MainTBC: UITabBarController, WKNavigationDelegate, LoginMenuVCDelegate {
         } else {
             网络请求 = NSURLRequest(URL: 要加载的网页URL, cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy, timeoutInterval: 30)
         }
-        后台网页加载器.loadRequest(网络请求!)
+        后台网页加载器!.loadRequest(网络请求!)
         等待画面.副标题.text = "连接到地图服务器中喵"
     }
     
@@ -86,6 +111,21 @@ class MainTBC: UITabBarController, WKNavigationDelegate, LoginMenuVCDelegate {
         提示框!.addAction(okAction)
         self.presentViewController(提示框!, animated: true, completion: nil)
     }
+//    func webView(webView: WKWebView, didCommitNavigation navigation: WKNavigation!) {
+//        NSLog("didCommitNavigation")
+//    }
+//    func webView(webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+//        NSLog("didStartProvisionalNavigation")
+//    }
+//    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+//        if (keyPath != nil) {
+//            if (keyPath == "estimatedProgress") {
+//                print("网页加载进度：\(后台网页加载器?.estimatedProgress)")
+//            } else if (keyPath == "title") {
+//                print("网页标题：\(后台网页加载器?.estimatedProgress)")
+//            }
+//        }
+//    }
     
     func 定时器触发() {
         请求页面源码()
@@ -130,9 +170,12 @@ class MainTBC: UITabBarController, WKNavigationDelegate, LoginMenuVCDelegate {
         let 获取网页标题JS:String = "document.title"
         let 获取网页源码JS:String = "document.documentElement.innerHTML"
         var 网页源码:[String] = Array<String>()
-        后台网页加载器.evaluateJavaScript(获取网页标题JS) { (对象:AnyObject?, 错误:NSError?) -> Void in
+        后台网页加载器!.evaluateJavaScript(获取网页标题JS) { (对象:AnyObject?, 错误:NSError?) -> Void in
+            if (对象 == nil) {
+                return
+            }
             网页源码.append(对象 as! String)
-            self.后台网页加载器.evaluateJavaScript(获取网页源码JS) { (对象:AnyObject?, 错误:NSError?) -> Void in
+            self.后台网页加载器!.evaluateJavaScript(获取网页源码JS) { (对象:AnyObject?, 错误:NSError?) -> Void in
                 网页源码.append(对象 as! String)
                 self.处理返回源码(网页源码)
             }
@@ -150,7 +193,7 @@ class MainTBC: UITabBarController, WKNavigationDelegate, LoginMenuVCDelegate {
         let 网络请求:NSMutableURLRequest = NSMutableURLRequest(URL: 要加载的网页URL, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringCacheData, timeoutInterval: 30)
         网络请求.HTTPMethod = "GET"
         //网络请求.HTTPBody = 网络参数.dataUsingEncoding(NSUTF8StringEncoding)
-        后台网页加载器.loadRequest(网络请求)
+        后台网页加载器!.loadRequest(网络请求)
     }
     
 //    func 解析完成(综合信息输入:Dictionary<String,NSObject>?,信息数据量 信息数据量输入:Dictionary<String,Int>?) {
