@@ -125,14 +125,14 @@ class LoginMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
     
     func 提示框处理(确定:Bool) {
         if (确定 == true) {
-            let 用户名输入框 = 提示框!.textFields!.first! as UITextField
-            let 密码输入框 = 提示框!.textFields!.last! as UITextField
+            let 用户名输入框:UITextField = 提示框!.textFields!.first! as UITextField
+            let 密码输入框:UITextField = 提示框!.textFields!.last! as UITextField
             用户名 = 用户名输入框.text!
             密码 = 密码输入框.text!
             选项表格.reloadData()
             
         }
-        
+        提示框 = nil
     }
     
     func 进入动画(目标位置:CGRect) {

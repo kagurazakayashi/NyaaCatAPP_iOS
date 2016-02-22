@@ -8,12 +8,15 @@
 
 import UIKit
 
-class DMChatTVC: UITableViewController {
+class DMChatTVC: UITableViewController { //,UIScrollViewDelegate
     
     var 实时聊天数据:[[String]]? = nil
     var 默认头像:UIImage = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("seting-icon", ofType: "png")!)!
     var 第三方软件发送头像:UIImage = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("t_logo", ofType: "png")!)!
     var 动态地图聊天头像:UIImage = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("msg-icon", ofType: "png")!)!
+    var 左上按钮:UIBarButtonItem? = nil
+    var 右上按钮:UIBarButtonItem? = nil
+    var 聊天文字输入框:UIAlertController? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,15 +26,83 @@ class DMChatTVC: UITableViewController {
 //        self.tableView.insertSubview(背景图, atIndex: 0)
         self.tableView.backgroundView = 背景图
         self.tableView.backgroundColor = UIColor.clearColor()
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "接收数据更新通知", name: "data", object: nil)
+        
+        左上按钮 = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Trash, target: self, action: "左上按钮点击")
+//        navigationItem.leftBarButtonItem = 左上按钮
+        右上按钮 = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "右上按钮点击")
+//        navigationItem.rightBarButtonItem = 右上按钮
+    }
+    
+    func 左上按钮点击() {
+        NSNotificationCenter.defaultCenter().postNotificationName("reloadwebview", object: nil)
+    }
+    func 右上按钮点击() {
+        打开发送消息框(nil)
+    }
+    
+    func 打开发送消息框(重试消息:String?) {
+        var 标题:String = "输入聊天信息"
+        var 内容:String? = nil
+        if (重试消息 != nil) {
+            标题 = "消息发送失败"
+            内容 = "请重试或取消发送"
+        }
+        聊天文字输入框 = UIAlertController(title: 标题, message: 内容, preferredStyle: UIAlertControllerStyle.Alert)
+        let cancelAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: { (动作:UIAlertAction) -> Void in
+            self.提示框处理(false)
+        })
+        let okAction = UIAlertAction(title: "发送", style: UIAlertActionStyle.Default, handler: { (动作:UIAlertAction) -> Void in
+            self.提示框处理(true)
+        })
+        聊天文字输入框!.addTextFieldWithConfigurationHandler {
+            (textField: UITextField!) -> Void in
+            textField.placeholder = "请在此输入要发送的内容"
+            textField.text = 重试消息
+        }
+        聊天文字输入框!.addAction(cancelAction)
+        聊天文字输入框!.addAction(okAction)
+        self.presentViewController(聊天文字输入框!, animated: true, completion: nil)
+    }
+    
+    func 提示框处理(确定:Bool) {
+        if (确定 == true) {
+            let 输入框:UITextField = 聊天文字输入框!.textFields!.first! as UITextField
+            let 聊天文本:String? = 输入框.text
+            if (聊天文本 != nil && 聊天文本 != "") {
+                NSLog(输入框.text!)
+            }
+        }
+        聊天文字输入框 = nil
     }
     
     func 接收数据更新通知() {
         if (全局_综合信息 != nil) {
             实时聊天数据 = 全局_综合信息!["聊天记录"] as? [[String]]
+            装入信息()
+        }
+    }
+    
+    func 装入信息() {
+        if (实时聊天数据 != nil && 实时聊天数据?.count > 0) {
+            if (tableView.contentOffset.y >= tableView.contentSize.height - tableView.frame.size.height) {
+                tableView.reloadData()
+                //self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: true)
+                self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 实时聊天数据!.count-1, inSection: 0), atScrollPosition: .Bottom, animated: true)
+            } else {
+                tableView.reloadData()
+            }
+        } else {
             tableView.reloadData()
         }
     }
+//    override func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+//        
+//    }
+//    override func scrollViewDidScroll(scrollView: UIScrollView) {
+//        
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -83,7 +154,6 @@ class DMChatTVC: UITableViewController {
                 }
             }
             cell.内容!.loadHTMLString(合并html(当前聊天[1],内容文本: 当前聊天[3]), baseURL: nil)
-            self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: true)
         }
         return cell
     }

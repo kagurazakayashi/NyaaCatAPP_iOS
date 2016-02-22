@@ -76,6 +76,12 @@ class MainTBC: UITabBarController, WKNavigationDelegate, LoginMenuVCDelegate {
 //            self.view.addSubview(testweb)
 //            testweb.loadRequest(NSURLRequest(URL: NSURL(string: "http://163.com")!, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringCacheData, timeoutInterval: 30))
 //        }
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "收到重载通知", name: "reloadwebview", object: nil)
+    }
+    
+    func 收到重载通知() {
+        后台网页加载器!.reload()
     }
     
     func 检查登录网络请求(缓存:Bool) {
