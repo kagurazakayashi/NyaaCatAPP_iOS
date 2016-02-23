@@ -26,6 +26,7 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
     var 第三方软件发送头像:UIImage = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("t_logo", ofType: "png")!)!
     var 动态地图聊天头像:UIImage = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("msg-icon", ofType: "png")!)!
     var 手机聊天头像:UIImage = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("mobile-2-icon", ofType: "png")!)!
+    var 服务器消息头像:UIImage = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("cloud-icon", ofType: "png")!)!
     var 左上按钮:UIBarButtonItem? = nil
     var 右上按钮:UIBarButtonItem? = nil
     var 聊天文字输入框:UIAlertController? = nil
@@ -255,6 +256,8 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
         }
         if (全局_综合信息 != nil) {
             实时聊天数据 = 全局_综合信息!["聊天记录"] as? [[String]]
+            let 当前选项卡按钮:UITabBarItem = self.tabBarController!.tabBar.items![0]
+            当前选项卡按钮.badgeValue = String(实时聊天数据!.count)
             装入信息()
         }
     }
@@ -272,12 +275,25 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
             tableView.reloadData()
         }
     }
-//    override func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-//        
-//    }
-//    override func scrollViewDidScroll(scrollView: UIScrollView) {
-//        
-//    }
+    override func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    }
+    override func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        NSNotificationCenter.defaultCenter().postNotificationName("timeroff", object: nil)
+    }
+    override func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        NSNotificationCenter.defaultCenter().postNotificationName("timeron", object: nil)
+    }
+    override func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
+    }
+    override func viewDidAppear(animated: Bool) {
+        NSLog("解析器 标准速度")
+        全局_刷新速度 = 2.5
+    }
+    override func viewDidDisappear(animated: Bool) {
+        NSLog("解析器 降速")
+        全局_刷新速度 = 107
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -327,7 +343,9 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
                 cell.头像.setImageWithURL(NSURL(string: 头像相对路径)!, placeholderImage: 默认头像)
             } else {
                 //0=游戏内聊天/动态地图，1=上下线消息，2=Telegram/IRC，3=手机
-                if (当前聊天[2] == "3") {
+                if (当前聊天[1] == " Server: ") {
+                    cell.头像.image = 服务器消息头像
+                } else if (当前聊天[2] == "3") {
                     cell.头像.image = 手机聊天头像
                 } else if (当前聊天[2] == "0") {
                     cell.头像.image = 动态地图聊天头像
