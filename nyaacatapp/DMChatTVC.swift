@@ -11,7 +11,10 @@ import WebKit
 
 class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDelegate
     
-    let 消息发送接口:String = "https://mcmap.90g.org/up/sendmessage"
+//    let 消息发送接口:String = "https://mcmap.90g.org/up/sendmessage"
+//    let 动态地图登录接口:String = "https://mcmap.90g.org/up/login"
+    
+    let 消息发送接口:String = "https://yoooooooooo.com/sendmessagetest.php"
     let 动态地图登录接口:String = "https://mcmap.90g.org/up/login"
     
 //    let 消息发送接口:String = "http://123.56.133.111:8123/up/sendmessage"
@@ -60,7 +63,7 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
         浏览器设置.allowsAirPlayForMediaPlayback = false
         浏览器设置.requiresUserActionForMediaPlayback = false
         浏览器设置.suppressesIncrementalRendering = false
-        浏览器设置.applicationNameForUserAgent = "Mozilla/5.0 (kagurazaka-browser)"
+//        浏览器设置.applicationNameForUserAgent = "Mozilla/5.0 (kagurazaka-browser)"
         let 浏览器偏好设置:WKPreferences = WKPreferences()
         浏览器偏好设置.minimumFontSize = 40.0
         浏览器偏好设置.javaScriptCanOpenWindowsAutomatically = false
@@ -71,7 +74,8 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
         浏览器设置.preferences = 浏览器偏好设置
         浏览器设置.selectionGranularity = .Dynamic
         
-        后台网页加载器 = WKWebView(frame: CGRectMake(0, 0, 100, 100), configuration: 浏览器设置)
+        后台网页加载器 = WKWebView(frame: CGRectMake(0, 0, 300, 300), configuration: 浏览器设置)
+        后台网页加载器?.alpha = 0.8
         后台网页加载器?.userInteractionEnabled = false
         self.view.addSubview(后台网页加载器!)
         后台网页加载器!.navigationDelegate = self
@@ -79,6 +83,45 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
         //        后台网页加载器!.addObserver(self, forKeyPath: "estimatedProgress", options: .New, context: nil)
         //        后台网页加载器!.addObserver(self, forKeyPath: "title", options: .New, context: nil)
     }
+    
+    /*
+    Request URL:https://mcmap.90g.org/up/sendmessage
+    Request Method:POST
+    Status Code:200 OK
+    Remote Address:114.215.110.235:443
+    Response Headers
+    content-length:16
+    content-type:text/plain;charset=UTF-8
+    date:Mon, 22 Feb 2016 13:07:30 GMT
+    expires:Thu, 01 Dec 1994 16:00:00 GMT
+    last-modified:Mon Feb 22 21:07:30 CST 2016
+    server:nginx
+    status:200 OK
+    strict-transport-security:max-age=31536000; preload
+    version:HTTP/1.1
+    Request Headers
+    :host:mcmap.90g.org
+    :method:POST
+    :path:/up/sendmessage
+    :scheme:https
+    :version:HTTP/1.1
+    accept:application/json, text/javascript, * / *; q=0.01
+    accept-encoding:gzip, deflate
+    accept-language:zh-CN,zh;q=0.8,en;q=0.6,ja;q=0.4
+    content-length:25
+    content-type:application/json; charset=UTF-8
+    cookie:JSESSIONID=z6cwxznc5lb9n5x0wdm7tkkh
+    dnt:1
+    origin:https://mcmap.90g.org
+    referer:https://mcmap.90g.org/index.html
+    user-agent:Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.109 Safari/537.36
+    x-requested-with:XMLHttpRequest
+    Request Payload
+    view source
+    {name: "", message: " "}
+    message: " "
+    name: ""
+    */
     
     func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
         if (网络模式 == 网络模式选项.提交登录请求) {
@@ -88,22 +131,21 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
             NSLog("网络参数=%@", 网络参数)
             let 要加载的网页URL:NSURL = NSURL(string: 消息发送接口)!
             let 网络请求:NSMutableURLRequest = NSMutableURLRequest(URL: 要加载的网页URL, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringCacheData, timeoutInterval: 30)
-            let 网络参数数据:NSData = 网络参数.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!
+            let 网络参数数据:NSData = 网络参数.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
             网络请求.HTTPMethod = "POST"
             //[urlRequest setValue: [NSString stringWithFormat:@"%@\r\n", @"http://XXXXXX HTTP/1.1"]];
             网络请求.setValue("application/json, text/javascript, */*; q=0.01", forHTTPHeaderField: "accept")
             网络请求.setValue("gzip, deflate", forHTTPHeaderField: "accept-encoding")
             网络请求.setValue("zh-CN,zh;q=0.8,en;q=0.6,ja;q=0.4", forHTTPHeaderField: "accept-language")
-            网络请求.setValue("\(网络参数.length)", forHTTPHeaderField: "content-length")
+            网络请求.setValue("\(网络参数数据.length)", forHTTPHeaderField: "content-length")
             网络请求.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "content-type")
             网络请求.setValue("1", forHTTPHeaderField: "dnt")
-            网络请求.setValue("https://mcmap.90g.org", forHTTPHeaderField: "host")
+            网络请求.setValue("https://mcmap.90g.org", forHTTPHeaderField: "origin")
             网络请求.setValue("https://mcmap.90g.org/index.html", forHTTPHeaderField: "referer")
             网络请求.setValue("XMLHttpRequest", forHTTPHeaderField: "x-requested-with")
 
             网络请求.HTTPBody = 网络参数数据
             后台网页加载器!.loadRequest(网络请求)
-            
             
         } else {
             右上按钮!.enabled = true
