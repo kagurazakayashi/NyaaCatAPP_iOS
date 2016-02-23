@@ -33,7 +33,7 @@ var contents: String? = nil
 ////        dma.去除HTML标签(contents!)
         
         //内存压力测试
-        for i in 0...1000 {
+        for i in 0...10000 {
             NSLog("开始解析 \(i)")
             let dmac:DynmapAnalysisController = DynmapAnalysisController()
             dmac.html = contents!

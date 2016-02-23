@@ -32,6 +32,7 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
 //    var 后台网页加载器:WKWebView? = nil
     var 正在发送的消息:String? = nil
     var 网络模式:网络模式选项 = 网络模式选项.提交登录请求
+    var 首次更新数据:Bool = true
     
     enum 网络模式选项 {
         case 提交登录请求
@@ -46,6 +47,7 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
 //        self.tableView.insertSubview(背景图, atIndex: 0)
         self.tableView.backgroundView = 背景图
         self.tableView.backgroundColor = UIColor.clearColor()
+        self.tableView.separatorStyle = .None
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "接收数据更新通知", name: "data", object: nil)
         
@@ -55,6 +57,9 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
         navigationItem.leftBarButtonItem = 左上按钮
         右上按钮 = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "右上按钮点击")
         navigationItem.rightBarButtonItem = 右上按钮
+        
+        左上按钮?.enabled = false
+        右上按钮?.enabled = false
     }
     
     func 初始化WebView() {
@@ -84,45 +89,6 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
         //        后台网页加载器!.addObserver(self, forKeyPath: "estimatedProgress", options: .New, context: nil)
         //        后台网页加载器!.addObserver(self, forKeyPath: "title", options: .New, context: nil)
     }
-    
-    /*
-    Request URL:https://mcmap.90g.org/up/sendmessage
-    Request Method:POST
-    Status Code:200 OK
-    Remote Address:114.215.110.235:443
-    Response Headers
-    content-length:16
-    content-type:text/plain;charset=UTF-8
-    date:Mon, 22 Feb 2016 13:07:30 GMT
-    expires:Thu, 01 Dec 1994 16:00:00 GMT
-    last-modified:Mon Feb 22 21:07:30 CST 2016
-    server:nginx
-    status:200 OK
-    strict-transport-security:max-age=31536000; preload
-    version:HTTP/1.1
-    Request Headers
-    :host:mcmap.90g.org
-    :method:POST
-    :path:/up/sendmessage
-    :scheme:https
-    :version:HTTP/1.1
-    accept:application/json, text/javascript, * / *; q=0.01
-    accept-encoding:gzip, deflate
-    accept-language:zh-CN,zh;q=0.8,en;q=0.6,ja;q=0.4
-    content-length:25
-    content-type:application/json; charset=UTF-8
-    cookie:JSESSIONID=z6cwxznc5lb9n5x0wdm7tkkh
-    dnt:1
-    origin:https://mcmap.90g.org
-    referer:https://mcmap.90g.org/index.html
-    user-agent:Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.109 Safari/537.36
-    x-requested-with:XMLHttpRequest
-    Request Payload
-    view source
-    {name: "", message: " "}
-    message: " "
-    name: ""
-    */
     
     func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
         网络连接完成()
@@ -279,6 +245,14 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
     }
     
     func 接收数据更新通知() {
+        if (首次更新数据 == true) {
+            首次更新数据 = false
+            if (全局_用户名 != nil && 左上按钮?.enabled == false) {
+                左上按钮?.enabled = true
+                右上按钮?.enabled = true
+            }
+            tableView.reloadData()
+        }
         if (全局_综合信息 != nil) {
             实时聊天数据 = 全局_综合信息!["聊天记录"] as? [[String]]
             装入信息()
@@ -317,6 +291,9 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if (首次更新数据 == true) {
+            return 0
+        }
         if (实时聊天数据 == nil || 实时聊天数据?.count == 0) {
             return 1
         }
@@ -368,7 +345,10 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
     func 合并html(名字html:String,内容文本:String) -> String { //头像URL:String,
         //return "<!doctype html><html><head><meta charset=\"UTF-8\"></head><body><table width=\"100%\" border=\"0\"><tbody><tr><td width=\"64\"><img src=\"\(头像URL)\" width=\"64\" height=\"64\" alt=\"\"/></td><td align=\"left\" valign=\"top\">\(名字html)<p><span style=\"color:#FF99CC\">\(内容文本)</span></td></tr></tbody></table></body></html>"
             return "<!doctype html><html><head><meta charset=\"UTF-8\"></head><body><span style=\"color:#FFF\">\(名字html)<p><span style=\"color:#FF99CC\">\(内容文本)</span></body></html>"
-        
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 
     /*

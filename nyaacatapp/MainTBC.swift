@@ -32,6 +32,7 @@ class MainTBC: UITabBarController, WKNavigationDelegate, LoginMenuVCDelegate {
         case 检查是否登录
         case 提交登录请求
         case 监视页面信息
+        case 游客模式
     }
     
     //var 后台网页加载器:UIWebView = UIWebView(frame: CGRectMake(0,0,100,200))
@@ -131,7 +132,6 @@ class MainTBC: UITabBarController, WKNavigationDelegate, LoginMenuVCDelegate {
             })
             let cancelAction = UIAlertAction(title: "游客登录", style: UIAlertActionStyle.Default, handler: { (动作:UIAlertAction) -> Void in
                 self.等待提示框 = false
-                self.网络模式 = 网络模式选项.检查是否登录
                 self.返回登录请求(nil,密码: nil)
             })
             提示框!.addAction(okAction)
@@ -186,6 +186,8 @@ class MainTBC: UITabBarController, WKNavigationDelegate, LoginMenuVCDelegate {
         } else if (网络模式 == 网络模式选项.监视页面信息) {
             解析引擎.html = 源码[1]
             解析引擎.start()
+        } else if (网络模式 == 网络模式选项.游客模式) {
+            NSNotificationCenter.defaultCenter().postNotificationName("data", object: nil)
         }
     }
     
@@ -241,6 +243,8 @@ class MainTBC: UITabBarController, WKNavigationDelegate, LoginMenuVCDelegate {
             全局_密码 = 密码
             后台网页加载器!.loadRequest(网络请求)
         } else {
+            网络模式 = 网络模式选项.游客模式
+            新定时器 = MSWeakTimer.scheduledTimerWithTimeInterval(全局_刷新速度, target: self, selector: "定时器触发", userInfo: nil, repeats: false, dispatchQueue: dispatch_get_main_queue())
             等待画面.停止 = true
         }
     }
