@@ -9,7 +9,8 @@
 import UIKit
 
 protocol LoginMenuVCDelegate {
-    func 返回登录请求(用户名:String,密码:String)
+    func 返回登录请求(用户名:String?,密码:String?)
+    func 弹出代理提示框(提示框:UIAlertController)
 }
 
 class LoginMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -86,18 +87,11 @@ class LoginMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let 行数:Int = indexPath.row
         if (行数 < 2) {
-//            提示框 = UIAlertView(title: "请输入用户名和密码", message: "", delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "确定")
-//            提示框?.alertViewStyle = UIAlertViewStyle.LoginAndPasswordInput
-//            let 用户名输入框:UITextField = (提示框?.textFieldAtIndex(0))!
-//            let 密码输入框:UITextField = (提示框?.textFieldAtIndex(1))!
-//            用户名输入框.text = 用户名
-//            密码输入框.text = 密码
-//            提示框?.show()
             提示框 = UIAlertController(title: "请输入用户名和密码", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
-            let cancelAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: { (动作:UIAlertAction) -> Void in
+            let cancelAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.Default, handler: { (动作:UIAlertAction) -> Void in
                 self.提示框处理(false)
             })
-            let okAction = UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler: { (动作:UIAlertAction) -> Void in
+            let okAction = UIAlertAction(title: "确定", style: UIAlertActionStyle.Cancel, handler: { (动作:UIAlertAction) -> Void in
                 self.提示框处理(true)
             })
             提示框!.addTextFieldWithConfigurationHandler {
@@ -111,15 +105,16 @@ class LoginMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
                 textField.secureTextEntry = true
                 textField.text = self.密码
             }
-            提示框!.addAction(cancelAction)
             提示框!.addAction(okAction)
-            
-            self.presentViewController(提示框!, animated: true, completion: nil)
+            提示框!.addAction(cancelAction)
+            代理?.弹出代理提示框(提示框!)
         } else if (行数 == 2) {
             记住用户名和密码 = !记住用户名和密码
             选项表格.reloadData()
         } else if (行数 == 3) {
             代理?.返回登录请求(用户名, 密码: 密码)
+        } else if (行数 == 7) {
+            代理?.返回登录请求(nil, 密码: nil)
         }
     }
     

@@ -51,7 +51,6 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
         
 //        初始化WebView()
         
-        
         左上按钮 = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Trash, target: self, action: "左上按钮点击")
         navigationItem.leftBarButtonItem = 左上按钮
         右上按钮 = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "右上按钮点击")
@@ -190,10 +189,18 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
     }
     
     func 左上按钮点击() {
-        NSNotificationCenter.defaultCenter().postNotificationName("reloadwebview", object: nil)
+        if (全局_用户名 != nil) {
+            NSNotificationCenter.defaultCenter().postNotificationName("reloadwebview", object: nil)
+        } else {
+            //正在以游客身份登录，没有参与聊天的权限
+        }
     }
     func 右上按钮点击() {
-        打开发送消息框(nil,错误描述: nil)
+        if (全局_用户名 != nil) {
+            打开发送消息框(nil,错误描述: nil)
+        } else {
+            //正在以游客身份登录，没有参与聊天的权限
+        }
     }
     
     func 打开发送消息框(重试消息:String?,错误描述:String?) {
@@ -323,7 +330,11 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
                 //聊天.append([玩家头像,玩家名称,类型,玩家消息])
         if (实时聊天数据 == nil || 实时聊天数据?.count == 0) {
             cell.头像.image = 默认头像
-            cell.内容!.loadHTMLString(合并html("<span style=\"color:#FF99CC\">没有数据</span>",内容文本: "暂时还没有人发送消息"), baseURL: nil)
+            if (全局_用户名 != nil) {
+                cell.内容!.loadHTMLString(合并html("<span>没有数据</span>",内容文本: "暂时还没有人发送消息"), baseURL: nil)
+            } else {
+                cell.内容!.loadHTMLString(合并html("<span>正在以游客身份登录</span>",内容文本: "没有参与聊天的权限"), baseURL: nil)
+            }
         } else {
             let 当前聊天:[String] = 实时聊天数据![row]
             //聊天.append([玩家头像,玩家名称,类型,玩家消息])

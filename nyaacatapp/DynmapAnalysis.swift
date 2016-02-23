@@ -13,7 +13,7 @@ class DynmapAnalysis: NSObject {
     
     var html:String? = nil
     var 提取信息:NSMutableDictionary = NSMutableDictionary()
-    
+    let 地图页面特征:String = "<div id=\"mcmap\" class=\"dynmap\">"
     
 //    override init() {
 //        NSLog("构造：DynmapAnalysis")
@@ -24,7 +24,7 @@ class DynmapAnalysis: NSObject {
 //    }
     
     func 有效性校验() -> Bool {
-        if (html?.rangeOfString("<div id=\"mcmap\" class=\"dynmap\">") != nil) {
+        if (html?.rangeOfString(地图页面特征) != nil) {
             return true
         }
         return false
