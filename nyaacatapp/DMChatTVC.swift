@@ -13,6 +13,7 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
     
     let 消息发送接口:String = "https://mcmap.90g.org/up/sendmessage"
     let 动态地图登录接口:String = "https://mcmap.90g.org/up/login"
+    let 允许转义颜色代码:Bool = false //true: 将&视为颜色代码
     
 //    let 消息发送接口:String = "https://yoooooooooo.com/sendmessagetest.php"
 //    let 动态地图登录接口:String = "https://mcmap.90g.org/up/login"
@@ -24,6 +25,7 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
     var 默认头像:UIImage = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("seting-icon", ofType: "png")!)!
     var 第三方软件发送头像:UIImage = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("t_logo", ofType: "png")!)!
     var 动态地图聊天头像:UIImage = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("msg-icon", ofType: "png")!)!
+    var 手机聊天头像:UIImage = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("mobile-2-icon", ofType: "png")!)!
     var 左上按钮:UIBarButtonItem? = nil
     var 右上按钮:UIBarButtonItem? = nil
     var 聊天文字输入框:UIAlertController? = nil
@@ -131,8 +133,7 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
         if (网络模式 == 网络模式选项.提交登录请求) {
             网络模式 = 网络模式选项.发送聊天消息
             //向服务器提交聊天消息
-            let 网络参数:NSString = "{\"name\":\"\",\"message\":\"§2[NyaaCatAPP] §f" + 正在发送的消息! + "\"}"
-            NSLog("网络参数=%@", 网络参数)
+            let 网络参数:NSString = "{\"name\":\"\",\"message\":\"§2" + 全局_手机发送消息关键字 + "§f" + 正在发送的消息! + "\"}"
             let 要加载的网页URL:NSURL = NSURL(string: 消息发送接口)!
             let 网络请求:NSMutableURLRequest = NSMutableURLRequest(URL: 要加载的网页URL, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringCacheData, timeoutInterval: 30)
             let 网络参数数据:NSData = 网络参数.dataUsingEncoding(NSUTF8StringEncoding)!
@@ -181,6 +182,9 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
     func 网络连接失败(错误描述:String) {
         NSLog("消息发送失败=%@", 错误描述)
         网络模式 = 网络模式选项.提交登录请求
+        if (正在发送的消息 != nil) {
+            正在发送的消息 = 转义颜色代码(false, 内容: 正在发送的消息!)
+        }
         打开发送消息框(正在发送的消息,错误描述: 错误描述)
         正在发送的消息 = nil
     }
@@ -229,9 +233,20 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
         聊天文字输入框 = nil
     }
     
+    func 转义颜色代码(转义:Bool, 内容:String) -> String {
+        if (转义 == true) {
+            if (允许转义颜色代码) {
+                return 内容.stringByReplacingOccurrencesOfString("&", withString: "§", options: NSStringCompareOptions.LiteralSearch, range: nil)
+            }
+        } else {
+            return 内容.stringByReplacingOccurrencesOfString("§", withString: "&", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        }
+        return 内容
+    }
+    
     func 发送消息(消息:String) {
         右上按钮!.enabled = false
-        正在发送的消息 = 消息
+        正在发送的消息 = 转义颜色代码(true,内容: 消息)
         网络模式 = 网络模式选项.提交登录请求
         let 网络参数:String = "j_username=" + 全局_用户名! + "&j_password=" + 全局_密码!
         let 包含参数的网址:String = 动态地图登录接口 + "?" + 网络参数
@@ -323,8 +338,10 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
                 头像相对路径 = "https://mcmap.90g.org/tiles/faces/32x32/\(当前聊天[0])"
                 cell.头像.setImageWithURL(NSURL(string: 头像相对路径)!, placeholderImage: 默认头像)
             } else {
-                //0=游戏内聊天/动态地图，1=上下线消息，2=Telegram/IRC
-                if (当前聊天[2] == "0") {
+                //0=游戏内聊天/动态地图，1=上下线消息，2=Telegram/IRC，3=手机
+                if (当前聊天[2] == "3") {
+                    cell.头像.image = 手机聊天头像
+                } else if (当前聊天[2] == "0") {
                     cell.头像.image = 动态地图聊天头像
                 } else if (当前聊天[2] == "2") {
                     cell.头像.image = 第三方软件发送头像

@@ -14,6 +14,7 @@ class DynmapAnalysis: NSObject {
     var html:String? = nil
     var 提取信息:NSMutableDictionary = NSMutableDictionary()
     
+    
 //    override init() {
 //        NSLog("构造：DynmapAnalysis")
 //    }
@@ -227,7 +228,7 @@ class DynmapAnalysis: NSObject {
                 let 当前聊天信息块分割:[String] = 当前聊天信息块.componentsSeparatedByString(聊天图标单元)
                 if (当前聊天信息块分割.count > 0) { //玩家消息
                     let 分割信息字段:[String] = 当前聊天信息块.componentsSeparatedByString("<span class=\"message")
-                    var 类型:String = "0" //0=游戏内聊天，1=上下线消息，2=电报等第三方平台
+                    var 类型:String = "0" //0=游戏内聊天，1=上下线消息，2=电报等第三方平台，3=手机
                     if (分割信息字段.count > 1) {
                         var 玩家头像:String = 抽取区间(分割信息字段[1], 起始字符串: "icon\">", 结束字符串: "</span>", 包含起始字符串: false, 包含结束字符串: false)
                         if (玩家头像 != "") {
@@ -246,7 +247,11 @@ class DynmapAnalysis: NSObject {
                             } else {
                                 玩家消息 = "<APP发生了错误QAQ>"
                             }
-                            
+                        }
+                        let 手机关键字:Range? = 玩家消息.rangeOfString(全局_手机发送消息关键字)
+                        if (手机关键字 != nil) {
+                            类型 = "3"
+                            玩家消息 = 玩家消息.substringFromIndex(手机关键字!.endIndex)
                         }
                         //                    NSLog("玩家头像：\(玩家头像)")
                         //                    NSLog("玩家名称：\(玩家名称)")

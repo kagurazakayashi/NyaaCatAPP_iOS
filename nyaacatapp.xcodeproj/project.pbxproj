@@ -53,6 +53,7 @@
 		53E7AB831C79F2C000A544B2 /* seting-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 53E7AB821C79F2C000A544B2 /* seting-icon.png */; };
 		53E7AB851C79F31700A544B2 /* t_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 53E7AB841C79F31700A544B2 /* t_logo.png */; };
 		53E7AB871C79F72300A544B2 /* msg-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 53E7AB861C79F72300A544B2 /* msg-icon.png */; };
+		53FFEE881C7C57E500130811 /* mobile-2-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FFEE871C7C57E500130811 /* mobile-2-icon.png */; };
 		8BA1F32F1C7091B7003BC1EC /* BBSVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA1F32E1C7091B7003BC1EC /* BBSVC.swift */; };
 		8BA1F34B1C7B0B1E003BC1EC /* logobbs.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA1F3481C7B0B1E003BC1EC /* logobbs.png */; };
 		8BA1F34C1C7B0B1E003BC1EC /* logobbs@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA1F3491C7B0B1E003BC1EC /* logobbs@2x.png */; };
@@ -163,6 +164,7 @@
 		53E7AB821C79F2C000A544B2 /* seting-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "seting-icon.png"; sourceTree = "<group>"; };
 		53E7AB841C79F31700A544B2 /* t_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = t_logo.png; sourceTree = "<group>"; };
 		53E7AB861C79F72300A544B2 /* msg-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "msg-icon.png"; sourceTree = "<group>"; };
+		53FFEE871C7C57E500130811 /* mobile-2-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mobile-2-icon.png"; sourceTree = "<group>"; };
 		8B728FEA1C6F74B10068A775 /* uploadimgtosmmstest.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = uploadimgtosmmstest.xcodeproj; path = uploadimgtosmmstest/uploadimgtosmmstest.xcodeproj; sourceTree = "<group>"; };
 		8BA1F32E1C7091B7003BC1EC /* BBSVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSVC.swift; sourceTree = "<group>"; };
 		8BA1F3481C7B0B1E003BC1EC /* logobbs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logobbs.png; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 				8BA1F3491C7B0B1E003BC1EC /* logobbs@2x.png */,
 				8BA1F34A1C7B0B1E003BC1EC /* logobbs@3x.png */,
 				53E7AB141C79C67000A544B2 /* logo.png */,
+				53FFEE871C7C57E500130811 /* mobile-2-icon.png */,
 				53E7AB151C79C67000A544B2 /* signshop_icon.png */,
 				53E7AB161C79C67000A544B2 /* stormy.png */,
 				53E7AB171C79C67000A544B2 /* stormy_day.png */,
@@ -505,6 +508,7 @@
 				8BA1F34D1C7B0B1E003BC1EC /* logobbs@3x.png in Resources */,
 				53E7AB2C1C79C67000A544B2 /* thunder_night.png in Resources */,
 				53E7AB851C79F31700A544B2 /* t_logo.png in Resources */,
+				53FFEE881C7C57E500130811 /* mobile-2-icon.png in Resources */,
 				53E7AB291C79C67000A544B2 /* sunny_night.png in Resources */,
 				53E7AB2B1C79C67000A544B2 /* thunder_day.png in Resources */,
 				8BA1F3511C7B0C64003BC1EC /* tbmsg.png in Resources */,

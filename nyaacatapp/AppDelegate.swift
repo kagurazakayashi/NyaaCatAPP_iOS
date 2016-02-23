@@ -52,3 +52,4 @@ var 全局_综合信息:Dictionary<String,NSObject>? = nil
 var 全局_用户名:String? = nil
 var 全局_密码:String? = nil
 var 全局_游客模式:Bool = false
+let 全局_手机发送消息关键字:String = "[NyaaCatAPP] "
