@@ -11,11 +11,11 @@ import WebKit
 
 class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDelegate
     
-//    let 消息发送接口:String = "https://mcmap.90g.org/up/sendmessage"
-//    let 动态地图登录接口:String = "https://mcmap.90g.org/up/login"
-    
-    let 消息发送接口:String = "https://yoooooooooo.com/sendmessagetest.php"
+    let 消息发送接口:String = "https://mcmap.90g.org/up/sendmessage"
     let 动态地图登录接口:String = "https://mcmap.90g.org/up/login"
+    
+//    let 消息发送接口:String = "https://yoooooooooo.com/sendmessagetest.php"
+//    let 动态地图登录接口:String = "https://mcmap.90g.org/up/login"
     
 //    let 消息发送接口:String = "http://123.56.133.111:8123/up/sendmessage"
 //    let 动态地图登录接口:String = "http://123.56.133.111:8123/up/login"
@@ -27,7 +27,7 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
     var 左上按钮:UIBarButtonItem? = nil
     var 右上按钮:UIBarButtonItem? = nil
     var 聊天文字输入框:UIAlertController? = nil
-    var 后台网页加载器:WKWebView? = nil
+//    var 后台网页加载器:WKWebView? = nil
     var 正在发送的消息:String? = nil
     var 网络模式:网络模式选项 = 网络模式选项.提交登录请求
     
@@ -47,7 +47,7 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "接收数据更新通知", name: "data", object: nil)
         
-        初始化WebView()
+//        初始化WebView()
         
         
         左上按钮 = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Trash, target: self, action: "左上按钮点击")
@@ -74,11 +74,11 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
         浏览器设置.preferences = 浏览器偏好设置
         浏览器设置.selectionGranularity = .Dynamic
         
-        后台网页加载器 = WKWebView(frame: CGRectMake(0, 0, 300, 300), configuration: 浏览器设置)
-        后台网页加载器?.alpha = 0.8
-        后台网页加载器?.userInteractionEnabled = false
-        self.view.addSubview(后台网页加载器!)
-        后台网页加载器!.navigationDelegate = self
+//        后台网页加载器 = WKWebView(frame: CGRectMake(0, 0, 300, 300), configuration: 浏览器设置)
+//        后台网页加载器?.alpha = 0.5
+//        后台网页加载器?.userInteractionEnabled = false
+//        self.view.addSubview(后台网页加载器!)
+//        后台网页加载器!.navigationDelegate = self
         
         //        后台网页加载器!.addObserver(self, forKeyPath: "estimatedProgress", options: .New, context: nil)
         //        后台网页加载器!.addObserver(self, forKeyPath: "title", options: .New, context: nil)
@@ -124,16 +124,22 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
     */
     
     func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
+        网络连接完成()
+    }
+    
+    func 网络连接完成() {
         if (网络模式 == 网络模式选项.提交登录请求) {
             网络模式 = 网络模式选项.发送聊天消息
             //向服务器提交聊天消息
-            let 网络参数:NSString = "{\"name\":\"\",\"message\":\"" + 正在发送的消息! + "\"}"
+            let 网络参数:NSString = "{\"name\":\"\",\"message\":\"§2[NyaaCatAPP] §f" + 正在发送的消息! + "\"}"
             NSLog("网络参数=%@", 网络参数)
             let 要加载的网页URL:NSURL = NSURL(string: 消息发送接口)!
             let 网络请求:NSMutableURLRequest = NSMutableURLRequest(URL: 要加载的网页URL, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringCacheData, timeoutInterval: 30)
-            let 网络参数数据:NSData = 网络参数.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
+            let 网络参数数据:NSData = 网络参数.dataUsingEncoding(NSUTF8StringEncoding)!
             网络请求.HTTPMethod = "POST"
+            //§2[NyaaCatAPP] §fThis is a test message.
             //[urlRequest setValue: [NSString stringWithFormat:@"%@\r\n", @"http://XXXXXX HTTP/1.1"]];
+            //application/json , application/x-www-data-urlencoded
             网络请求.setValue("application/json, text/javascript, */*; q=0.01", forHTTPHeaderField: "accept")
             网络请求.setValue("gzip, deflate", forHTTPHeaderField: "accept-encoding")
             网络请求.setValue("zh-CN,zh;q=0.8,en;q=0.6,ja;q=0.4", forHTTPHeaderField: "accept-language")
@@ -143,9 +149,25 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
             网络请求.setValue("https://mcmap.90g.org", forHTTPHeaderField: "origin")
             网络请求.setValue("https://mcmap.90g.org/index.html", forHTTPHeaderField: "referer")
             网络请求.setValue("XMLHttpRequest", forHTTPHeaderField: "x-requested-with")
-
-            网络请求.HTTPBody = 网络参数数据
-            后台网页加载器!.loadRequest(网络请求)
+            //网络请求.HTTPBody = 网络参数数据
+            //            后台网页加载器!.loadRequest(网络请求)
+            let 上传会话 = NSURLSession.sharedSession()
+            let 上传任务 = 上传会话.uploadTaskWithRequest(网络请求, fromData: 网络参数数据){
+                (data:NSData?, reponse:NSURLResponse?, error:NSError?) ->Void in
+                
+                if(error != nil){
+                    self.网络连接失败(error!.localizedDescription)
+                } else{
+                    let 回应:String = NSString(data: data!, encoding: NSUTF8StringEncoding) as! String
+                    if (回应 == "{\"error\":\"none\"}") {
+                        self.右上按钮?.enabled = true
+                        self.网络连接完成()
+                    } else {
+                        self.网络连接失败(回应)
+                    }
+                }
+            }
+            上传任务.resume()
             
         } else {
             右上按钮!.enabled = true
@@ -153,8 +175,13 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
     }
     
     func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError) {
-        NSLog("消息发送失败=%@", error.localizedDescription)
-        打开发送消息框(正在发送的消息,错误描述: error.localizedDescription)
+        网络连接失败(error.localizedDescription)
+    }
+    
+    func 网络连接失败(错误描述:String) {
+        NSLog("消息发送失败=%@", 错误描述)
+        网络模式 = 网络模式选项.提交登录请求
+        打开发送消息框(正在发送的消息,错误描述: 错误描述)
         正在发送的消息 = nil
     }
     
@@ -196,6 +223,8 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
             if (聊天文本 != nil && 聊天文本 != "") {
                 发送消息(聊天文本!)
             }
+        } else {
+            self.右上按钮?.enabled = true
         }
         聊天文字输入框 = nil
     }
@@ -209,29 +238,22 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
         let 要加载的网页URL:NSURL = NSURL(string: 包含参数的网址)!
         let 网络请求:NSMutableURLRequest = NSMutableURLRequest(URL: 要加载的网页URL, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringCacheData, timeoutInterval: 10)
         网络请求.HTTPMethod = "POST"
-        后台网页加载器!.loadRequest(网络请求)
-        
-//        let 要发送的参数:Dictionary<String,String> = ["message":消息,"name":"KagurazakaYashi"]
-//        let 要发送的参数数据:NSData? = try? NSJSONSerialization.dataWithJSONObject(要发送的参数, options: [])
-//        if (要发送的参数数据 != nil) {
-////            let 要发送的JSON = NSString(data:要发送的参数数据!, encoding: NSUTF8StringEncoding)
-//            let 接口网址字符串:String = "https://mcmap.90g.org/up/sendmessage/"
-//            //"https://mcmap.90g.org/standalone/sendmessage.php"
-////            let 接口URL:NSURL = NSURL(string: 接口网址字符串)!
-//            let 网络会话管理器:AFHTTPSessionManager = AFHTTPSessionManager()
-//            网络会话管理器.responseSerializer.acceptableContentTypes = NSSet(object: "text/html") as? Set<String>
-//            网络会话管理器.POST(接口网址字符串, parameters: 要发送的参数, progress: { (downloadProgress:NSProgress) -> Void in
-//                    NSLog("downloadProgress=%lld", downloadProgress.totalUnitCount);
-//                }, success: { (task:NSURLSessionDataTask, responseObject:AnyObject?) -> Void in
-//                    if (responseObject != nil) {
-//                        let 返回信息:String = responseObject as! String
-//                        NSLog("success=%@", 返回信息);
-//                    }
-//                }, failure: { (task:NSURLSessionDataTask?, error:NSError) -> Void in
-//                    NSLog("failure=%@",error);
-//                    self.打开发送消息框(消息)
-//            })
-//        }
+        let 上传会话 = NSURLSession.sharedSession()
+        let 上传任务 = 上传会话.dataTaskWithRequest(网络请求) {
+            (data:NSData?, reponse:NSURLResponse?, error:NSError?) ->Void in
+            
+            if(error != nil){
+                self.网络连接失败(error!.localizedDescription)
+            } else{
+                let 回应:String = NSString(data: data!, encoding: NSUTF8StringEncoding) as! String
+                if (回应 == "{\"result\":\"success\"}") {
+                    self.网络连接完成()
+                } else {
+                    self.网络连接失败(回应)
+                }
+            }
+        }
+        上传任务.resume()
     }
     
     func 接收数据更新通知() {
