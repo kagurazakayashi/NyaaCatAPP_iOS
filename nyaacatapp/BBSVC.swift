@@ -26,16 +26,20 @@ class BBSVC: UIViewController, WKNavigationDelegate {
         浏览器.addObserver(self, forKeyPath: "estimatedProgress", options: .New, context: nil)
         进度条 = UIProgressView(progressViewStyle: .Bar)
         
-        遮盖.frame = CGRectMake(0, 0, 1024, 64)
-        遮盖文字.frame = CGRectMake(0, 20, self.view.frame.width, 44)
-        
         遮盖.backgroundColor = UIColor(red: 1, green: 153/255.0, blue: 203/255.0, alpha: 1)
         遮盖文字.text = "NyaaBBS~"
         遮盖文字.textAlignment = .Center
         遮盖文字.textColor = UIColor.whiteColor()
         
-        进度条.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y + 64, self.view.frame.width,2)
+        if(UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Phone){
+            遮盖.frame = CGRectMake(0, 0, 1366, 64)
+            进度条.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y + 64, self.view.frame.width,2)
+        } else {
+            遮盖.frame = CGRectMake(0, 0, 1366, 69)
+            进度条.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y + 69, self.view.frame.width,2)
+        }
         进度条.backgroundColor = UIColor.whiteColor()
+        遮盖文字.frame = CGRectMake(0, 20, self.view.frame.width, 44)
         
         浏览器.translatesAutoresizingMaskIntoConstraints = false
     
@@ -59,7 +63,7 @@ class BBSVC: UIViewController, WKNavigationDelegate {
             UIView.animateWithDuration(0.5, animations: { () -> Void in
                 self.遮盖文字.text = ""
                 self.进度条.alpha = 0
-                self.遮盖.frame = CGRectMake(0, 0, 1024, 20)
+                self.遮盖.frame = CGRectMake(0, 0, 1366, 20)
                 }) { (已完成:Bool) -> Void in
                     self.进度条.removeFromSuperview()
             }
@@ -69,10 +73,10 @@ class BBSVC: UIViewController, WKNavigationDelegate {
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         coordinator.animateAlongsideTransition({ (UIViewControllerTransitionCoordinatorContext) -> Void in
             }) { (UIViewControllerTransitionCoordinatorContext) -> Void in
-                if UIDevice.currentDevice().orientation == UIDeviceOrientation.Portrait && UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Phone{
-                    self.遮盖.frame = CGRectMake(0, 0, 1024, 20)
+                if ((UIDevice.currentDevice().orientation == UIDeviceOrientation.LandscapeLeft || UIDevice.currentDevice().orientation == UIDeviceOrientation.LandscapeLeft) && UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Phone){
+                    self.遮盖.frame = CGRectMake(0, 0, 1366, 0)
                 } else {
-                    self.遮盖.frame = CGRectMake(0, 0, 1024, 0)
+                    self.遮盖.frame = CGRectMake(0, 0, 1366, 20)
                 }
         }
     }
