@@ -15,6 +15,7 @@ class StatusTVC: UITableViewController {
         case 玩家列表
         case 城市列表
         case 商店列表
+        case 世界列表
     }
 
     override func viewDidLoad() {
@@ -26,9 +27,11 @@ class StatusTVC: UITableViewController {
         if (要呈现的数据 == 呈现数据.玩家列表) {
             self.title = "在线玩家"
         } else if (要呈现的数据 == 呈现数据.城市列表) {
-            self.title = "城市列表"
+            self.title = "坐标列表"
         } else if (要呈现的数据 == 呈现数据.商店列表) {
             self.title = "商店列表"
+        } else if (要呈现的数据 == 呈现数据.世界列表) {
+            self.title = "世界列表"
         }
     }
 

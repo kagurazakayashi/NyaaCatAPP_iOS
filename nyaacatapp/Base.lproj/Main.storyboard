@@ -83,7 +83,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="雷雨" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nzN-7A-6T9">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="获得天气中" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nzN-7A-6T9">
                                         <rect key="frame" x="40" y="39" width="113" height="32"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -95,7 +95,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="stormy_night.png" translatesAutoresizingMaskIntoConstraints="NO" id="VQo-Ul-2Nt">
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="stormy.png" translatesAutoresizingMaskIntoConstraints="NO" id="VQo-Ul-2Nt">
                                         <rect key="frame" x="0.0" y="39" width="32" height="32"/>
                                     </imageView>
                                 </subviews>
@@ -104,20 +104,43 @@
                                     <constraint firstAttribute="height" constant="140" id="uKW-H6-lw9"/>
                                 </constraints>
                             </view>
+<<<<<<< Updated upstream
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HZv-xd-p8l">
                                 <rect key="frame" x="435" y="72" width="145" height="106"/>
                                 <subviews>
+=======
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HZv-xd-p8l">
+                                <rect key="frame" x="435" y="72" width="145" height="164"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zD0-Oy-2MA">
+                                        <rect key="frame" x="0.0" y="0.0" width="137" height="30"/>
+                                        <state key="normal" title="在线玩家载入中"/>
+                                        <connections>
+                                            <action selector="玩家按钮点击:" destination="Sia-vI-jGU" eventType="touchUpInside" id="ar3-Vn-3DF"/>
+                                            <segue destination="cz8-mf-K3f" kind="push" id="KhE-OA-Pjw"/>
+                                        </connections>
+                                    </button>
+>>>>>>> Stashed changes
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Pd-L3-ugN">
-                                        <rect key="frame" x="0.0" y="38" width="137" height="30"/>
-                                        <state key="normal" title="0 个主要城市 &gt;"/>
+                                        <rect key="frame" x="0.0" y="76" width="137" height="30"/>
+                                        <state key="normal" title="城市坐标载入中"/>
                                         <connections>
                                             <action selector="城市按钮点击:" destination="Sia-vI-jGU" eventType="touchUpInside" id="kvT-hZ-6lT"/>
                                             <segue destination="cz8-mf-K3f" kind="show" id="c0Z-E7-QcJ"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="InO-wD-KDh">
+                                        <rect key="frame" x="0.0" y="114" width="137" height="30"/>
+                                        <state key="normal" title="游戏世界载入中"/>
+                                        <connections>
+                                            <action selector="世界按钮点击:" destination="Sia-vI-jGU" eventType="touchUpInside" id="sMH-Og-6vr"/>
+                                            <action selector="商店按钮点击:" destination="Sia-vI-jGU" eventType="touchUpInside" id="2Ay-TY-sxa"/>
+                                            <segue destination="cz8-mf-K3f" kind="push" id="rNu-qD-8TW"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Etd-q4-7gY">
-                                        <rect key="frame" x="0.0" y="76" width="137" height="30"/>
-                                        <state key="normal" title="0 个玩家商店 &gt;"/>
+                                        <rect key="frame" x="0.0" y="38" width="137" height="30"/>
+                                        <state key="normal" title="玩家商店载入中"/>
                                         <connections>
                                             <action selector="商店按钮点击:" destination="Sia-vI-jGU" eventType="touchUpInside" id="jiU-YR-Xq6"/>
                                             <segue destination="cz8-mf-K3f" kind="show" id="Ce1-DG-eP3"/>
@@ -155,6 +178,7 @@
                     <navigationItem key="navigationItem" title="nyaa.cat" id="HbB-1a-gYq"/>
                     <connections>
                         <outlet property="世界名称" destination="UKW-1c-keD" id="WDY-LJ-3H1"/>
+                        <outlet property="世界按钮" destination="InO-wD-KDh" id="Xuj-8o-F9w"/>
                         <outlet property="世界时间" destination="bIM-Nd-UXg" id="Vle-kZ-9FE"/>
                         <outlet property="商店按钮" destination="Etd-q4-7gY" id="zHD-KB-au1"/>
                         <outlet property="城市按钮" destination="5Pd-L3-ugN" id="FJT-5o-rbV"/>
@@ -273,7 +297,7 @@
     <resources>
         <image name="bg.jpg" width="1920" height="1080"/>
         <image name="logobbs.png" width="30" height="24"/>
-        <image name="stormy_night.png" width="32" height="32"/>
+        <image name="stormy.png" width="25" height="23"/>
         <image name="tbmsg.png" width="30" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>

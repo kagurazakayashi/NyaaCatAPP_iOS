@@ -48,7 +48,7 @@ class MainTBC: UITabBarController, WKNavigationDelegate, LoginMenuVCDelegate {
         if (全局_设备信息.batteryState == .Charging || 全局_设备信息.batteryState == .Full){
             全局_刷新延迟 = 1
         } else {
-            全局_刷新延迟 = 10
+            全局_刷新延迟 = 3
         }
         初始化WebView()
         
@@ -226,7 +226,7 @@ class MainTBC: UITabBarController, WKNavigationDelegate, LoginMenuVCDelegate {
     }
     
     func 请求页面源码() {
-        解析延迟定时器 = MSWeakTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "请求页面源码2", userInfo: nil, repeats: false, dispatchQueue: dispatch_get_main_queue())
+        解析延迟定时器 = MSWeakTimer.scheduledTimerWithTimeInterval(0.9, target: self, selector: "请求页面源码2", userInfo: nil, repeats: false, dispatchQueue: dispatch_get_main_queue())
     }
     func 请求页面源码2() {
         let 获取网页标题JS:String = "document.title"
