@@ -74,11 +74,11 @@ class BBSVC: UIViewController, WKNavigationDelegate {
         coordinator.animateAlongsideTransition({ (UIViewControllerTransitionCoordinatorContext) -> Void in
             }) { (UIViewControllerTransitionCoordinatorContext) -> Void in
                 if ((UIDevice.currentDevice().orientation == UIDeviceOrientation.LandscapeLeft || UIDevice.currentDevice().orientation == UIDeviceOrientation.LandscapeRight) && UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Phone){
-                    UIApplication.sharedApplication().statusBarHidden = true
-                    self.遮盖.frame = CGRectMake(0, 0, 1366, 0)
+//                    UIApplication.sharedApplication().statusBarHidden = true
+                    self.遮盖.hidden = true
                 } else {
-                    UIApplication.sharedApplication().statusBarHidden = false
-                    self.遮盖.frame = CGRectMake(0, 0, 1366, 20)
+//                    UIApplication.sharedApplication().statusBarHidden = false
+                    self.遮盖.hidden = false
                 }
         }
     }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15E39d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6Ti-ue-IEU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15E49a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6Ti-ue-IEU">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -104,12 +104,14 @@
                                     <constraint firstAttribute="height" constant="140" id="uKW-H6-lw9"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HZv-xd-p8l">
-                                <rect key="frame" x="435" y="72" width="145" height="164"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HZv-xd-p8l">
+                                <rect key="frame" x="435" y="78" width="145" height="164"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Pd-L3-ugN">
                                         <rect key="frame" x="0.0" y="76" width="137" height="30"/>
-                                        <state key="normal" title="城市坐标载入中"/>
+                                        <state key="normal" title="城市坐标载入中">
+                                            <color key="titleColor" red="1" green="0.49803921569999998" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="城市按钮点击:" destination="Sia-vI-jGU" eventType="touchUpInside" id="kvT-hZ-6lT"/>
                                             <segue destination="cz8-mf-K3f" kind="show" id="c0Z-E7-QcJ"/>
@@ -117,7 +119,9 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="InO-wD-KDh">
                                         <rect key="frame" x="0.0" y="114" width="137" height="30"/>
-                                        <state key="normal" title="游戏世界载入中"/>
+                                        <state key="normal" title="游戏世界载入中">
+                                            <color key="titleColor" red="1" green="0.49803921569999998" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="世界按钮点击:" destination="Sia-vI-jGU" eventType="touchUpInside" id="sMH-Og-6vr"/>
                                             <action selector="商店按钮点击:" destination="Sia-vI-jGU" eventType="touchUpInside" id="2Ay-TY-sxa"/>
@@ -126,7 +130,9 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Etd-q4-7gY">
                                         <rect key="frame" x="0.0" y="38" width="137" height="30"/>
-                                        <state key="normal" title="玩家商店载入中"/>
+                                        <state key="normal" title="玩家商店载入中">
+                                            <color key="titleColor" red="1" green="0.49803921569999998" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="商店按钮点击:" destination="Sia-vI-jGU" eventType="touchUpInside" id="jiU-YR-Xq6"/>
                                             <segue destination="cz8-mf-K3f" kind="show" id="Ce1-DG-eP3"/>
@@ -134,7 +140,9 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zD0-Oy-2MA">
                                         <rect key="frame" x="0.0" y="0.0" width="137" height="30"/>
-                                        <state key="normal" title="0 位在线玩家 &gt;"/>
+                                        <state key="normal" title="0 位在线玩家 &gt;">
+                                            <color key="titleColor" red="1" green="0.49803921569999998" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="玩家按钮点击:" destination="Sia-vI-jGU" eventType="touchUpInside" id="ar3-Vn-3DF"/>
                                             <segue destination="cz8-mf-K3f" kind="show" id="KhE-OA-Pjw"/>
@@ -161,9 +169,9 @@
                             <constraint firstAttribute="trailing" secondItem="RQJ-Lh-xe9" secondAttribute="trailing" id="Oya-WN-jNF"/>
                             <constraint firstItem="Shv-F8-1Cn" firstAttribute="top" secondItem="pAr-xm-3gd" secondAttribute="bottom" id="WgC-kq-RI6"/>
                             <constraint firstAttribute="trailing" secondItem="HZv-xd-p8l" secondAttribute="trailing" constant="20" id="a0W-so-iPA"/>
-                            <constraint firstItem="HZv-xd-p8l" firstAttribute="top" secondItem="4BD-aS-289" secondAttribute="bottom" constant="8" id="bKc-8c-pVk"/>
                             <constraint firstItem="RQJ-Lh-xe9" firstAttribute="bottom" secondItem="FBC-Er-Fep" secondAttribute="bottomMargin" id="d4q-3q-ovX"/>
                             <constraint firstItem="Shv-F8-1Cn" firstAttribute="top" secondItem="fiA-7G-xvU" secondAttribute="bottom" constant="8" id="jb9-30-syE"/>
+                            <constraint firstItem="HZv-xd-p8l" firstAttribute="top" secondItem="FBC-Er-Fep" secondAttribute="topMargin" constant="74" id="u2f-hD-pG3"/>
                             <constraint firstItem="RQJ-Lh-xe9" firstAttribute="top" secondItem="FBC-Er-Fep" secondAttribute="topMargin" id="xh7-V6-BJs"/>
                         </constraints>
                     </view>
