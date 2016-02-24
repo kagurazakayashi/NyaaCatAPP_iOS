@@ -73,9 +73,11 @@ class BBSVC: UIViewController, WKNavigationDelegate {
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         coordinator.animateAlongsideTransition({ (UIViewControllerTransitionCoordinatorContext) -> Void in
             }) { (UIViewControllerTransitionCoordinatorContext) -> Void in
-                if ((UIDevice.currentDevice().orientation == UIDeviceOrientation.LandscapeLeft || UIDevice.currentDevice().orientation == UIDeviceOrientation.LandscapeLeft) && UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Phone){
+                if ((UIDevice.currentDevice().orientation == UIDeviceOrientation.LandscapeLeft || UIDevice.currentDevice().orientation == UIDeviceOrientation.LandscapeRight) && UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Phone){
+                    UIApplication.sharedApplication().statusBarHidden = true
                     self.遮盖.frame = CGRectMake(0, 0, 1366, 0)
                 } else {
+                    UIApplication.sharedApplication().statusBarHidden = false
                     self.遮盖.frame = CGRectMake(0, 0, 1366, 20)
                 }
         }
