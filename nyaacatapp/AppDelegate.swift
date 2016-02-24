@@ -45,11 +45,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+func 全局_调整计时器延迟(电池供电时:NSTimeInterval,外接电源时:NSTimeInterval) {
+    if (全局_设备信息.batteryState == .Charging || 全局_设备信息.batteryState == .Full){
+        全局_刷新延迟 = 外接电源时
+    } else {
+        全局_刷新延迟 = 电池供电时
+    }
+    NSNotificationCenter.defaultCenter().postNotificationName("timerset", object: nil)
+}
+
 //全局
 let 全局_导航栏颜色:UIColor = UIColor(red: 1, green: 153/255, blue: 204/255, alpha: 1)
-var 全局_刷新速度:NSTimeInterval = 2.5 //1.0快速，2.5标准, 6.0节能，0.2模拟器压力测试，0.5真机压力测试
+var 全局_刷新延迟:NSTimeInterval = 2.5 //1.0快速，2.5标准, 6.0节能，0.2模拟器压力测试，0.5真机压力测试
 var 全局_综合信息:Dictionary<String,NSObject>? = nil
 var 全局_用户名:String? = nil
 var 全局_密码:String? = nil
 var 全局_游客模式:Bool = false
 let 全局_手机发送消息关键字:String = "[NyaaCatAPP] "
+let 全局_设备信息:UIDevice = UIDevice.currentDevice()

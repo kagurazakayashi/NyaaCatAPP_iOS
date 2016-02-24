@@ -278,21 +278,21 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
     override func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
     }
     override func scrollViewWillBeginDragging(scrollView: UIScrollView) {
-        NSNotificationCenter.defaultCenter().postNotificationName("timeroff", object: nil)
+        全局_调整计时器延迟(10,外接电源时: 10) //列表被拖动时
     }
     override func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        NSNotificationCenter.defaultCenter().postNotificationName("timeron", object: nil)
+        全局_调整计时器延迟(3,外接电源时: 1) //列表拖动结束时
     }
     override func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
     }
     override func viewDidAppear(animated: Bool) {
-        NSLog("解析器 标准速度")
-        全局_刷新速度 = 2.5
+        全局_调整计时器延迟(3,外接电源时: 1) //进入页面时
     }
     override func viewDidDisappear(animated: Bool) {
-        NSLog("解析器 降速")
-        全局_刷新速度 = 107
+        全局_调整计时器延迟(10,外接电源时: 1) //退出页面时
     }
+    
+    
     
 
     override func didReceiveMemoryWarning() {

@@ -23,7 +23,7 @@ class MainTBC: UITabBarController, WKNavigationDelegate, LoginMenuVCDelegate {
     var 网络模式:网络模式选项 = 网络模式选项.检查是否登录
     var 定时器:NSTimer? = nil
     var 新定时器:MSWeakTimer? = nil
-    var 定时器开关:Bool = false
+    var 定时器延迟计时器:NSTimeInterval = 0
 //    var 新定时器
     var 解析延迟定时器:MSWeakTimer? = nil
     var 解析引擎:DynmapAnalysisController = DynmapAnalysisController()
@@ -44,6 +44,12 @@ class MainTBC: UITabBarController, WKNavigationDelegate, LoginMenuVCDelegate {
         tabBar.barTintColor = 全局_导航栏颜色
         //navigationBar.layer.contents = (id)[UIImage imageWithColor:youColor].CGImage;
         tabBar.tintColor = UIColor.whiteColor()
+        全局_设备信息.batteryMonitoringEnabled = true
+        if (全局_设备信息.batteryState == .Charging || 全局_设备信息.batteryState == .Full){
+            全局_刷新延迟 = 1
+        } else {
+            全局_刷新延迟 = 10
+        }
         初始化WebView()
         
         //self.presentViewController(等待画面, animated: true, completion: nil)
@@ -61,8 +67,7 @@ class MainTBC: UITabBarController, WKNavigationDelegate, LoginMenuVCDelegate {
 //        }
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "收到重载通知", name: "reloadwebview", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "暂停解析器", name: "timeroff", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "继续解析器", name: "timeron", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "应用定时器延迟设置", name: "timerset", object: nil)
     }
     
     func 初始化WebView() {
@@ -98,15 +103,8 @@ class MainTBC: UITabBarController, WKNavigationDelegate, LoginMenuVCDelegate {
         后台网页加载器!.reload()
     }
     
-    func 暂停解析器() {
-        NSLog("解析器 OFF")
-        定时器开关 = false
-    }
-    
-    func 继续解析器() {
-        NSLog("解析器 ON")
-        定时器开关 = true
-
+    func 应用定时器延迟设置() {
+        定时器延迟计时器 = 0
     }
     
     func 检查登录网络请求(缓存:Bool) {
@@ -170,7 +168,9 @@ class MainTBC: UITabBarController, WKNavigationDelegate, LoginMenuVCDelegate {
 //    }
     
     func 定时器触发() {
-        if (定时器开关 == true) {
+        定时器延迟计时器 += 1
+        if (定时器延迟计时器 >= 全局_刷新延迟) {
+            定时器延迟计时器 = 0
             请求页面源码()
         }
     }
@@ -188,8 +188,7 @@ class MainTBC: UITabBarController, WKNavigationDelegate, LoginMenuVCDelegate {
                 if (网页内容 != nil && 网页内容!.rangeOfString(地图页面特征) != nil) {
                     等待画面.副标题.text = "登录成功~撒花~"
                     网络模式 = 网络模式选项.监视页面信息
-                    定时器开关 = true
-                    新定时器 = MSWeakTimer.scheduledTimerWithTimeInterval(全局_刷新速度, target: self, selector: "定时器触发", userInfo: nil, repeats: true, dispatchQueue: dispatch_get_main_queue())
+                    新定时器 = MSWeakTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "定时器触发", userInfo: nil, repeats: true, dispatchQueue: dispatch_get_main_queue())
 //                    定时器 = NSTimer.scheduledTimerWithTimeInterval(全局_刷新速度, target: self, selector: "定时器触发", userInfo: nil, repeats: true)
                     等待画面.停止 = true
                 } else {
@@ -261,7 +260,7 @@ class MainTBC: UITabBarController, WKNavigationDelegate, LoginMenuVCDelegate {
             后台网页加载器!.loadRequest(网络请求)
         } else {
             网络模式 = 网络模式选项.游客模式
-            新定时器 = MSWeakTimer.scheduledTimerWithTimeInterval(全局_刷新速度, target: self, selector: "定时器触发", userInfo: nil, repeats: false, dispatchQueue: dispatch_get_main_queue())
+            新定时器 = MSWeakTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "定时器触发", userInfo: nil, repeats: false, dispatchQueue: dispatch_get_main_queue())
             等待画面.停止 = true
         }
     }
