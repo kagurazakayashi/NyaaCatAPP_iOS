@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6Ti-ue-IEU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15E39d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6Ti-ue-IEU">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -19,7 +19,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IrE-MO-WHt" id="EKM-M9-gct">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="69"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="69.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -64,13 +64,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="RQJ-Lh-xe9">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="RQJ-Lh-xe9">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
-                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="pAr-xm-3gd">
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="pAr-xm-3gd">
                                 <rect key="frame" x="281" y="514" width="39" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="39" id="QRe-EU-TaW"/>
+                                    <constraint firstAttribute="height" constant="37" id="vZv-Jz-kGc"/>
+                                </constraints>
                             </pageControl>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fiA-7G-xvU">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fiA-7G-xvU">
                                 <rect key="frame" x="20" y="403" width="153" height="140"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="喵窩·主世界" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKW-1c-keD">
@@ -95,24 +99,20 @@
                                         <rect key="frame" x="0.0" y="39" width="32" height="32"/>
                                     </imageView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="153" id="5r1-41-yfo"/>
+                                    <constraint firstAttribute="height" constant="140" id="uKW-H6-lw9"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HZv-xd-p8l">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HZv-xd-p8l">
                                 <rect key="frame" x="435" y="72" width="145" height="106"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zD0-Oy-2MA">
-                                        <rect key="frame" x="0.0" y="0.0" width="137" height="30"/>
-                                        <state key="normal" title="0 位在线玩家 &gt;"/>
-                                        <connections>
-                                            <action selector="玩家按钮点击:" destination="Sia-vI-jGU" eventType="touchUpInside" id="ar3-Vn-3DF"/>
-                                            <segue destination="cz8-mf-K3f" kind="push" id="KhE-OA-Pjw"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Pd-L3-ugN">
                                         <rect key="frame" x="0.0" y="38" width="137" height="30"/>
                                         <state key="normal" title="0 个主要城市 &gt;"/>
                                         <connections>
                                             <action selector="城市按钮点击:" destination="Sia-vI-jGU" eventType="touchUpInside" id="kvT-hZ-6lT"/>
-                                            <segue destination="cz8-mf-K3f" kind="push" id="c0Z-E7-QcJ"/>
+                                            <segue destination="cz8-mf-K3f" kind="show" id="c0Z-E7-QcJ"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Etd-q4-7gY">
@@ -120,22 +120,36 @@
                                         <state key="normal" title="0 个玩家商店 &gt;"/>
                                         <connections>
                                             <action selector="商店按钮点击:" destination="Sia-vI-jGU" eventType="touchUpInside" id="jiU-YR-Xq6"/>
-                                            <segue destination="cz8-mf-K3f" kind="push" id="Ce1-DG-eP3"/>
+                                            <segue destination="cz8-mf-K3f" kind="show" id="Ce1-DG-eP3"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zD0-Oy-2MA">
+                                        <rect key="frame" x="0.0" y="0.0" width="137" height="30"/>
+                                        <state key="normal" title="0 位在线玩家 &gt;"/>
+                                        <connections>
+                                            <action selector="玩家按钮点击:" destination="Sia-vI-jGU" eventType="touchUpInside" id="ar3-Vn-3DF"/>
+                                            <segue destination="cz8-mf-K3f" kind="show" id="KhE-OA-Pjw"/>
                                         </connections>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="106" id="1d8-p2-XM3"/>
+                                    <constraint firstAttribute="width" constant="145" id="HSe-wP-DQT"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Shv-F8-1Cn" firstAttribute="top" secondItem="fiA-7G-xvU" secondAttribute="bottom" constant="10" id="6vR-yA-xDH"/>
-                            <constraint firstItem="fiA-7G-xvU" firstAttribute="leading" secondItem="FBC-Er-Fep" secondAttribute="leadingMargin" constant="10" id="A5K-r1-9jv"/>
-                            <constraint firstItem="Shv-F8-1Cn" firstAttribute="top" secondItem="RQJ-Lh-xe9" secondAttribute="bottom" id="Oyn-IW-oIQ"/>
-                            <constraint firstItem="RQJ-Lh-xe9" firstAttribute="top" secondItem="4BD-aS-289" secondAttribute="bottom" id="Re8-Pa-c3P"/>
-                            <constraint firstItem="HZv-xd-p8l" firstAttribute="top" secondItem="4BD-aS-289" secondAttribute="bottom" constant="10" id="Ztp-Th-nGb"/>
-                            <constraint firstItem="HZv-xd-p8l" firstAttribute="trailing" secondItem="FBC-Er-Fep" secondAttribute="trailingMargin" constant="10" id="lrL-lK-QfI"/>
-                            <constraint firstItem="RQJ-Lh-xe9" firstAttribute="leading" secondItem="FBC-Er-Fep" secondAttribute="leadingMargin" id="oTi-TE-jQE"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="RQJ-Lh-xe9" secondAttribute="trailing" id="tuJ-bP-UO1"/>
+                            <constraint firstItem="RQJ-Lh-xe9" firstAttribute="leading" secondItem="FBC-Er-Fep" secondAttribute="leading" id="0Rd-47-Djc"/>
+                            <constraint firstItem="fiA-7G-xvU" firstAttribute="leading" secondItem="FBC-Er-Fep" secondAttribute="leading" constant="20" id="90g-9V-ap4"/>
+                            <constraint firstItem="pAr-xm-3gd" firstAttribute="centerX" secondItem="FBC-Er-Fep" secondAttribute="centerX" id="Mvv-sO-TUK"/>
+                            <constraint firstAttribute="trailing" secondItem="RQJ-Lh-xe9" secondAttribute="trailing" id="Oya-WN-jNF"/>
+                            <constraint firstItem="Shv-F8-1Cn" firstAttribute="top" secondItem="pAr-xm-3gd" secondAttribute="bottom" id="WgC-kq-RI6"/>
+                            <constraint firstAttribute="trailing" secondItem="HZv-xd-p8l" secondAttribute="trailing" constant="20" id="a0W-so-iPA"/>
+                            <constraint firstItem="HZv-xd-p8l" firstAttribute="top" secondItem="4BD-aS-289" secondAttribute="bottom" constant="8" id="bKc-8c-pVk"/>
+                            <constraint firstItem="RQJ-Lh-xe9" firstAttribute="bottom" secondItem="FBC-Er-Fep" secondAttribute="bottomMargin" id="d4q-3q-ovX"/>
+                            <constraint firstItem="Shv-F8-1Cn" firstAttribute="top" secondItem="fiA-7G-xvU" secondAttribute="bottom" constant="8" id="jb9-30-syE"/>
+                            <constraint firstItem="RQJ-Lh-xe9" firstAttribute="top" secondItem="FBC-Er-Fep" secondAttribute="topMargin" id="xh7-V6-BJs"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="nyaa.cat" id="HbB-1a-gYq"/>
@@ -163,11 +177,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="39T-2c-60s">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="statuscell" id="39T-2c-60s">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="39T-2c-60s" id="4gp-CA-3qO">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -263,6 +277,6 @@
         <image name="tbmsg.png" width="30" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="c0Z-E7-QcJ"/>
+        <segue reference="KhE-OA-Pjw"/>
     </inferredMetricsTieBreakers>
 </document>

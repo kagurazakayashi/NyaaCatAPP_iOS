@@ -29,7 +29,7 @@ class StatusVC: UIViewController {
     override func viewDidAppear(animated: Bool) {
         self.navigationController?.navigationBar.hidden = true
         UIApplication.sharedApplication().statusBarHidden = true
-        self.view.frame = CGRectMake(0, -20, oldViewFrame!.size.width, oldViewFrame!.size.height + 20)
+//        self.view.frame = CGRectMake(0, -20, oldViewFrame!.size.width, oldViewFrame!.size.height + 20)
     }
     override func viewDidDisappear(animated: Bool) {
         self.navigationController?.navigationBar.hidden = false
