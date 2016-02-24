@@ -256,7 +256,8 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
         }
         if (全局_综合信息 != nil) {
             实时聊天数据 = 全局_综合信息!["聊天记录"] as? [[String]]
-            let 当前选项卡按钮:UITabBarItem = self.tabBarController!.tabBar.items![0]
+            //显示消息数量
+            let 当前选项卡按钮:UITabBarItem = self.tabBarController!.tabBar.items![1]
             当前选项卡按钮.badgeValue = String(实时聊天数据!.count)
             装入信息()
         }

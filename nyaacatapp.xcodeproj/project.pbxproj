@@ -12,6 +12,10 @@
 		533A71041C789CA3005EAC90 /* MainTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533A71031C789CA3005EAC90 /* MainTBC.swift */; };
 		535DC6951C79B4F7005CB7E4 /* DMChatNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535DC6941C79B4F7005CB7E4 /* DMChatNC.swift */; };
 		535DC6971C79B508005CB7E4 /* DMChatTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535DC6961C79B508005CB7E4 /* DMChatTVC.swift */; };
+		5376873B1C7DE252005A6DDB /* StatusNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5376873A1C7DE252005A6DDB /* StatusNC.swift */; };
+		5376873D1C7DE286005A6DDB /* StatusVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5376873C1C7DE286005A6DDB /* StatusVC.swift */; };
+		5376873F1C7DEB59005A6DDB /* follow_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 5376873E1C7DEB59005A6DDB /* follow_on.png */; };
+		537687411C7DED05005A6DDB /* StatusTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537687401C7DED05005A6DDB /* StatusTVC.swift */; };
 		5399CCA01C6BA0FF00022441 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5399CC9F1C6BA0FF00022441 /* AppDelegate.swift */; };
 		5399CCA51C6BA0FF00022441 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5399CCA31C6BA0FF00022441 /* Main.storyboard */; };
 		5399CCA71C6BA0FF00022441 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5399CCA61C6BA0FF00022441 /* Assets.xcassets */; };
@@ -103,6 +107,10 @@
 		535DC6941C79B4F7005CB7E4 /* DMChatNC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMChatNC.swift; sourceTree = "<group>"; };
 		535DC6961C79B508005CB7E4 /* DMChatTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMChatTVC.swift; sourceTree = "<group>"; };
 		536E300C1C6C9FF900168F02 /* dynmapanalysistest.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = dynmapanalysistest.xcodeproj; path = dynmapanalysistest/dynmapanalysistest.xcodeproj; sourceTree = "<group>"; };
+		5376873A1C7DE252005A6DDB /* StatusNC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusNC.swift; sourceTree = "<group>"; };
+		5376873C1C7DE286005A6DDB /* StatusVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusVC.swift; sourceTree = "<group>"; };
+		5376873E1C7DEB59005A6DDB /* follow_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = follow_on.png; sourceTree = "<group>"; };
+		537687401C7DED05005A6DDB /* StatusTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusTVC.swift; sourceTree = "<group>"; };
 		5399CC9C1C6BA0FF00022441 /* nyaacatapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nyaacatapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5399CC9F1C6BA0FF00022441 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5399CCA41C6BA0FF00022441 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -217,6 +225,16 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		537687351C7DE1ED005A6DDB /* 世界状态 */ = {
+			isa = PBXGroup;
+			children = (
+				5376873A1C7DE252005A6DDB /* StatusNC.swift */,
+				5376873C1C7DE286005A6DDB /* StatusVC.swift */,
+				537687401C7DED05005A6DDB /* StatusTVC.swift */,
+			);
+			name = "世界状态";
+			sourceTree = "<group>";
+		};
 		5399CC931C6BA0FF00022441 = {
 			isa = PBXGroup;
 			children = (
@@ -239,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				53E7AB101C79C67000A544B2 /* images */,
+				537687351C7DE1ED005A6DDB /* 世界状态 */,
 				53E7AB0F1C79C45E00A544B2 /* 第三方类库 */,
 				533A71051C78A076005EAC90 /* 聊天 */,
 				8BA1F3251C709098003BC1EC /* 论坛 */,
@@ -300,6 +319,7 @@
 				53E7AB111C79C67000A544B2 /* bg.jpg */,
 				8BA1F34E1C7B0C64003BC1EC /* tbmsg.png */,
 				8BA1F34F1C7B0C64003BC1EC /* tbmsg@2x.png */,
+				5376873E1C7DEB59005A6DDB /* follow_on.png */,
 				8BA1F3501C7B0C64003BC1EC /* tbmsg@3x.png */,
 				53E7AB841C79F31700A544B2 /* t_logo.png */,
 				53E7AB121C79C67000A544B2 /* home_icon.png */,
@@ -527,6 +547,7 @@
 				53E7AB831C79F2C000A544B2 /* seting-icon.png in Resources */,
 				53E7AB261C79C67000A544B2 /* stormy_night.png in Resources */,
 				8BA1F34C1C7B0B1E003BC1EC /* logobbs@2x.png in Resources */,
+				5376873F1C7DEB59005A6DDB /* follow_on.png in Resources */,
 				8BA1F3521C7B0C64003BC1EC /* tbmsg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -540,7 +561,9 @@
 			files = (
 				533A70FC1C781B60005EAC90 /* DynmapAnalysisController.swift in Sources */,
 				5399CCA01C6BA0FF00022441 /* AppDelegate.swift in Sources */,
+				537687411C7DED05005A6DDB /* StatusTVC.swift in Sources */,
 				53E7AB771C79E34B00A544B2 /* UIRefreshControl+AFNetworking.m in Sources */,
+				5376873B1C7DE252005A6DDB /* StatusNC.swift in Sources */,
 				53E7AB741C79E34B00A544B2 /* UIButton+AFNetworking.m in Sources */,
 				53E7AB761C79E34B00A544B2 /* UIProgressView+AFNetworking.m in Sources */,
 				53E7AB701C79E34B00A544B2 /* AFAutoPurgingImageCache.m in Sources */,
@@ -559,6 +582,7 @@
 				53E7AB711C79E34B00A544B2 /* AFImageDownloader.m in Sources */,
 				53C5958C1C6B4BE600C55E31 /* WaitVC.swift in Sources */,
 				533A71041C789CA3005EAC90 /* MainTBC.swift in Sources */,
+				5376873D1C7DE286005A6DDB /* StatusVC.swift in Sources */,
 				53E7AB571C79E2E400A544B2 /* AFSecurityPolicy.m in Sources */,
 				535DC6971C79B508005CB7E4 /* DMChatTVC.swift in Sources */,
 				53E7AB781C79E34B00A544B2 /* UIWebView+AFNetworking.m in Sources */,

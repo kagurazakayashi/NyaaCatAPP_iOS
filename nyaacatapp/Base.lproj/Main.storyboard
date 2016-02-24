@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15E39d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6Ti-ue-IEU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6Ti-ue-IEU">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--在线聊天-->
@@ -18,7 +19,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IrE-MO-WHt" id="EKM-M9-gct">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="69.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="69"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -51,6 +52,137 @@
             </objects>
             <point key="canvasLocation" x="812" y="605"/>
         </scene>
+        <!--nyaa.cat-->
+        <scene sceneID="Vot-Jn-MQM">
+            <objects>
+                <viewController id="Sia-vI-jGU" customClass="StatusVC" customModule="nyaacatapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4BD-aS-289"/>
+                        <viewControllerLayoutGuide type="bottom" id="Shv-F8-1Cn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FBC-Er-Fep">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="RQJ-Lh-xe9">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                            </imageView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="pAr-xm-3gd">
+                                <rect key="frame" x="281" y="514" width="39" height="37"/>
+                            </pageControl>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fiA-7G-xvU">
+                                <rect key="frame" x="20" y="403" width="153" height="140"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="喵窩·主世界" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKW-1c-keD">
+                                        <rect key="frame" x="0.0" y="0.0" width="113" height="31"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="雷雨" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nzN-7A-6T9">
+                                        <rect key="frame" x="40" y="39" width="113" height="32"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bIM-Nd-UXg">
+                                        <rect key="frame" x="0.0" y="79" width="153" height="61"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="stormy_night.png" translatesAutoresizingMaskIntoConstraints="NO" id="VQo-Ul-2Nt">
+                                        <rect key="frame" x="0.0" y="39" width="32" height="32"/>
+                                    </imageView>
+                                </subviews>
+                            </view>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HZv-xd-p8l">
+                                <rect key="frame" x="435" y="72" width="145" height="106"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zD0-Oy-2MA">
+                                        <rect key="frame" x="0.0" y="0.0" width="137" height="30"/>
+                                        <state key="normal" title="0 位在线玩家 &gt;"/>
+                                        <connections>
+                                            <action selector="玩家按钮点击:" destination="Sia-vI-jGU" eventType="touchUpInside" id="ar3-Vn-3DF"/>
+                                            <segue destination="cz8-mf-K3f" kind="push" id="KhE-OA-Pjw"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Pd-L3-ugN">
+                                        <rect key="frame" x="0.0" y="38" width="137" height="30"/>
+                                        <state key="normal" title="0 个主要城市 &gt;"/>
+                                        <connections>
+                                            <action selector="城市按钮点击:" destination="Sia-vI-jGU" eventType="touchUpInside" id="kvT-hZ-6lT"/>
+                                            <segue destination="cz8-mf-K3f" kind="push" id="c0Z-E7-QcJ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Etd-q4-7gY">
+                                        <rect key="frame" x="0.0" y="76" width="137" height="30"/>
+                                        <state key="normal" title="0 个玩家商店 &gt;"/>
+                                        <connections>
+                                            <action selector="商店按钮点击:" destination="Sia-vI-jGU" eventType="touchUpInside" id="jiU-YR-Xq6"/>
+                                            <segue destination="cz8-mf-K3f" kind="push" id="Ce1-DG-eP3"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Shv-F8-1Cn" firstAttribute="top" secondItem="fiA-7G-xvU" secondAttribute="bottom" constant="10" id="6vR-yA-xDH"/>
+                            <constraint firstItem="fiA-7G-xvU" firstAttribute="leading" secondItem="FBC-Er-Fep" secondAttribute="leadingMargin" constant="10" id="A5K-r1-9jv"/>
+                            <constraint firstItem="Shv-F8-1Cn" firstAttribute="top" secondItem="RQJ-Lh-xe9" secondAttribute="bottom" id="Oyn-IW-oIQ"/>
+                            <constraint firstItem="RQJ-Lh-xe9" firstAttribute="top" secondItem="4BD-aS-289" secondAttribute="bottom" id="Re8-Pa-c3P"/>
+                            <constraint firstItem="HZv-xd-p8l" firstAttribute="top" secondItem="4BD-aS-289" secondAttribute="bottom" constant="10" id="Ztp-Th-nGb"/>
+                            <constraint firstItem="HZv-xd-p8l" firstAttribute="trailing" secondItem="FBC-Er-Fep" secondAttribute="trailingMargin" constant="10" id="lrL-lK-QfI"/>
+                            <constraint firstItem="RQJ-Lh-xe9" firstAttribute="leading" secondItem="FBC-Er-Fep" secondAttribute="leadingMargin" id="oTi-TE-jQE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="RQJ-Lh-xe9" secondAttribute="trailing" id="tuJ-bP-UO1"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="nyaa.cat" id="HbB-1a-gYq"/>
+                    <connections>
+                        <outlet property="世界名称" destination="UKW-1c-keD" id="WDY-LJ-3H1"/>
+                        <outlet property="世界时间" destination="bIM-Nd-UXg" id="Vle-kZ-9FE"/>
+                        <outlet property="商店按钮" destination="Etd-q4-7gY" id="zHD-KB-au1"/>
+                        <outlet property="城市按钮" destination="5Pd-L3-ugN" id="FJT-5o-rbV"/>
+                        <outlet property="天气图标" destination="VQo-Ul-2Nt" id="1Y9-dB-Z6m"/>
+                        <outlet property="天气描述" destination="nzN-7A-6T9" id="B3E-Kr-HnU"/>
+                        <outlet property="玩家按钮" destination="zD0-Oy-2MA" id="1Wp-So-QjZ"/>
+                        <outlet property="背景图片" destination="RQJ-Lh-xe9" id="334-3e-ays"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fMR-Rv-nH9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1500" y="1307"/>
+        </scene>
+        <!--StatusTVC-->
+        <scene sceneID="SYU-r4-Qbx">
+            <objects>
+                <tableViewController id="cz8-mf-K3f" customClass="StatusTVC" customModule="nyaacatapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="M6J-T0-LME">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="39T-2c-60s">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="39T-2c-60s" id="4gp-CA-3qO">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="cz8-mf-K3f" id="0cT-fC-p4u"/>
+                            <outlet property="delegate" destination="cz8-mf-K3f" id="IO9-V9-LMY"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="p16-d9-dY4"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yIB-cM-vx5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2196" y="1307"/>
+        </scene>
         <!--NyaaBBS-->
         <scene sceneID="gtA-fW-gTp">
             <objects>
@@ -69,6 +201,23 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fk4-ex-kJb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1500" y="605"/>
+        </scene>
+        <!--世界状态-->
+        <scene sceneID="RFi-th-0s8">
+            <objects>
+                <navigationController id="ky0-VG-wX4" customClass="StatusNC" customModule="nyaacatapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="世界状态" image="logobbs.png" id="A43-nn-nOv"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Qco-48-Bq2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Sia-vI-jGU" kind="relationship" relationship="rootViewController" id="m1D-wG-OLL"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EIK-mc-VsG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="812" y="1307"/>
         </scene>
         <!--聊天-->
         <scene sceneID="eZU-Yn-OOA">
@@ -97,17 +246,23 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <segue destination="ky0-VG-wX4" kind="relationship" relationship="viewControllers" id="V8m-Ps-2Pz"/>
                         <segue destination="Dz2-Df-0tC" kind="relationship" relationship="viewControllers" id="s2I-mt-bxG"/>
                         <segue destination="tz5-F1-fQE" kind="relationship" relationship="viewControllers" id="HeU-SV-IbJ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vgO-ee-5Rl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="44" y="238"/>
+            <point key="canvasLocation" x="-16" y="238"/>
         </scene>
     </scenes>
     <resources>
+        <image name="bg.jpg" width="1920" height="1080"/>
         <image name="logobbs.png" width="30" height="24"/>
+        <image name="stormy_night.png" width="32" height="32"/>
         <image name="tbmsg.png" width="30" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="c0Z-E7-QcJ"/>
+    </inferredMetricsTieBreakers>
 </document>
