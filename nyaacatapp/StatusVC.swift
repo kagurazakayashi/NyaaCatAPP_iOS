@@ -33,6 +33,7 @@ class StatusVC: UIViewController {
     var 闪烁冒号:Bool = true
     var 时间补偿:MSWeakTimer? = nil
     var 天气图标图像:Dictionary<String,UIImage> = Dictionary<String,UIImage>()
+    var 导航栏前一状态:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,12 +57,14 @@ class StatusVC: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        self.navigationController?.navigationBar.hidden = true
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
 //        UIApplication.sharedApplication().statusBarHidden = true
 //        self.view.frame = CGRectMake(0, -20, oldViewFrame!.size.width, oldViewFrame!.size.height + 20)
     }
-    override func viewDidDisappear(animated: Bool) {
-        self.navigationController?.navigationBar.hidden = false
+    override func viewWillDisappear(animated: Bool) {
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
 //        UIApplication.sharedApplication().statusBarHidden = false
     }
     
