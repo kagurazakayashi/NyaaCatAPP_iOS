@@ -23,10 +23,12 @@ class StatusTVC: UITableViewController {
     var 行主标题:[String]? = nil;
     var 行副标题:[String]? = nil;
     var 图像路径:[String]? = nil;
+    var 默认头像:UIImage? = nil;
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        装入数据()
     }
     
     func 装入数据() {
@@ -37,29 +39,48 @@ class StatusTVC: UITableViewController {
             self.title = "在线玩家"
             let 在线玩家字典:Dictionary<String,[String]> = 全局_综合信息!["在线玩家"] as! Dictionary<String,[String]>
             let 在线玩家数据:[String] = Array(在线玩家字典.keys)
+            for 在线玩家key:String in 在线玩家数据 {
+                let 玩家字典:[String] = 在线玩家字典[在线玩家key]!
+                图像路径?.append(玩家字典[0])
+            }
             行主标题 = 在线玩家数据
             行副标题 = nil
+            默认头像 = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("player_face", ofType: "png")!)!
         } else if (要呈现的数据 == 呈现数据.城市列表) {
             self.title = "坐标列表"
             let 在线城市数据:[[String]] = 全局_综合信息!["地点"] as! [[String]]
             for 在线城市:[String] in 在线城市数据 {
                 行主标题?.append(在线城市[0])
-                行副标题?.append(在线城市[1])
+                行副标题?.append(坐标修正(在线城市[1]))
             }
+            默认头像 = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("home_icon", ofType: "png")!)!
         } else if (要呈现的数据 == 呈现数据.商店列表) {
             self.title = "商店列表"
             let 在线商店数据:[[String]] = 全局_综合信息!["商店"] as! [[String]]
             for 在线商店:[String] in 在线商店数据 {
                 行主标题?.append(在线商店[0])
-                行副标题?.append(在线商店[1])
+                行副标题?.append(坐标修正(在线商店[1]))
             }
+            默认头像 = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("signshop_icon", ofType: "png")!)!
         } else if (要呈现的数据 == 呈现数据.世界列表) {
             self.title = "世界列表"
             let 在线世界数据:[String] = 全局_综合信息!["世界列表"] as! [String]
             行主标题 = 在线世界数据
             行副标题 = nil
+            默认头像 = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("follow_on", ofType: "png")!)!
         }
         tableView.reloadData();
+    }
+    
+    func 坐标修正(坐标描述:String) -> String {
+        let 坐标数组:[String] = 坐标描述.componentsSeparatedByString(",")
+        let x:Int = Int(坐标数组[0])!
+        let y:Int = Int(坐标数组[1])!
+        //TODO: ======================对坐标进行补偿======================
+        
+        
+        //
+        return "坐标 x:\(String(x)) , z:\(String(y))"
     }
 
     override func didReceiveMemoryWarning() {
@@ -93,6 +114,12 @@ class StatusTVC: UITableViewController {
             cell.detailTextLabel?.text = nil
         } else {
             cell.detailTextLabel?.text = 行副标题![行]
+        }
+        if (要呈现的数据 == 呈现数据.玩家列表) {
+            let 完整路径:String = "https://mcmap.90g.org/tiles/faces/32x32/\(图像路径![行])"
+            cell.imageView?.setImageWithURL(NSURL(string: 完整路径)!, placeholderImage: 默认头像)
+        } else {
+            cell.imageView?.image = 默认头像
         }
         return cell
     }
