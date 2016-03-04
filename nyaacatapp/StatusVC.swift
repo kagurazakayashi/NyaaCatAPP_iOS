@@ -142,21 +142,25 @@ class StatusVC: UIViewController {
     @IBAction func 玩家按钮点击(sender: UIButton) {
         let 打开的列表:StatusTVC = self.navigationController?.viewControllers[1] as! StatusTVC
         打开的列表.要呈现的数据 = .玩家列表
+        打开的列表.装入数据()
     }
     
     @IBAction func 城市按钮点击(sender: UIButton) {
         let 打开的列表:StatusTVC = self.navigationController?.viewControllers[1] as! StatusTVC
         打开的列表.要呈现的数据 = .城市列表
+        打开的列表.装入数据()
     }
     
     @IBAction func 商店按钮点击(sender: UIButton) {
         let 打开的列表:StatusTVC = self.navigationController?.viewControllers[1] as! StatusTVC
         打开的列表.要呈现的数据 = .商店列表
+        打开的列表.装入数据()
     }
     
     @IBAction func 世界按钮点击(sender: UIButton) {
         let 打开的列表:StatusTVC = self.navigationController?.viewControllers[1] as! StatusTVC
         打开的列表.要呈现的数据 = .世界列表
+        打开的列表.装入数据()
     }
     
     override func didReceiveMemoryWarning() {
