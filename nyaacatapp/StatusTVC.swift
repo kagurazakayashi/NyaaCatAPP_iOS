@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WebKit
 
 class StatusTVC: UITableViewController {
     
@@ -28,6 +29,12 @@ class StatusTVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let 背景图:UIImageView = UIImageView(frame: tableView.frame)
+        背景图.image = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("bg", ofType: "jpg")!)!
+        背景图.contentMode = .ScaleAspectFill
+        self.tableView.backgroundView = 背景图
+        self.tableView.backgroundColor = UIColor.clearColor()
+        self.tableView.separatorStyle = .None
         装入数据()
     }
     
@@ -42,9 +49,11 @@ class StatusTVC: UITableViewController {
             for 在线玩家key:String in 在线玩家数据 {
                 let 玩家字典:[String] = 在线玩家字典[在线玩家key]!
                 图像路径?.append(玩家字典[0])
+                let 合并html:String = "<!doctype html><html><head><meta charset=\"UTF-8\"></head><body><font size=\"40\">\(玩家字典[1])</font></body></html>"
+                行副标题?.append(合并html)
             }
             行主标题 = 在线玩家数据
-            行副标题 = nil
+//            行副标题 = nil
             默认头像 = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("player_face", ofType: "png")!)!
         } else if (要呈现的数据 == 呈现数据.城市列表) {
             self.title = "坐标列表"
@@ -104,24 +113,51 @@ class StatusTVC: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         //let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
         let cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "reuseIdentifier")
+        cell.backgroundColor = UIColor.clearColor()
+        cell.textLabel?.textColor = UIColor.whiteColor()
+        cell.detailTextLabel?.textColor = UIColor.lightGrayColor()
         let 行:Int = indexPath.row
-        if (行主标题 == nil) {
-            cell.textLabel?.text = nil
-        } else {
-            cell.textLabel?.text = 行主标题![行]
-        }
-        if (行副标题 == nil) {
-            cell.detailTextLabel?.text = nil
-        } else {
-            cell.detailTextLabel?.text = 行副标题![行]
-        }
         if (要呈现的数据 == 呈现数据.玩家列表) {
+            cell.textLabel?.text = nil
+            cell.detailTextLabel?.text = nil
             let 完整路径:String = "https://mcmap.90g.org/tiles/faces/32x32/\(图像路径![行])"
             cell.imageView?.setImageWithURL(NSURL(string: 完整路径)!, placeholderImage: 默认头像)
+            let 浏览器设置:WKWebViewConfiguration = WKWebViewConfiguration()
+            浏览器设置.allowsPictureInPictureMediaPlayback = false
+            浏览器设置.allowsInlineMediaPlayback = false
+            浏览器设置.allowsAirPlayForMediaPlayback = false
+            浏览器设置.requiresUserActionForMediaPlayback = false
+            浏览器设置.suppressesIncrementalRendering = false
+            let 浏览器偏好设置:WKPreferences = WKPreferences()
+            浏览器偏好设置.minimumFontSize = 40.0
+            浏览器偏好设置.javaScriptCanOpenWindowsAutomatically = false
+            浏览器偏好设置.javaScriptEnabled = false
+            浏览器设置.preferences = 浏览器偏好设置
+            浏览器设置.selectionGranularity = .Dynamic
+            let 格式:WKWebView = WKWebView(frame: CGRectMake(50, 10, cell.frame.size.width - 50, cell.frame.size.height - 10), configuration: 浏览器设置)
+            格式.backgroundColor = UIColor.clearColor()
+            格式.userInteractionEnabled = false
+            格式.opaque = false
+            cell.addSubview(格式)
+            格式.loadHTMLString(行副标题![行], baseURL: nil)
         } else {
+            if (行主标题 == nil) {
+                cell.textLabel?.text = nil
+            } else {
+                cell.textLabel?.text = 行主标题![行]
+            }
+            if (行副标题 == nil) {
+                cell.detailTextLabel?.text = nil
+            } else {
+                cell.detailTextLabel?.text = 行副标题![行]
+            }
             cell.imageView?.image = 默认头像
         }
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 
     /*
