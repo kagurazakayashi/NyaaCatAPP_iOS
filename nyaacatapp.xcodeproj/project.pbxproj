@@ -14,6 +14,12 @@
 		533A70FB1C781B60005EAC90 /* DynmapAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533A70F91C781B60005EAC90 /* DynmapAnalysis.swift */; };
 		533A70FC1C781B60005EAC90 /* DynmapAnalysisController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533A70FA1C781B60005EAC90 /* DynmapAnalysisController.swift */; };
 		533A71041C789CA3005EAC90 /* MainTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533A71031C789CA3005EAC90 /* MainTBC.swift */; };
+		53408E5A1C8C5D86002D68F7 /* MoreMenuNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53408E591C8C5D86002D68F7 /* MoreMenuNC.swift */; };
+		53408E5C1C8C5DCB002D68F7 /* MoreMenuCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53408E5B1C8C5DCB002D68F7 /* MoreMenuCVC.swift */; };
+		53408E5E1C8C5E09002D68F7 /* MoreMenuCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53408E5D1C8C5E09002D68F7 /* MoreMenuCVCell.swift */; };
+		53408E601C8C63C1002D68F7 /* GooglePlus-logos-02.png in Resources */ = {isa = PBXBuildFile; fileRef = 53408E5F1C8C63C1002D68F7 /* GooglePlus-logos-02.png */; };
+		53408E621C8C65AC002D68F7 /* lcd-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 53408E611C8C65AC002D68F7 /* lcd-icon.png */; };
+		53408E641C8C6B4E002D68F7 /* calculator-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 53408E631C8C6B4E002D68F7 /* calculator-icon.png */; };
 		535DC6951C79B4F7005CB7E4 /* DMChatNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535DC6941C79B4F7005CB7E4 /* DMChatNC.swift */; };
 		535DC6971C79B508005CB7E4 /* DMChatTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535DC6961C79B508005CB7E4 /* DMChatTVC.swift */; };
 		5376873B1C7DE252005A6DDB /* StatusNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5376873A1C7DE252005A6DDB /* StatusNC.swift */; };
@@ -114,6 +120,12 @@
 		533A70F91C781B60005EAC90 /* DynmapAnalysis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynmapAnalysis.swift; sourceTree = "<group>"; };
 		533A70FA1C781B60005EAC90 /* DynmapAnalysisController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynmapAnalysisController.swift; sourceTree = "<group>"; };
 		533A71031C789CA3005EAC90 /* MainTBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTBC.swift; sourceTree = "<group>"; };
+		53408E591C8C5D86002D68F7 /* MoreMenuNC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreMenuNC.swift; sourceTree = "<group>"; };
+		53408E5B1C8C5DCB002D68F7 /* MoreMenuCVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreMenuCVC.swift; sourceTree = "<group>"; };
+		53408E5D1C8C5E09002D68F7 /* MoreMenuCVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreMenuCVCell.swift; sourceTree = "<group>"; };
+		53408E5F1C8C63C1002D68F7 /* GooglePlus-logos-02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GooglePlus-logos-02.png"; sourceTree = "<group>"; };
+		53408E611C8C65AC002D68F7 /* lcd-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lcd-icon.png"; sourceTree = "<group>"; };
+		53408E631C8C6B4E002D68F7 /* calculator-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calculator-icon.png"; sourceTree = "<group>"; };
 		535DC6941C79B4F7005CB7E4 /* DMChatNC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMChatNC.swift; sourceTree = "<group>"; };
 		535DC6961C79B508005CB7E4 /* DMChatTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMChatTVC.swift; sourceTree = "<group>"; };
 		536E300C1C6C9FF900168F02 /* dynmapanalysistest.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = dynmapanalysistest.xcodeproj; path = dynmapanalysistest/dynmapanalysistest.xcodeproj; sourceTree = "<group>"; };
@@ -220,6 +232,17 @@
 			name = "聊天";
 			sourceTree = "<group>";
 		};
+		53408E541C8C5CA7002D68F7 /* 资料库 */ = {
+			isa = PBXGroup;
+			children = (
+				53408E591C8C5D86002D68F7 /* MoreMenuNC.swift */,
+				53408E5B1C8C5DCB002D68F7 /* MoreMenuCVC.swift */,
+				53408E5D1C8C5E09002D68F7 /* MoreMenuCVCell.swift */,
+			);
+			name = "资料库";
+			path = nyaacatapp;
+			sourceTree = "<group>";
+		};
 		536E2FDF1C6C958800168F02 /* 数据解析 */ = {
 			isa = PBXGroup;
 			children = (
@@ -252,6 +275,7 @@
 			isa = PBXGroup;
 			children = (
 				5399CC9E1C6BA0FF00022441 /* nyaacatapp */,
+				53408E541C8C5CA7002D68F7 /* 资料库 */,
 				5399CC9D1C6BA0FF00022441 /* Products */,
 				8B728FEA1C6F74B10068A775 /* uploadimgtosmmstest.xcodeproj */,
 				536E300C1C6C9FF900168F02 /* dynmapanalysistest.xcodeproj */,
@@ -330,18 +354,21 @@
 				53E7AB821C79F2C000A544B2 /* seting-icon.png */,
 				53E7AB861C79F72300A544B2 /* msg-icon.png */,
 				53E7AB111C79C67000A544B2 /* bg.jpg */,
+				53408E631C8C6B4E002D68F7 /* calculator-icon.png */,
 				8BA1F34E1C7B0C64003BC1EC /* tbmsg.png */,
 				8BA1F34F1C7B0C64003BC1EC /* tbmsg@2x.png */,
 				5376873E1C7DEB59005A6DDB /* follow_on.png */,
 				8BA1F3501C7B0C64003BC1EC /* tbmsg@3x.png */,
 				53E7AB841C79F31700A544B2 /* t_logo.png */,
 				53E7AB121C79C67000A544B2 /* home_icon.png */,
+				53408E611C8C65AC002D68F7 /* lcd-icon.png */,
 				53E7AB131C79C67000A544B2 /* icon.png */,
 				8BA1F3481C7B0B1E003BC1EC /* logobbs.png */,
 				53FFEE8D1C7C9ECE00130811 /* cloud-icon.png */,
 				531B63741C8AA58600DD5956 /* notebook-icon.png */,
 				531B63751C8AA58600DD5956 /* rss-icon.png */,
 				531B63761C8AA58600DD5956 /* tv-icon.png */,
+				53408E5F1C8C63C1002D68F7 /* GooglePlus-logos-02.png */,
 				531B63771C8AA58600DD5956 /* video-icon.png */,
 				8BA1F3491C7B0B1E003BC1EC /* logobbs@2x.png */,
 				8BA1F34A1C7B0B1E003BC1EC /* logobbs@3x.png */,
@@ -542,6 +569,7 @@
 				53E7AB221C79C67000A544B2 /* logo.png in Resources */,
 				53E7AB871C79F72300A544B2 /* msg-icon.png in Resources */,
 				5399CCA71C6BA0FF00022441 /* Assets.xcassets in Resources */,
+				53408E641C8C6B4E002D68F7 /* calculator-icon.png in Resources */,
 				8BA1F34B1C7B0B1E003BC1EC /* logobbs.png in Resources */,
 				53E7AB251C79C67000A544B2 /* stormy_day.png in Resources */,
 				53E7AB241C79C67000A544B2 /* stormy.png in Resources */,
@@ -562,11 +590,13 @@
 				53E7AB2A1C79C67000A544B2 /* thunder.png in Resources */,
 				5399CCA51C6BA0FF00022441 /* Main.storyboard in Resources */,
 				53E7AB231C79C67000A544B2 /* signshop_icon.png in Resources */,
+				53408E621C8C65AC002D68F7 /* lcd-icon.png in Resources */,
 				53E7AB1F1C79C67000A544B2 /* bg.jpg in Resources */,
 				53C595921C6B585800C55E31 /* LoginMenuVC.xib in Resources */,
 				8BA1F3531C7B0C64003BC1EC /* tbmsg@3x.png in Resources */,
 				53E7AB831C79F2C000A544B2 /* seting-icon.png in Resources */,
 				53E7AB261C79C67000A544B2 /* stormy_night.png in Resources */,
+				53408E601C8C63C1002D68F7 /* GooglePlus-logos-02.png in Resources */,
 				531B637A1C8AA58600DD5956 /* tv-icon.png in Resources */,
 				8BA1F34C1C7B0B1E003BC1EC /* logobbs@2x.png in Resources */,
 				5376873F1C7DEB59005A6DDB /* follow_on.png in Resources */,
@@ -593,11 +623,13 @@
 				53E7AB701C79E34B00A544B2 /* AFAutoPurgingImageCache.m in Sources */,
 				8BA1F32F1C7091B7003BC1EC /* BBSVC.swift in Sources */,
 				53E7AB721C79E34B00A544B2 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				53408E5A1C8C5D86002D68F7 /* MoreMenuNC.swift in Sources */,
 				535DC6951C79B4F7005CB7E4 /* DMChatNC.swift in Sources */,
 				8BA1F3651C7B37AF003BC1EC /* MSWeakTimer.m in Sources */,
 				53E7AB731C79E34B00A544B2 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				53E7AB591C79E2E400A544B2 /* AFURLResponseSerialization.m in Sources */,
 				53E7AB751C79E34B00A544B2 /* UIImageView+AFNetworking.m in Sources */,
+				53408E5E1C8C5E09002D68F7 /* MoreMenuCVCell.swift in Sources */,
 				533A70FB1C781B60005EAC90 /* DynmapAnalysis.swift in Sources */,
 				53E7AB581C79E2E400A544B2 /* AFURLRequestSerialization.m in Sources */,
 				53E7AB551C79E2E400A544B2 /* AFHTTPSessionManager.m in Sources */,
@@ -607,6 +639,7 @@
 				53C5958C1C6B4BE600C55E31 /* WaitVC.swift in Sources */,
 				533A71041C789CA3005EAC90 /* MainTBC.swift in Sources */,
 				5376873D1C7DE286005A6DDB /* StatusVC.swift in Sources */,
+				53408E5C1C8C5DCB002D68F7 /* MoreMenuCVC.swift in Sources */,
 				53E7AB571C79E2E400A544B2 /* AFSecurityPolicy.m in Sources */,
 				535DC6971C79B508005CB7E4 /* DMChatTVC.swift in Sources */,
 				53E7AB781C79E34B00A544B2 /* UIWebView+AFNetworking.m in Sources */,
@@ -733,7 +766,7 @@
 				);
 				INFOPLIST_FILE = nyaacatapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.nyaacat.nyaacatapp.nyaacatapp;
+				PRODUCT_BUNDLE_IDENTIFIER = org.nyaacat.nyaacatapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = nyaacatapp/SwiftOC.h;
@@ -753,7 +786,7 @@
 				);
 				INFOPLIST_FILE = nyaacatapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.nyaacat.nyaacatapp.nyaacatapp;
+				PRODUCT_BUNDLE_IDENTIFIER = org.nyaacat.nyaacatapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = nyaacatapp/SwiftOC.h;
