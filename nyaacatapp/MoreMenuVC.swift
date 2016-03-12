@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import SafariServices
 
 class MoreMenuVC: UIViewController, MoreMenuCellViewDelegate {
     
     var TAG组:Int = 0
-    let 按钮文本和对应图片:[[String]] = [["活动信息","rss-icon"],["喵窩维基","notebook-icon"],["游戏录像","video-icon"],["游戏直播","tv-icon"],["官方网站","lcd-icon"],["G+社群","GooglePlus-logos-02"],["开源项目","calculator-icon"],["封禁查询","mike-icon"],["关于反馈","msg-icon"]]
+    let 按钮文本和对应图片:[[String]] = [["活动信息","rss-icon"],["喵窩维基","notebook-icon"],["游戏录像","video-icon"],["游戏直播","tv-icon"],["☍官方网站","lcd-icon"],["☍G+社群","GooglePlus-logos-02"],["☍开源项目","calculator-icon"],["封禁查询","mike-icon"],["关于反馈","msg-icon"]]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,8 +73,53 @@ class MoreMenuVC: UIViewController, MoreMenuCellViewDelegate {
     }
     
     func 点击图标(按钮tag:Int) {
-        let 当前选择:[String] = 按钮文本和对应图片[按钮tag-1]
-        NSLog("%@", 当前选择[0])
+//        let 当前选择:[String] = 按钮文本和对应图片[按钮tag-1]
+//        NSLog("%@", 当前选择[0])
+        switch (按钮tag) {
+        case 1:
+            
+            break;
+        case 2:
+            
+            break;
+        case 3:
+            
+            break;
+        case 4:
+            
+            break;
+        case 5:
+            打开浏览器("https://nyaa.cat/")
+            break;
+        case 6:
+            打开浏览器("https://plus.google.com/communities/106016758621697881816")
+            break;
+        case 7:
+            打开浏览器("https://github.com/NyaaCat")
+            break;
+        case 8:
+            
+            break;
+        case 9:
+            
+            break;
+        default:
+            break;
+        }
+    }
+    
+    func 打开浏览器(网址:String) {
+        let URL:NSURL = NSURL(string:网址)!
+        let CallbackURL = NSURL(string:"nyaacatapp://open")!
+        let chrome:OpenInChromeController = OpenInChromeController()
+        if (chrome.isChromeInstalled()) {
+            chrome.openInChrome(URL, withCallbackURL: CallbackURL, createNewTab: false)
+        } else {
+            //UIApplication.sharedApplication().openURL(URL)
+            let safari:SFSafariViewController = SFSafariViewController(URL: URL)
+            self.presentViewController(safari, animated: true) { () -> Void in
+            }
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
