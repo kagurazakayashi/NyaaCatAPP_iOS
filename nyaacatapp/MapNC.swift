@@ -1,14 +1,14 @@
 //
-//  MoreMenuNC.swift
+//  MapNC.swift
 //  nyaacatapp
 //
-//  Created by 神楽坂雅詩 on 16/3/6.
+//  Created by 神楽坂雅詩 on 16/3/12.
 //  Copyright © 2016年 KagurazakaYashi. All rights reserved.
 //
 
 import UIKit
 
-class MoreMenuNC: UINavigationController {
+class MapNC: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

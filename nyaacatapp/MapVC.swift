@@ -1,19 +1,19 @@
 //
-//  MoreMenuNC.swift
+//  MapVC.swift
 //  nyaacatapp
 //
-//  Created by 神楽坂雅詩 on 16/3/6.
+//  Created by 神楽坂雅詩 on 16/3/12.
 //  Copyright © 2016年 KagurazakaYashi. All rights reserved.
 //
 
 import UIKit
 
-class MoreMenuNC: UINavigationController {
+class MapVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationBar.barTintColor = 全局_导航栏颜色
-        navigationBar.titleTextAttributes = [ NSForegroundColorAttributeName : UIColor.whiteColor()]
+
+        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {

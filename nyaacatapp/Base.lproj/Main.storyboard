@@ -29,7 +29,7 @@
                             <outlet property="delegate" destination="8IN-wD-EGg" id="12c-AL-WE6"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="喵窝MC聊天🎵" id="13O-oG-Q2t"/>
+                    <navigationItem key="navigationItem" title="🎵 喵窝聊天" id="13O-oG-Q2t"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WPJ-eg-6RA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -52,7 +52,7 @@
             </objects>
             <point key="canvasLocation" x="812" y="605"/>
         </scene>
-        <!--nyaa.cat-->
+        <!--⛅️ 世界状态-->
         <scene sceneID="Vot-Jn-MQM">
             <objects>
                 <viewController id="Sia-vI-jGU" customClass="StatusVC" customModule="nyaacatapp" customModuleProvider="target" sceneMemberID="viewController">
@@ -174,7 +174,7 @@
                             <constraint firstItem="RQJ-Lh-xe9" firstAttribute="top" secondItem="FBC-Er-Fep" secondAttribute="topMargin" id="xh7-V6-BJs"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="nyaa.cat" id="HbB-1a-gYq"/>
+                    <navigationItem key="navigationItem" title="⛅️ 世界状态" id="HbB-1a-gYq"/>
                     <connections>
                         <outlet property="世界名称" destination="UKW-1c-keD" id="WDY-LJ-3H1"/>
                         <outlet property="世界按钮" destination="InO-wD-KDh" id="Xuj-8o-F9w"/>
@@ -190,57 +190,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fMR-Rv-nH9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1500" y="1307"/>
-        </scene>
-        <!--资料库-->
-        <scene sceneID="S3n-9k-n9q">
-            <objects>
-                <collectionViewController id="7sA-w2-0lw" customClass="MoreMenuCVC" customModule="nyaacatapp" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="tLN-3l-SVv">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="UaV-O5-hat">
-                            <size key="itemSize" width="157" height="157"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MoreMenuCVCell" id="Gq8-qV-RwR" customClass="MoreMenuCVCell" customModule="nyaacatapp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="157" height="157"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="157" height="157"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Mp-rQ-xB5">
-                                            <rect key="frame" x="0.0" y="133" width="157" height="24"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F5p-gV-dKF">
-                                            <rect key="frame" x="0.0" y="0.0" width="157" height="125"/>
-                                        </imageView>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                                <connections>
-                                    <outlet property="按钮图片" destination="F5p-gV-dKF" id="Ud8-Bz-ZGa"/>
-                                    <outlet property="按钮文本" destination="6Mp-rQ-xB5" id="aSR-7l-c91"/>
-                                </connections>
-                            </collectionViewCell>
-                        </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="7sA-w2-0lw" id="bcQ-4F-65B"/>
-                            <outlet property="delegate" destination="7sA-w2-0lw" id="QRg-UM-dpm"/>
-                        </connections>
-                    </collectionView>
-                    <navigationItem key="navigationItem" title="资料库" id="Mbe-bP-GeE"/>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kbA-Xy-0Fe" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1500" y="2009"/>
         </scene>
         <!--StatusTVC-->
         <scene sceneID="SYU-r4-Qbx">
@@ -271,12 +220,67 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="7sA-w2-0lw" kind="relationship" relationship="rootViewController" id="Ms9-QX-gwJ"/>
+                        <segue destination="rjz-n5-Zo6" kind="relationship" relationship="rootViewController" id="Ww0-zZ-CEY"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7jb-hS-Y2H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="812" y="2009"/>
+        </scene>
+        <!--动态地图-->
+        <scene sceneID="7te-Yw-XXC">
+            <objects>
+                <navigationController id="Fr4-yS-uB5" customClass="MapNC" customModule="nyaacatapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="动态地图" image="signshop_icon.png" id="1es-Qt-fWb"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1Mi-kt-kpU">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="bE3-Ly-iYZ" kind="relationship" relationship="rootViewController" id="LNt-ZP-QSJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dwi-m9-Vgz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="812" y="2693"/>
+        </scene>
+        <!--💻 资料库-->
+        <scene sceneID="97w-Pj-eeS">
+            <objects>
+                <viewController id="rjz-n5-Zo6" customClass="MoreMenuVC" customModule="nyaacatapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pn2-Ka-noO"/>
+                        <viewControllerLayoutGuide type="bottom" id="v2w-IM-YnW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Zdc-6y-K2W">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="💻 资料库" id="yNV-IY-7Pu"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KOu-t1-0xd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1500" y="2009"/>
+        </scene>
+        <!--🌐 动态地图-->
+        <scene sceneID="VUG-VK-QuZ">
+            <objects>
+                <viewController id="bE3-Ly-iYZ" customClass="MapVC" customModule="nyaacatapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ng5-1u-7ZF"/>
+                        <viewControllerLayoutGuide type="bottom" id="xYH-mo-kve"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="weR-TH-TmD">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="🌐 动态地图" id="VVs-cY-u67"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jjv-T7-mgv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1500" y="2693"/>
         </scene>
         <!--NyaaBBS-->
         <scene sceneID="gtA-fW-gTp">
@@ -291,7 +295,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="NyaaBBS" id="o9A-Jq-lkt"/>
+                    <navigationItem key="navigationItem" title="💬 喵窩论坛" id="o9A-Jq-lkt"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fk4-ex-kJb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -343,18 +347,20 @@
                     <connections>
                         <segue destination="ky0-VG-wX4" kind="relationship" relationship="viewControllers" id="V8m-Ps-2Pz"/>
                         <segue destination="Dz2-Df-0tC" kind="relationship" relationship="viewControllers" id="s2I-mt-bxG"/>
+                        <segue destination="Fr4-yS-uB5" kind="relationship" relationship="viewControllers" id="iy3-Gy-9V4"/>
                         <segue destination="tz5-F1-fQE" kind="relationship" relationship="viewControllers" id="HeU-SV-IbJ"/>
                         <segue destination="MC3-yz-x98" kind="relationship" relationship="viewControllers" id="8zi-F9-T9c"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vgO-ee-5Rl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-114" y="900"/>
+            <point key="canvasLocation" x="-462" y="1872"/>
         </scene>
     </scenes>
     <resources>
         <image name="bg.jpg" width="1920" height="1080"/>
         <image name="logobbs.png" width="30" height="24"/>
+        <image name="signshop_icon.png" width="16" height="16"/>
         <image name="stormy.png" width="25" height="23"/>
         <image name="stormy_day.png" width="32" height="32"/>
         <image name="sunny_day.png" width="32" height="32"/>

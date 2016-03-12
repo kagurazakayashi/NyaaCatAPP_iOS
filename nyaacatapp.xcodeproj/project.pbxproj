@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5316AF0D1C94045B00C76DDB /* MoreMenuCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5316AF0C1C94045B00C76DDB /* MoreMenuCellView.swift */; };
+		5316AF0F1C940F0C00C76DDB /* MoreMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5316AF0E1C940F0C00C76DDB /* MoreMenuVC.swift */; };
+		5316AF111C94211F00C76DDB /* mike-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5316AF101C94211F00C76DDB /* mike-icon.png */; };
+		5316AF141C94325400C76DDB /* MapNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5316AF131C94325400C76DDB /* MapNC.swift */; };
+		5316AF161C94327800C76DDB /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5316AF151C94327800C76DDB /* MapVC.swift */; };
 		531B63781C8AA58600DD5956 /* notebook-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 531B63741C8AA58600DD5956 /* notebook-icon.png */; };
 		531B63791C8AA58600DD5956 /* rss-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 531B63751C8AA58600DD5956 /* rss-icon.png */; };
 		531B637A1C8AA58600DD5956 /* tv-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 531B63761C8AA58600DD5956 /* tv-icon.png */; };
@@ -15,8 +20,6 @@
 		533A70FC1C781B60005EAC90 /* DynmapAnalysisController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533A70FA1C781B60005EAC90 /* DynmapAnalysisController.swift */; };
 		533A71041C789CA3005EAC90 /* MainTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533A71031C789CA3005EAC90 /* MainTBC.swift */; };
 		53408E5A1C8C5D86002D68F7 /* MoreMenuNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53408E591C8C5D86002D68F7 /* MoreMenuNC.swift */; };
-		53408E5C1C8C5DCB002D68F7 /* MoreMenuCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53408E5B1C8C5DCB002D68F7 /* MoreMenuCVC.swift */; };
-		53408E5E1C8C5E09002D68F7 /* MoreMenuCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53408E5D1C8C5E09002D68F7 /* MoreMenuCVCell.swift */; };
 		53408E601C8C63C1002D68F7 /* GooglePlus-logos-02.png in Resources */ = {isa = PBXBuildFile; fileRef = 53408E5F1C8C63C1002D68F7 /* GooglePlus-logos-02.png */; };
 		53408E621C8C65AC002D68F7 /* lcd-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 53408E611C8C65AC002D68F7 /* lcd-icon.png */; };
 		53408E641C8C6B4E002D68F7 /* calculator-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 53408E631C8C6B4E002D68F7 /* calculator-icon.png */; };
@@ -113,6 +116,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5316AF0C1C94045B00C76DDB /* MoreMenuCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreMenuCellView.swift; sourceTree = "<group>"; };
+		5316AF0E1C940F0C00C76DDB /* MoreMenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreMenuVC.swift; sourceTree = "<group>"; };
+		5316AF101C94211F00C76DDB /* mike-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mike-icon.png"; sourceTree = "<group>"; };
+		5316AF131C94325400C76DDB /* MapNC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapNC.swift; sourceTree = "<group>"; };
+		5316AF151C94327800C76DDB /* MapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
 		531B63741C8AA58600DD5956 /* notebook-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notebook-icon.png"; sourceTree = "<group>"; };
 		531B63751C8AA58600DD5956 /* rss-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rss-icon.png"; sourceTree = "<group>"; };
 		531B63761C8AA58600DD5956 /* tv-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tv-icon.png"; sourceTree = "<group>"; };
@@ -121,8 +129,6 @@
 		533A70FA1C781B60005EAC90 /* DynmapAnalysisController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynmapAnalysisController.swift; sourceTree = "<group>"; };
 		533A71031C789CA3005EAC90 /* MainTBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTBC.swift; sourceTree = "<group>"; };
 		53408E591C8C5D86002D68F7 /* MoreMenuNC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreMenuNC.swift; sourceTree = "<group>"; };
-		53408E5B1C8C5DCB002D68F7 /* MoreMenuCVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreMenuCVC.swift; sourceTree = "<group>"; };
-		53408E5D1C8C5E09002D68F7 /* MoreMenuCVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreMenuCVCell.swift; sourceTree = "<group>"; };
 		53408E5F1C8C63C1002D68F7 /* GooglePlus-logos-02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GooglePlus-logos-02.png"; sourceTree = "<group>"; };
 		53408E611C8C65AC002D68F7 /* lcd-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lcd-icon.png"; sourceTree = "<group>"; };
 		53408E631C8C6B4E002D68F7 /* calculator-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calculator-icon.png"; sourceTree = "<group>"; };
@@ -222,6 +228,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5316AF121C94321F00C76DDB /* 动态地图 */ = {
+			isa = PBXGroup;
+			children = (
+				5316AF131C94325400C76DDB /* MapNC.swift */,
+				5316AF151C94327800C76DDB /* MapVC.swift */,
+			);
+			name = "动态地图";
+			sourceTree = "<group>";
+		};
 		533A71051C78A076005EAC90 /* 聊天 */ = {
 			isa = PBXGroup;
 			children = (
@@ -236,11 +251,10 @@
 			isa = PBXGroup;
 			children = (
 				53408E591C8C5D86002D68F7 /* MoreMenuNC.swift */,
-				53408E5B1C8C5DCB002D68F7 /* MoreMenuCVC.swift */,
-				53408E5D1C8C5E09002D68F7 /* MoreMenuCVCell.swift */,
+				5316AF0C1C94045B00C76DDB /* MoreMenuCellView.swift */,
+				5316AF0E1C940F0C00C76DDB /* MoreMenuVC.swift */,
 			);
 			name = "资料库";
-			path = nyaacatapp;
 			sourceTree = "<group>";
 		};
 		536E2FDF1C6C958800168F02 /* 数据解析 */ = {
@@ -275,7 +289,6 @@
 			isa = PBXGroup;
 			children = (
 				5399CC9E1C6BA0FF00022441 /* nyaacatapp */,
-				53408E541C8C5CA7002D68F7 /* 资料库 */,
 				5399CC9D1C6BA0FF00022441 /* Products */,
 				8B728FEA1C6F74B10068A775 /* uploadimgtosmmstest.xcodeproj */,
 				536E300C1C6C9FF900168F02 /* dynmapanalysistest.xcodeproj */,
@@ -301,6 +314,8 @@
 				536E2FDF1C6C958800168F02 /* 数据解析 */,
 				53C5958E1C6B564900C55E31 /* 登录和注册 */,
 				53C595871C6B4B6600C55E31 /* 等待画面 */,
+				5316AF121C94321F00C76DDB /* 动态地图 */,
+				53408E541C8C5CA7002D68F7 /* 资料库 */,
 				53C595861C6B4B3F00C55E31 /* 主要框架 */,
 				5399CCA61C6BA0FF00022441 /* Assets.xcassets */,
 				5399CCAB1C6BA0FF00022441 /* Info.plist */,
@@ -359,6 +374,7 @@
 				8BA1F34F1C7B0C64003BC1EC /* tbmsg@2x.png */,
 				5376873E1C7DEB59005A6DDB /* follow_on.png */,
 				8BA1F3501C7B0C64003BC1EC /* tbmsg@3x.png */,
+				5316AF101C94211F00C76DDB /* mike-icon.png */,
 				53E7AB841C79F31700A544B2 /* t_logo.png */,
 				53E7AB121C79C67000A544B2 /* home_icon.png */,
 				53408E611C8C65AC002D68F7 /* lcd-icon.png */,
@@ -590,6 +606,7 @@
 				53E7AB2A1C79C67000A544B2 /* thunder.png in Resources */,
 				5399CCA51C6BA0FF00022441 /* Main.storyboard in Resources */,
 				53E7AB231C79C67000A544B2 /* signshop_icon.png in Resources */,
+				5316AF111C94211F00C76DDB /* mike-icon.png in Resources */,
 				53408E621C8C65AC002D68F7 /* lcd-icon.png in Resources */,
 				53E7AB1F1C79C67000A544B2 /* bg.jpg in Resources */,
 				53C595921C6B585800C55E31 /* LoginMenuVC.xib in Resources */,
@@ -618,18 +635,20 @@
 				537687411C7DED05005A6DDB /* StatusTVC.swift in Sources */,
 				53E7AB771C79E34B00A544B2 /* UIRefreshControl+AFNetworking.m in Sources */,
 				5376873B1C7DE252005A6DDB /* StatusNC.swift in Sources */,
+				5316AF0D1C94045B00C76DDB /* MoreMenuCellView.swift in Sources */,
 				53E7AB741C79E34B00A544B2 /* UIButton+AFNetworking.m in Sources */,
 				53E7AB761C79E34B00A544B2 /* UIProgressView+AFNetworking.m in Sources */,
 				53E7AB701C79E34B00A544B2 /* AFAutoPurgingImageCache.m in Sources */,
 				8BA1F32F1C7091B7003BC1EC /* BBSVC.swift in Sources */,
 				53E7AB721C79E34B00A544B2 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				53408E5A1C8C5D86002D68F7 /* MoreMenuNC.swift in Sources */,
+				5316AF0F1C940F0C00C76DDB /* MoreMenuVC.swift in Sources */,
 				535DC6951C79B4F7005CB7E4 /* DMChatNC.swift in Sources */,
 				8BA1F3651C7B37AF003BC1EC /* MSWeakTimer.m in Sources */,
 				53E7AB731C79E34B00A544B2 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				53E7AB591C79E2E400A544B2 /* AFURLResponseSerialization.m in Sources */,
+				5316AF141C94325400C76DDB /* MapNC.swift in Sources */,
 				53E7AB751C79E34B00A544B2 /* UIImageView+AFNetworking.m in Sources */,
-				53408E5E1C8C5E09002D68F7 /* MoreMenuCVCell.swift in Sources */,
 				533A70FB1C781B60005EAC90 /* DynmapAnalysis.swift in Sources */,
 				53E7AB581C79E2E400A544B2 /* AFURLRequestSerialization.m in Sources */,
 				53E7AB551C79E2E400A544B2 /* AFHTTPSessionManager.m in Sources */,
@@ -638,8 +657,8 @@
 				53E7AB711C79E34B00A544B2 /* AFImageDownloader.m in Sources */,
 				53C5958C1C6B4BE600C55E31 /* WaitVC.swift in Sources */,
 				533A71041C789CA3005EAC90 /* MainTBC.swift in Sources */,
+				5316AF161C94327800C76DDB /* MapVC.swift in Sources */,
 				5376873D1C7DE286005A6DDB /* StatusVC.swift in Sources */,
-				53408E5C1C8C5DCB002D68F7 /* MoreMenuCVC.swift in Sources */,
 				53E7AB571C79E2E400A544B2 /* AFSecurityPolicy.m in Sources */,
 				535DC6971C79B508005CB7E4 /* DMChatTVC.swift in Sources */,
 				53E7AB781C79E34B00A544B2 /* UIWebView+AFNetworking.m in Sources */,
