@@ -113,7 +113,7 @@ class MoreMenuVC: UIViewController, MoreMenuCellViewDelegate {
         let CallbackURL = NSURL(string:"nyaacatapp://open")!
         let chrome:OpenInChromeController = OpenInChromeController()
         if (chrome.isChromeInstalled()) {
-            chrome.openInChrome(URL, withCallbackURL: CallbackURL, createNewTab: false)
+            chrome.openInChrome(URL, callbackURL: CallbackURL, createNewTab: false)
         } else {
             //UIApplication.sharedApplication().openURL(URL)
             let safari:SFSafariViewController = SFSafariViewController(URL: URL)
