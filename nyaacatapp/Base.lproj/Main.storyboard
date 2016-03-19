@@ -266,7 +266,7 @@
         <!--🌐 动态地图-->
         <scene sceneID="VUG-VK-QuZ">
             <objects>
-                <viewController id="bE3-Ly-iYZ" customClass="MapVC" customModule="nyaacatapp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="MapVC" storyboardIdentifier="MapVC" id="bE3-Ly-iYZ" customClass="MapVC" customModule="nyaacatapp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ng5-1u-7ZF"/>
                         <viewControllerLayoutGuide type="bottom" id="xYH-mo-kve"/>
