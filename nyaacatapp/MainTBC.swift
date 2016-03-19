@@ -11,10 +11,10 @@ import WebKit
 
 class MainTBC: UITabBarController, WKNavigationDelegate, LoginMenuVCDelegate {
     
-    let 动态地图网址:String = "https://mcmap.90g.org"
-    let 动态地图登录接口:String = "https://mcmap.90g.org/up/login"
-    let 注册页面标题:String = "Minecraft Dynamic Map - Login/Register"
-    let 地图页面标题:String = "喵窝の世界"
+    let 动态地图网址:String = 全局_喵窩API["动态地图域名"]!
+    let 动态地图登录接口:String = 全局_喵窩API["动态地图登录接口"]!
+    let 注册页面标题:String = 全局_喵窩API["注册页面标题"]!
+    let 地图页面标题:String = 全局_喵窩API["地图页面标题"]!
     let 地图页面特征:String = "<div id=\"mcmap\" class=\"dynmap\">"
     
     let 等待画面:WaitVC = WaitVC()

@@ -18,8 +18,8 @@ class LoginMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
     @IBOutlet weak var 选项表格: UITableView!
     var 行标题 = ["用户名：","密码：","记住用户名和密码","登录","","我还没注册过动态地图","我还没有入服","游客登录"]
     var 提示框:UIAlertController? = nil
-    var 用户名:String = "KagurazakaYashi"
-    var 密码:String = "123698745"
+    var 用户名:String = 全局_喵窩API["测试动态地图用户名"]!
+    var 密码:String = 全局_喵窩API["测试动态地图密码"]!
     var 记住用户名和密码:Bool = false
     var 代理:LoginMenuVCDelegate? = nil
     

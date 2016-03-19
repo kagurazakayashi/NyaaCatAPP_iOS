@@ -338,7 +338,7 @@
         <!--MainTBC-->
         <scene sceneID="KGj-5E-hZA">
             <objects>
-                <tabBarController id="6Ti-ue-IEU" customClass="MainTBC" customModule="nyaacatapp" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController restorationIdentifier="MainTBC" storyboardIdentifier="MainTBC" id="6Ti-ue-IEU" customClass="MainTBC" customModule="nyaacatapp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="HdR-zX-H9C">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

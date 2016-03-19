@@ -22,7 +22,7 @@ class BBSVC: UIViewController, WKNavigationDelegate {
         
         self.view.addSubview(浏览器)
         
-        浏览器.loadRequest(NSURLRequest(URL: NSURL(string: "https://bbs.nyaa.cat")!))
+        浏览器.loadRequest(NSURLRequest(URL: NSURL(string: 全局_喵窩API["论坛地址"]!)!))
         浏览器.addObserver(self, forKeyPath: "estimatedProgress", options: .New, context: nil)
         进度条 = UIProgressView(progressViewStyle: .Bar)
         

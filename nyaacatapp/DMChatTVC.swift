@@ -11,15 +11,7 @@ import WebKit
 
 class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDelegate
     
-    let 消息发送接口:String = "https://mcmap.90g.org/up/sendmessage"
-    let 动态地图登录接口:String = "https://mcmap.90g.org/up/login"
     let 允许转义颜色代码:Bool = false //true: 将&视为颜色代码
-    
-//    let 消息发送接口:String = "https://yoooooooooo.com/sendmessagetest.php"
-//    let 动态地图登录接口:String = "https://mcmap.90g.org/up/login"
-    
-//    let 消息发送接口:String = "http://123.56.133.111:8123/up/sendmessage"
-//    let 动态地图登录接口:String = "http://123.56.133.111:8123/up/login"
     
     var 实时聊天数据:[[String]]? = nil
     var 默认头像:UIImage = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("seting-icon", ofType: "png")!)!
@@ -100,7 +92,7 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
             网络模式 = 网络模式选项.发送聊天消息
             //向服务器提交聊天消息
             let 网络参数:NSString = "{\"name\":\"\",\"message\":\"§2" + 全局_手机发送消息关键字 + "§f" + 正在发送的消息! + "\"}"
-            let 要加载的网页URL:NSURL = NSURL(string: 消息发送接口)!
+            let 要加载的网页URL:NSURL = NSURL(string: 全局_喵窩API["消息发送接口"]!)!
             let 网络请求:NSMutableURLRequest = NSMutableURLRequest(URL: 要加载的网页URL, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringCacheData, timeoutInterval: 30)
             let 网络参数数据:NSData = 网络参数.dataUsingEncoding(NSUTF8StringEncoding)!
             网络请求.HTTPMethod = "POST"
@@ -113,8 +105,8 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
             网络请求.setValue("\(网络参数数据.length)", forHTTPHeaderField: "content-length")
             网络请求.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "content-type")
             网络请求.setValue("1", forHTTPHeaderField: "dnt")
-            网络请求.setValue("https://mcmap.90g.org", forHTTPHeaderField: "origin")
-            网络请求.setValue("https://mcmap.90g.org/index.html", forHTTPHeaderField: "referer")
+            网络请求.setValue(全局_喵窩API["动态地图域名"], forHTTPHeaderField: "origin")
+            网络请求.setValue(全局_喵窩API["动态地图主页"], forHTTPHeaderField: "referer")
             网络请求.setValue("XMLHttpRequest", forHTTPHeaderField: "x-requested-with")
             //网络请求.HTTPBody = 网络参数数据
             //            后台网页加载器!.loadRequest(网络请求)
@@ -223,7 +215,7 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
         正在发送的消息 = 转义颜色代码(true,内容: 消息)
         网络模式 = 网络模式选项.提交登录请求
         let 网络参数:String = "j_username=" + 全局_用户名! + "&j_password=" + 全局_密码!
-        let 包含参数的网址:String = 动态地图登录接口 + "?" + 网络参数
+        let 包含参数的网址:String = 全局_喵窩API["动态地图登录接口"]! + "?" + 网络参数
         let 要加载的网页URL:NSURL = NSURL(string: 包含参数的网址)!
         let 网络请求:NSMutableURLRequest = NSMutableURLRequest(URL: 要加载的网页URL, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringCacheData, timeoutInterval: 10)
         网络请求.HTTPMethod = "POST"
@@ -340,7 +332,7 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
 //                头像文本路径 = 默认头像路径
 //            }
             if (头像相对路径 != "") {
-                头像相对路径 = "https://mcmap.90g.org/tiles/faces/32x32/\(当前聊天[0])"
+                头像相对路径 = "\(全局_喵窩API["32px头像接口"])\(当前聊天[0])"
                 cell.头像.setImageWithURL(NSURL(string: 头像相对路径)!, placeholderImage: 默认头像)
             } else {
                 //0=游戏内聊天/动态地图，1=上下线消息，2=Telegram/IRC，3=手机

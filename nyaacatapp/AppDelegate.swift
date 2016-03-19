@@ -69,3 +69,4 @@ var 全局_密码:String? = nil
 var 全局_游客模式:Bool = false
 let 全局_手机发送消息关键字:String = "[NyaaCatAPP] "
 let 全局_设备信息:UIDevice = UIDevice.currentDevice()
+var 全局_喵窩API:Dictionary<String,String> = Dictionary<String,String>()

@@ -51,6 +51,8 @@
 		533DD40D1C94639800E6DD37 /* thunder_night.png in Resources */ = {isa = PBXBuildFile; fileRef = 53E7AB1E1C79C67000A544B2 /* thunder_night.png */; };
 		533DD40E1C9463BD00E6DD37 /* number.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 537687421C7DFD1D005A6DDB /* number.ttf */; };
 		53408E5A1C8C5D86002D68F7 /* MoreMenuNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53408E591C8C5D86002D68F7 /* MoreMenuNC.swift */; };
+		53537BC21C9D8AF300003B80 /* APILoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53537BC11C9D8AF300003B80 /* APILoader.swift */; };
+		53537BC61C9D93C500003B80 /* PrivateConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53537BC51C9D93C500003B80 /* PrivateConstant.swift */; };
 		535DC6951C79B4F7005CB7E4 /* DMChatNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535DC6941C79B4F7005CB7E4 /* DMChatNC.swift */; };
 		535DC6971C79B508005CB7E4 /* DMChatTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535DC6961C79B508005CB7E4 /* DMChatTVC.swift */; };
 		5376873B1C7DE252005A6DDB /* StatusNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5376873A1C7DE252005A6DDB /* StatusNC.swift */; };
@@ -133,6 +135,8 @@
 		53408E5F1C8C63C1002D68F7 /* GooglePlus-logos-02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GooglePlus-logos-02.png"; sourceTree = "<group>"; };
 		53408E611C8C65AC002D68F7 /* lcd-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lcd-icon.png"; sourceTree = "<group>"; };
 		53408E631C8C6B4E002D68F7 /* calculator-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calculator-icon.png"; sourceTree = "<group>"; };
+		53537BC11C9D8AF300003B80 /* APILoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APILoader.swift; sourceTree = "<group>"; };
+		53537BC51C9D93C500003B80 /* PrivateConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateConstant.swift; sourceTree = "<group>"; };
 		535DC6941C79B4F7005CB7E4 /* DMChatNC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMChatNC.swift; sourceTree = "<group>"; };
 		535DC6961C79B508005CB7E4 /* DMChatTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMChatTVC.swift; sourceTree = "<group>"; };
 		536E300C1C6C9FF900168F02 /* dynmapanalysistest.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = dynmapanalysistest.xcodeproj; path = dynmapanalysistest/dynmapanalysistest.xcodeproj; sourceTree = "<group>"; };
@@ -259,6 +263,15 @@
 			name = "资料库";
 			sourceTree = "<group>";
 		};
+		53537BBC1C9D8AD600003B80 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				53537BC11C9D8AF300003B80 /* APILoader.swift */,
+				53537BC51C9D93C500003B80 /* PrivateConstant.swift */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
 		536E2FDF1C6C958800168F02 /* 数据解析 */ = {
 			isa = PBXGroup;
 			children = (
@@ -308,6 +321,7 @@
 		5399CC9E1C6BA0FF00022441 /* nyaacatapp */ = {
 			isa = PBXGroup;
 			children = (
+				53537BBC1C9D8AD600003B80 /* API */,
 				53E7AB101C79C67000A544B2 /* images */,
 				537687351C7DE1ED005A6DDB /* 世界状态 */,
 				53E7AB0F1C79C45E00A544B2 /* 第三方类库 */,
@@ -652,6 +666,7 @@
 				53E7AB701C79E34B00A544B2 /* AFAutoPurgingImageCache.m in Sources */,
 				8BA1F32F1C7091B7003BC1EC /* BBSVC.swift in Sources */,
 				53E7AB721C79E34B00A544B2 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				53537BC21C9D8AF300003B80 /* APILoader.swift in Sources */,
 				53408E5A1C8C5D86002D68F7 /* MoreMenuNC.swift in Sources */,
 				5316AF0F1C940F0C00C76DDB /* MoreMenuVC.swift in Sources */,
 				535DC6951C79B4F7005CB7E4 /* DMChatNC.swift in Sources */,
@@ -673,6 +688,7 @@
 				53E7AB571C79E2E400A544B2 /* AFSecurityPolicy.m in Sources */,
 				535DC6971C79B508005CB7E4 /* DMChatTVC.swift in Sources */,
 				53AA7CFD1C9502A90030D28F /* OpenInChromeController.swift in Sources */,
+				53537BC61C9D93C500003B80 /* PrivateConstant.swift in Sources */,
 				53E7AB781C79E34B00A544B2 /* UIWebView+AFNetworking.m in Sources */,
 				53E7AB561C79E2E400A544B2 /* AFNetworkReachabilityManager.m in Sources */,
 				53C595911C6B585800C55E31 /* LoginMenuVC.swift in Sources */,

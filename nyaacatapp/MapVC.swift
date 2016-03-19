@@ -12,8 +12,8 @@ import WebKit
 class MapVC: UIViewController , WKNavigationDelegate {
     
     var 动态地图网页:WKWebView? = nil
-    let 动态地图URL:String = "https://mcmap.90g.org/?worldname=world&mapname=surface&zoom=0&nogui=true"
-    let 动态地图登录接口:String = "https://mcmap.90g.org/up/login"
+    let 动态地图URL:String = 全局_喵窩API["静态地图接口"]!
+    let 动态地图登录接口:String = 全局_喵窩API["动态地图登录接口"]!
     
     var 登录步骤:Int = 0
     var 左上按钮:UIBarButtonItem? = nil
