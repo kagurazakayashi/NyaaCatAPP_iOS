@@ -278,34 +278,55 @@
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kC0-AN-gYy">
                                 <rect key="frame" x="374" y="504" width="226" height="47"/>
                                 <subviews>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3f7-gH-7MI">
-                                        <rect key="frame" x="58" y="8" width="51" height="31"/>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="P9v-Tv-oiY">
+                                        <rect key="frame" x="177" y="8" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="三维开关:" destination="bE3-Ly-iYZ" eventType="valueChanged" id="7yn-4p-Hx1"/>
+                                        </connections>
                                     </switch>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="动态" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5xe-g7-Sha">
-                                        <rect key="frame" x="8" y="13" width="42" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="三维" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TCK-zt-sAC">
+                                        <rect key="frame" x="127" y="13" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="P9v-Tv-oiY">
-                                        <rect key="frame" x="165" y="8" width="51" height="31"/>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3f7-gH-7MI">
+                                        <rect key="frame" x="70" y="8" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="动态开关:" destination="bE3-Ly-iYZ" eventType="valueChanged" id="thX-TO-Sbr"/>
+                                        </connections>
                                     </switch>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="三维" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TCK-zt-sAC">
-                                        <rect key="frame" x="115" y="13" width="42" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="动态" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5xe-g7-Sha">
+                                        <rect key="frame" x="20" y="13" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zp8-nF-Mqv">
+                                <rect key="frame" x="0.0" y="504" width="46" height="39"/>
+                                <state key="normal" title="转到"/>
+                                <connections>
+                                    <action selector="转到按钮:" destination="bE3-Ly-iYZ" eventType="touchUpInside" id="kLS-cb-SiL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="kC0-AN-gYy" secondAttribute="trailing" id="1EN-7t-QGK"/>
+                            <constraint firstItem="Zp8-nF-Mqv" firstAttribute="leading" secondItem="weR-TH-TmD" secondAttribute="leadingMargin" id="7rl-26-K2p"/>
+                            <constraint firstItem="xYH-mo-kve" firstAttribute="top" secondItem="Zp8-nF-Mqv" secondAttribute="bottom" constant="8" id="Jmc-1w-t5j"/>
                             <constraint firstItem="xYH-mo-kve" firstAttribute="top" secondItem="kC0-AN-gYy" secondAttribute="bottom" id="Z53-MU-J1B"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="🌐 动态地图" id="VVs-cY-u67"/>
+                    <connections>
+                        <outlet property="三维" destination="P9v-Tv-oiY" id="qJp-5v-tFg"/>
+                        <outlet property="动态" destination="3f7-gH-7MI" id="q4A-k7-RRU"/>
+                        <outlet property="动态地图工具栏" destination="kC0-AN-gYy" id="IS7-sc-rYI"/>
+                        <outlet property="转到" destination="Zp8-nF-Mqv" id="9K1-j5-Smu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jjv-T7-mgv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

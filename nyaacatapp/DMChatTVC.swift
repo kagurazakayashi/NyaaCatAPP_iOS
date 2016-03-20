@@ -332,7 +332,7 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
 //                头像文本路径 = 默认头像路径
 //            }
             if (头像相对路径 != "") {
-                头像相对路径 = "\(全局_喵窩API["32px头像接口"])\(当前聊天[0])"
+                头像相对路径 = "\(全局_喵窩API["32px头像接口"]!)\(当前聊天[0])"
                 cell.头像.setImageWithURL(NSURL(string: 头像相对路径)!, placeholderImage: 默认头像)
             } else {
                 //0=游戏内聊天/动态地图，1=上下线消息，2=Telegram/IRC，3=手机
