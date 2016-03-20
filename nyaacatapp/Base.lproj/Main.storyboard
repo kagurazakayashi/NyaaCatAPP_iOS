@@ -227,11 +227,11 @@
             </objects>
             <point key="canvasLocation" x="812" y="2009"/>
         </scene>
-        <!--动态地图-->
+        <!--世界地图-->
         <scene sceneID="7te-Yw-XXC">
             <objects>
                 <navigationController id="Fr4-yS-uB5" customClass="MapNC" customModule="nyaacatapp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="动态地图" image="signshop_icon.png" id="1es-Qt-fWb"/>
+                    <tabBarItem key="tabBarItem" title="世界地图" image="signshop_icon.png" id="1es-Qt-fWb"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="1Mi-kt-kpU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -274,7 +274,36 @@
                     <view key="view" contentMode="scaleToFill" id="weR-TH-TmD">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kC0-AN-gYy">
+                                <rect key="frame" x="374" y="504" width="226" height="47"/>
+                                <subviews>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3f7-gH-7MI">
+                                        <rect key="frame" x="58" y="8" width="51" height="31"/>
+                                    </switch>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="动态" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5xe-g7-Sha">
+                                        <rect key="frame" x="8" y="13" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="P9v-Tv-oiY">
+                                        <rect key="frame" x="165" y="8" width="51" height="31"/>
+                                    </switch>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="三维" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TCK-zt-sAC">
+                                        <rect key="frame" x="115" y="13" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="kC0-AN-gYy" secondAttribute="trailing" id="1EN-7t-QGK"/>
+                            <constraint firstItem="xYH-mo-kve" firstAttribute="top" secondItem="kC0-AN-gYy" secondAttribute="bottom" id="Z53-MU-J1B"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="🌐 动态地图" id="VVs-cY-u67"/>
                 </viewController>

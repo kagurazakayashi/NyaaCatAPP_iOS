@@ -20,5 +20,6 @@ class PrivateConstant: NSObject {
         "测试动态地图密码":"123698745",
         "静态地图接口":"https://mcmap.90g.org/?worldname=world&mapname=surface&zoom=0&nogui=true",
         "注册页面标题":"Minecraft Dynamic Map - Login/Register",
-        "地图页面标题":"喵窝の世界"]
+        "地图页面标题":"喵窝の世界",
+        "Ilse地图":"http://miz.audio/nyaamaps/"]
 }

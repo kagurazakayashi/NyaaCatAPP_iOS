@@ -120,7 +120,7 @@ class StatusTVC: UITableViewController {
         if (要呈现的数据 == 呈现数据.玩家列表) {
             cell.textLabel?.text = nil
             cell.detailTextLabel?.text = nil
-            let 完整路径:String = "\(全局_喵窩API["32px头像接口"])\(图像路径![行])"
+            let 完整路径:String = "\(全局_喵窩API["32px头像接口"]!)\(图像路径![行])"
             cell.imageView?.setImageWithURL(NSURL(string: 完整路径)!, placeholderImage: 默认头像)
             let 浏览器设置:WKWebViewConfiguration = WKWebViewConfiguration()
             浏览器设置.allowsPictureInPictureMediaPlayback = false

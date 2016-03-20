@@ -12,12 +12,12 @@ import WebKit
 class MapVC: UIViewController , WKNavigationDelegate {
     
     var 动态地图网页:WKWebView? = nil
-    let 动态地图URL:String = 全局_喵窩API["静态地图接口"]!
     let 动态地图登录接口:String = 全局_喵窩API["动态地图登录接口"]!
     
     var 登录步骤:Int = 0
     var 左上按钮:UIBarButtonItem? = nil
     var 右上按钮:UIBarButtonItem? = nil
+    var 等待提示:UIAlertController? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,15 +26,35 @@ class MapVC: UIViewController , WKNavigationDelegate {
     }
     
     func 创建UI() {
-//        左上按钮 = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Trash, target: self, action: "左上按钮点击")
-//        navigationItem.leftBarButtonItem = 左上按钮
-        右上按钮 = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: "右上按钮点击")
+        左上按钮 = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Refresh, target: self, action: "左上按钮点击")
+        navigationItem.leftBarButtonItem = 左上按钮
+        右上按钮 = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Bookmarks, target: self, action: "右上按钮点击")
         navigationItem.rightBarButtonItem = 右上按钮
     }
     
+    func 左上按钮点击() {
+        动态地图网页!.reload()
+    }
     func 右上按钮点击() {
         //TODO: 预留地图切换接口
-        NSLog("地图切换")
+        let 选择地图 = UIAlertController(title: "选择地图", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+        let 地图按钮 = UIAlertAction(title: "世界地图", style: UIAlertActionStyle.Default, handler: { (动作:UIAlertAction) -> Void in
+            self.装入网页(全局_喵窩API["静态地图接口"]!)
+        })
+        选择地图.addAction(地图按钮)
+        let 动态地图按钮 = UIAlertAction(title: "动态地图(dynmap)", style: UIAlertActionStyle.Default, handler: { (动作:UIAlertAction) -> Void in
+            self.装入网页(全局_喵窩API["动态地图主页"]!)
+        })
+        选择地图.addAction(动态地图按钮)
+        let 导航地图按钮 = UIAlertAction(title: "导航地图(by Miz)", style: UIAlertActionStyle.Default, handler: { (动作:UIAlertAction) -> Void in
+            self.装入网页(全局_喵窩API["Ilse地图"]!)
+        })
+        选择地图.addAction(导航地图按钮)
+        let 取消按钮 = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: { (动作:UIAlertAction) -> Void in
+            
+        })
+        选择地图.addAction(取消按钮)
+        self.presentViewController(选择地图, animated: true, completion: nil)
     }
     
     func 创建地图浏览器() {
@@ -71,14 +91,41 @@ class MapVC: UIViewController , WKNavigationDelegate {
     }
     
     func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
-        NSLog("page ok")
         if (登录步骤 == 0) {
             登录步骤++
-            let 要加载的网页URL:NSURL = NSURL(string: 动态地图URL)!
-            let 加载地图网络请求:NSURLRequest =  NSURLRequest(URL: 要加载的网页URL, cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy, timeoutInterval: 30)
-            动态地图网页!.loadRequest(加载地图网络请求)
+            装入网页(全局_喵窩API["静态地图接口"]!)
         }
-        
+        if (等待提示 != nil) {
+            等待提示?.dismissViewControllerAnimated(false, completion: nil)
+            等待提示 = nil
+        }
+    }
+    
+    func webView(webView: WKWebView, didFailNavigation navigation: WKNavigation!, withError error: NSError) {
+        动态地图网页?.loadHTMLString("", baseURL: nil)
+        if (等待提示 != nil) {
+            等待提示?.dismissViewControllerAnimated(false, completion: nil)
+            等待提示 = nil
+        }
+        let 消息提示:UIAlertController = UIAlertController(title: "载入失败", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
+        let 取消按钮 = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: nil)
+        消息提示.addAction(取消按钮)
+        self.presentViewController(消息提示, animated: true, completion: nil)
+    }
+    
+    func 装入网页(网址:String) {
+        if (等待提示 == nil) {
+            等待提示 = UIAlertController(title: "正在连接地图服务器", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+            let 取消按钮 = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: { (动作:UIAlertAction) -> Void in
+                self.动态地图网页?.reload()
+                self.等待提示 = nil
+            })
+            等待提示!.addAction(取消按钮)
+            self.presentViewController(等待提示!, animated: true, completion: nil)
+        }
+        let 要加载的网页URL:NSURL = NSURL(string: 网址)!
+        let 加载地图网络请求:NSURLRequest =  NSURLRequest(URL: 要加载的网页URL, cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy, timeoutInterval: 30)
+        动态地图网页!.loadRequest(加载地图网络请求)
     }
 
     override func didReceiveMemoryWarning() {
