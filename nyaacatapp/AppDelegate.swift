@@ -16,9 +16,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
-        UIApplication.sharedApplication().statusBarStyle = .LightContent
+        应用初始化()
+        let 屏幕尺寸:CGRect = UIScreen.mainScreen().bounds
+        let 主窗口:UIWindow = UIWindow(frame: 屏幕尺寸)
+        let 主故事板:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let 主视图:MainTBC = 主故事板.instantiateViewControllerWithIdentifier("MainTBC") as! MainTBC
+        主窗口.rootViewController = 主视图
+        self.window = 主窗口
+        self.window!.makeKeyAndVisible()
         return true
+    }
+    
+    func 应用初始化() {
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+        APILoader().loadPrivateConstant()
+        
     }
     
     func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {

@@ -1,11 +1,3 @@
-//
-//  APILoader.swift
-//  nyaacatapp
-//
-//  Created by 神楽坂雅詩 on 16/3/19.
-//  Copyright © 2016年 KagurazakaYashi. All rights reserved.
-//
-
 import UIKit
 
 class APILoader: NSObject {
