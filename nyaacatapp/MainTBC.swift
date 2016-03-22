@@ -74,8 +74,8 @@ class MainTBC: UITabBarController, WKNavigationDelegate, LoginMenuVCDelegate {
 //            testweb.loadRequest(NSURLRequest(URL: NSURL(string: "http://163.com")!, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringCacheData, timeoutInterval: 30))
 //        }
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "收到重载通知", name: "reloadwebview", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "应用定时器延迟设置", name: "timerset", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainTBC.收到重载通知), name: "reloadwebview", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainTBC.应用定时器延迟设置), name: "timerset", object: nil)
     }
     
     func 初始化WebView() {
@@ -196,7 +196,7 @@ class MainTBC: UITabBarController, WKNavigationDelegate, LoginMenuVCDelegate {
                 if (网页内容 != nil && 网页内容!.rangeOfString(地图页面特征) != nil) {
                     等待画面.副标题.text = "登录成功~撒花~"
                     网络模式 = 网络模式选项.监视页面信息
-                    新定时器 = MSWeakTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "定时器触发", userInfo: nil, repeats: true, dispatchQueue: dispatch_get_main_queue())
+                    新定时器 = MSWeakTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(MainTBC.定时器触发), userInfo: nil, repeats: true, dispatchQueue: dispatch_get_main_queue())
 //                    定时器 = NSTimer.scheduledTimerWithTimeInterval(全局_刷新速度, target: self, selector: "定时器触发", userInfo: nil, repeats: true)
                     等待画面.停止 = true
                 } else {
@@ -234,7 +234,7 @@ class MainTBC: UITabBarController, WKNavigationDelegate, LoginMenuVCDelegate {
     }
     
     func 请求页面源码() {
-        解析延迟定时器 = MSWeakTimer.scheduledTimerWithTimeInterval(0.9, target: self, selector: "请求页面源码2", userInfo: nil, repeats: false, dispatchQueue: dispatch_get_main_queue())
+        解析延迟定时器 = MSWeakTimer.scheduledTimerWithTimeInterval(0.9, target: self, selector: #selector(MainTBC.请求页面源码2), userInfo: nil, repeats: false, dispatchQueue: dispatch_get_main_queue())
     }
     func 请求页面源码2() {
         let 获取网页标题JS:String = "document.title"
@@ -268,7 +268,7 @@ class MainTBC: UITabBarController, WKNavigationDelegate, LoginMenuVCDelegate {
             后台网页加载器!.loadRequest(网络请求)
         } else {
             网络模式 = 网络模式选项.游客模式
-            新定时器 = MSWeakTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "定时器触发", userInfo: nil, repeats: false, dispatchQueue: dispatch_get_main_queue())
+            新定时器 = MSWeakTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(MainTBC.定时器触发), userInfo: nil, repeats: false, dispatchQueue: dispatch_get_main_queue())
             等待画面.停止 = true
         }
     }

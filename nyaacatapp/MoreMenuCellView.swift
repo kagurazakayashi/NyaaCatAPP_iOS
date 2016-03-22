@@ -28,9 +28,9 @@ class MoreMenuCellView: UIView {
         图片.frame = CGRectMake(间隔, 0, frame.size.width - 间隔 - 间隔, frame.size.height - 文本高度)
         图片.contentMode = .ScaleAspectFit
         按钮.frame = CGRectMake(0, 0, frame.size.width, frame.size.height)
-        按钮.addTarget(self, action: "按下按钮", forControlEvents: UIControlEvents.TouchDown)
-        按钮.addTarget(self, action: "点击按钮", forControlEvents: UIControlEvents.TouchUpInside)
-        按钮.addTarget(self, action: "松开按钮", forControlEvents: UIControlEvents.TouchDragExit)
+        按钮.addTarget(self, action: #selector(MoreMenuCellView.按下按钮), forControlEvents: UIControlEvents.TouchDown)
+        按钮.addTarget(self, action: #selector(MoreMenuCellView.点击按钮), forControlEvents: UIControlEvents.TouchUpInside)
+        按钮.addTarget(self, action: #selector(MoreMenuCellView.松开按钮), forControlEvents: UIControlEvents.TouchDragExit)
         self.addSubview(文本)
         self.addSubview(图片)
         self.addSubview(按钮)

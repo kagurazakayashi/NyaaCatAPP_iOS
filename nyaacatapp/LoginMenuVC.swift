@@ -66,7 +66,7 @@ class LoginMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
             单元格?.textLabel?.text = 行标题[行数] + 用户名
         } else if (行数 == 1) {
             var 隐藏密码:String = ""
-            for (var i = 0; i < 密码.lengthOfBytesUsingEncoding(NSUTF8StringEncoding); i++) {
+            for _ in 0 ..< 密码.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) {
                 隐藏密码 += "*"
             }
             单元格?.textLabel?.text = 行标题[行数] + 隐藏密码

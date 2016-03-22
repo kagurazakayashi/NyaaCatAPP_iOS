@@ -47,7 +47,7 @@ class MoreMenuVC: UIViewController, MoreMenuCellViewDelegate {
                 let 当前按钮显示:[String] = 按钮文本和对应图片[序号]
                 let 当前按钮:MoreMenuCellView = MoreMenuCellView(frame: 当前按钮位置)
                 当前按钮.设置内容(当前按钮显示[0], 图片文件名: 当前按钮显示[1])
-                TAG组++
+                TAG组 += 1
                 当前按钮.tag = TAG组
                 当前按钮.代理 = self
                 底栏.addSubview(当前按钮)

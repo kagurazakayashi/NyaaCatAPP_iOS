@@ -34,9 +34,9 @@ class MapVC: UIViewController , WKNavigationDelegate {
     }
     
     func 创建UI() {
-        左上按钮 = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Compose, target: self, action: "左上按钮点击")
+        左上按钮 = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Compose, target: self, action: #selector(MapVC.左上按钮点击))
         navigationItem.leftBarButtonItem = 左上按钮
-        右上按钮 = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Bookmarks, target: self, action: "右上按钮点击")
+        右上按钮 = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Bookmarks, target: self, action: #selector(MapVC.右上按钮点击))
         navigationItem.rightBarButtonItem = 右上按钮
     }
     
@@ -140,7 +140,7 @@ class MapVC: UIViewController , WKNavigationDelegate {
     
     func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
         if (登录步骤 == 0) {
-            登录步骤++
+            登录步骤 += 1
             装入网页(全局_喵窩API["静态地图接口"]!)
         }
         if (等待提示 != nil) {

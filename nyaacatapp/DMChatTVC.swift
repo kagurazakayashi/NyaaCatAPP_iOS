@@ -42,13 +42,13 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
         self.tableView.backgroundColor = UIColor.clearColor()
         self.tableView.separatorStyle = .None
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "接收数据更新通知", name: "data", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(DMChatTVC.接收数据更新通知), name: "data", object: nil)
         
 //        初始化WebView()
         
-        左上按钮 = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Trash, target: self, action: "左上按钮点击")
+        左上按钮 = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Trash, target: self, action: #selector(DMChatTVC.左上按钮点击))
         navigationItem.leftBarButtonItem = 左上按钮
-        右上按钮 = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "右上按钮点击")
+        右上按钮 = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: #selector(DMChatTVC.右上按钮点击))
         navigationItem.rightBarButtonItem = 右上按钮
         
         左上按钮?.enabled = false
