@@ -10,7 +10,7 @@ import Foundation
 
 print("Hello, World!")
 
-let path = NSBundle.mainBundle().pathForResource("html", ofType: "txt")
+let path = NSBundle.mainBundle().pathForResource("wiki", ofType: "txt")
 var html:String = ""
 var contents: String? = nil
  if (path != nil) {
@@ -20,6 +20,7 @@ var contents: String? = nil
         contents = nil
     }
     if (contents != nil) {
+        //dynmap 解析部分
 //        let dma:DynmapAnalysis = DynmapAnalysis()
 //        dma.html = contents!
 //        dma.取得世界列表()
@@ -33,12 +34,17 @@ var contents: String? = nil
 ////        dma.去除HTML标签(contents!)
         
         //内存压力测试
-        for i in 0...10000 {
-            NSLog("开始解析 \(i)")
-            let dmac:DynmapAnalysisController = DynmapAnalysisController()
-            dmac.html = contents!
-            dmac.start()
-        }
+//        for i in 0...10000 {
+//            NSLog("开始解析 \(i)")
+//            let dmac:DynmapAnalysisController = DynmapAnalysisController()
+//            dmac.html = contents!
+//            dmac.start()
+//        }
+        
+        //wiki解析部分
+        let wiki:WikiAnalysis = WikiAnalysis()
+        wiki.html = contents!
+        wiki.维基主菜单()
     } else {
         print("contents null")
     }

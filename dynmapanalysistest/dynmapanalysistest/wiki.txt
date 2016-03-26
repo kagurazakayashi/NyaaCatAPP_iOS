@@ -1,0 +1,434 @@
+
+<!DOCTYPE html>
+<html lang="zh" dir="ltr" class="no-js">
+<head>
+<meta charset="utf-8" />
+<title>start [Nyaa Wiki]</title>
+<script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+<meta name="generator" content="DokuWiki"/>
+<meta name="robots" content="index,follow"/>
+<meta name="keywords" content="start"/>
+<link rel="search" type="application/opensearchdescription+xml" href="/lib/exe/opensearch.php" title="Nyaa Wiki"/>
+<link rel="start" href="/"/>
+<link rel="contents" href="/start?do=index" title="网站地图"/>
+<link rel="alternate" type="application/rss+xml" title="最近更改" href="/feed.php"/>
+<link rel="alternate" type="application/rss+xml" title="当前命名空间" href="/feed.php?mode=list&amp;ns="/>
+<link rel="alternate" type="text/html" title="纯HTML" href="/_export/xhtml/start"/>
+<link rel="alternate" type="text/plain" title="Wiki Markup 语言" href="/_export/raw/start"/>
+<link rel="canonical" href="https://wiki.nyaa.cat/"/>
+<link rel="stylesheet" type="text/css" href="/lib/exe/css.php?t=dokuwiki&amp;tseed=2a410a5240d0511403f7fa9ae1d5b7ee"/>
+<script type="text/javascript">/*<![CDATA[*/var NS='';var JSINFO = {"id":"start","namespace":""};
+/*!]]>*/</script>
+<script type="text/javascript" charset="utf-8" src="/lib/exe/js.php?t=dokuwiki&amp;tseed=2a410a5240d0511403f7fa9ae1d5b7ee"></script>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="shortcut icon" href="/lib/tpl/dokuwiki/images/favicon.ico" />
+<link rel="apple-touch-icon" href="/lib/tpl/dokuwiki/images/apple-touch-icon.png" />
+</head>
+
+<body>
+<!--[if lte IE 8 ]><div id="IE8"><![endif]-->
+<div id="dokuwiki__site"><div id="dokuwiki__top" class="site dokuwiki mode_show tpl_dokuwiki   home showSidebar hasSidebar">
+
+
+<!-- ********** HEADER ********** -->
+<div id="dokuwiki__header"><div class="pad group">
+
+
+<div class="headings group">
+<ul class="a11y skip">
+<li><a href="#dokuwiki__content">跳至内容</a></li>
+</ul>
+
+<h1><a href="/start"  accesskey="h" title="[H]"><img src="/lib/tpl/dokuwiki/images/logo.png" width="64" height="64" alt="" /> <span>Nyaa Wiki</span></a></h1>
+</div>
+
+<div class="tools group">
+<!-- USER TOOLS -->
+<div id="dokuwiki__usertools">
+<h3 class="a11y">用户工具</h3>
+<ul>
+<li><a href="/start?do=login&amp;sectok=e05de7c9ca8c3a0344afb5c81547ea33"  class="action login" rel="nofollow" title="登录">登录</a></li>                </ul>
+</div>
+
+<!-- SITE TOOLS -->
+<div id="dokuwiki__sitetools">
+<h3 class="a11y">站点工具</h3>
+<form action="/start" accept-charset="utf-8" class="search" id="dw__search" method="get" role="search"><div class="no"><input type="hidden" name="do" value="search" /><input type="text" placeholder="搜索" id="qsearch__in" accesskey="f" name="id" class="edit" title="[F]" /><button type="submit" title="搜索">搜索</button><div id="qsearch__out" class="ajax_qsearch JSpopup"></div></div></form>            <div class="mobileTools">
+<form action="/doku.php" method="get" accept-charset="utf-8"><div class="no"><input type="hidden" name="id" value="start" /><select name="do" class="edit quickselect" title="工具"><option value="">工具</option><optgroup label="页面工具"><option value="edit">显示源文件</option><option value="revisions">修订记录</option><option value="backlink">反向链接</option></optgroup><optgroup label="站点工具"><option value="recent">最近更改</option><option value="media">媒体管理器</option><option value="index">网站地图</option></optgroup><optgroup label="用户工具"><option value="login">登录</option></optgroup></select><button type="submit">&gt;</button></div></form>            </div>
+<ul>
+<li><a href="/start?do=recent"  class="action recent" accesskey="r" rel="nofollow" title="最近更改 [R]">最近更改</a></li><li><a href="/start?do=media&amp;ns="  class="action media" rel="nofollow" title="媒体管理器">媒体管理器</a></li><li><a href="/start?do=index"  class="action index" accesskey="x" rel="nofollow" title="网站地图 [X]">网站地图</a></li>            </ul>
+</div>
+
+</div>
+
+<!-- BREADCRUMBS -->
+<div class="breadcrumbs">
+<div class="trace"><span class="bchead">您的足迹:</span> <span class="bcsep">•</span> <span class="curid"><bdi><a href="/start"  class="breadcrumbs" title="start">start</a></bdi></span></div>
+</div>
+
+
+
+<hr class="a11y" />
+</div></div><!-- /header -->
+
+<div class="wrapper group">
+
+<!-- ********** ASIDE ********** -->
+<div id="dokuwiki__aside"><div class="pad aside include group">
+<h3 class="toggle">侧边栏</h3>
+<div class="content"><div class="group">
+<ul>
+<li class="level1 node"><div class="li"> <a href="/start" class="wikilink1" title="start">首页</a></div>
+<ul>
+<li class="level2"><div class="li"> <a href="/%E6%96%B0%E7%8E%A9%E5%AE%B6%E7%94%B3%E8%AF%B7" class="wikilink1" title="新玩家申请">新玩家申请</a></div>
+</li>
+<li class="level2 node"><div class="li"> <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E6%96%B0%E4%BA%BA%E6%8C%87%E5%8D%97" class="wikilink1" title="玩家空间:新人指南">新人指南</a></div>
+<ul>
+<li class="level3"><div class="li"> <a href="/%E6%B8%B8%E6%88%8F%E8%A7%84%E5%88%99" class="wikilink1" title="游戏规则">游戏规则</a></div>
+</li>
+<li class="level3"><div class="li"> <a href="/%E7%8E%A9%E5%AE%B6%E6%9D%83%E9%99%90" class="wikilink1" title="玩家权限">玩家权限</a></div>
+</li>
+<li class="level3"><div class="li"> <a href="/%E6%8E%A8%E8%8D%90%E8%B5%84%E6%BA%90" class="wikilink1" title="推荐资源">推荐资源</a></div>
+</li>
+</ul>
+</li>
+<li class="level2"><div class="li"> <a href="/faq" class="wikilink1" title="faq">常见问题</a></div>
+</li>
+<li class="level2"><div class="li"> <a href="/%E7%8E%A9%E5%AE%B6%E7%BE%A4%E7%BB%84" class="wikilink1" title="玩家群组">玩家群组</a></div>
+</li>
+<li class="level2"><div class="li"> <a href="/project_nyaa_ubw" class="wikilink1" title="project_nyaa_ubw">Project Nyaa UBW</a></div>
+</li>
+</ul>
+</li>
+<li class="level1 node"><div class="li"> <a href="/%E4%B8%96%E7%95%8C%E8%AE%BE%E5%AE%9A?do=index" class="wikilink2" title="世界设定" rel="nofollow">世界设定</a></div>
+<ul>
+<li class="level2"><div class="li"> <a href="/%E4%B8%96%E7%95%8C%E8%AE%BE%E5%AE%9A:%E7%BB%8F%E6%B5%8E%E8%AE%BE%E5%AE%9A" class="wikilink1" title="世界设定:经济设定">经济</a></div>
+</li>
+<li class="level2 node"><div class="li"> <a href="/%E4%B8%96%E7%95%8C%E8%AE%BE%E5%AE%9A:%E5%B7%A5%E7%A8%8B" class="wikilink1" title="世界设定:工程">公共工程</a></div>
+<ul>
+<li class="level3"><div class="li"> <a href="/%E4%B8%96%E7%95%8C%E8%AE%BE%E5%AE%9A:%E5%B7%A5%E7%A8%8B:%E9%93%81%E8%B7%AF" class="wikilink1" title="世界设定:工程:铁路">铁路</a></div>
+</li>
+</ul>
+</li>
+<li class="level2 node"><div class="li"> <a href="/%E4%B8%96%E7%95%8C%E8%AE%BE%E5%AE%9A:%E6%9D%91%E8%90%BD" class="wikilink1" title="世界设定:村落">村落</a></div>
+<ul>
+<li class="level3"><div class="li"> <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E6%96%B0%E6%89%8B%E6%9D%91" class="wikilink1" title="玩家空间:新手村">新手村</a></div>
+</li>
+<li class="level3"><div class="li"> <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E6%9D%91%E8%90%BD:%E4%B8%9C%E6%96%B9%E4%B8%BB%E5%9F%8E" class="wikilink1" title="玩家空间:村落:东方主城">東方主城</a></div>
+</li>
+<li class="level3"><div class="li"> <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E6%9D%91%E8%90%BD:%E5%8D%97%E6%96%B9%E4%B8%BB%E5%9F%8E" class="wikilink1" title="玩家空间:村落:南方主城">南方主城</a></div>
+</li>
+<li class="level3"><div class="li"> <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E6%9D%91%E8%90%BD:%E5%8C%97%E5%9F%8E%E6%96%B0%E5%8C%BA" class="wikilink1" title="玩家空间:村落:北城新区">北城新区</a></div>
+</li>
+<li class="level3"><div class="li"> <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E9%87%8E%E5%A4%96%E5%BB%BA%E7%AD%91" class="wikilink1" title="玩家空间:野外建筑">野外建筑</a></div>
+</li>
+<li class="level3 node"><div class="li"> <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4?do=index" class="wikilink2" title="玩家空间" rel="nofollow">史记</a></div>
+<ul>
+<li class="level4"><div class="li"> <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E9%A6%99%E5%9F%8E%E5%9F%8E%E5%BF%97" class="wikilink1" title="玩家空间:香城城志">香城城志</a></div>
+</li>
+<li class="level4"><div class="li"> <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E9%83%BD%E5%B8%82%E4%BC%A0%E8%AF%B4" class="wikilink1" title="玩家空间:都市传说">都市传说</a></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="level2 node"><div class="li"> <a href="/%E4%B8%96%E7%95%8C%E8%AE%BE%E5%AE%9A:%E4%B8%96%E7%95%8C" class="wikilink1" title="世界设定:世界">世界列表</a></div>
+<ul>
+<li class="level3"><div class="li"> <a href="/%E4%B8%96%E7%95%8C%E8%AE%BE%E5%AE%9A:%E8%84%91%E6%B4%9E%E4%B8%96%E7%95%8C" class="wikilink1" title="世界设定:脑洞世界">脑洞世界</a></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="level1 node"><div class="li"> <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4?do=index" class="wikilink2" title="玩家空间" rel="nofollow">玩家空间</a></div>
+<ul>
+<li class="level2"><div class="li"> <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E4%BD%9C%E5%93%81%E9%9B%86" class="wikilink1" title="玩家空间:作品集">作品集</a></div>
+</li>
+<li class="level2"><div class="li"> <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E5%95%86%E5%BA%97" class="wikilink1" title="玩家空间:商店">商店列表</a></div>
+</li>
+<li class="level2"><div class="li"> <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E4%BC%A0%E9%80%81%E9%97%A8" class="wikilink1" title="玩家空间:传送门">传送列表</a></div>
+</li>
+<li class="level2"><div class="li"> <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E5%AE%9D%E7%9F%B3" class="wikilink1" title="玩家空间:宝石">宝石列表</a></div>
+</li>
+<li class="level2"><div class="li"> <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E7%A7%98%E8%97%8F%E5%85%91%E6%8D%A2" class="wikilink1" title="玩家空间:秘藏兑换">秘藏兑换</a></div>
+</li>
+<li class="level2"><div class="li"> <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E8%A3%85%E5%A4%87%E5%BC%BA%E5%8C%96" class="wikilink1" title="玩家空间:装备强化">装备强化</a></div>
+</li>
+<li class="level2"><div class="li"> <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E6%88%BF%E4%BA%A7" class="wikilink1" title="玩家空间:房产">购买房产</a></div>
+</li>
+<li class="level2"><div class="li"> <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E5%8D%97%E8%81%94%E5%A4%A7%E6%95%99%E7%A7%91%E4%B9%A6" class="wikilink1" title="玩家空间:南联大教科书">南联大教科书</a></div>
+</li>
+<li class="level2 node"><div class="li"> <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E5%85%AC%E5%8F%B8" class="wikilink1" title="玩家空间:公司">公司列表</a></div>
+<ul>
+<li class="level3"><div class="li"> <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E7%A7%91%E7%A0%94%E6%9C%BA%E6%9E%84" class="wikilink1" title="玩家空间:科研机构">科研机构</a></div>
+</li>
+</ul>
+</li>
+<li class="level2 node"><div class="li"> <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E6%8F%92%E4%BB%B6%E6%8C%87%E5%8D%97" class="wikilink2" title="玩家空间:插件指南" rel="nofollow">插件指南</a></div>
+<ul>
+<li class="level3"><div class="li"> <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E6%8D%95%E8%8E%B7%E7%B3%BB%E7%BB%9F" class="wikilink1" title="玩家空间:捕获系统">捕捉生物</a></div>
+</li>
+<li class="level3"><div class="li"> <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E4%BF%AE%E5%A4%8D" class="wikilink1" title="玩家空间:修复">修复</a></div>
+</li>
+<li class="level3"><div class="li"> <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E6%94%BB%E7%95%A5:%E7%89%8C%E5%AD%90%E5%95%86%E5%BA%97" class="wikilink1" title="玩家空间:攻略:牌子商店">牌子商店</a></div>
+</li>
+<li class="level3"><div class="li"> <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E9%94%81%E7%AE%B1%E6%8F%92%E4%BB%B6%E4%BB%8B%E7%BB%8D" class="wikilink1" title="玩家空间:锁箱插件介绍">个人财产保护</a></div>
+</li>
+<li class="level3"><div class="li"> <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E5%AE%A0%E7%89%A9" class="wikilink1" title="玩家空间:宠物">宠物</a></div>
+</li>
+<li class="level3"><div class="li"> <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E8%87%AA%E5%AE%9A%E4%B9%89npc%E5%95%86%E5%BA%97" class="wikilink1" title="玩家空间:自定义npc商店">自定义NPC商店</a></div>
+</li>
+</ul>
+</li>
+<li class="level2 node"><div class="li"> <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E6%94%BB%E7%95%A5?do=index" class="wikilink2" title="玩家空间:攻略" rel="nofollow">攻略</a></div>
+<ul>
+<li class="level3"><div class="li"> <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E7%9F%BF%E7%95%8C%E6%8C%96%E6%8E%98" class="wikilink1" title="玩家空间:矿界挖掘">矿界挖掘技巧</a></div>
+</li>
+<li class="level3"><div class="li"> <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E4%B8%8B%E7%95%8C%E9%93%81%E8%B7%AF%E6%8C%87%E5%8D%97" class="wikilink1" title="玩家空间:下界铁路指南">下界铁路指南</a></div>
+</li>
+<li class="level3 node"><div class="li"> <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E9%99%A4%E9%AD%94" class="wikilink1" title="玩家空间:除魔">除魔</a></div>
+<ul>
+<li class="level4"><div class="li"> <a href="/%E8%8A%82%E6%97%A5%E6%B4%BB%E5%8A%A8:%E8%A1%80%E6%9C%88" class="wikilink1" title="节日活动:血月">血月</a></div>
+</li>
+</ul>
+</li>
+<li class="level3"><div class="li"> <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E6%94%BB%E7%95%A5:%E7%9F%BF%E7%89%A9%E7%B2%BE%E7%82%BC" class="wikilink1" title="玩家空间:攻略:矿物精炼">矿物精炼</a></div>
+</li>
+</ul>
+</li>
+<li class="level2 node"><div class="li"> <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4?do=index" class="wikilink2" title="玩家空间" rel="nofollow">计划</a></div>
+<ul>
+<li class="level3"><div class="li"> <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E5%88%9B%E9%80%A0%E7%BB%84%E5%B7%A5%E7%A8%8B" class="wikilink1" title="玩家空间:创造组工程">创造组工程列表</a></div>
+</li>
+<li class="level3"><div class="li"> <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E5%8C%97%E5%9F%8E%E6%94%B9%E9%80%A0%E8%AE%A1%E5%88%92" class="wikilink1" title="玩家空间:北城改造计划">北城改造计划</a></div>
+</li>
+<li class="level3"><div class="li"> <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E5%8D%97%E5%9F%8E%E6%95%B4%E9%A1%BF%E8%AE%A1%E5%88%92" class="wikilink1" title="玩家空间:南城整顿计划">南城整顿计划</a></div>
+</li>
+<li class="level3"><div class="li"> <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E5%8D%97%E9%93%81%E8%87%AA%E5%8A%A8%E5%8C%96%E6%94%B9%E9%80%A0%E8%AE%A1%E5%88%92" class="wikilink1" title="玩家空间:南铁自动化改造计划">南铁自动化改造计划</a></div>
+</li>
+</ul>
+</li>
+<li class="level2 node"><div class="li"> <a href="/%E8%8A%82%E6%97%A5%E6%B4%BB%E5%8A%A8?do=index" class="wikilink2" title="节日活动" rel="nofollow">节日活动</a></div>
+<ul>
+<li class="level3"><div class="li"> <a href="/%E8%8A%82%E6%97%A5%E6%B4%BB%E5%8A%A8:%E6%96%B0%E5%B9%B4%E7%A5%AD" class="wikilink1" title="节日活动:新年祭">新年祭</a></div>
+</li>
+<li class="level3"><div class="li"> <a href="/%E8%8A%82%E6%97%A5%E6%B4%BB%E5%8A%A8:%E6%96%B0%E6%98%A5%E7%A5%AD" class="wikilink1" title="节日活动:新春祭">新春祭</a></div>
+</li>
+<li class="level3"><div class="li"> <a href="/%E8%8A%82%E6%97%A5%E6%B4%BB%E5%8A%A8:%E5%A4%8F%E6%97%A5%E7%A5%AD" class="wikilink1" title="节日活动:夏日祭">夏日祭</a></div>
+</li>
+<li class="level3"><div class="li"> <a href="/%E8%8A%82%E6%97%A5%E6%B4%BB%E5%8A%A8:%E4%B8%AD%E7%A7%8B" class="wikilink1" title="节日活动:中秋">中秋</a></div>
+</li>
+<li class="level3"><div class="li"> <a href="/%E8%8A%82%E6%97%A5%E6%B4%BB%E5%8A%A8:%E5%9B%BD%E5%BA%86" class="wikilink1" title="节日活动:国庆">国庆</a></div>
+</li>
+<li class="level3"><div class="li"> <a href="/%E8%8A%82%E6%97%A5%E6%B4%BB%E5%8A%A8:%E4%B8%87%E5%9C%A3%E8%8A%82" class="wikilink1" title="节日活动:万圣节">万圣节</a></div>
+</li>
+<li class="level3"><div class="li"> <a href="/%E8%8A%82%E6%97%A5%E6%B4%BB%E5%8A%A8:%E4%B8%83%E5%A4%95%E6%B4%BB%E5%8A%A8" class="wikilink1" title="节日活动:七夕活动">七夕活动</a></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> <a href="/changelog" class="wikilink1" title="changelog">changelog</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/%E5%8D%87%E7%BA%A7%E8%AE%A1%E5%88%92" class="wikilink1" title="升级计划">服务器升级计划</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/%E9%80%80%E5%87%BA" class="wikilink1" title="退出">退出服务器</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/%E5%88%9B%E5%BB%BA" class="wikilink1" title="创建">创建页面</a></div>
+</li>
+</ul>
+
+<p>
+如果您建立了新的页面，并且确定它合适放在边栏，请在这里按照格式添加。
+</p>
+</div></div>
+</div></div><!-- /aside -->
+
+<!-- ********** CONTENT ********** -->
+<div id="dokuwiki__content"><div class="pad group">
+
+<div class="pageId"><span>start</span></div>
+
+<div class="page group">
+<!-- wikipage start -->
+
+<p>
+欢迎来到喵窝のWiki~
+</p>
+
+<p>
+玩家入服申请通过后即可发邮件申请本 wiki 的帐号，欢迎贡献喵~
+</p>
+
+<p>
+新玩家申请白名单请看<a href="/%E6%96%B0%E7%8E%A9%E5%AE%B6%E7%94%B3%E8%AF%B7" class="wikilink1" title="新玩家申请">新玩家申请</a>，不符合要求的申请将不会通过。<br/>
+
+</p>
+
+<h4 id="当前世界_喵窝">当前世界「喵窝」</h4>
+<div class="level4">
+
+<p>
+版本：SpigotMC 1.8.8 兼容 1.8.0 - 1.8.8 <strong>Online mode</strong>
+</p>
+
+<p>
+<a href="http://nyaa.cat" class="urlextern" title="http://nyaa.cat"  rel="nofollow">主页</a> | <a href="https://bbs.nyaa.cat" class="urlextern" title="https://bbs.nyaa.cat"  rel="nofollow">论坛</a> | <a href="/faq" class="wikilink1" title="faq">常见问题</a> | <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E6%96%B0%E6%89%8B%E6%9D%91" class="wikilink1" title="玩家空间:新手村">新手村指引</a> | <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E6%96%B0%E4%BA%BA%E6%8C%87%E5%8D%97" class="wikilink1" title="玩家空间:新人指南">新人指南</a> | <a href="https://mcmap.90g.org" class="urlextern" title="https://mcmap.90g.org"  rel="nofollow">动态地图</a>
+</p>
+
+<p>
+服务器地址列表：
+</p>
+<ul>
+<li class="level1"><div class="li"> <code>mc.nyaacat.com</code> - 北京 / 世纪互联 BGP</div>
+</li>
+<li class="level1"><div class="li"> <code>hk.mc.nyaacat.com</code> - 香港、东/南亚地区</div>
+</li>
+<li class="level1"><div class="li"> <code>jp.mc.nyaacat.com</code> - 日本</div>
+</li>
+<li class="level1"><div class="li"> <code>us.mc.nyaacat.com</code> - 美国、加拿大</div>
+</li>
+<li class="level1"><div class="li"> <code>eu.mc.nyaacat.com</code> - 欧洲</div>
+</li>
+</ul>
+
+<p>
+请选择到您最快的服务器连接，对于在中国大陆的玩家，请使用 <code>mc.nyaacat.com</code>。如果您处于封锁高位端口的环境，请在服务器地址后面指定端口，例如 <code>mc.nyaacat.com:443</code>
+</p>
+
+<p>
+教育网玩家请使用 <code>cernet.mc.nyaacat.com</code>。如果您使用 IPv6，可以尝试连接 <code>v6.mc.nyaacat.com</code>
+</p>
+
+<p>
+如果您是第一次玩Minecraft，并且不知道干什么，可以参考<a href="http://minecraft-zh.gamepedia.com/%E6%95%99%E7%A8%8B" class="urlextern" title="http://minecraft-zh.gamepedia.com/%E6%95%99%E7%A8%8B"  rel="nofollow">Minecraft 中文 Wiki</a>
+</p>
+
+</div>
+
+<h4 id="服务器配置">服务器配置</h4>
+<div class="level4">
+<ul>
+<li class="level1 node"><div class="li">主服务器</div>
+<ul>
+<li class="level2"><div class="li">IBM X3250 M5 1U 机架式服务器</div>
+</li>
+<li class="level2"><div class="li">Intel Xeon E3-1271v3 处理器</div>
+</li>
+<li class="level2"><div class="li">16GB DDR3 ECC 内存</div>
+</li>
+<li class="level2"><div class="li">4×256GB Plextor M6S SSD RAID10 阵列</div>
+</li>
+</ul>
+</li>
+<li class="level1 node"><div class="li">创造服务器</div>
+<ul>
+<li class="level2"><div class="li">Dell R210 1U 机架式服务器</div>
+</li>
+<li class="level2"><div class="li">Intel Xeon E3-1231 v3 处理器</div>
+</li>
+<li class="level2"><div class="li">8GB DDR3 ECC 内存</div>
+</li>
+<li class="level2"><div class="li">128GB Plextor M5S SSD / 2×1TB WD HDD RAID1 阵列</div>
+</li>
+</ul>
+</li>
+<li class="level1 node"><div class="li">开放服务器</div>
+<ul>
+<li class="level2"><div class="li">Dell R210 1U 机架式服务器</div>
+</li>
+<li class="level2"><div class="li">Intel Xeon E3-1230 处理器</div>
+</li>
+<li class="level2"><div class="li">8GB DDR3 ECC 内存</div>
+</li>
+<li class="level2"><div class="li">120GB Intel 520 SSD / 2×500GB WD HDD RAID1 阵列</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+<h4 id="联系">联系</h4>
+<div class="level4">
+
+<p>
+<a href="https://nyaa.cat" class="urlextern" title="https://nyaa.cat"  rel="nofollow">喵窝主页</a> | <a href="https://bbs.nyaa.cat" class="urlextern" title="https://bbs.nyaa.cat"  rel="nofollow">喵窝 Wiki</a> | <a href="https://bbs.nyaa.cat" class="urlextern" title="https://bbs.nyaa.cat"  rel="nofollow">喵窝论坛</a>
+</p>
+
+<p>
+<strong>请注意</strong>
+</p>
+<ul>
+<li class="level1"><div class="li">NyaaCat 社区和喵窝服务器仅使用 <code>nyaa.cat</code> 和 <code>nyaacat.com</code> 域名</div>
+</li>
+<li class="level1"><div class="li">本社区所有网站均配置为强制 HTTPS 加密链接</div>
+</li>
+<li class="level1"><div class="li">本社区不会以任何理由向任何人索要金钱、物品和任何敏感信息</div>
+</li>
+</ul>
+
+<p>
+如果需要帮助，请直接联系社区管理员。
+</p>
+
+<p>
+您可以在以下位置找到我们：
+</p>
+<ul>
+<li class="level1"><div class="li"><a href="https://plus.google.com/communities/106016758621697881816" class="urlextern" title="https://plus.google.com/communities/106016758621697881816"  rel="nofollow">Google+ 社群</a></div>
+</li>
+<li class="level1"><div class="li">交流QQ群 <code>207280659</code> | 身份验证请填写有效的游戏 ID，入群后请将自己群名片改为游戏 ID (至少名称中要包含游戏 ID)。</div>
+</li>
+<li class="level1"><div class="li"><abbr title="Internet Relay Chat">IRC</abbr>: #nyaacat at freenode</div>
+</li>
+<li class="level1"><div class="li">管理组邮件列表： <code>owo@nyaa.cat</code>
+</div>
+</li>
+</ul>
+
+</div>
+
+<!-- wikipage stop -->
+</div>
+
+<div class="docInfo"><bdi>start.txt</bdi> · 最后更改: 2016/03/20 07:31 由 <bdi>phoenixlzx</bdi></div>
+
+</div></div><!-- /content -->
+
+<hr class="a11y" />
+
+<!-- PAGE ACTIONS -->
+<div id="dokuwiki__pagetools">
+<h3 class="a11y">页面工具</h3>
+<div class="tools">
+<ul>
+<li><a href="/start?do=edit"  class="action source" accesskey="v" rel="nofollow" title="显示源文件 [V]"><span>显示源文件</span></a></li><li><a href="/start?do=revisions"  class="action revs" accesskey="o" rel="nofollow" title="修订记录 [O]"><span>修订记录</span></a></li><li><a href="/start?do=backlink"  class="action backlink" rel="nofollow" title="反向链接"><span>反向链接</span></a></li><li><a href="#dokuwiki__top"  class="action top" accesskey="t" rel="nofollow" title="回到顶部 [T]"><span>回到顶部</span></a></li>                    </ul>
+</div>
+</div>
+</div><!-- /wrapper -->
+
+
+<!-- ********** FOOTER ********** -->
+<div id="dokuwiki__footer"><div class="pad">
+<div class="license">除额外注明的地方外，本维基上的内容按下列许可协议发布： <bdi><a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license" class="urlextern">CC Attribution-Share Alike 3.0 Unported</a></bdi></div>
+<div class="buttons">
+<a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license"><img src="/lib/images/license/button/cc-by-sa.png" alt="CC Attribution-Share Alike 3.0 Unported" /></a>        <a href="http://www.dokuwiki.org/donate" title="Donate" ><img
+src="/lib/tpl/dokuwiki/images/button-donate.gif" width="80" height="15" alt="Donate" /></a>
+<a href="http://www.php.net" title="Powered by PHP" ><img
+src="/lib/tpl/dokuwiki/images/button-php.gif" width="80" height="15" alt="Powered by PHP" /></a>
+<a href="http://validator.w3.org/check/referer" title="Valid HTML5" ><img
+src="/lib/tpl/dokuwiki/images/button-html5.png" width="80" height="15" alt="Valid HTML5" /></a>
+<a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3" title="Valid CSS" ><img
+src="/lib/tpl/dokuwiki/images/button-css.png" width="80" height="15" alt="Valid CSS" /></a>
+<a href="http://dokuwiki.org/" title="Driven by DokuWiki" ><img
+src="/lib/tpl/dokuwiki/images/button-dw.png" width="80" height="15" alt="Driven by DokuWiki" /></a>
+</div>
+</div></div><!-- /footer -->
+
+</div></div><!-- /site -->
+
+<div class="no"><img src="/lib/exe/indexer.php?id=start&amp;1458981501" width="2" height="1" alt="" /></div>
+<div id="screen__mode" class="no"></div>    <!--[if lte IE 8 ]></div><![endif]-->
+</body>
+</html>

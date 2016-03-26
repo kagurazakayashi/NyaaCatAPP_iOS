@@ -8,9 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		533A71021C783B72005EAC90 /* DynmapAnalysisController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533A71011C783B72005EAC90 /* DynmapAnalysisController.swift */; };
+		533B1FBF1CA6895300A34F09 /* wiki.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 53F6832C1CA6833A00A6E01F /* wiki.txt */; };
 		536E30061C6C9FF900168F02 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536E30051C6C9FF900168F02 /* main.swift */; };
 		536E30131C6CA06700168F02 /* DynmapAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536E30121C6CA06700168F02 /* DynmapAnalysis.swift */; };
-		536E301A1C6CAA8B00168F02 /* html.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 536E30171C6CA8FD00168F02 /* html.txt */; };
+		536E301A1C6CAA8B00168F02 /* dynmap.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 536E30171C6CA8FD00168F02 /* dynmap.txt */; };
+		53F6832B1CA6830C00A6E01F /* WikiAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F6832A1CA6830C00A6E01F /* WikiAnalysis.swift */; };
+		53F6832E1CA6856500A6E01F /* Analysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F6832D1CA6856500A6E01F /* Analysis.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -20,7 +23,8 @@
 			dstPath = /usr/share/man/man1;
 			dstSubfolderSpec = 0;
 			files = (
-				536E301A1C6CAA8B00168F02 /* html.txt in CopyFiles */,
+				533B1FBF1CA6895300A34F09 /* wiki.txt in CopyFiles */,
+				536E301A1C6CAA8B00168F02 /* dynmap.txt in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -31,7 +35,10 @@
 		536E30021C6C9FF900168F02 /* dynmapanalysistest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = dynmapanalysistest; sourceTree = BUILT_PRODUCTS_DIR; };
 		536E30051C6C9FF900168F02 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		536E30121C6CA06700168F02 /* DynmapAnalysis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynmapAnalysis.swift; sourceTree = "<group>"; };
-		536E30171C6CA8FD00168F02 /* html.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = html.txt; sourceTree = "<group>"; };
+		536E30171C6CA8FD00168F02 /* dynmap.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dynmap.txt; sourceTree = "<group>"; };
+		53F6832A1CA6830C00A6E01F /* WikiAnalysis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WikiAnalysis.swift; sourceTree = "<group>"; };
+		53F6832C1CA6833A00A6E01F /* wiki.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wiki.txt; sourceTree = "<group>"; };
+		53F6832D1CA6856500A6E01F /* Analysis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Analysis.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,10 +71,13 @@
 		536E30041C6C9FF900168F02 /* dynmapanalysistest */ = {
 			isa = PBXGroup;
 			children = (
-				536E30171C6CA8FD00168F02 /* html.txt */,
+				536E30171C6CA8FD00168F02 /* dynmap.txt */,
 				536E30051C6C9FF900168F02 /* main.swift */,
 				533A71011C783B72005EAC90 /* DynmapAnalysisController.swift */,
 				536E30121C6CA06700168F02 /* DynmapAnalysis.swift */,
+				53F6832A1CA6830C00A6E01F /* WikiAnalysis.swift */,
+				53F6832C1CA6833A00A6E01F /* wiki.txt */,
+				53F6832D1CA6856500A6E01F /* Analysis.swift */,
 			);
 			path = dynmapanalysistest;
 			sourceTree = "<group>";
@@ -130,8 +140,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				536E30131C6CA06700168F02 /* DynmapAnalysis.swift in Sources */,
+				53F6832B1CA6830C00A6E01F /* WikiAnalysis.swift in Sources */,
 				536E30061C6C9FF900168F02 /* main.swift in Sources */,
 				533A71021C783B72005EAC90 /* DynmapAnalysisController.swift in Sources */,
+				53F6832E1CA6856500A6E01F /* Analysis.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
