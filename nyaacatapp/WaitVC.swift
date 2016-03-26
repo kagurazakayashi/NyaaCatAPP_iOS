@@ -12,6 +12,8 @@ class WaitVC: UIViewController {
 
     @IBOutlet weak var 图标: UIImageView!
     @IBOutlet weak var 副标题: UILabel!
+    @IBOutlet weak var 网点: UIView!
+    @IBOutlet weak var 登录按钮: UIButton!
 
     var 图标原始位置:CGRect? = nil
     var 图标缩小位置:CGRect? = nil
@@ -20,9 +22,12 @@ class WaitVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.alpha = 1
+        登录按钮.hidden = true
+        网点.backgroundColor = UIColor(patternImage: UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("dot", ofType: "png")!)!)
+        登录按钮.backgroundColor = UIColor(red: 0.5372549, green: 0.6745098, blue: 0.84705882, alpha: 0.8)
         图标原始位置 = 图标.frame
         图标缩小位置 = CGRectMake(图标原始位置!.origin.x, 图标原始位置!.origin.y + (图标原始位置!.size.height * 0.1), 图标原始位置!.size.width, 图标原始位置!.size.height * 0.9)
-        图标动画(true)
+        //图标动画(true)
     }
     
     func 图标动画(前半段:Bool) {

@@ -129,9 +129,10 @@ class MainTBC: UITabBarController, WKNavigationDelegate, LoginMenuVCDelegate {
     
     func 打开动态地图登录菜单() {
         等待画面.副标题.text = "请使用动态地图用户登录喵"
-        登录菜单.代理 = self
-        self.view.addSubview(登录菜单.view)
-        登录菜单.进入动画(self.view.frame)
+        等待画面.登录按钮.hidden = false
+//        登录菜单.代理 = self
+//        self.view.addSubview(登录菜单.view)
+//        登录菜单.进入动画(self.view.frame)
     }
     
     func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
