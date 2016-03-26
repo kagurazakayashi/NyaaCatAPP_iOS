@@ -42,9 +42,11 @@ var contents: String? = nil
 //        }
         
         //wiki解析部分
-        let wiki:WikiAnalysis = WikiAnalysis()
-        wiki.html = contents!
-        wiki.维基主菜单()
+//        let wiki:WikiAnalysis = WikiAnalysis()
+//        wiki.html = contents!
+//        wiki.维基主菜单()
+//        wiki.维基内容("https://wiki.nyaa.cat")
+        
     } else {
         print("contents null")
     }

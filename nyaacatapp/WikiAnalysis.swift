@@ -6,7 +6,7 @@
 //  Copyright © 2016年 KagurazakaYashi. All rights reserved.
 //
 
-import Cocoa
+import UIKit
 
 class WikiAnalysis: NSObject {
     
