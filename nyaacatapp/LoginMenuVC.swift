@@ -125,7 +125,6 @@ class LoginMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
             用户名 = 用户名输入框.text!
             密码 = 密码输入框.text!
             选项表格.reloadData()
-            
         }
         提示框 = nil
     }

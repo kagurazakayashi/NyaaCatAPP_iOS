@@ -24,7 +24,6 @@ class DynmapAnalysisController: NSObject {
     }
     
     func start() {
-        
         if (解析中 == true) {
             NSLog("上次解析未完成")
         } else {

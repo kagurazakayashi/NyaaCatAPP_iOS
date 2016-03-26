@@ -139,6 +139,7 @@ class MapVC: UIViewController , WKNavigationDelegate {
     }
     
     func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
         if (登录步骤 == 0) {
             登录步骤 += 1
             装入网页(全局_喵窩API["静态地图接口"]!)
@@ -160,6 +161,7 @@ class MapVC: UIViewController , WKNavigationDelegate {
     }
     
     func webView(webView: WKWebView, didFailNavigation navigation: WKNavigation!, withError error: NSError) {
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
         动态地图网页?.loadHTMLString("", baseURL: nil)
         if (等待提示 != nil) {
             等待提示?.dismissViewControllerAnimated(false, completion: nil)
@@ -174,8 +176,10 @@ class MapVC: UIViewController , WKNavigationDelegate {
     
     func 装入网页(网址:String) {
         if (等待提示 == nil) {
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
             等待提示 = UIAlertController(title: "⌛️正在连接地图服务器", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
             let 取消按钮 = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: { (动作:UIAlertAction) -> Void in
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                 self.动态地图网页?.reload()
                 self.等待提示 = nil
             })

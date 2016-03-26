@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         应用初始化()
         let 屏幕尺寸:CGRect = UIScreen.mainScreen().bounds
         let 主窗口:UIWindow = UIWindow(frame: 屏幕尺寸)

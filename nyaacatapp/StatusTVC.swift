@@ -29,6 +29,7 @@ class StatusTVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        NSNotificationCenter.defaultCenter().postNotificationName("netbusyonce", object: nil)
         let 背景图:UIImageView = UIImageView(frame: tableView.frame)
         背景图.image = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("bg", ofType: "jpg")!)!
         背景图.contentMode = .ScaleAspectFill

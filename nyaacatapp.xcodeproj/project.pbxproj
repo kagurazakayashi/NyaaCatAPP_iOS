@@ -19,6 +19,7 @@
 		533B1FCB1CA6AADC00A34F09 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 533B1FC81CA6AADC00A34F09 /* background.jpg */; };
 		533B1FCC1CA6AADC00A34F09 /* dot.png in Resources */ = {isa = PBXBuildFile; fileRef = 533B1FC91CA6AADC00A34F09 /* dot.png */; };
 		533B1FCD1CA6AADC00A34F09 /* nyaacatlogow.png in Resources */ = {isa = PBXBuildFile; fileRef = 533B1FCA1CA6AADC00A34F09 /* nyaacatlogow.png */; };
+		533B1FCF1CA6CB6900A34F09 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 533B1FCE1CA6CB6900A34F09 /* icon.png */; };
 		533DD3EB1C94639800E6DD37 /* seting-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 53E7AB821C79F2C000A544B2 /* seting-icon.png */; };
 		533DD3EC1C94639800E6DD37 /* msg-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 53E7AB861C79F72300A544B2 /* msg-icon.png */; };
 		533DD3ED1C94639800E6DD37 /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 53E7AB111C79C67000A544B2 /* bg.jpg */; };
@@ -31,7 +32,7 @@
 		533DD3F41C94639800E6DD37 /* t_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 53E7AB841C79F31700A544B2 /* t_logo.png */; };
 		533DD3F51C94639800E6DD37 /* home_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 53E7AB121C79C67000A544B2 /* home_icon.png */; };
 		533DD3F61C94639800E6DD37 /* lcd-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 53408E611C8C65AC002D68F7 /* lcd-icon.png */; };
-		533DD3F71C94639800E6DD37 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 53E7AB131C79C67000A544B2 /* icon.png */; };
+		533DD3F71C94639800E6DD37 /* nyaaicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 53E7AB131C79C67000A544B2 /* nyaaicon.png */; };
 		533DD3F81C94639800E6DD37 /* logobbs.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA1F3481C7B0B1E003BC1EC /* logobbs.png */; };
 		533DD3F91C94639800E6DD37 /* cloud-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 53FFEE8D1C7C9ECE00130811 /* cloud-icon.png */; };
 		533DD3FA1C94639800E6DD37 /* notebook-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 531B63741C8AA58600DD5956 /* notebook-icon.png */; };
@@ -141,6 +142,7 @@
 		533B1FC81CA6AADC00A34F09 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
 		533B1FC91CA6AADC00A34F09 /* dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dot.png; sourceTree = "<group>"; };
 		533B1FCA1CA6AADC00A34F09 /* nyaacatlogow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nyaacatlogow.png; sourceTree = "<group>"; };
+		533B1FCE1CA6CB6900A34F09 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		53408E591C8C5D86002D68F7 /* MoreMenuNC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreMenuNC.swift; sourceTree = "<group>"; };
 		53408E5F1C8C63C1002D68F7 /* GooglePlus-logos-02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GooglePlus-logos-02.png"; sourceTree = "<group>"; };
 		53408E611C8C65AC002D68F7 /* lcd-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lcd-icon.png"; sourceTree = "<group>"; };
@@ -169,7 +171,7 @@
 		53C595901C6B585800C55E31 /* LoginMenuVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginMenuVC.xib; sourceTree = "<group>"; };
 		53E7AB111C79C67000A544B2 /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpg; sourceTree = "<group>"; };
 		53E7AB121C79C67000A544B2 /* home_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_icon.png; sourceTree = "<group>"; };
-		53E7AB131C79C67000A544B2 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		53E7AB131C79C67000A544B2 /* nyaaicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nyaaicon.png; sourceTree = "<group>"; };
 		53E7AB141C79C67000A544B2 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		53E7AB151C79C67000A544B2 /* signshop_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signshop_icon.png; sourceTree = "<group>"; };
 		53E7AB161C79C67000A544B2 /* stormy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stormy.png; sourceTree = "<group>"; };
@@ -395,6 +397,7 @@
 		53E7AB101C79C67000A544B2 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				533B1FCE1CA6CB6900A34F09 /* icon.png */,
 				533B1FC81CA6AADC00A34F09 /* background.jpg */,
 				533B1FC91CA6AADC00A34F09 /* dot.png */,
 				533B1FCA1CA6AADC00A34F09 /* nyaacatlogow.png */,
@@ -410,7 +413,7 @@
 				53E7AB841C79F31700A544B2 /* t_logo.png */,
 				53E7AB121C79C67000A544B2 /* home_icon.png */,
 				53408E611C8C65AC002D68F7 /* lcd-icon.png */,
-				53E7AB131C79C67000A544B2 /* icon.png */,
+				53E7AB131C79C67000A544B2 /* nyaaicon.png */,
 				8BA1F3481C7B0B1E003BC1EC /* logobbs.png */,
 				53FFEE8D1C7C9ECE00130811 /* cloud-icon.png */,
 				531B63741C8AA58600DD5956 /* notebook-icon.png */,
@@ -630,6 +633,7 @@
 				533DD3EC1C94639800E6DD37 /* msg-icon.png in Resources */,
 				533DD3ED1C94639800E6DD37 /* bg.jpg in Resources */,
 				533B1FCB1CA6AADC00A34F09 /* background.jpg in Resources */,
+				533B1FCF1CA6CB6900A34F09 /* icon.png in Resources */,
 				533DD3EE1C94639800E6DD37 /* calculator-icon.png in Resources */,
 				533DD3EF1C94639800E6DD37 /* tbmsg.png in Resources */,
 				533DD3F01C94639800E6DD37 /* tbmsg@2x.png in Resources */,
@@ -640,7 +644,7 @@
 				533DD3F51C94639800E6DD37 /* home_icon.png in Resources */,
 				533DD3F61C94639800E6DD37 /* lcd-icon.png in Resources */,
 				533B1FCD1CA6AADC00A34F09 /* nyaacatlogow.png in Resources */,
-				533DD3F71C94639800E6DD37 /* icon.png in Resources */,
+				533DD3F71C94639800E6DD37 /* nyaaicon.png in Resources */,
 				533DD3F81C94639800E6DD37 /* logobbs.png in Resources */,
 				533DD3F91C94639800E6DD37 /* cloud-icon.png in Resources */,
 				533DD3FA1C94639800E6DD37 /* notebook-icon.png in Resources */,

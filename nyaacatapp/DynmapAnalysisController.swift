@@ -45,6 +45,7 @@ class DynmapAnalysisController: NSObject {
             NSLog("上次解析未完成")
         } else {
             解析中 = true
+            NSNotificationCenter.defaultCenter().postNotificationName("netbusyonce", object: nil)
             开始时间 = NSDate().timeIntervalSince1970
             //NSLog("开始解析...")
             开始解析(true)

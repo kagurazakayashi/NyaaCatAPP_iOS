@@ -117,14 +117,18 @@ class StatusVC: UIViewController {
                     天气描述.textColor = 夜晚颜色
                 }
                 let 天气:String = 数据![2]
-                天气描述.text = "\(天气词[天气]!)/\(时段词[时段]!)"
-                let 当前图片文件名:String = "\(天气)_\(时段)"
-                let 当前天气图片:UIImage = 天气图标图像[当前图片文件名]!
-                天气图标.image = 当前天气图片
-                let 时间数组 = 时间.componentsSeparatedByString(":")
-                时 = Int(时间数组[0])!
-                分 = Int(时间数组[1])!
-                更新时间字符串()
+                let 天气数据:String? = 天气词[天气]!
+                let 时段数据:String? = 时段词[时段]!
+                if (天气数据 != nil && 时段数据 != nil) {
+                    天气描述.text = "\(天气词[天气]!)/\(时段词[时段]!)"
+                    let 当前图片文件名:String = "\(天气)_\(时段)"
+                    let 当前天气图片:UIImage = 天气图标图像[当前图片文件名]!
+                    天气图标.image = 当前天气图片
+                    let 时间数组 = 时间.componentsSeparatedByString(":")
+                    时 = Int(时间数组[0])!
+                    分 = Int(时间数组[1])!
+                    更新时间字符串()
+                }
             }
             let 在线玩家字典:Dictionary<String,[String]> = 全局_综合信息!["在线玩家"] as! Dictionary<String,[String]>
             let 在线玩家数据:[String] = Array(在线玩家字典.keys)

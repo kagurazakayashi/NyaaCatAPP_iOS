@@ -52,24 +52,36 @@ NyaaCat 社区 Minecraft 服务器
                         <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vya-YR-wdg">
                             <rect key="frame" x="240" y="287" width="121" height="37"/>
                             <state key="normal" title="登录"/>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b1a-iV-bb5">
-                            <rect key="frame" x="68" y="40" width="74" height="30"/>
-                            <state key="normal" title="官方网站">
-                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
+                            <connections>
+                                <action selector="登录按钮点击:" destination="-1" eventType="touchUpInside" id="Q4u-8k-4Vh"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Obt-tV-ksv">
                             <rect key="frame" x="150" y="40" width="74" height="30"/>
                             <state key="normal" title="许可协议">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
+                            <connections>
+                                <action selector="顶部按钮二点击:" destination="-1" eventType="touchUpInside" id="R35-Ag-syf"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S6m-py-aWJ">
                             <rect key="frame" x="232" y="40" width="74" height="30"/>
                             <state key="normal" title="游客登录">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
+                            <connections>
+                                <action selector="顶部按钮三点击:" destination="-1" eventType="touchUpInside" id="9mi-aY-1gd"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b1a-iV-bb5">
+                            <rect key="frame" x="68" y="40" width="74" height="30"/>
+                            <state key="normal" title="官方网站">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="顶部按钮一点击:" destination="-1" eventType="touchUpInside" id="ycV-YL-1gS"/>
+                            </connections>
                         </button>
                     </subviews>
                     <constraints>
