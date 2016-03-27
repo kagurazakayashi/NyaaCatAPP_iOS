@@ -29,7 +29,7 @@ class MoreMenuVC: UIViewController, MoreMenuCellViewDelegate {
     
     func 加载UI(新尺寸:CGSize?) {
         if (TAG组 == 0) {
-            NSLog("加载UI")
+            //NSLog("加载UI")
             var 输入尺寸:CGSize? = 新尺寸
             if (输入尺寸 == nil) {
                 输入尺寸 = view.frame.size
@@ -67,7 +67,7 @@ class MoreMenuVC: UIViewController, MoreMenuCellViewDelegate {
     
     func 卸载UI() {
         if (TAG组 > 0) {
-            NSLog("卸载UI")
+            //NSLog("卸载UI")
             self.view.viewWithTag(0)?.removeFromSuperview()
             for nowTag:Int in 1...TAG组 {
                 let nowView:UIView? = self.view.viewWithTag(nowTag)
@@ -83,50 +83,52 @@ class MoreMenuVC: UIViewController, MoreMenuCellViewDelegate {
     }
     
     func 点击图标(按钮tag:Int) {
-//        let 当前选择:[String] = 按钮文本和对应图片[按钮tag-1]
-//        NSLog("%@", 当前选择[0])
+        let 当前选择:[String] = 按钮文本和对应图片[按钮tag-1]
         switch (按钮tag) {
         case 1:
-            
+            let vc:TableVC = TableVC()
+            vc.title = 当前选择[0]
+            self.navigationController?.pushViewController(vc, animated: true)
             break;
         case 2:
-            
+            let vc:TableVC = TableVC()
+            vc.title = 当前选择[0]
+            self.navigationController?.pushViewController(vc, animated: true)
             break;
         case 3:
-            
+            let vc:TableVC = TableVC()
+            vc.title = 当前选择[0]
+            self.navigationController?.pushViewController(vc, animated: true)
             break;
         case 4:
-            
+            let vc:BrowserVC = BrowserVC()
+            vc.title = 当前选择[0]
+            self.navigationController?.pushViewController(vc, animated: true)
             break;
         case 5:
-            打开浏览器("https://nyaa.cat/")
+            let ob:OpenBrowser = OpenBrowser()
+            ob.打开浏览器("https://nyaa.cat/")
             break;
         case 6:
-            打开浏览器("https://plus.google.com/communities/106016758621697881816")
+            let ob:OpenBrowser = OpenBrowser()
+            ob.打开浏览器("https://plus.google.com/communities/106016758621697881816", 浏览器尝试顺序: [Browser.Google＋, Browser.Chrome, Browser.Firefox, Browser.Safari])
             break;
         case 7:
-            打开浏览器("https://github.com/NyaaCat")
+            let ob:OpenBrowser = OpenBrowser()
+            ob.打开浏览器("https://github.com/NyaaCat")
             break;
         case 8:
-            
+            let vc:TableVC = TableVC()
+            vc.title = 当前选择[0]
+            self.navigationController?.pushViewController(vc, animated: true)
             break;
         case 9:
-            
+            let vc:BrowserVC = BrowserVC()
+            vc.title = 当前选择[0]
+            self.navigationController?.pushViewController(vc, animated: true)
             break;
         default:
             break;
-        }
-    }
-    
-    func 打开浏览器(网址:String) {
-        let URL:NSURL = NSURL(string:网址)!
-        let CallbackURL = NSURL(string:"nyaacatapp://open")!
-        let chrome:OpenInChromeController = OpenInChromeController()
-        if (chrome.openInChrome(URL, callbackURL: CallbackURL, createNewTab: false) == false) {
-            UIApplication.sharedApplication().openURL(URL)
-//            let safari:SFSafariViewController = SFSafariViewController(URL: URL)
-//            self.presentViewController(safari, animated: true) { () -> Void in
-//            }
         }
     }
     

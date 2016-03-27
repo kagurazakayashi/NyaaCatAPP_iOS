@@ -68,6 +68,9 @@
 		5399CCA51C6BA0FF00022441 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5399CCA31C6BA0FF00022441 /* Main.storyboard */; };
 		5399CCA71C6BA0FF00022441 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5399CCA61C6BA0FF00022441 /* Assets.xcassets */; };
 		5399CCAA1C6BA0FF00022441 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5399CCA81C6BA0FF00022441 /* LaunchScreen.storyboard */; };
+		539D1D091CA80DF100B887DD /* OpenBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539D1D081CA80DF100B887DD /* OpenBrowser.swift */; };
+		539D1D141CA81DB600B887DD /* BrowserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539D1D131CA81DB600B887DD /* BrowserVC.swift */; };
+		539D1D161CA81E3F00B887DD /* TableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539D1D151CA81E3F00B887DD /* TableVC.swift */; };
 		53AA7CFD1C9502A90030D28F /* OpenInChromeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53AA7CFC1C9502A90030D28F /* OpenInChromeController.swift */; };
 		53C5958C1C6B4BE600C55E31 /* WaitVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C5958A1C6B4BE600C55E31 /* WaitVC.swift */; };
 		53C5958D1C6B4BE600C55E31 /* WaitVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53C5958B1C6B4BE600C55E31 /* WaitVC.xib */; };
@@ -164,6 +167,9 @@
 		5399CCA61C6BA0FF00022441 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5399CCA91C6BA0FF00022441 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5399CCAB1C6BA0FF00022441 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		539D1D081CA80DF100B887DD /* OpenBrowser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenBrowser.swift; sourceTree = "<group>"; };
+		539D1D131CA81DB600B887DD /* BrowserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowserVC.swift; sourceTree = "<group>"; };
+		539D1D151CA81E3F00B887DD /* TableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableVC.swift; sourceTree = "<group>"; };
 		53AA7CFC1C9502A90030D28F /* OpenInChromeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenInChromeController.swift; sourceTree = "<group>"; };
 		53C5958A1C6B4BE600C55E31 /* WaitVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitVC.swift; sourceTree = "<group>"; };
 		53C5958B1C6B4BE600C55E31 /* WaitVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WaitVC.xib; sourceTree = "<group>"; };
@@ -271,6 +277,7 @@
 				53408E591C8C5D86002D68F7 /* MoreMenuNC.swift */,
 				5316AF0C1C94045B00C76DDB /* MoreMenuCellView.swift */,
 				5316AF0E1C940F0C00C76DDB /* MoreMenuVC.swift */,
+				539D1D151CA81E3F00B887DD /* TableVC.swift */,
 			);
 			name = "资料库";
 			sourceTree = "<group>";
@@ -491,6 +498,8 @@
 			isa = PBXGroup;
 			children = (
 				53AA7CFC1C9502A90030D28F /* OpenInChromeController.swift */,
+				539D1D081CA80DF100B887DD /* OpenBrowser.swift */,
+				539D1D131CA81DB600B887DD /* BrowserVC.swift */,
 			);
 			name = "浏览器";
 			sourceTree = "<group>";
@@ -682,6 +691,7 @@
 				5399CCA01C6BA0FF00022441 /* AppDelegate.swift in Sources */,
 				537687411C7DED05005A6DDB /* StatusTVC.swift in Sources */,
 				53E7AB771C79E34B00A544B2 /* UIRefreshControl+AFNetworking.m in Sources */,
+				539D1D141CA81DB600B887DD /* BrowserVC.swift in Sources */,
 				5376873B1C7DE252005A6DDB /* StatusNC.swift in Sources */,
 				5316AF0D1C94045B00C76DDB /* MoreMenuCellView.swift in Sources */,
 				53E7AB741C79E34B00A544B2 /* UIButton+AFNetworking.m in Sources */,
@@ -695,6 +705,7 @@
 				535DC6951C79B4F7005CB7E4 /* DMChatNC.swift in Sources */,
 				8BA1F3651C7B37AF003BC1EC /* MSWeakTimer.m in Sources */,
 				53E7AB731C79E34B00A544B2 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
+				539D1D091CA80DF100B887DD /* OpenBrowser.swift in Sources */,
 				53E7AB591C79E2E400A544B2 /* AFURLResponseSerialization.m in Sources */,
 				5316AF141C94325400C76DDB /* MapNC.swift in Sources */,
 				53E7AB751C79E34B00A544B2 /* UIImageView+AFNetworking.m in Sources */,
@@ -708,6 +719,7 @@
 				533A71041C789CA3005EAC90 /* MainTBC.swift in Sources */,
 				5316AF161C94327800C76DDB /* MapVC.swift in Sources */,
 				5376873D1C7DE286005A6DDB /* StatusVC.swift in Sources */,
+				539D1D161CA81E3F00B887DD /* TableVC.swift in Sources */,
 				53E7AB571C79E2E400A544B2 /* AFSecurityPolicy.m in Sources */,
 				535DC6971C79B508005CB7E4 /* DMChatTVC.swift in Sources */,
 				53AA7CFD1C9502A90030D28F /* OpenInChromeController.swift in Sources */,

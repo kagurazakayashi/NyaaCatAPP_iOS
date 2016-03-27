@@ -33,6 +33,8 @@
 	<string>1</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>gplus</string>
+		<string>firefox</string>
 		<string>googlechromes</string>
 		<string>googlechrome</string>
 		<string>googlechrome-x-callback</string>
