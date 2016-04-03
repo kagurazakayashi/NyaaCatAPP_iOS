@@ -13,6 +13,7 @@ enum Browser:Int {
     case Chrome = 1
     case Firefox = 2
     case Google＋ = 3
+    case BiliBili = 4
 }
 
 class OpenBrowser: NSObject {
@@ -20,7 +21,7 @@ class OpenBrowser: NSObject {
     let CallbackURL = NSURL(string:"nyaacatapp://open")!
     
     func 打开浏览器(网址:String) -> Bool {
-        return 打开浏览器(网址, 浏览器尝试顺序: [Browser.Chrome, Browser.Firefox, Browser.Safari])
+        return 打开浏览器(网址, 浏览器尝试顺序: [Browser.BiliBili, Browser.Chrome, Browser.Firefox, Browser.Safari])
     }
     
     func 打开浏览器(网址:String, 浏览器尝试顺序:[Browser]) -> Bool {
@@ -43,6 +44,8 @@ class OpenBrowser: NSObject {
             return 使用Firefox浏览器打开(网址)
         } else if (浏览器 == Browser.Google＋) {
             return 使用Google＋打开(网址)
+        } else if (浏览器 == Browser.BiliBili) {
+            return 使用BiliBili打开(网址)
         }
         return false
     }
@@ -74,8 +77,20 @@ class OpenBrowser: NSObject {
             return UIApplication.sharedApplication().openURL(firefoxURL)
         }
         return false
-
-        
+    }
+    
+    func 使用BiliBili打开(网址:String) -> Bool {
+        let 网站:String = 网址.substringToIndex(网址.startIndex.advancedBy(30))
+        if (网站 == "http://www.bilibili.com/video/" || 网站 == "https://www.bilibili.com/video") {
+            let 解析:Analysis = Analysis()
+            let AV号:String = 解析.抽取区间(网址, 起始字符串: "video/av", 结束字符串: "/", 包含起始字符串: false, 包含结束字符串: false)
+            let BiliURLstr:String = "bilibili://?av=\(AV号)"
+            let BiliURL:NSURL = NSURL(string: BiliURLstr)!
+            if (UIApplication.sharedApplication().canOpenURL(BiliURL)) {
+                return UIApplication.sharedApplication().openURL(BiliURL)
+            }
+        }
+        return false
     }
     
     func 使用Safari浏览器中打开(网址:String) -> Bool {

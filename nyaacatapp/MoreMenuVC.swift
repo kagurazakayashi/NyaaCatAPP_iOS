@@ -44,6 +44,7 @@ class MoreMenuVC: UIViewController, MoreMenuCellViewDelegate {
     }
     func 右上按钮点击() {
         正在进入Tag = -1
+        NSURLCache.sharedURLCache().removeAllCachedResponses()
         下载表格数据()
     }
     
@@ -172,7 +173,7 @@ class MoreMenuVC: UIViewController, MoreMenuCellViewDelegate {
     func 下载表格数据() {
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         if (等待提示 == nil) {
-            等待提示 = UIAlertController(title: "⌛️正在下载数据", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+            等待提示 = UIAlertController(title: "⌛️正在下载数据", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
             let 取消按钮 = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: { (动作:UIAlertAction) -> Void in
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                 self.等待提示 = nil
@@ -185,7 +186,7 @@ class MoreMenuVC: UIViewController, MoreMenuCellViewDelegate {
         AF任务管理.responseSerializer = AFHTTPResponseSerializer()
         AF任务管理.GET(全局_喵窩API["API路径"]!, parameters: nil, progress: { (downloadProgress:NSProgress) in
             //请求中
-            self.等待提示?.message = "\(downloadProgress.totalUnitCount)"
+            //self.等待提示?.message = "\(downloadProgress.totalUnitCount)"
             }, success: { (task:NSURLSessionDataTask, responseObject:AnyObject?) in
                 //请求成功
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false
@@ -203,6 +204,7 @@ class MoreMenuVC: UIViewController, MoreMenuCellViewDelegate {
 //            })
 //            提示.addAction(取消按钮)
 //            self.presentViewController(提示, animated: true, completion: nil)
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
             self.等待提示?.title = "信息载入失败"
             self.等待提示?.message = error.localizedDescription
         }

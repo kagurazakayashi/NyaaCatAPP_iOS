@@ -44,7 +44,7 @@ class TableVC: UITableViewController {
         let 行数:Int = indexPath.row
         var 单元格:UITableViewCell? = tableView.dequeueReusableCellWithIdentifier(单元格ID)
         if(单元格 == nil) {
-            单元格 = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: 单元格ID)
+            单元格 = UITableViewCell(style: .Subtitle, reuseIdentifier: 单元格ID)
             单元格?.accessoryType = .DisclosureIndicator
 //            单元格?.backgroundColor = UIColor.clearColor()
 //            单元格?.detailTextLabel?.textColor = UIColor.lightGrayColor()
@@ -52,7 +52,13 @@ class TableVC: UITableViewController {
         }
         let 当前链接:[String] = 链接[行数]
         let 当前名称:String = 当前链接[0]
-        单元格?.textLabel?.text = 当前名称.substringFromIndex(当前名称.startIndex.advancedBy(1))
+        let 当前修正名称:String = 当前名称.substringFromIndex(当前名称.startIndex.advancedBy(1))
+        let 名称和时间:[String] = 当前修正名称.componentsSeparatedByString("|")
+        if (名称和时间.count >= 2) {
+            单元格?.textLabel?.text = 名称和时间[1]
+            单元格?.detailTextLabel?.text = 名称和时间[0]
+        }
+//
         return 单元格!
     }
     
@@ -61,7 +67,7 @@ class TableVC: UITableViewController {
         let 行数:Int = indexPath.row
         let 当前链接:[String] = 链接[行数]
         let 当前名称:String = 当前链接[0]
-        let 名称:String = 当前名称.substringFromIndex(当前名称.startIndex.advancedBy(1))
+        let 名称:String = 当前名称.substringFromIndex(当前名称.startIndex.advancedBy(1)).componentsSeparatedByString("|")[1]
         let 网址:String = "\(全局_喵窩API["API域名"]!)\(当前链接[1])"
         let vc:BrowserVC = BrowserVC()
         self.navigationController?.pushViewController(vc, animated: true)
