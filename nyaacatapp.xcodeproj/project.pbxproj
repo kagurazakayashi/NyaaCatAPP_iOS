@@ -278,6 +278,7 @@
 				5316AF0C1C94045B00C76DDB /* MoreMenuCellView.swift */,
 				5316AF0E1C940F0C00C76DDB /* MoreMenuVC.swift */,
 				539D1D151CA81E3F00B887DD /* TableVC.swift */,
+				539D1D131CA81DB600B887DD /* BrowserVC.swift */,
 			);
 			name = "资料库";
 			sourceTree = "<group>";
@@ -350,7 +351,7 @@
 				8BA1F3251C709098003BC1EC /* 论坛 */,
 				536E2FDF1C6C958800168F02 /* 数据解析 */,
 				53C5958E1C6B564900C55E31 /* 登录和注册 */,
-				53C595871C6B4B6600C55E31 /* 等待画面 */,
+				53C595871C6B4B6600C55E31 /* 等待画面和新登录 */,
 				5316AF121C94321F00C76DDB /* 动态地图 */,
 				53408E541C8C5CA7002D68F7 /* 资料库 */,
 				53FF8F701C94501E00BEB43E /* 浏览器 */,
@@ -372,13 +373,13 @@
 			name = "主要框架";
 			sourceTree = "<group>";
 		};
-		53C595871C6B4B6600C55E31 /* 等待画面 */ = {
+		53C595871C6B4B6600C55E31 /* 等待画面和新登录 */ = {
 			isa = PBXGroup;
 			children = (
 				53C5958A1C6B4BE600C55E31 /* WaitVC.swift */,
 				53C5958B1C6B4BE600C55E31 /* WaitVC.xib */,
 			);
-			name = "等待画面";
+			name = "等待画面和新登录";
 			sourceTree = "<group>";
 		};
 		53C5958E1C6B564900C55E31 /* 登录和注册 */ = {
@@ -499,7 +500,6 @@
 			children = (
 				53AA7CFC1C9502A90030D28F /* OpenInChromeController.swift */,
 				539D1D081CA80DF100B887DD /* OpenBrowser.swift */,
-				539D1D131CA81DB600B887DD /* BrowserVC.swift */,
 			);
 			name = "浏览器";
 			sourceTree = "<group>";

@@ -21,5 +21,7 @@ class PrivateConstant: NSObject {
         "静态地图接口":"https://mcmap.90g.org/?worldname=world&mapname=flat&nogui=true",
         "注册页面标题":"Minecraft Dynamic Map - Login/Register",
         "地图页面标题":"喵窝の世界",
-        "Ilse地图":"http://miz.audio/nyaamaps/"]
+        "Ilse地图":"http://miz.audio/nyaamaps/",
+        "关于和许可":"https://yoooooooooo.com/api/nyaacatapp/page/README/",
+        "游戏直播":"https://yoooooooooo.com/api/nyaacatapp/page/LIVE/"]
 }

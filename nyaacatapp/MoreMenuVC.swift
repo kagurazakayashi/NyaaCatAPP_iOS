@@ -104,6 +104,7 @@ class MoreMenuVC: UIViewController, MoreMenuCellViewDelegate {
             let vc:BrowserVC = BrowserVC()
             vc.title = 当前选择[0]
             self.navigationController?.pushViewController(vc, animated: true)
+            vc.装入网页(全局_喵窩API["游戏直播"]!, 标题: "游戏直播")
             break;
         case 5:
             let ob:OpenBrowser = OpenBrowser()
@@ -126,6 +127,7 @@ class MoreMenuVC: UIViewController, MoreMenuCellViewDelegate {
             let vc:BrowserVC = BrowserVC()
             vc.title = 当前选择[0]
             self.navigationController?.pushViewController(vc, animated: true)
+            vc.装入网页(全局_喵窩API["关于和许可"]!, 标题: "关于和许可")
             break;
         default:
             break;

@@ -65,9 +65,11 @@ class WaitVC: UIViewController {
     }
     
     @IBAction func 顶部按钮一点击(sender: UIButton) {
+        
     }
     
     @IBAction func 顶部按钮二点击(sender: UIButton) {
+        
     }
     
     @IBAction func 顶部按钮三点击(sender: UIButton) {

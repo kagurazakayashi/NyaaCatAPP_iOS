@@ -31,7 +31,10 @@ class APILoader: NSObject {
         "测试动态地图密码":"password",
         "静态地图接口":"https://???/?worldname=???&mapname=???&zoom=0&nogui=true",
         "注册页面标题":"Login/Register",
-        "地图页面标题":"my world"]
+         "地图页面标题":"my world",
+         "Ilse地图":"http://???",
+         "关于和许可":"https://???/README.html",
+         "游戏直播":"https://???/LIVE.html"]
         }
         
         */

@@ -111,7 +111,7 @@ class MapVC: UIViewController , WKNavigationDelegate {
         浏览器设置.allowsAirPlayForMediaPlayback = false
         浏览器设置.requiresUserActionForMediaPlayback = false
         浏览器设置.suppressesIncrementalRendering = false
-        浏览器设置.applicationNameForUserAgent = "Mozilla/5.0 (kagurazaka-browser)"
+        浏览器设置.applicationNameForUserAgent = 全局_浏览器标识
         let 浏览器偏好设置:WKPreferences = WKPreferences()
         浏览器偏好设置.javaScriptCanOpenWindowsAutomatically = false
         浏览器偏好设置.javaScriptEnabled = true
