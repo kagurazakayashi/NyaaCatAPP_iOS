@@ -117,8 +117,8 @@ class StatusVC: UIViewController {
                     天气描述.textColor = 夜晚颜色
                 }
                 let 天气:String = 数据![2]
-                let 天气数据:String? = 天气词[天气]!
-                let 时段数据:String? = 时段词[时段]!
+                let 天气数据:String? = 天气词[天气]
+                let 时段数据:String? = 时段词[时段]
                 if (天气数据 != nil && 时段数据 != nil) {
                     天气描述.text = "\(天气词[天气]!)/\(时段词[时段]!)"
                     let 当前图片文件名:String = "\(天气)_\(时段)"

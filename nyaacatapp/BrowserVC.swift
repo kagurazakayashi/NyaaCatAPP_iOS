@@ -24,6 +24,7 @@ class BrowserVC: UIViewController , WKNavigationDelegate, WKUIDelegate {
     var 右上按钮:UIBarButtonItem? = nil
     var 请求网址:String = "about:blank"
     var 当前Tab:Int = 0
+    var 刷新限制计时器:MSWeakTimer? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,10 +84,11 @@ class BrowserVC: UIViewController , WKNavigationDelegate, WKUIDelegate {
         浏览器!.loadRequest(网络请求)
         //防止疯狂刷新
         右上按钮?.enabled = false
-        MSWeakTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(self.恢复右上按钮), userInfo: nil, repeats: false, dispatchQueue: dispatch_get_main_queue())
+        刷新限制计时器 = MSWeakTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(self.恢复右上按钮), userInfo: nil, repeats: false, dispatchQueue: dispatch_get_main_queue())
     }
     func 恢复右上按钮() {
         右上按钮?.enabled = true
+        刷新限制计时器 = nil
     }
     
     func 卸载浏览器() {

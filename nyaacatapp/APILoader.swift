@@ -34,7 +34,9 @@ class APILoader: NSObject {
          "地图页面标题":"my world",
          "Ilse地图":"http://???",
          "关于和许可":"https://???/README.html",
-         "游戏直播":"https://???/LIVE.html"]
+         "游戏直播":"https://???/LIVE.html"],
+         "API域名":"https://???.com"
+         "API路径":"https://???.com/api/"
         }
         
         */

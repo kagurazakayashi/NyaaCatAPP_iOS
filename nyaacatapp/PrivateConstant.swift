@@ -23,5 +23,7 @@ class PrivateConstant: NSObject {
         "地图页面标题":"喵窝の世界",
         "Ilse地图":"http://miz.audio/nyaamaps/",
         "关于和许可":"https://yoooooooooo.com/api/nyaacatapp/page/README/",
-        "游戏直播":"https://yoooooooooo.com/api/nyaacatapp/page/LIVE/"]
+        "游戏直播":"https://yoooooooooo.com/api/nyaacatapp/page/LIVE/",
+        "API域名":"https://yoooooooooo.com",
+        "API路径":"https://yoooooooooo.com/api/nyaacatapp/index.html"]
 }

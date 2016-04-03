@@ -12,6 +12,7 @@ class MinoriWikiAnalysis: NSObject {
     var html:String? = nil
     var 解析:Analysis = Analysis()
     let 页面特征:String = "powered by MinoriWiki"
+    let 屏蔽分类:[String] = ["API", "INFO", "直播"]
     
     func 有效性校验() -> Bool {
         if (html?.rangeOfString(页面特征) != nil) {
@@ -28,7 +29,13 @@ class MinoriWikiAnalysis: NSObject {
             let 分类内容组:[String] = 当前分类区间.componentsSeparatedByString("</h3>")
             if (分类内容组.count == 2) {
                 let 分类名称:String = 分类内容组[0]
-                if (分类名称 != "API") {
+                var 录入此分类:Bool = true
+                for 当前屏蔽分类:String in 屏蔽分类 {
+                    if (当前屏蔽分类 == 分类名称) {
+                        录入此分类 = false
+                    }
+                }
+                if (录入此分类 == true) {
                     let 分类内容:String = 分类内容组[1]
                     let 子菜单项:[[String]] = 获取子菜单(分类内容)
                     主菜单[分类名称] = 子菜单项
@@ -48,7 +55,7 @@ class MinoriWikiAnalysis: NSObject {
                 let 链接:String = 超链接信息[0]
                 let 文字:String = 超链接信息[1]
                 let 超链接:[String] = [文字, 链接]
-                子菜单项.append(超链接)
+                子菜单项.insert(超链接, atIndex: 0)
             }
         }
         return 子菜单项

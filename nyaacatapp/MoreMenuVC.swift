@@ -12,12 +12,39 @@ import SafariServices
 class MoreMenuVC: UIViewController, MoreMenuCellViewDelegate {
     
     var TAG组:Int = 0
-    let 按钮文本和对应图片:[[String]] = [["活动信息","rss-icon"],["喵窩维基","notebook-icon"],["游戏录像","video-icon"],["游戏直播","tv-icon"],["☍官方网站","lcd-icon"],["☍G+社群","GooglePlus-logos-02"],["☍开源项目","calculator-icon"],["封禁查询","mike-icon"],["关于反馈","msg-icon"]]
+    let 按钮文本和对应图片:[[String]] = [["喵窩通知","rss-icon"],["喵窩维基","notebook-icon"],["游戏录像","video-icon"],["游戏直播","tv-icon"],["☍官方网站","lcd-icon"],["☍G+社群","GooglePlus-logos-02"],["☍开源项目","calculator-icon"],["封禁查询","mike-icon"],["关于反馈","msg-icon"]]
+    var 表格数据:Dictionary<String,[[String]]>? = nil
+    var 正在进入Tag:Int = -1
+    var 等待提示:UIAlertController? = nil
+    var 收到html:String = ""
+    var 延迟计时器:MSWeakTimer? = nil
+    var 右上按钮:UIBarButtonItem? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.自动点击按钮), name: "MoreMenuVCButton", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.下载表格数据), name: "MoreMenuVCReload", object: nil)
+        右上按钮 = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: #selector(self.右上按钮点击))
+        navigationItem.rightBarButtonItem = 右上按钮
+    }
+    
+    func 自动点击按钮() {
+        let MinoriWiki解析:MinoriWikiAnalysis = MinoriWikiAnalysis()
+        MinoriWiki解析.html = 收到html
+        收到html = ""
+        self.表格数据 = MinoriWiki解析.获取主菜单()
+        if (正在进入Tag >= 0) {
+            延迟计时器 = MSWeakTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(self.延迟进入功能), userInfo: nil, repeats: false, dispatchQueue: dispatch_get_main_queue())
+        }
+    }
+    func 延迟进入功能() {
+        self.点击图标(self.正在进入Tag)
+        延迟计时器?.invalidate()
+        延迟计时器 = nil
+    }
+    func 右上按钮点击() {
+        正在进入Tag = -1
+        下载表格数据()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -83,28 +110,22 @@ class MoreMenuVC: UIViewController, MoreMenuCellViewDelegate {
     }
     
     func 点击图标(按钮tag:Int) {
+        正在进入Tag = 按钮tag
         let 当前选择:[String] = 按钮文本和对应图片[按钮tag-1]
         switch (按钮tag) {
         case 1:
-            let vc:TableVC = TableVC()
-            vc.title = 当前选择[0]
-            self.navigationController?.pushViewController(vc, animated: true)
+            进入表格(按钮tag, 名称: 当前选择[0], 类型名: "通知")
             break;
         case 2:
-            let vc:TableVC = TableVC()
-            vc.title = 当前选择[0]
-            self.navigationController?.pushViewController(vc, animated: true)
+            //进入表格(按钮tag, 名称: 当前选择[0], 类型名: "维基")
             break;
         case 3:
-            let vc:TableVC = TableVC()
-            vc.title = 当前选择[0]
-            self.navigationController?.pushViewController(vc, animated: true)
+            进入表格(按钮tag, 名称: 当前选择[0], 类型名: "录像")
             break;
         case 4:
             let vc:BrowserVC = BrowserVC()
-            vc.title = 当前选择[0]
             self.navigationController?.pushViewController(vc, animated: true)
-            vc.装入网页(全局_喵窩API["游戏直播"]!, 标题: "游戏直播")
+            vc.装入网页(全局_喵窩API["游戏直播"]!, 标题: 当前选择[0])
             break;
         case 5:
             let ob:OpenBrowser = OpenBrowser()
@@ -119,24 +140,79 @@ class MoreMenuVC: UIViewController, MoreMenuCellViewDelegate {
             ob.打开浏览器("https://github.com/NyaaCat")
             break;
         case 8:
-            let vc:TableVC = TableVC()
-            vc.title = 当前选择[0]
-            self.navigationController?.pushViewController(vc, animated: true)
+            进入表格(按钮tag, 名称: 当前选择[0], 类型名: "处罚")
             break;
         case 9:
             let vc:BrowserVC = BrowserVC()
-            vc.title = 当前选择[0]
             self.navigationController?.pushViewController(vc, animated: true)
-            vc.装入网页(全局_喵窩API["关于和许可"]!, 标题: "关于和许可")
+            vc.装入网页(全局_喵窩API["关于和许可"]!, 标题: 当前选择[0])
             break;
         default:
             break;
         }
     }
     
+    func 进入表格(tag:Int, 名称:String, 类型名:String) {
+        if (表格数据 == nil) {
+            下载表格数据()
+        } else {
+            let vc:TableVC = TableVC()
+            vc.title = 名称
+            vc.链接 = 表格数据![类型名]!
+            self.navigationController?.pushViewController(vc, animated: true)
+            vc.tableView.reloadData()
+        }
+    }
+    
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         卸载UI()
         加载UI(size)
+    }
+    
+    func 下载表格数据() {
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        if (等待提示 == nil) {
+            等待提示 = UIAlertController(title: "⌛️正在下载数据", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+            let 取消按钮 = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: { (动作:UIAlertAction) -> Void in
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                self.等待提示 = nil
+            })
+            等待提示!.addAction(取消按钮)
+            self.presentViewController(等待提示!, animated: true, completion: nil)
+        }
+        let AF任务管理:AFHTTPSessionManager = AFHTTPSessionManager()
+        //AF任务管理.responseSerializer.acceptableContentTypes = NSSet(object: "text/html") as? Set<String>
+        AF任务管理.responseSerializer = AFHTTPResponseSerializer()
+        AF任务管理.GET(全局_喵窩API["API路径"]!, parameters: nil, progress: { (downloadProgress:NSProgress) in
+            //请求中
+            self.等待提示?.message = "\(downloadProgress.totalUnitCount)"
+            }, success: { (task:NSURLSessionDataTask, responseObject:AnyObject?) in
+                //请求成功
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                self.关闭加载提示()
+                let 返回数据:NSData = responseObject as! NSData
+                self.收到html = String(data: 返回数据, encoding: NSUTF8StringEncoding)!
+                NSNotificationCenter.defaultCenter().postNotificationName("MoreMenuVCButton", object: nil)
+                
+        }) { (task:NSURLSessionDataTask?, error:NSError) in
+            //请求失败
+//            self.关闭加载提示()
+//            let 提示:UIAlertController = UIAlertController(title: "信息载入失败", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
+//            let 取消按钮 = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: { (动作:UIAlertAction) -> Void in
+//                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+//            })
+//            提示.addAction(取消按钮)
+//            self.presentViewController(提示, animated: true, completion: nil)
+            self.等待提示?.title = "信息载入失败"
+            self.等待提示?.message = error.localizedDescription
+        }
+    }
+    
+    func 关闭加载提示() {
+        if (等待提示 != nil) {
+            等待提示?.dismissViewControllerAnimated(false, completion: nil)
+            等待提示 = nil
+        }
     }
 
     override func didReceiveMemoryWarning() {
