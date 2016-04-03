@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		532039731CB102C8000EEF40 /* MinoriWikiAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532039721CB102C8000EEF40 /* MinoriWikiAnalysis.swift */; };
 		533A71021C783B72005EAC90 /* DynmapAnalysisController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533A71011C783B72005EAC90 /* DynmapAnalysisController.swift */; };
 		533B1FBF1CA6895300A34F09 /* wiki.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 53F6832C1CA6833A00A6E01F /* wiki.txt */; };
 		536E30061C6C9FF900168F02 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536E30051C6C9FF900168F02 /* main.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		532039721CB102C8000EEF40 /* MinoriWikiAnalysis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinoriWikiAnalysis.swift; sourceTree = "<group>"; };
 		533A71011C783B72005EAC90 /* DynmapAnalysisController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynmapAnalysisController.swift; sourceTree = "<group>"; };
 		536E30021C6C9FF900168F02 /* dynmapanalysistest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = dynmapanalysistest; sourceTree = BUILT_PRODUCTS_DIR; };
 		536E30051C6C9FF900168F02 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				53F6832A1CA6830C00A6E01F /* WikiAnalysis.swift */,
 				53F6832C1CA6833A00A6E01F /* wiki.txt */,
 				53F6832D1CA6856500A6E01F /* Analysis.swift */,
+				532039721CB102C8000EEF40 /* MinoriWikiAnalysis.swift */,
 			);
 			path = dynmapanalysistest;
 			sourceTree = "<group>";
@@ -140,6 +143,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				536E30131C6CA06700168F02 /* DynmapAnalysis.swift in Sources */,
+				532039731CB102C8000EEF40 /* MinoriWikiAnalysis.swift in Sources */,
 				53F6832B1CA6830C00A6E01F /* WikiAnalysis.swift in Sources */,
 				536E30061C6C9FF900168F02 /* main.swift in Sources */,
 				533A71021C783B72005EAC90 /* DynmapAnalysisController.swift in Sources */,

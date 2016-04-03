@@ -10,7 +10,7 @@ import Foundation
 
 print("Hello, World!")
 
-let path = NSBundle.mainBundle().pathForResource("wiki", ofType: "txt")
+let path = NSBundle.mainBundle().pathForResource("MinoriWiki", ofType: "txt")
 var html:String = ""
 var contents: String? = nil
  if (path != nil) {
@@ -46,6 +46,11 @@ var contents: String? = nil
 //        wiki.html = contents!
 //        wiki.维基主菜单()
 //        wiki.维基内容("https://wiki.nyaa.cat")
+        
+        //MinoriWiki解析部分
+        let mwiki:MinoriWikiAnalysis = MinoriWikiAnalysis()
+        mwiki.html = contents!
+        mwiki.获取主菜单()
         
     } else {
         print("contents null")

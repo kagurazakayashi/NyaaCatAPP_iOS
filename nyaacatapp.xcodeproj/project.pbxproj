@@ -11,6 +11,7 @@
 		5316AF0F1C940F0C00C76DDB /* MoreMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5316AF0E1C940F0C00C76DDB /* MoreMenuVC.swift */; };
 		5316AF141C94325400C76DDB /* MapNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5316AF131C94325400C76DDB /* MapNC.swift */; };
 		5316AF161C94327800C76DDB /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5316AF151C94327800C76DDB /* MapVC.swift */; };
+		532039761CB10A1D000EEF40 /* MinoriWikiAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532039751CB10A1D000EEF40 /* MinoriWikiAnalysis.swift */; };
 		533A70FB1C781B60005EAC90 /* DynmapAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533A70F91C781B60005EAC90 /* DynmapAnalysis.swift */; };
 		533A70FC1C781B60005EAC90 /* DynmapAnalysisController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533A70FA1C781B60005EAC90 /* DynmapAnalysisController.swift */; };
 		533A71041C789CA3005EAC90 /* MainTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533A71031C789CA3005EAC90 /* MainTBC.swift */; };
@@ -137,6 +138,7 @@
 		531B63751C8AA58600DD5956 /* rss-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rss-icon.png"; sourceTree = "<group>"; };
 		531B63761C8AA58600DD5956 /* tv-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tv-icon.png"; sourceTree = "<group>"; };
 		531B63771C8AA58600DD5956 /* video-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video-icon.png"; sourceTree = "<group>"; };
+		532039751CB10A1D000EEF40 /* MinoriWikiAnalysis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinoriWikiAnalysis.swift; sourceTree = "<group>"; };
 		533A70F91C781B60005EAC90 /* DynmapAnalysis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynmapAnalysis.swift; sourceTree = "<group>"; };
 		533A70FA1C781B60005EAC90 /* DynmapAnalysisController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynmapAnalysisController.swift; sourceTree = "<group>"; };
 		533A71031C789CA3005EAC90 /* MainTBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTBC.swift; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				533B1FC01CA6A82600A34F09 /* WikiAnalysis.swift */,
+				532039751CB10A1D000EEF40 /* MinoriWikiAnalysis.swift */,
 				533B1FC11CA6A82600A34F09 /* Analysis.swift */,
 				533A70F91C781B60005EAC90 /* DynmapAnalysis.swift */,
 				533A70FA1C781B60005EAC90 /* DynmapAnalysisController.swift */,
@@ -705,6 +708,7 @@
 				535DC6951C79B4F7005CB7E4 /* DMChatNC.swift in Sources */,
 				8BA1F3651C7B37AF003BC1EC /* MSWeakTimer.m in Sources */,
 				53E7AB731C79E34B00A544B2 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
+				532039761CB10A1D000EEF40 /* MinoriWikiAnalysis.swift in Sources */,
 				539D1D091CA80DF100B887DD /* OpenBrowser.swift in Sources */,
 				53E7AB591C79E2E400A544B2 /* AFURLResponseSerialization.m in Sources */,
 				5316AF141C94325400C76DDB /* MapNC.swift in Sources */,
