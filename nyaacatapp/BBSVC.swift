@@ -13,7 +13,7 @@ class BBSVC: UIViewController, WKNavigationDelegate, WKUIDelegate {
     
     //可由外部设置，在加载网页前
     var 缓存策略:NSURLRequestCachePolicy = .UseProtocolCachePolicy
-    var 超时时间:NSTimeInterval = 30
+    var 超时时间:NSTimeInterval = 10
     var 屏蔽长按菜单:Bool = true
     //
     
@@ -22,11 +22,13 @@ class BBSVC: UIViewController, WKNavigationDelegate, WKUIDelegate {
     var 遮盖:UIView = UIView(frame: CGRectZero)
     var 遮盖文字:UILabel = UILabel()
     var 解析延迟定时器:MSWeakTimer? = nil
+    var 网页超时定时器:MSWeakTimer? = nil
     var tryed:Bool = false
+    var 浏览器开关:Bool = false
     
     override func viewDidAppear(animated: Bool) {
-        if (浏览器 == nil) {
-            装入浏览器()
+        if (浏览器开关 == false) {
+            加载数据()
         }
     }
     override func viewDidDisappear(animated: Bool) {
@@ -41,15 +43,16 @@ class BBSVC: UIViewController, WKNavigationDelegate, WKUIDelegate {
         加载数据()
     }
     func 加载数据() {
+        遮盖文字.text = "论坛载入中..."
         let 要加载的浏览器URL:NSURL = NSURL(string: 全局_喵窩API["论坛地址"]!)!
         let 网络请求:NSMutableURLRequest = NSMutableURLRequest(URL: 要加载的浏览器URL, cachePolicy: 缓存策略, timeoutInterval: 超时时间)
+        网页超时定时器 = MSWeakTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: #selector(self.手工超时), userInfo: nil, repeats: false, dispatchQueue: dispatch_get_main_queue())
         浏览器!.loadRequest(网络请求)
     }
     func 装入UI() {
         进度条 = UIProgressView(progressViewStyle: .Bar)
         
-        遮盖.backgroundColor = UIColor(red: 1, green: 153/255.0, blue: 203/255.0, alpha: 1)
-        遮盖文字.text = "论坛载入中..."
+        遮盖.backgroundColor = 全局_导航栏颜色
         遮盖文字.textAlignment = .Center
         遮盖文字.textColor = UIColor.whiteColor()
         
@@ -68,6 +71,7 @@ class BBSVC: UIViewController, WKNavigationDelegate, WKUIDelegate {
         遮盖.addSubview(遮盖文字)
     }
     func 装入浏览器() {
+        浏览器开关 = true
         let 浏览器设置:WKWebViewConfiguration = WKWebViewConfiguration()
         if (屏蔽长按菜单 == true) {
             let 禁止长按菜单JS:String = "document.body.style.webkitTouchCallout='none';"
@@ -103,15 +107,6 @@ class BBSVC: UIViewController, WKNavigationDelegate, WKUIDelegate {
         if (keyPath == "estimatedProgress"){
             self.进度条.setProgress(Float(浏览器!.estimatedProgress), animated: true)
         }
-        if (浏览器!.estimatedProgress == 1){
-            UIView.animateWithDuration(0.5, animations: { () -> Void in
-                self.遮盖文字.text = ""
-                self.进度条.alpha = 0
-                self.遮盖.frame = CGRectMake(0, 0, 1366, 20)
-                }) { (已完成:Bool) -> Void in
-                    self.进度条.removeFromSuperview()
-            }
-        }
     }
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
@@ -132,14 +127,36 @@ class BBSVC: UIViewController, WKNavigationDelegate, WKUIDelegate {
     }
     func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+        网页超时定时器 = nil
         请求页面源码()
+        if (浏览器!.estimatedProgress == 1){
+            UIView.animateWithDuration(0.5, animations: { () -> Void in
+                self.遮盖文字.text = ""
+                self.进度条.alpha = 0
+                self.遮盖.frame = CGRectMake(0, 0, 1366, 20)
+            }) { (已完成:Bool) -> Void in
+                self.进度条.removeFromSuperview()
+            }
+        }
     }
     func webView(webView: WKWebView, didFailNavigation navigation: WKNavigation!, withError error: NSError) {
+        网络失败(error)
+    }
+    func 手工超时() {
+        网络失败(nil)
+    }
+    func 网络失败(error: NSError?) {
+        网页超时定时器 = nil
         卸载浏览器()
-        let 提示:UIAlertController = UIAlertController(title: "论坛连接失败", message: "\(error.localizedDescription)\n请重新进入本页重试", preferredStyle: UIAlertControllerStyle.Alert)
+        var 错误信息 = ""
+        遮盖文字.text = "论坛载入失败"
+        进度条.setProgress(0, animated: false)
+        if (error != nil) {
+            错误信息 = "\(error!.localizedDescription)\n"
+        }
+        let 提示:UIAlertController = UIAlertController(title: "论坛连接失败", message: "\(错误信息)请重新进入本页重试", preferredStyle: UIAlertControllerStyle.Alert)
         let 取消按钮 = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: { (动作:UIAlertAction) -> Void in
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-            self.navigationController?.popViewControllerAnimated(true)
         })
         提示.addAction(取消按钮)
         self.presentViewController(提示, animated: true, completion: nil)
@@ -153,18 +170,19 @@ class BBSVC: UIViewController, WKNavigationDelegate, WKUIDelegate {
     }
     
     func 卸载浏览器() {
-        if (浏览器 != nil) {
-            浏览器!.navigationDelegate = nil
-            浏览器!.UIDelegate = nil
-            浏览器!.removeObserver(self, forKeyPath: "estimatedProgress")
-            浏览器!.removeFromSuperview()
-            浏览器 = nil
-        }
+        浏览器开关 = false
+//        if (浏览器 != nil) {
+//            浏览器!.navigationDelegate = nil
+//            浏览器!.UIDelegate = nil
+//            浏览器!.removeObserver(self, forKeyPath: "estimatedProgress")
+//            浏览器!.removeFromSuperview()
+//            浏览器 = nil
+//        }
     }
     
     func 请求页面源码() {
         if (解析延迟定时器 == nil) {
-            解析延迟定时器 = MSWeakTimer.scheduledTimerWithTimeInterval(0.9, target: self, selector: #selector(MainTBC.请求页面源码2), userInfo: nil, repeats: false, dispatchQueue: dispatch_get_main_queue())
+            解析延迟定时器 = MSWeakTimer.scheduledTimerWithTimeInterval(0.9, target: self, selector: #selector(self.请求页面源码2), userInfo: nil, repeats: false, dispatchQueue: dispatch_get_main_queue())
         }
     }
     func 请求页面源码2() {
@@ -197,15 +215,17 @@ class BBSVC: UIViewController, WKNavigationDelegate, WKUIDelegate {
                 let 提示:UIAlertController = UIAlertController(title: "论坛连接失败", message: "尝试载入完整版本论坛时出错，\n请重新进入本页重试", preferredStyle: UIAlertControllerStyle.Alert)
                 let 取消按钮 = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: { (动作:UIAlertAction) -> Void in
                     UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                    self.navigationController?.popViewControllerAnimated(true)
                 })
                 提示.addAction(取消按钮)
                 self.presentViewController(提示, animated: true, completion: nil)
             }
         } else if (网页内容?.rangeOfString("空空如也，何不创作一个？") != nil || 网页内容?.rangeOfString("道生一，一生二，二生三，三生萬物") != nil || 网页内容?.rangeOfString("It looks like there are no discussions here.") != nil) {
             //没有登录 //网页内容?.rangeOfString("关注") == nil
-            浏览器!.evaluateJavaScript("getByClass(\"box\").click();", completionHandler: { (obj:AnyObject?, err:NSError?) in
-                
+            //替换「空空如也，何不创作一个？」
+            浏览器!.evaluateJavaScript("document.getElementById(\"content\").innerHTML=\"<div class=\\\"Placeholder\\\"><p>尚未登录论坛</p><p>请从菜单登录论坛后继续</p></div>\";", completionHandler: { (obj:AnyObject?, err:NSError?) in
+                if (err != nil) {
+                    NSLog(err!.localizedDescription)
+                }
             })
         }
     }

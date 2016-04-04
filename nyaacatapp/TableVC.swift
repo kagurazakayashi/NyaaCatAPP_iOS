@@ -11,10 +11,14 @@ import UIKit
 class TableVC: UITableViewController {
     
     var 链接:[[String]] = [[String]]()
+    var 禁止游客浏览:Int = 0 //0：允许，1：只能看标题，2：封锁
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        if (全局_用户名 == nil && 禁止游客浏览 == 2) {
+            title = "禁止游客浏览"
+            tableView.hidden = true
+        }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -67,11 +71,23 @@ class TableVC: UITableViewController {
         let 行数:Int = indexPath.row
         let 当前链接:[String] = 链接[行数]
         let 当前名称:String = 当前链接[0]
-        let 名称:String = 当前名称.substringFromIndex(当前名称.startIndex.advancedBy(1)).componentsSeparatedByString("|")[1]
-        let 网址:String = "\(全局_喵窩API["API域名"]!)\(当前链接[1])"
-        let vc:BrowserVC = BrowserVC()
-        self.navigationController?.pushViewController(vc, animated: true)
-        vc.装入网页(网址, 标题: 名称)
+        let 名称日期:[String] = 当前名称.substringFromIndex(当前名称.startIndex.advancedBy(1)).componentsSeparatedByString("|")
+        //let 日期:String = 名称日期[0]
+        let 名称:String = 名称日期[1]
+        if (全局_用户名 == nil && 禁止游客浏览 == 1) {
+            let 提示:UIAlertController = UIAlertController(title: "游客模式不能浏览此条目", message: 名称, preferredStyle: UIAlertControllerStyle.Alert)
+            let 取消按钮 = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: { (动作:UIAlertAction) -> Void in
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+            })
+            提示.addAction(取消按钮)
+            self.presentViewController(提示, animated: true, completion: nil)
+        } else {
+            let 网址:String = "\(全局_喵窩API["API域名"]!)\(当前链接[1])"
+            let vc:BrowserVC = BrowserVC()
+            self.navigationController?.pushViewController(vc, animated: true)
+            vc.装入网页(网址, 标题: 名称)
+        }
+        
     }
 
     /*

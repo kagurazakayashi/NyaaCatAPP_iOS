@@ -14,7 +14,6 @@ class StatusNC: UINavigationController {
         super.viewDidLoad()
         navigationBar.barTintColor = 全局_导航栏颜色
         navigationBar.titleTextAttributes = [ NSForegroundColorAttributeName : UIColor.whiteColor()]
-
         // Do any additional setup after loading the view.
     }
 

@@ -10,10 +10,10 @@ import UIKit
 
 @UIApplicationMain
 
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegate {
 
     var window: UIWindow?
-
+    var 主视图:MainTBC? = nil
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
@@ -21,10 +21,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let 屏幕尺寸:CGRect = UIScreen.mainScreen().bounds
         let 主窗口:UIWindow = UIWindow(frame: 屏幕尺寸)
         let 主故事板:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let 主视图:MainTBC = 主故事板.instantiateViewControllerWithIdentifier("MainTBC") as! MainTBC
+        主视图 = 主故事板.instantiateViewControllerWithIdentifier("MainTBC") as? MainTBC
+        主视图!.delegate = self
         主窗口.rootViewController = 主视图
         self.window = 主窗口
         self.window!.makeKeyAndVisible()
+        return true
+    }
+    
+    func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
+        if (全局_用户名 == nil) {
+            if ((viewController as? StatusNC) != nil || (viewController as? DMChatNC) != nil || (viewController as? MapNC) != nil) {
+                主视图?.游客模式阻止(viewController.title)
+                return false
+            }
+        }
         return true
     }
     
@@ -74,7 +85,7 @@ func 全局_调整计时器延迟(电池供电时:NSTimeInterval,外接电源时
 }
 
 //全局
-let 全局_导航栏颜色:UIColor = UIColor(red: 1, green: 153/255, blue: 204/255, alpha: 1)
+let 全局_导航栏颜色:UIColor = UIColor(red: 1, green: 153/255.0, blue: 203/255.0, alpha: 1)
 var 全局_刷新延迟:NSTimeInterval = 2.5 //1.0快速，2.5标准, 6.0节能，0.2模拟器压力测试，0.5真机压力测试
 var 全局_综合信息:Dictionary<String,NSObject>? = nil
 var 全局_用户名:String? = nil

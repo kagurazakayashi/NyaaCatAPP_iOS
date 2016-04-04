@@ -79,6 +79,7 @@ class MainTBC: UITabBarController, WKNavigationDelegate, WaitVCDelegate {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainTBC.收到重载通知), name: "reloadwebview", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainTBC.应用定时器延迟设置), name: "timerset", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainTBC.显示一下网络菊花), name: "netbusyonce", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainTBC.游客模式), name: "guest", object: nil)
     }
     
     func 初始化WebView() {
@@ -108,6 +109,18 @@ class MainTBC: UITabBarController, WKNavigationDelegate, WaitVCDelegate {
         
         //        后台网页加载器!.addObserver(self, forKeyPath: "estimatedProgress", options: .New, context: nil)
         //        后台网页加载器!.addObserver(self, forKeyPath: "title", options: .New, context: nil)
+    }
+    
+    func 游客模式() {
+        self.selectedIndex = 3
+    }
+    func 游客模式阻止(message:String?) {
+        let 提示:UIAlertController = UIAlertController(title: "游客模式不能浏览此条目", message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let 取消按钮 = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: { (动作:UIAlertAction) -> Void in
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+        })
+        提示.addAction(取消按钮)
+        self.presentViewController(提示, animated: true, completion: nil)
     }
     
     func 显示一下网络菊花() {

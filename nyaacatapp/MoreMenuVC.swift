@@ -114,13 +114,13 @@ class MoreMenuVC: UIViewController, MoreMenuCellViewDelegate {
         let 当前选择:[String] = 按钮文本和对应图片[按钮tag-1]
         switch (按钮tag) {
         case 1:
-            进入表格(按钮tag, 名称: 当前选择[0], 类型名: "通知")
+            进入表格(按钮tag, 名称: 当前选择[0], 类型名: "通知", 游客策略: 1)
             break;
         case 2:
             //进入表格(按钮tag, 名称: 当前选择[0], 类型名: "维基")
             break;
         case 3:
-            进入表格(按钮tag, 名称: 当前选择[0], 类型名: "录像")
+            进入表格(按钮tag, 名称: 当前选择[0], 类型名: "录像", 游客策略: 0)
             break;
         case 4:
             let vc:BrowserVC = BrowserVC()
@@ -140,7 +140,7 @@ class MoreMenuVC: UIViewController, MoreMenuCellViewDelegate {
             ob.打开浏览器("https://github.com/NyaaCat")
             break;
         case 8:
-            进入表格(按钮tag, 名称: 当前选择[0], 类型名: "处罚")
+            进入表格(按钮tag, 名称: 当前选择[0], 类型名: "处罚", 游客策略: 0)
             break;
         case 9:
             let vc:BrowserVC = BrowserVC()
@@ -152,13 +152,14 @@ class MoreMenuVC: UIViewController, MoreMenuCellViewDelegate {
         }
     }
     
-    func 进入表格(tag:Int, 名称:String, 类型名:String) {
+    func 进入表格(tag:Int, 名称:String, 类型名:String, 游客策略:Int) {
         if (表格数据 == nil) {
             下载表格数据()
         } else {
             let vc:TableVC = TableVC()
             vc.title = 名称
             vc.链接 = 表格数据![类型名]!
+            vc.禁止游客浏览 = 游客策略
             self.navigationController?.pushViewController(vc, animated: true)
             vc.tableView.reloadData()
         }

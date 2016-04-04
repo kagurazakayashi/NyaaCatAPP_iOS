@@ -91,6 +91,7 @@ class WaitVC: UIViewController {
     @IBAction func 顶部按钮三点击(sender: UIButton) {
         登录按钮.hidden = true
         self.代理!.返回登录请求(nil, 密码: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName("guest", object: nil)
     }
     
     func 退出() {
