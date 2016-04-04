@@ -80,14 +80,16 @@ class OpenBrowser: NSObject {
     }
     
     func 使用BiliBili打开(网址:String) -> Bool {
-        let 网站:String = 网址.substringToIndex(网址.startIndex.advancedBy(30))
-        if (网站 == "http://www.bilibili.com/video/" || 网站 == "https://www.bilibili.com/video") {
-            let 解析:Analysis = Analysis()
-            let AV号:String = 解析.抽取区间(网址, 起始字符串: "video/av", 结束字符串: "/", 包含起始字符串: false, 包含结束字符串: false)
-            let BiliURLstr:String = "bilibili://?av=\(AV号)"
-            let BiliURL:NSURL = NSURL(string: BiliURLstr)!
-            if (UIApplication.sharedApplication().canOpenURL(BiliURL)) {
-                return UIApplication.sharedApplication().openURL(BiliURL)
+        if (网址.characters.count > 30) {
+            let 网站:String = 网址.substringToIndex(网址.startIndex.advancedBy(30))
+            if (网站 == "http://www.bilibili.com/video/" || 网站 == "https://www.bilibili.com/video") {
+                let 解析:Analysis = Analysis()
+                let AV号:String = 解析.抽取区间(网址, 起始字符串: "video/av", 结束字符串: "/", 包含起始字符串: false, 包含结束字符串: false)
+                let BiliURLstr:String = "bilibili://?av=\(AV号)"
+                let BiliURL:NSURL = NSURL(string: BiliURLstr)!
+                if (UIApplication.sharedApplication().canOpenURL(BiliURL)) {
+                    return UIApplication.sharedApplication().openURL(BiliURL)
+                }
             }
         }
         return false

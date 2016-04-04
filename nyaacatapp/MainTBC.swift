@@ -64,6 +64,7 @@ class MainTBC: UITabBarController, WKNavigationDelegate, WaitVCDelegate {
         //self.presentViewController(等待画面, animated: true, completion: nil)
         等待画面.view.frame = self.view.frame
         self.view.addSubview(等待画面.view)
+        等待画面.代理 = self
         
         
         检查登录网络请求(false)
@@ -145,37 +146,39 @@ class MainTBC: UITabBarController, WKNavigationDelegate, WaitVCDelegate {
         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
         等待画面.副标题.text = "请使用动态地图用户登录喵"
         等待画面.登录按钮.hidden = false
-        等待画面.代理 = self
 //        登录菜单.代理 = self
 //        self.view.addSubview(登录菜单.view)
 //        登录菜单.进入动画(self.view.frame)
     }
     
     func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
-        if (等待提示框 == false) {
+        等待画面.副标题.text = "正在处理返回值..."
+//        if (等待提示框 == false) {
             请求页面源码()
-        }
+//        }
     }
     func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError) {
         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-        等待画面.副标题.text = "网络连接失败喵"
-        if (等待提示框 == false) {
-            等待提示框 = true
-            提示框 = UIAlertController(title: 等待画面.副标题.text, message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
-            let okAction = UIAlertAction(title: "重试", style: UIAlertActionStyle.Cancel, handler: { (动作:UIAlertAction) -> Void in
-                self.等待提示框 = false
-                if (self.网络模式 == 网络模式选项.检查是否登录 || self.网络模式 == 网络模式选项.提交登录请求) {
-                    self.检查登录网络请求(false)
-                }
-            })
-            let cancelAction = UIAlertAction(title: "游客登录", style: UIAlertActionStyle.Default, handler: { (动作:UIAlertAction) -> Void in
-                self.等待提示框 = false
-                self.返回登录请求(nil,密码: nil)
-            })
-            提示框!.addAction(okAction)
-            提示框!.addAction(cancelAction)
-            self.presentViewController(提示框!, animated: true, completion: nil)
-        }
+        等待画面.副标题.text = "错误：\(error.localizedDescription)"
+        等待画面.重试按钮模式(true)
+        等待画面.登录按钮.hidden = false
+//        if (等待提示框 == false) {
+//            等待提示框 = true
+//            提示框 = UIAlertController(title: 等待画面.副标题.text, message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
+//            let okAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: { (动作:UIAlertAction) -> Void in
+//                self.等待提示框 = false
+//                if (self.网络模式 == 网络模式选项.检查是否登录 || self.网络模式 == 网络模式选项.提交登录请求) {
+//                    self.检查登录网络请求(false)
+//                }
+//            })
+//            let cancelAction = UIAlertAction(title: "游客登录", style: UIAlertActionStyle.Default, handler: { (动作:UIAlertAction) -> Void in
+//                self.等待提示框 = false
+//                self.返回登录请求(nil,密码: nil)
+//            })
+//            提示框!.addAction(okAction)
+//            提示框!.addAction(cancelAction)
+//            self.presentViewController(提示框!, animated: true, completion: nil)
+//        }
     }
 //    func webView(webView: WKWebView, didCommitNavigation navigation: WKNavigation!) {
 //        NSLog("didCommitNavigation")
@@ -206,6 +209,9 @@ class MainTBC: UITabBarController, WKNavigationDelegate, WaitVCDelegate {
             let 网页标题:String? = 源码[0]
             if (网页标题 != nil && 网页标题 == 注册页面标题) {
                 打开动态地图登录菜单()
+            } else {
+                等待画面.副标题.text = "错误：\(网页标题!)"
+                用户名或密码不匹配()
             }
         } else if (网络模式 == 网络模式选项.提交登录请求) {
             let 网页标题:String? = 源码[0]
@@ -219,11 +225,13 @@ class MainTBC: UITabBarController, WKNavigationDelegate, WaitVCDelegate {
                     网络模式 = 网络模式选项.监视页面信息
                     新定时器 = MSWeakTimer.scheduledTimerWithTimeInterval(1.5, target: self, selector: #selector(MainTBC.定时器触发), userInfo: nil, repeats: true, dispatchQueue: dispatch_get_main_queue())
                 } else {
+                    等待画面.副标题.text = "用户名或密码不匹配"
                     用户名或密码不匹配()
                 }
             } else if (网页标题 != nil && 网页标题 != 注册页面标题) {
                 检查登录网络请求(true)
             } else {
+                等待画面.副标题.text = 网页标题
                 用户名或密码不匹配()
             }
         } else if (网络模式 == 网络模式选项.监视页面信息) {
@@ -237,27 +245,34 @@ class MainTBC: UITabBarController, WKNavigationDelegate, WaitVCDelegate {
     func 用户名或密码不匹配() {
         全局_用户名 = nil
         全局_密码 = nil
-        等待画面.副标题.text = "登录失败喵"
+        self.网络模式 = 网络模式选项.检查是否登录
+        等待画面.重试按钮模式(true)
         等待画面.登录按钮.hidden = false
         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-        if (等待提示框 == false) {
-            等待提示框 = true
-            提示框 = UIAlertController(title: 等待画面.副标题.text, message: "服务暂时不可用或用户名密码不匹配喵QAQ", preferredStyle: UIAlertControllerStyle.Alert)
-            let okAction = UIAlertAction(title: "重试喵", style: UIAlertActionStyle.Default, handler: { (动作:UIAlertAction) -> Void in
-                self.等待提示框 = false
-                self.网络模式 = 网络模式选项.检查是否登录
-                self.打开动态地图登录菜单()
-            })
-            提示框!.addAction(okAction)
-            self.presentViewController(提示框!, animated: true, completion: nil)
-        }
+//        if (等待提示框 == false) {
+//            等待提示框 = true
+//            提示框 = UIAlertController(title: "登录失败", message: 等待画面.副标题.text, preferredStyle: UIAlertControllerStyle.Alert)
+//            let okAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.Default, handler: { (动作:UIAlertAction) -> Void in
+//                self.等待提示框 = false
+////                self.打开动态地图登录菜单()
+//            })
+//            提示框!.addAction(okAction)
+//            self.presentViewController(提示框!, animated: true, completion: nil)
+//        }
         
     }
     
+    func 重试按钮点击() {
+        检查登录网络请求(false)
+    }
+    
     func 请求页面源码() {
-        解析延迟定时器 = MSWeakTimer.scheduledTimerWithTimeInterval(0.9, target: self, selector: #selector(MainTBC.请求页面源码2), userInfo: nil, repeats: false, dispatchQueue: dispatch_get_main_queue())
+        if (解析延迟定时器 == nil) {
+            解析延迟定时器 = MSWeakTimer.scheduledTimerWithTimeInterval(0.9, target: self, selector: #selector(MainTBC.请求页面源码2), userInfo: nil, repeats: false, dispatchQueue: dispatch_get_main_queue())
+        }
     }
     func 请求页面源码2() {
+        解析延迟定时器 = nil
         let 获取网页标题JS:String = "document.title"
         let 获取网页源码JS:String = "document.documentElement.innerHTML"
         var 网页源码:[String] = Array<String>()
@@ -276,8 +291,8 @@ class MainTBC: UITabBarController, WKNavigationDelegate, WaitVCDelegate {
     func 返回登录请求(用户名:String?,密码:String?) {
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         等待画面.副标题.text = "正在登录喵..."
-//        登录菜单.代理 = nil
-//        登录菜单.退出动画()
+        //        登录菜单.代理 = nil
+        //        登录菜单.退出动画()
         if (用户名 != nil) {
             网络模式 = 网络模式选项.提交登录请求
             let 网络参数:String = "j_username=" + 用户名! + "&j_password=" + 密码!

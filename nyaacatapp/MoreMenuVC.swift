@@ -44,7 +44,6 @@ class MoreMenuVC: UIViewController, MoreMenuCellViewDelegate {
     }
     func 右上按钮点击() {
         正在进入Tag = -1
-        NSURLCache.sharedURLCache().removeAllCachedResponses()
         下载表格数据()
     }
     
@@ -171,6 +170,7 @@ class MoreMenuVC: UIViewController, MoreMenuCellViewDelegate {
     }
     
     func 下载表格数据() {
+        NSURLCache.sharedURLCache().removeAllCachedResponses()
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         if (等待提示 == nil) {
             等待提示 = UIAlertController(title: "⌛️正在下载数据", message: nil, preferredStyle: UIAlertControllerStyle.Alert)

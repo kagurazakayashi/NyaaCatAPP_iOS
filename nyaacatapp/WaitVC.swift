@@ -11,6 +11,7 @@ import UIKit
 protocol WaitVCDelegate {
     func 返回登录请求(用户名:String?,密码:String?)
     func 弹出代理提示框(提示框:UIAlertController)
+    func 重试按钮点击()
 }
 
 class WaitVC: UIViewController {
@@ -27,6 +28,7 @@ class WaitVC: UIViewController {
     var 提示框:UIAlertController? = nil
     var 用户名:String = 全局_喵窩API["测试动态地图用户名"]!
     var 密码:String = 全局_喵窩API["测试动态地图密码"]!
+    var 重试:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,27 +43,41 @@ class WaitVC: UIViewController {
     
     @IBAction func 登录按钮点击(sender: UIButton) {
         登录按钮.hidden = true
-        提示框 = UIAlertController(title: "请输入用户名和密码", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
-        let cancelAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.Default, handler: { (动作:UIAlertAction) -> Void in
-            self.提示框处理(false)
-        })
-        let okAction = UIAlertAction(title: "确定", style: UIAlertActionStyle.Cancel, handler: { (动作:UIAlertAction) -> Void in
-            self.提示框处理(true)
-        })
-        提示框!.addTextFieldWithConfigurationHandler {
-            (textField: UITextField!) -> Void in
-            textField.placeholder = "用户名"
-            textField.text = self.用户名
+        if (重试 == true) {
+            重试按钮模式(false)
+            代理!.重试按钮点击()
+        } else {
+            提示框 = UIAlertController(title: "请输入用户名和密码", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+            let cancelAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.Default, handler: { (动作:UIAlertAction) -> Void in
+                self.提示框处理(false)
+            })
+            let okAction = UIAlertAction(title: "确定", style: UIAlertActionStyle.Cancel, handler: { (动作:UIAlertAction) -> Void in
+                self.提示框处理(true)
+            })
+            提示框!.addTextFieldWithConfigurationHandler {
+                (textField: UITextField!) -> Void in
+                textField.placeholder = "用户名"
+                textField.text = self.用户名
+            }
+            提示框!.addTextFieldWithConfigurationHandler {
+                (textField: UITextField!) -> Void in
+                textField.placeholder = "密码"
+                textField.secureTextEntry = true
+                textField.text = self.密码
+            }
+            提示框!.addAction(okAction)
+            提示框!.addAction(cancelAction)
+            代理!.弹出代理提示框(提示框!)
         }
-        提示框!.addTextFieldWithConfigurationHandler {
-            (textField: UITextField!) -> Void in
-            textField.placeholder = "密码"
-            textField.secureTextEntry = true
-            textField.text = self.密码
+    }
+    
+    func 重试按钮模式(重试模式:Bool) {
+        if (重试模式 == true) {
+            登录按钮.setTitle("重试", forState: .Normal)
+        } else {
+            登录按钮.setTitle("登录", forState: .Normal)
         }
-        提示框!.addAction(okAction)
-        提示框!.addAction(cancelAction)
-        代理?.弹出代理提示框(提示框!)
+        重试 = 重试模式
     }
     
     @IBAction func 顶部按钮一点击(sender: UIButton) {
@@ -74,7 +90,7 @@ class WaitVC: UIViewController {
     
     @IBAction func 顶部按钮三点击(sender: UIButton) {
         登录按钮.hidden = true
-        self.代理?.返回登录请求(nil, 密码: nil)
+        self.代理!.返回登录请求(nil, 密码: nil)
     }
     
     func 退出() {
@@ -93,7 +109,7 @@ class WaitVC: UIViewController {
             let 密码输入框:UITextField = 提示框!.textFields!.last! as UITextField
             用户名 = 用户名输入框.text!
             密码 = 密码输入框.text!
-            self.代理?.返回登录请求(用户名, 密码: 密码)
+            self.代理!.返回登录请求(用户名, 密码: 密码)
         } else {
             登录按钮.hidden = false
         }
