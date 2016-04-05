@@ -93,7 +93,7 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
             //向服务器提交聊天消息
             let 网络参数:NSString = "{\"name\":\"\",\"message\":\"§2" + 全局_手机发送消息关键字 + "§f" + 正在发送的消息! + "\"}"
             let 要加载的网页URL:NSURL = NSURL(string: 全局_喵窩API["消息发送接口"]!)!
-            let 网络请求:NSMutableURLRequest = NSMutableURLRequest(URL: 要加载的网页URL, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringCacheData, timeoutInterval: 30)
+            let 网络请求:NSMutableURLRequest = NSMutableURLRequest(URL: 要加载的网页URL, cachePolicy: 全局_缓存策略, timeoutInterval: 30)
             let 网络参数数据:NSData = 网络参数.dataUsingEncoding(NSUTF8StringEncoding)!
             网络请求.HTTPMethod = "POST"
             //§2[NyaaCatAPP] §fThis is a test message.
@@ -217,7 +217,7 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
         let 网络参数:String = "j_username=" + 全局_用户名! + "&j_password=" + 全局_密码!
         let 包含参数的网址:String = 全局_喵窩API["动态地图登录接口"]! + "?" + 网络参数
         let 要加载的网页URL:NSURL = NSURL(string: 包含参数的网址)!
-        let 网络请求:NSMutableURLRequest = NSMutableURLRequest(URL: 要加载的网页URL, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringCacheData, timeoutInterval: 10)
+        let 网络请求:NSMutableURLRequest = NSMutableURLRequest(URL: 要加载的网页URL, cachePolicy: 全局_缓存策略, timeoutInterval: 10)
         网络请求.HTTPMethod = "POST"
         let 上传会话 = NSURLSession.sharedSession()
         let 上传任务 = 上传会话.dataTaskWithRequest(网络请求) {

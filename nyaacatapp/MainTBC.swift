@@ -146,9 +146,9 @@ class MainTBC: UITabBarController, WKNavigationDelegate, WaitVCDelegate {
         let 要加载的网页URL:NSURL = NSURL(string: 动态地图网址)!
         var 网络请求:NSURLRequest? = nil
         if (缓存 == false) {
-            网络请求 = NSURLRequest(URL: 要加载的网页URL, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringCacheData, timeoutInterval: 30)
+            网络请求 = NSURLRequest(URL: 要加载的网页URL, cachePolicy: 全局_缓存策略, timeoutInterval: 30)
         } else {
-            网络请求 = NSURLRequest(URL: 要加载的网页URL, cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy, timeoutInterval: 30)
+            网络请求 = NSURLRequest(URL: 要加载的网页URL, cachePolicy: 全局_缓存策略, timeoutInterval: 30)
         }
         等待画面.副标题.text = "连接到地图服务器中..."
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
@@ -311,7 +311,7 @@ class MainTBC: UITabBarController, WKNavigationDelegate, WaitVCDelegate {
             let 网络参数:String = "j_username=" + 用户名! + "&j_password=" + 密码!
             let 包含参数的网址:String = 动态地图登录接口 + "?" + 网络参数
             let 要加载的网页URL:NSURL = NSURL(string: 包含参数的网址)!
-            let 网络请求:NSMutableURLRequest = NSMutableURLRequest(URL: 要加载的网页URL, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringCacheData, timeoutInterval: 30)
+            let 网络请求:NSMutableURLRequest = NSMutableURLRequest(URL: 要加载的网页URL, cachePolicy: 全局_缓存策略, timeoutInterval: 30)
             网络请求.HTTPMethod = "POST"
             全局_用户名 = 用户名
             全局_密码 = 密码

@@ -12,7 +12,7 @@ import UIKit
 class BBSVC: UIViewController, WKNavigationDelegate, WKUIDelegate {
     
     //可由外部设置，在加载网页前
-    var 缓存策略:NSURLRequestCachePolicy = .UseProtocolCachePolicy
+    var 缓存策略:NSURLRequestCachePolicy = 全局_缓存策略
     var 超时时间:NSTimeInterval = 10
     var 屏蔽长按菜单:Bool = true
     //
@@ -153,6 +153,7 @@ class BBSVC: UIViewController, WKNavigationDelegate, WKUIDelegate {
         进度条.setProgress(0, animated: false)
         if (error != nil) {
             错误信息 = "\(error!.localizedDescription)\n"
+            NSLog(error!.localizedDescription)
         }
         let 提示:UIAlertController = UIAlertController(title: "论坛连接失败", message: "\(错误信息)请重新进入本页重试", preferredStyle: UIAlertControllerStyle.Alert)
         let 取消按钮 = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: { (动作:UIAlertAction) -> Void in
@@ -171,6 +172,8 @@ class BBSVC: UIViewController, WKNavigationDelegate, WKUIDelegate {
     
     func 卸载浏览器() {
         浏览器开关 = false
+        tryed = false
+        浏览器!.loadHTMLString("", baseURL: nil)
 //        if (浏览器 != nil) {
 //            浏览器!.navigationDelegate = nil
 //            浏览器!.UIDelegate = nil
@@ -205,12 +208,13 @@ class BBSVC: UIViewController, WKNavigationDelegate, WKUIDelegate {
         //let 网页标题:String? = 源码[0]
         let 网页内容:String? = 源码[1]
         if (网页内容?.rangeOfString("当前访问的是简约版，使用更先进的浏览器访问效果更佳。") != nil || 网页内容?.rangeOfString("嘗試載入完整版本的論壇時出錯。") != nil || 网页内容?.rangeOfString("Something went wrong while trying to load the full version of this site.") != nil) {
-            if (tryed == false) {
-                tryed = true
-                let 要加载的浏览器URL:NSURL = NSURL(string: 全局_喵窩API["论坛地址"]!)!
-                let 网络请求:NSMutableURLRequest = NSMutableURLRequest(URL: 要加载的浏览器URL, cachePolicy: .ReloadIgnoringLocalCacheData, timeoutInterval: 超时时间)
-                浏览器!.loadRequest(网络请求)
-            } else {
+//            if (tryed == false) {
+//                tryed = true
+//                let 要加载的浏览器URL:NSURL = NSURL(string: 全局_喵窩API["论坛地址"]!)!
+//                let 网络请求:NSMutableURLRequest = NSMutableURLRequest(URL: 要加载的浏览器URL, cachePolicy: .ReloadIgnoringLocalCacheData, timeoutInterval: 超时时间)
+//                浏览器!.loadRequest(网络请求)
+//                NSLog("论坛未完整载入，重试")
+//            } else {
                 卸载浏览器()
                 let 提示:UIAlertController = UIAlertController(title: "论坛连接失败", message: "尝试载入完整版本论坛时出错，\n请重新进入本页重试", preferredStyle: UIAlertControllerStyle.Alert)
                 let 取消按钮 = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: { (动作:UIAlertAction) -> Void in
@@ -218,7 +222,7 @@ class BBSVC: UIViewController, WKNavigationDelegate, WKUIDelegate {
                 })
                 提示.addAction(取消按钮)
                 self.presentViewController(提示, animated: true, completion: nil)
-            }
+//            }
         } else if (网页内容?.rangeOfString("空空如也，何不创作一个？") != nil || 网页内容?.rangeOfString("道生一，一生二，二生三，三生萬物") != nil || 网页内容?.rangeOfString("It looks like there are no discussions here.") != nil) {
             //没有登录 //网页内容?.rangeOfString("关注") == nil
             //替换「空空如也，何不创作一个？」

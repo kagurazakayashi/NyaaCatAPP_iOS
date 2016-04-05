@@ -12,7 +12,7 @@ import WebKit
 class BrowserVC: UIViewController , WKNavigationDelegate, WKUIDelegate {
     
     //可由外部设置，在加载网页前
-    var 缓存策略:NSURLRequestCachePolicy = .UseProtocolCachePolicy
+    var 缓存策略:NSURLRequestCachePolicy = 全局_缓存策略
     var 超时时间:NSTimeInterval = 30
     var 屏蔽长按菜单:Bool = true
     var 在外部浏览器打开网页中的链接:Bool = true

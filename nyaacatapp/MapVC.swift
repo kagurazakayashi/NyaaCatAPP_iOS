@@ -11,13 +11,14 @@ import WebKit
 
 class MapVC: UIViewController , WKNavigationDelegate {
     
-    var 动态地图网页:WKWebView? = nil
+    var 浏览器:WKWebView? = nil
     let 动态地图登录接口:String = 全局_喵窩API["动态地图登录接口"]!
     
     var 登录步骤:Int = 0
     var 左上按钮:UIBarButtonItem? = nil
     var 右上按钮:UIBarButtonItem? = nil
     var 等待提示:UIAlertController? = nil
+    var 解析延迟定时器:MSWeakTimer? = nil
     
     @IBOutlet weak var 动态地图工具栏: UIView!
     @IBOutlet weak var 动态: UISwitch!
@@ -62,10 +63,10 @@ class MapVC: UIViewController , WKNavigationDelegate {
             self.装入地图(nil, y: nil, z: nil)
         })
         选择地图.addAction(地图M)
-        let 导航地图按钮 = UIAlertAction(title: "导航地图(by Miz)", style: UIAlertActionStyle.Default, handler: { (动作:UIAlertAction) -> Void in
-            self.装入网页(全局_喵窩API["Ilse地图"]!)
-        })
-        选择地图.addAction(导航地图按钮)
+//        let 导航地图按钮 = UIAlertAction(title: "导航地图(by Miz)", style: UIAlertActionStyle.Default, handler: { (动作:UIAlertAction) -> Void in
+//            self.装入网页(全局_喵窩API["Ilse地图"]!)
+//        })
+//        选择地图.addAction(导航地图按钮)
         let 取消按钮 = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: { (动作:UIAlertAction) -> Void in
             
         })
@@ -118,9 +119,9 @@ class MapVC: UIViewController , WKNavigationDelegate {
         浏览器设置.preferences = 浏览器偏好设置
         浏览器设置.selectionGranularity = .Dynamic
         let 浏览器坐标:CGRect = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.height)
-        动态地图网页 = WKWebView(frame: 浏览器坐标, configuration: 浏览器设置)
-        动态地图网页?.backgroundColor = UIColor.blackColor()
-        self.view.insertSubview(动态地图网页!, atIndex: 0)
+        浏览器 = WKWebView(frame: 浏览器坐标, configuration: 浏览器设置)
+        浏览器?.backgroundColor = UIColor.blackColor()
+        self.view.insertSubview(浏览器!, atIndex: 0)
         自动登录动态地图()
     }
     
@@ -129,12 +130,12 @@ class MapVC: UIViewController , WKNavigationDelegate {
             let 网络参数:String = "j_username=" + 全局_用户名! + "&j_password=" + 全局_密码!
             let 包含参数的网址:String = 动态地图登录接口 + "?" + 网络参数
             let 要加载的网页URL:NSURL = NSURL(string: 包含参数的网址)!
-            let 网络请求:NSMutableURLRequest = NSMutableURLRequest(URL: 要加载的网页URL, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringCacheData, timeoutInterval: 30)
+            let 网络请求:NSMutableURLRequest = NSMutableURLRequest(URL: 要加载的网页URL, cachePolicy: 全局_缓存策略, timeoutInterval: 30)
             网络请求.HTTPMethod = "POST"
-            动态地图网页?.navigationDelegate = self
-            动态地图网页!.loadRequest(网络请求)
+            浏览器?.navigationDelegate = self
+            浏览器!.loadRequest(网络请求)
         } else {
-            动态地图网页?.loadHTMLString("你正在处于游客模式，没有权限访问地图。", baseURL: nil)
+            浏览器?.loadHTMLString("你正在处于游客模式，没有权限访问地图。", baseURL: nil)
         }
     }
     
@@ -160,9 +161,52 @@ class MapVC: UIViewController , WKNavigationDelegate {
         动态地图工具栏可用(工具栏可用)
     }
     
+    func 请求页面源码() {
+        if (解析延迟定时器 == nil) {
+            解析延迟定时器 = MSWeakTimer.scheduledTimerWithTimeInterval(0.9, target: self, selector: #selector(self.请求页面源码2), userInfo: nil, repeats: false, dispatchQueue: dispatch_get_main_queue())
+        }
+    }
+    func 请求页面源码2() {
+        解析延迟定时器 = nil
+        let 获取网页标题JS:String = "document.title"
+        let 获取网页源码JS:String = "document.documentElement.innerHTML"
+        var 网页源码:[String] = Array<String>()
+        浏览器!.evaluateJavaScript(获取网页标题JS) { (对象:AnyObject?, 错误:NSError?) -> Void in
+            if (对象 == nil) {
+                return
+            }
+            网页源码.append(对象 as! String)
+            self.浏览器!.evaluateJavaScript(获取网页源码JS) { (对象:AnyObject?, 错误:NSError?) -> Void in
+                网页源码.append(对象 as! String)
+                self.处理返回源码(网页源码)
+            }
+        }
+    }
+    func 处理返回源码(源码:[String]) {
+        let 网页标题:String? = 源码[0]
+        let 网页内容:String? = 源码[1]
+        if (网页标题 == 全局_喵窩API["注册页面标题"]!) {
+            //网页内容?.rangeOfString("Enter user ID and password") != nil
+            自动登录动态地图()
+        } else if (网页内容?.rangeOfString("Web files are not matched with plugin version") != nil) {
+            浏览器!.loadHTMLString("", baseURL: nil)
+            let 提示:UIAlertController = UIAlertController(title: "地图连接失败", message: "请切换其他地图试试", preferredStyle: UIAlertControllerStyle.Alert)
+            let 取消按钮 = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: { (动作:UIAlertAction) -> Void in
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+            })
+            提示.addAction(取消按钮)
+        } else if (网页标题 != 全局_喵窩API["地图页面标题"]!) {
+            let 提示:UIAlertController = UIAlertController(title: "地图连接失败", message: "错误：\(网页标题)", preferredStyle: UIAlertControllerStyle.Alert)
+            let 取消按钮 = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: { (动作:UIAlertAction) -> Void in
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+            })
+            提示.addAction(取消按钮)
+        }
+    }
+    
     func webView(webView: WKWebView, didFailNavigation navigation: WKNavigation!, withError error: NSError) {
         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-        动态地图网页?.loadHTMLString("", baseURL: nil)
+        浏览器?.loadHTMLString("", baseURL: nil)
         if (等待提示 != nil) {
             等待提示?.dismissViewControllerAnimated(false, completion: nil)
             等待提示 = nil
@@ -180,15 +224,15 @@ class MapVC: UIViewController , WKNavigationDelegate {
             等待提示 = UIAlertController(title: "⌛️正在连接地图服务器", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
             let 取消按钮 = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: { (动作:UIAlertAction) -> Void in
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                self.动态地图网页?.reload()
+                self.浏览器?.reload()
                 self.等待提示 = nil
             })
             等待提示!.addAction(取消按钮)
             self.presentViewController(等待提示!, animated: true, completion: nil)
         }
         let 要加载的网页URL:NSURL = NSURL(string: 网址)!
-        let 加载地图网络请求:NSURLRequest =  NSURLRequest(URL: 要加载的网页URL, cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy, timeoutInterval: 30)
-        动态地图网页!.loadRequest(加载地图网络请求)
+        let 加载地图网络请求:NSURLRequest =  NSURLRequest(URL: 要加载的网页URL, cachePolicy: 全局_缓存策略, timeoutInterval: 30)
+        浏览器!.loadRequest(加载地图网络请求)
     }
     
     @IBAction func 动态开关(sender: UISwitch) {
