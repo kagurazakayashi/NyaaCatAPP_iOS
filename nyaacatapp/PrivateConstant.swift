@@ -22,8 +22,8 @@ class PrivateConstant: NSObject {
         "注册页面标题":"Minecraft Dynamic Map - Login/Register",
         "地图页面标题":"喵窝の世界",
         "Ilse地图":"http://miz.audio/nyaamaps/",
-        "关于和许可":"https://yoooooooooo.com/api/nyaacatapp/page/README/",
-        "游戏直播":"https://yoooooooooo.com/api/nyaacatapp/page/LIVE/",
-        "API域名":"https://yoooooooooo.com",
-        "API路径":"https://yoooooooooo.com/api/nyaacatapp/index.html"]
+        "关于和许可":"https://api.yoooooooooo.com:888/api/nyaacatapp/page/README/",
+        "游戏直播":"https://api.yoooooooooo.com:888/nyaacatapp/page/LIVE/",
+        "API域名":"https://api.yoooooooooo.com:888",
+        "API路径":"https://api.yoooooooooo.com:888/nyaacatapp/index.html"]
 }

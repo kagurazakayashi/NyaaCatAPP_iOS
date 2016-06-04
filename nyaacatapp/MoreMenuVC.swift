@@ -33,8 +33,15 @@ class MoreMenuVC: UIViewController, MoreMenuCellViewDelegate {
         MinoriWiki解析.html = 收到html
         收到html = ""
         self.表格数据 = MinoriWiki解析.获取主菜单()
-        if (正在进入Tag >= 0) {
+        if (self.表格数据 == nil) {
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+            self.等待提示?.title = "数据解析失败"
+            //self.等待提示?.message = "服务器暂时工作不正确"
+        } else if (正在进入Tag >= 0) {
+            self.关闭加载提示()
             延迟计时器 = MSWeakTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(self.延迟进入功能), userInfo: nil, repeats: false, dispatchQueue: dispatch_get_main_queue())
+        } else {
+            self.关闭加载提示()
         }
     }
     func 延迟进入功能() {
@@ -191,7 +198,6 @@ class MoreMenuVC: UIViewController, MoreMenuCellViewDelegate {
             }, success: { (task:NSURLSessionDataTask, responseObject:AnyObject?) in
                 //请求成功
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                self.关闭加载提示()
                 let 返回数据:NSData = responseObject as! NSData
                 self.收到html = String(data: 返回数据, encoding: NSUTF8StringEncoding)!
                 NSNotificationCenter.defaultCenter().postNotificationName("MoreMenuVCButton", object: nil)

@@ -21,7 +21,10 @@ class MinoriWikiAnalysis: NSObject {
         return false
     }
     
-    func 获取主菜单() -> Dictionary<String,[[String]]> {
+    func 获取主菜单() -> Dictionary<String,[[String]]>? {
+        if (有效性校验() == false) {
+            return nil;
+        }
         var 主菜单:Dictionary<String,[[String]]> = Dictionary<String,[[String]]>()
         let 主菜单区间:String = 解析.抽取区间(html!, 起始字符串: "<h3>", 结束字符串: "footer-text", 包含起始字符串: false, 包含结束字符串: false)
         let 分类区间:[String] = 主菜单区间.componentsSeparatedByString("<h3>")
