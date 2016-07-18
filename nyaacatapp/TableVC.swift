@@ -17,7 +17,7 @@ class TableVC: UITableViewController {
         super.viewDidLoad()
         if (全局_用户名 == nil && 禁止游客浏览 == 2) {
             title = "禁止游客浏览"
-            tableView.hidden = true
+            tableView.isHidden = true
         }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -33,31 +33,31 @@ class TableVC: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 链接.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let 单元格ID:String = "ECell"
-        let 行数:Int = indexPath.row
-        var 单元格:UITableViewCell? = tableView.dequeueReusableCellWithIdentifier(单元格ID)
+        let 行数:Int = (indexPath as NSIndexPath).row
+        var 单元格:UITableViewCell? = tableView.dequeueReusableCell(withIdentifier: 单元格ID)
         if(单元格 == nil) {
-            单元格 = UITableViewCell(style: .Subtitle, reuseIdentifier: 单元格ID)
-            单元格?.accessoryType = .DisclosureIndicator
+            单元格 = UITableViewCell(style: .subtitle, reuseIdentifier: 单元格ID)
+            单元格?.accessoryType = .disclosureIndicator
 //            单元格?.backgroundColor = UIColor.clearColor()
 //            单元格?.detailTextLabel?.textColor = UIColor.lightGrayColor()
 //            单元格?.textLabel?.textColor = UIColor.blackColor()
         }
         let 当前链接:[String] = 链接[行数]
         let 当前名称:String = 当前链接[0]
-        let 当前修正名称:String = 当前名称.substringFromIndex(当前名称.startIndex.advancedBy(1))
-        let 名称和时间:[String] = 当前修正名称.componentsSeparatedByString("|")
+        let 当前修正名称:String = 当前名称.substring(from: 当前名称.characters.index(当前名称.startIndex, offsetBy: 1))
+        let 名称和时间:[String] = 当前修正名称.components(separatedBy: "|")
         if (名称和时间.count >= 2) {
             单元格?.textLabel?.text = 名称和时间[1]
             单元格?.detailTextLabel?.text = 名称和时间[0]
@@ -66,21 +66,21 @@ class TableVC: UITableViewController {
         return 单元格!
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let 行数:Int = indexPath.row
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let 行数:Int = (indexPath as NSIndexPath).row
         let 当前链接:[String] = 链接[行数]
         let 当前名称:String = 当前链接[0]
-        let 名称日期:[String] = 当前名称.substringFromIndex(当前名称.startIndex.advancedBy(1)).componentsSeparatedByString("|")
+        let 名称日期:[String] = 当前名称.substring(from: 当前名称.characters.index(当前名称.startIndex, offsetBy: 1)).components(separatedBy: "|")
         //let 日期:String = 名称日期[0]
         let 名称:String = 名称日期[1]
         if (全局_用户名 == nil && 禁止游客浏览 == 1) {
-            let 提示:UIAlertController = UIAlertController(title: "游客模式不能浏览此条目", message: 名称, preferredStyle: UIAlertControllerStyle.Alert)
-            let 取消按钮 = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: { (动作:UIAlertAction) -> Void in
-                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+            let 提示:UIAlertController = UIAlertController(title: "游客模式不能浏览此条目", message: 名称, preferredStyle: UIAlertControllerStyle.alert)
+            let 取消按钮 = UIAlertAction(title: "取消", style: UIAlertActionStyle.cancel, handler: { (动作:UIAlertAction) -> Void in
+                UIApplication.shared().isNetworkActivityIndicatorVisible = false
             })
             提示.addAction(取消按钮)
-            self.presentViewController(提示, animated: true, completion: nil)
+            self.present(提示, animated: true, completion: nil)
         } else {
             let 网址:String = "\(全局_喵窩API["API域名"]!)\(当前链接[1])"
             let vc:BrowserVC = BrowserVC()

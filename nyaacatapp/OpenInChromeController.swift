@@ -17,13 +17,16 @@
 import UIKit
 
 class OpenInChromeController: NSObject {
+    private static var __once: () = { () -> Void in
+            let sharedInstance = OpenInChromeController.init()
+        }()
     let kGoogleChromeHTTPScheme = "googlechrome:"
     let kGoogleChromeHTTPSScheme = "googlechromes:"
     let kGoogleChromeCallbackScheme = "googlechrome-x-callback:"
     
-    func encodeByAddingPercentEscapes(input:String) -> String {
+    func encodeByAddingPercentEscapes(_ input:String) -> String {
         //'CFURLCreateStringByAddingPercentEscapes' is deprecated: first deprecated in iOS 9.0
-        let encodedValue = input.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+        let encodedValue = input.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
         if (encodedValue == nil) {
             return String()
         }
@@ -31,49 +34,47 @@ class OpenInChromeController: NSObject {
     }
     
     class func sharedInstance() -> OpenInChromeController {
-        var sharedInstance:OpenInChromeController? = nil
-        var onceToken:dispatch_once_t = 0
-        dispatch_once(&onceToken) { () -> Void in
-            sharedInstance = OpenInChromeController.init()
-        }
+        let sharedInstance:OpenInChromeController? = nil
+        var onceToken:Int = 0
+        _ = OpenInChromeController.__once
         return sharedInstance!
     }
     
     func isChromeInstalled() -> Bool {
-        let simpleURL:NSURL = NSURL(string: kGoogleChromeHTTPScheme)!
-        let callbackURL:NSURL = NSURL(string: kGoogleChromeCallbackScheme)!
-        return UIApplication.sharedApplication().canOpenURL(simpleURL) || UIApplication.sharedApplication().canOpenURL(callbackURL)
+        let simpleURL:URL = URL(string: kGoogleChromeHTTPScheme)!
+        let callbackURL:URL = URL(string: kGoogleChromeCallbackScheme)!
+        return UIApplication.shared().canOpenURL(simpleURL) || UIApplication.shared().canOpenURL(callbackURL)
     }
     
-    func openInChrome(url:NSURL) -> Bool {
+    func openInChrome(_ url:URL) -> Bool {
         return openInChrome(url, callbackURL: nil, createNewTab: false)
     }
     
-    func openInChrome(url:NSURL, callbackURL:NSURL?, createNewTab:Bool?) -> Bool {
-        let chromeSimpleURL:NSURL = NSURL(string: kGoogleChromeHTTPScheme)!
-        let chromeCallbackURL:NSURL = NSURL(string: kGoogleChromeCallbackScheme)!
-        if (UIApplication.sharedApplication().canOpenURL(chromeCallbackURL)) {
-            let appName:String = NSBundle.mainBundle().infoDictionary![kCFBundleNameKey as String] as! String //NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleDisplayName") as! String
-            let scheme:String = url.scheme.lowercaseString
+    func openInChrome(_ url:URL, callbackURL:URL?, createNewTab:Bool?) -> Bool {
+        let chromeSimpleURL:URL = URL(string: kGoogleChromeHTTPScheme)!
+        let chromeCallbackURL:URL = URL(string: kGoogleChromeCallbackScheme)!
+        if (UIApplication.shared().canOpenURL(chromeCallbackURL)) {
+            let appName:String = Bundle.main().infoDictionary![kCFBundleNameKey as String] as! String //NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleDisplayName") as! String
+            let scheme:String = url.scheme!.lowercased()
             // Proceed only if scheme is http or https.
             if (scheme == "http" || scheme == "https") {
                 let chromeURLString:NSMutableString = NSMutableString()
                 chromeURLString.appendFormat("%@//x-callback-url/open/?x-source=%@&url=%@",
                     kGoogleChromeCallbackScheme,
                     encodeByAddingPercentEscapes(appName),
-                    encodeByAddingPercentEscapes(url.absoluteString))
+                    encodeByAddingPercentEscapes(url.absoluteString!))
                 if (callbackURL != nil) {
-                    chromeURLString.appendFormat("&x-success=%@", encodeByAddingPercentEscapes(callbackURL!.absoluteString))
+                    chromeURLString.appendFormat("&x-success=%@", encodeByAddingPercentEscapes(callbackURL!.absoluteString!))
                 }
                 if (createNewTab != nil) {
-                    chromeURLString.appendString("&create-new-tab")
+                    chromeURLString.append("&create-new-tab")
                 }
-                let chromeURL:NSURL = NSURL(string: chromeURLString as String)!
+                let chromeURL:URL = URL(string: chromeURLString as String)!
                 // Open the URL with Google Chrome.
-                return UIApplication.sharedApplication().openURL(chromeURL)
+                return UIApplication.shared().openURL(chromeURL)
             }
-        } else if (UIApplication.sharedApplication().canOpenURL(chromeSimpleURL)) {
-            let scheme:String = url.scheme.lowercaseString
+        } else if (UIApplication.shared().canOpenURL(chromeSimpleURL)) {
+            let scheme:String = url.scheme!.lowercased()
             // Replace the URL Scheme with the Chrome equivalent.
             var chromeScheme:String? = nil
             if (scheme == "http") {
@@ -83,13 +84,13 @@ class OpenInChromeController: NSObject {
             }
             // Proceed only if a valid Google Chrome URI Scheme is available.
             if (chromeScheme != nil) {
-                let absoluteString:String = url.absoluteString
-                let rangeForScheme = absoluteString.rangeOfString(":")
-                let urlNoScheme:String = absoluteString.substringFromIndex(rangeForScheme!.startIndex)
-                let chromeURLString:String = chromeScheme!.stringByAppendingString(urlNoScheme)
-                let chromeURL:NSURL = NSURL(string: chromeURLString)!
+                let absoluteString:String = url.absoluteString!
+                let rangeForScheme = absoluteString.range(of: ":")
+                let urlNoScheme:String = absoluteString.substring(from: rangeForScheme!.lowerBound)
+                let chromeURLString:String = chromeScheme! + urlNoScheme
+                let chromeURL:URL = URL(string: chromeURLString)!
                 // Open the URL with Google Chrome.
-                return UIApplication.sharedApplication().openURL(chromeURL)
+                return UIApplication.shared().openURL(chromeURL)
             }
         }
         return false

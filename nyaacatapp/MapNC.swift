@@ -13,7 +13,7 @@ class MapNC: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationBar.barTintColor = 全局_导航栏颜色
-        navigationBar.titleTextAttributes = [ NSForegroundColorAttributeName : UIColor.whiteColor()]
+        navigationBar.titleTextAttributes = [ NSForegroundColorAttributeName : UIColor.white()]
     }
 
     override func didReceiveMemoryWarning() {

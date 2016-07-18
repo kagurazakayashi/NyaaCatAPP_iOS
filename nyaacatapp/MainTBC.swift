@@ -21,10 +21,10 @@ class MainTBC: UITabBarController, WKNavigationDelegate, WaitVCDelegate {
     let 登录菜单:LoginMenuVC = LoginMenuVC()
     var 提示框:UIAlertController? = nil
     var 网络模式:网络模式选项 = 网络模式选项.检查是否登录
-    var 定时器:NSTimer? = nil
+    var 定时器:Timer? = nil
     var 新定时器:MSWeakTimer? = nil
     var 菊花定时器:MSWeakTimer? = nil
-    var 定时器延迟计时器:NSTimeInterval = 0
+    var 定时器延迟计时器:TimeInterval = 0
 //    var 新定时器
     var 解析延迟定时器:MSWeakTimer? = nil
     var 解析引擎:DynmapAnalysisController = DynmapAnalysisController()
@@ -52,9 +52,9 @@ class MainTBC: UITabBarController, WKNavigationDelegate, WaitVCDelegate {
         super.viewDidLoad()
         tabBar.barTintColor = 全局_导航栏颜色
         //navigationBar.layer.contents = (id)[UIImage imageWithColor:youColor].CGImage;
-        tabBar.tintColor = UIColor.whiteColor()
-        全局_设备信息.batteryMonitoringEnabled = true
-        if (全局_设备信息.batteryState == .Charging || 全局_设备信息.batteryState == .Full){
+        tabBar.tintColor = UIColor.white()
+        全局_设备信息.isBatteryMonitoringEnabled = true
+        if (全局_设备信息.batteryState == .charging || 全局_设备信息.batteryState == .full){
             全局_刷新延迟 = 1
         } else {
             全局_刷新延迟 = 3
@@ -76,10 +76,10 @@ class MainTBC: UITabBarController, WKNavigationDelegate, WaitVCDelegate {
 //            testweb.loadRequest(NSURLRequest(URL: NSURL(string: "http://163.com")!, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringCacheData, timeoutInterval: 30))
 //        }
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainTBC.收到重载通知), name: "reloadwebview", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainTBC.应用定时器延迟设置), name: "timerset", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainTBC.显示一下网络菊花), name: "netbusyonce", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainTBC.游客模式), name: "guest", object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(MainTBC.收到重载通知), name: "reloadwebview", object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(MainTBC.应用定时器延迟设置), name: "timerset", object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(MainTBC.显示一下网络菊花), name: "netbusyonce", object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(MainTBC.游客模式), name: "guest", object: nil)
     }
     
     func 初始化WebView() {
@@ -98,12 +98,12 @@ class MainTBC: UITabBarController, WKNavigationDelegate, WaitVCDelegate {
         //        let 用户脚本:WKUserScript = WKUserScript(source: 用户脚本文本, injectionTime: .AtDocumentEnd, forMainFrameOnly: false)
         //        浏览器设置.userContentController.addUserScript(用户脚本)
         浏览器设置.preferences = 浏览器偏好设置
-        浏览器设置.selectionGranularity = .Dynamic
+        浏览器设置.selectionGranularity = .dynamic
         
         后台网页加载器 = WKWebView(frame: CGRect.zero, configuration: 浏览器设置)
 //        后台网页加载器 = WKWebView(frame: CGRectMake(0, 0, 300, 300), configuration: 浏览器设置)
         
-        后台网页加载器?.userInteractionEnabled = false
+        后台网页加载器?.isUserInteractionEnabled = false
         self.view.addSubview(后台网页加载器!)
         后台网页加载器!.navigationDelegate = self
         
@@ -114,23 +114,23 @@ class MainTBC: UITabBarController, WKNavigationDelegate, WaitVCDelegate {
     func 游客模式() {
         self.selectedIndex = 3
     }
-    func 游客模式阻止(message:String?) {
-        let 提示:UIAlertController = UIAlertController(title: "游客模式不能浏览此条目", message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        let 取消按钮 = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: { (动作:UIAlertAction) -> Void in
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+    func 游客模式阻止(_ message:String?) {
+        let 提示:UIAlertController = UIAlertController(title: "游客模式不能浏览此条目", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let 取消按钮 = UIAlertAction(title: "取消", style: UIAlertActionStyle.cancel, handler: { (动作:UIAlertAction) -> Void in
+            UIApplication.shared().isNetworkActivityIndicatorVisible = false
         })
         提示.addAction(取消按钮)
-        self.presentViewController(提示, animated: true, completion: nil)
+        self.present(提示, animated: true, completion: nil)
     }
     
     func 显示一下网络菊花() {
-        if (菊花定时器 == nil && UIApplication.sharedApplication().networkActivityIndicatorVisible == false) {
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-            菊花定时器 = MSWeakTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(MainTBC.显示一下网络菊花2), userInfo: nil, repeats: false, dispatchQueue: dispatch_get_main_queue())
+        if (菊花定时器 == nil && UIApplication.shared().isNetworkActivityIndicatorVisible == false) {
+            UIApplication.shared().isNetworkActivityIndicatorVisible = true
+            菊花定时器 = MSWeakTimer.scheduledTimer(withTimeInterval: 1.0, target: self, selector: #selector(MainTBC.显示一下网络菊花2), userInfo: nil, repeats: false, dispatchQueue: DispatchQueue.main)
         }
     }
     func 显示一下网络菊花2() {
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+        UIApplication.shared().isNetworkActivityIndicatorVisible = false
         菊花定时器 = nil
     }
     
@@ -142,39 +142,39 @@ class MainTBC: UITabBarController, WKNavigationDelegate, WaitVCDelegate {
         定时器延迟计时器 = 0
     }
     
-    func 检查登录网络请求(缓存:Bool) {
-        let 要加载的网页URL:NSURL = NSURL(string: 动态地图网址)!
-        var 网络请求:NSURLRequest? = nil
+    func 检查登录网络请求(_ 缓存:Bool) {
+        let 要加载的网页URL:URL = URL(string: 动态地图网址)!
+        var 网络请求:URLRequest? = nil
         if (缓存 == false) {
-            网络请求 = NSURLRequest(URL: 要加载的网页URL, cachePolicy: 全局_缓存策略, timeoutInterval: 30)
+            网络请求 = URLRequest(url: 要加载的网页URL, cachePolicy: 全局_缓存策略, timeoutInterval: 30)
         } else {
-            网络请求 = NSURLRequest(URL: 要加载的网页URL, cachePolicy: 全局_缓存策略, timeoutInterval: 30)
+            网络请求 = URLRequest(url: 要加载的网页URL, cachePolicy: 全局_缓存策略, timeoutInterval: 30)
         }
         等待画面.副标题.text = "连接到地图服务器中..."
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        后台网页加载器!.loadRequest(网络请求!)
+        UIApplication.shared().isNetworkActivityIndicatorVisible = true
+        后台网页加载器!.load(网络请求!)
     }
     
     func 打开动态地图登录菜单() {
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+        UIApplication.shared().isNetworkActivityIndicatorVisible = false
         等待画面.副标题.text = "请使用动态地图用户登录喵"
-        等待画面.登录按钮.hidden = false
+        等待画面.登录按钮.isHidden = false
 //        登录菜单.代理 = self
 //        self.view.addSubview(登录菜单.view)
 //        登录菜单.进入动画(self.view.frame)
     }
     
-    func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         等待画面.副标题.text = "正在处理返回值..."
 //        if (等待提示框 == false) {
             请求页面源码()
 //        }
     }
-    func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError) {
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError) {
+        UIApplication.shared().isNetworkActivityIndicatorVisible = false
         等待画面.副标题.text = "错误：\(error.localizedDescription)"
         等待画面.重试按钮模式(true)
-        等待画面.登录按钮.hidden = false
+        等待画面.登录按钮.isHidden = false
 //        if (等待提示框 == false) {
 //            等待提示框 = true
 //            提示框 = UIAlertController(title: 等待画面.副标题.text, message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
@@ -217,7 +217,7 @@ class MainTBC: UITabBarController, WKNavigationDelegate, WaitVCDelegate {
         }
     }
     
-    func 处理返回源码(源码:[String]) {
+    func 处理返回源码(_ 源码:[String]) {
         if (网络模式 == 网络模式选项.检查是否登录) {
             let 网页标题:String? = 源码[0]
             if (网页标题 != nil && 网页标题 == 注册页面标题) {
@@ -230,13 +230,13 @@ class MainTBC: UITabBarController, WKNavigationDelegate, WaitVCDelegate {
             let 网页标题:String? = 源码[0]
             if (网页标题 == 地图页面标题) {
                 let 网页内容:String? = 源码[1]
-                if (网页内容 != nil && 网页内容!.rangeOfString(地图页面特征) != nil) {
+                if (网页内容 != nil && 网页内容!.range(of: 地图页面特征) != nil) {
                     等待画面.副标题.text = "登录成功~撒花~"
                     等待画面.代理 = nil
                     等待画面.停止 = true
                     等待画面.退出()
                     网络模式 = 网络模式选项.监视页面信息
-                    新定时器 = MSWeakTimer.scheduledTimerWithTimeInterval(1.5, target: self, selector: #selector(MainTBC.定时器触发), userInfo: nil, repeats: true, dispatchQueue: dispatch_get_main_queue())
+                    新定时器 = MSWeakTimer.scheduledTimer(withTimeInterval: 1.5, target: self, selector: #selector(MainTBC.定时器触发), userInfo: nil, repeats: true, dispatchQueue: DispatchQueue.main)
                 } else {
                     等待画面.副标题.text = "用户名或密码不匹配"
                     用户名或密码不匹配()
@@ -251,7 +251,7 @@ class MainTBC: UITabBarController, WKNavigationDelegate, WaitVCDelegate {
             解析引擎.html = 源码[1]
             解析引擎.start()
         } else if (网络模式 == 网络模式选项.游客模式) {
-            NSNotificationCenter.defaultCenter().postNotificationName("data", object: nil)
+            NotificationCenter.default().post(name: Notification.Name(rawValue: "data"), object: nil)
         }
     }
     
@@ -260,8 +260,8 @@ class MainTBC: UITabBarController, WKNavigationDelegate, WaitVCDelegate {
         全局_密码 = nil
         self.网络模式 = 网络模式选项.检查是否登录
         等待画面.重试按钮模式(true)
-        等待画面.登录按钮.hidden = false
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+        等待画面.登录按钮.isHidden = false
+        UIApplication.shared().isNetworkActivityIndicatorVisible = false
 //        if (等待提示框 == false) {
 //            等待提示框 = true
 //            提示框 = UIAlertController(title: "登录失败", message: 等待画面.副标题.text, preferredStyle: UIAlertControllerStyle.Alert)
@@ -281,7 +281,7 @@ class MainTBC: UITabBarController, WKNavigationDelegate, WaitVCDelegate {
     
     func 请求页面源码() {
         if (解析延迟定时器 == nil) {
-            解析延迟定时器 = MSWeakTimer.scheduledTimerWithTimeInterval(0.9, target: self, selector: #selector(MainTBC.请求页面源码2), userInfo: nil, repeats: false, dispatchQueue: dispatch_get_main_queue())
+            解析延迟定时器 = MSWeakTimer.scheduledTimer(withTimeInterval: 0.9, target: self, selector: #selector(MainTBC.请求页面源码2), userInfo: nil, repeats: false, dispatchQueue: DispatchQueue.main)
         }
     }
     func 请求页面源码2() {
@@ -301,8 +301,8 @@ class MainTBC: UITabBarController, WKNavigationDelegate, WaitVCDelegate {
         }
     }
     
-    func 返回登录请求(用户名:String?,密码:String?) {
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+    func 返回登录请求(_ 用户名:String?,密码:String?) {
+        UIApplication.shared().isNetworkActivityIndicatorVisible = true
         等待画面.副标题.text = "正在登录喵..."
         //        登录菜单.代理 = nil
         //        登录菜单.退出动画()
@@ -310,22 +310,22 @@ class MainTBC: UITabBarController, WKNavigationDelegate, WaitVCDelegate {
             网络模式 = 网络模式选项.提交登录请求
             let 网络参数:String = "j_username=" + 用户名! + "&j_password=" + 密码!
             let 包含参数的网址:String = 动态地图登录接口 + "?" + 网络参数
-            let 要加载的网页URL:NSURL = NSURL(string: 包含参数的网址)!
-            let 网络请求:NSMutableURLRequest = NSMutableURLRequest(URL: 要加载的网页URL, cachePolicy: 全局_缓存策略, timeoutInterval: 30)
-            网络请求.HTTPMethod = "POST"
+            let 要加载的网页URL:URL = URL(string: 包含参数的网址)!
+            let 网络请求:NSMutableURLRequest = NSMutableURLRequest(url: 要加载的网页URL, cachePolicy: 全局_缓存策略, timeoutInterval: 30)
+            网络请求.httpMethod = "POST"
             全局_用户名 = 用户名
             全局_密码 = 密码
-            后台网页加载器!.loadRequest(网络请求)
+            后台网页加载器!.load(网络请求 as URLRequest)
         } else {
             网络模式 = 网络模式选项.游客模式
             等待画面.退出()
-            新定时器 = MSWeakTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(MainTBC.定时器触发), userInfo: nil, repeats: false, dispatchQueue: dispatch_get_main_queue())
+            新定时器 = MSWeakTimer.scheduledTimer(withTimeInterval: 1.0, target: self, selector: #selector(MainTBC.定时器触发), userInfo: nil, repeats: false, dispatchQueue: DispatchQueue.main)
             等待画面.停止 = true
         }
     }
     
-    func 弹出代理提示框(提示框:UIAlertController) {
-        self.presentViewController(提示框, animated: true, completion: nil)
+    func 弹出代理提示框(_ 提示框:UIAlertController) {
+        self.present(提示框, animated: true, completion: nil)
     }
     
 //    func 解析完成(综合信息输入:Dictionary<String,NSObject>?,信息数据量 信息数据量输入:Dictionary<String,Int>?) {

@@ -24,7 +24,7 @@ class DynmapAnalysis: NSObject {
     //    }
     
     func 有效性校验() -> Bool {
-        if (html?.rangeOfString(页面特征) != nil) {
+        if (html?.range(of: 页面特征) != nil) {
             return true
         }
         return false
@@ -33,15 +33,15 @@ class DynmapAnalysis: NSObject {
     func 取得世界列表() -> [String] {
         var 世界名称:[String] = Array<String>()
         let 起始点到结束点字符串:String = 解析.抽取区间(html!, 起始字符串: "<ul class=\"worldlist\"", 结束字符串: "</a></li></ul></li></ul>", 包含起始字符串: true, 包含结束字符串: false)
-        let classworld分割:[String] = 起始点到结束点字符串.componentsSeparatedByString("<li class=\"world\">")
+        let classworld分割:[String] = 起始点到结束点字符串.components(separatedBy: "<li class=\"world\">")
         if (classworld分割.count < 2) {
             return 世界名称
         }
         for classworld分割循环 in 1...classworld分割.count-1 {
             autoreleasepool {
                 var 当前classworld分割:String = classworld分割[classworld分割循环]
-                let 当前地图名称结束位置:Range = 当前classworld分割.rangeOfString("<")!
-                当前classworld分割 = 当前classworld分割.substringToIndex(当前地图名称结束位置.startIndex)
+                let 当前地图名称结束位置:Range = 当前classworld分割.range(of: "<")!
+                当前classworld分割 = 当前classworld分割.substring(to: 当前地图名称结束位置.lowerBound)
                 世界名称.append(当前classworld分割)
             }
         }
@@ -53,7 +53,7 @@ class DynmapAnalysis: NSObject {
         let 起始点到结束点字符串:String = 解析.抽取区间(html!, 起始字符串: "<div class=\"timeofday digitalclock", 结束字符串: "</div></div></div>", 包含起始字符串: false, 包含结束字符串: false)
         let 时间字符串:String = 解析.抽取区间(起始点到结束点字符串, 起始字符串: "\">", 结束字符串: "</div>", 包含起始字符串: false, 包含结束字符串: false)
         let 天气字符串:String = 解析.抽取区间(起始点到结束点字符串, 起始字符串: "weather ", 结束字符串: "\">", 包含起始字符串: false, 包含结束字符串: false)
-        let 天气分割:[String] = 天气字符串.componentsSeparatedByString("_")
+        let 天气分割:[String] = 天气字符串.components(separatedBy: "_")
         var 天气:String = ""
         var 时段:String = ""
         if (天气分割.count == 2) {
@@ -70,7 +70,7 @@ class DynmapAnalysis: NSObject {
     
     func 取得在线玩家() -> [[String]] {
         let 起始点到结束点字符串:String = 解析.抽取区间(html!, 起始字符串: "<ul class=\"playerlist\"", 结束字符串: "</ul><div class=\"scrolldown\"", 包含起始字符串: true, 包含结束字符串: true)
-        let li分割:[String] = 起始点到结束点字符串.componentsSeparatedByString("<li class=\"player")
+        let li分割:[String] = 起始点到结束点字符串.components(separatedBy: "<li class=\"player")
         var 在线玩家头像:[String] = Array<String>()
         var 在线玩家名:[String] = Array<String>()
         var 在线玩家名带字体格式:[String] = Array<String>()
@@ -81,7 +81,7 @@ class DynmapAnalysis: NSObject {
             autoreleasepool {
                 let 当前li分割:String = li分割[li分割循环]
                 let 图片相对路径:String = 解析.抽取区间(当前li分割, 起始字符串: "<img src=\"", 结束字符串: "\"></span><a href=\"#\"", 包含起始字符串: false, 包含结束字符串: false)
-                let 图片相对路径分割:[String] = 图片相对路径.componentsSeparatedByString("/")
+                let 图片相对路径分割:[String] = 图片相对路径.components(separatedBy: "/")
                 let 图片文件名:String = 图片相对路径分割[图片相对路径分割.count-1]
                 在线玩家头像.append(图片文件名)
                 let 玩家名带格式:String = 解析.抽取区间(当前li分割, 起始字符串: "title=\"Center on player\">", 结束字符串: "</a>", 包含起始字符串: false, 包含结束字符串: false)
@@ -149,7 +149,7 @@ class DynmapAnalysis: NSObject {
         //NSLog("新在线玩家：\(新在线玩家.count)：\(新在线玩家)")
     }
     
-    func 转换玩家二维数组格式(数组:[[String]]) -> Dictionary<String,[String]> {
+    func 转换玩家二维数组格式(_ 数组:[[String]]) -> Dictionary<String,[String]> {
         let 在线玩家二维数组:[[String]] = 数组
         let 在线玩家名:[String] = 在线玩家二维数组[0]
         var 玩家信息:Dictionary<String,[String]> = Dictionary<String,[String]>()
@@ -181,7 +181,7 @@ class DynmapAnalysis: NSObject {
     func 取得当前世界活动玩家状态() -> [[String]] {
         let 活动玩家块起始:String = "<div class=\"Marker playerMarker leaflet-marker-icon leaflet-clickable\""
         let 活动玩家块:String = 解析.抽取区间(html!, 起始字符串: 活动玩家块起始, 结束字符串: "<div class=\"leaflet-popup-pane\">", 包含起始字符串: true, 包含结束字符串: false)
-        let 活动玩家块分割:[String] = 活动玩家块.componentsSeparatedByString(活动玩家块起始)
+        let 活动玩家块分割:[String] = 活动玩家块.components(separatedBy: 活动玩家块起始)
         var 在线玩家名称:[String] = Array<String>()
         var 在线玩家血量宽度:[String] = Array<String>()
         var 在线玩家护甲宽度:[String] = Array<String>()
@@ -215,7 +215,7 @@ class DynmapAnalysis: NSObject {
     
     func 取得当前聊天记录() -> [[String]] {
         let 聊天信息块:String = 解析.抽取区间(html!, 起始字符串: "<div class=\"messagelist", 结束字符串: "</div><button", 包含起始字符串: false, 包含结束字符串: true)
-        let 聊天信息块分割:[String] = 聊天信息块.componentsSeparatedByString("</div>")
+        let 聊天信息块分割:[String] = 聊天信息块.components(separatedBy: "</div>")
         var 聊天:[[String]] = Array<Array<String>>()
         if (聊天信息块分割.count < 1) {
             return 聊天
@@ -225,22 +225,22 @@ class DynmapAnalysis: NSObject {
                 var 已处理:Bool = false
                 let 当前聊天信息块:String = 聊天信息块分割[聊天信息块分割循环]
                 let 聊天图标单元:String = "<div class=\"messageicon\">"
-                let 当前聊天信息块分割:[String] = 当前聊天信息块.componentsSeparatedByString(聊天图标单元)
+                let 当前聊天信息块分割:[String] = 当前聊天信息块.components(separatedBy: 聊天图标单元)
                 if (当前聊天信息块分割.count > 0) { //玩家消息
-                    let 分割信息字段:[String] = 当前聊天信息块.componentsSeparatedByString("<span class=\"message")
+                    let 分割信息字段:[String] = 当前聊天信息块.components(separatedBy: "<span class=\"message")
                     var 类型:String = "0" //0=游戏内聊天，1=上下线消息，2=电报等第三方平台，3=手机
                     if (分割信息字段.count > 1) {
                         var 玩家头像:String = 解析.抽取区间(分割信息字段[1], 起始字符串: "icon\">", 结束字符串: "</span>", 包含起始字符串: false, 包含结束字符串: false)
                         if (玩家头像 != "") {
                             let 图片相对路径 = 解析.抽取区间(玩家头像, 起始字符串: "<img src=\"", 结束字符串: "\" class=", 包含起始字符串: false, 包含结束字符串: false)
-                            let 图片相对路径分割:[String] = 图片相对路径.componentsSeparatedByString("/")
+                            let 图片相对路径分割:[String] = 图片相对路径.components(separatedBy: "/")
                             玩家头像 = 图片相对路径分割[图片相对路径分割.count-1]
                         }
                         var 玩家名称:String = 解析.抽取区间(分割信息字段[2], 起始字符串: "text\"> ", 结束字符串: "</span>", 包含起始字符串: false, 包含结束字符串: false)
                         var 玩家消息:String = 解析.抽取区间(分割信息字段[3], 起始字符串: "text\">", 结束字符串: "</span>", 包含起始字符串: false, 包含结束字符串: false)
                         if (玩家名称 == "") {
                             类型 = "2"
-                            let 玩家消息分割:[String] = 玩家消息.componentsSeparatedByString("] ")
+                            let 玩家消息分割:[String] = 玩家消息.components(separatedBy: "] ")
                             玩家名称 = 解析.抽取区间(玩家消息分割[0], 起始字符串: "[", 结束字符串: "", 包含起始字符串: false, 包含结束字符串: false)
                             if (玩家消息分割.count > 1) {
                                 玩家消息 = 玩家消息分割[1]
@@ -248,10 +248,10 @@ class DynmapAnalysis: NSObject {
                                 玩家消息 = "<APP发生了错误QAQ>"
                             }
                         }
-                        let 手机关键字:Range? = 玩家消息.rangeOfString(全局_手机发送消息关键字)
+                        let 手机关键字:Range? = 玩家消息.range(of: 全局_手机发送消息关键字)
                         if (手机关键字 != nil) {
                             类型 = "3"
-                            玩家消息 = 玩家消息.substringFromIndex(手机关键字!.endIndex)
+                            玩家消息 = 玩家消息.substring(from: 手机关键字!.upperBound)
                         }
                         //                    NSLog("玩家头像：\(玩家头像)")
                         //                    NSLog("玩家名称：\(玩家名称)")
@@ -261,7 +261,7 @@ class DynmapAnalysis: NSObject {
                         已处理 = true
                     }
                     if (已处理 == false) { //系统消息
-                        let 上下线提示分割:[String] = 当前聊天信息块.componentsSeparatedByString("</span> ")
+                        let 上下线提示分割:[String] = 当前聊天信息块.components(separatedBy: "</span> ")
                         let 上下线玩家名:String = 解析.抽取区间(上下线提示分割[0], 起始字符串: "<div class=\"messagerow\">", 结束字符串: "", 包含起始字符串: false, 包含结束字符串: false)
                         if (上下线提示分割.count > 1) {
                             let 上下线行为:String = 上下线提示分割[1]
@@ -286,14 +286,14 @@ class DynmapAnalysis: NSObject {
         let 商店块起始:String = "Marker mapMarker "
         let 商店块结束:String = "playerMarker"
         let 商店块:String = 解析.抽取区间(html!, 起始字符串: 商店块起始, 结束字符串: 商店块结束, 包含起始字符串: true, 包含结束字符串: false)
-        let 商店块分割:[String] = 商店块.componentsSeparatedByString(商店块起始)
+        let 商店块分割:[String] = 商店块.components(separatedBy: 商店块起始)
         if (商店块分割.count < 2) {
             return [商店,地点]
         }
         for 商店块分割循环 in 1...商店块分割.count-1 {
             autoreleasepool {
                 let 商店描述:String = 商店块分割[商店块分割循环]
-                let 商店判定:Range? = 商店描述.rangeOfString("markerName_SignShopMarkers")
+                let 商店判定:Range? = 商店描述.range(of: "markerName_SignShopMarkers")
                 let 商店名:String = 解析.抽取区间(商店描述, 起始字符串: "markerName16x16\">", 结束字符串: "</span>", 包含起始字符串: false, 包含结束字符串: false)
                 let 商店位置:String = translate3d标签抽取(商店描述)
                 if (商店判定 == nil) {
@@ -308,10 +308,10 @@ class DynmapAnalysis: NSObject {
         return [商店,地点]
     }
     
-    func translate3d标签抽取(源:String) -> String {
+    func translate3d标签抽取(_ 源:String) -> String {
         let translate3d位置描述:String = 解析.抽取区间(源, 起始字符串: "translate3d(", 结束字符串: "px, 0px);", 包含起始字符串: false, 包含结束字符串: false)
-        let translate3d位置数组:[String] = translate3d位置描述.componentsSeparatedByString("px, ")
-        let 位置描述:String = translate3d位置数组.joinWithSeparator(",")
+        let translate3d位置数组:[String] = translate3d位置描述.components(separatedBy: "px, ")
+        let 位置描述:String = translate3d位置数组.joined(separator: ",")
         return 位置描述
     }
     
@@ -319,18 +319,18 @@ class DynmapAnalysis: NSObject {
         //<div class="alertbox" style>Could not update map: error</div>
         var 对话框正在被显示:String = "0"
         var 起始点到结束点字符串:String = ""
-        let alertbox起始点位置:Range? = html!.rangeOfString("<div class=\"alertbox\"")
+        let alertbox起始点位置:Range? = html!.range(of: "<div class=\"alertbox\"")
         if (alertbox起始点位置 != nil) {
-            起始点到结束点字符串 = html!.substringFromIndex(alertbox起始点位置!.startIndex)
-            let 搜索结束点:Range = 起始点到结束点字符串.rangeOfString("</div>")!
-            起始点到结束点字符串 = 起始点到结束点字符串.substringToIndex(搜索结束点.startIndex)
-            let 检查对话框是否隐藏:Range? = html!.rangeOfString("display: none")
+            起始点到结束点字符串 = html!.substring(from: alertbox起始点位置!.lowerBound)
+            let 搜索结束点:Range = 起始点到结束点字符串.range(of: "</div>")!
+            起始点到结束点字符串 = 起始点到结束点字符串.substring(to: 搜索结束点.lowerBound)
+            let 检查对话框是否隐藏:Range? = html!.range(of: "display: none")
             
             if (检查对话框是否隐藏 == nil) { //没有被隐藏
                 对话框正在被显示 = "1"
             }
-            let 提示信息起始点位置:Range = 起始点到结束点字符串.rangeOfString(">")!
-            起始点到结束点字符串 = 起始点到结束点字符串.substringFromIndex(提示信息起始点位置.endIndex)
+            let 提示信息起始点位置:Range = 起始点到结束点字符串.range(of: ">")!
+            起始点到结束点字符串 = 起始点到结束点字符串.substring(from: 提示信息起始点位置.upperBound)
         }
         let 弹出提示信息:[String] = [ 对话框正在被显示, 起始点到结束点字符串 ]
         //        NSLog("弹出提示信息：\(弹出提示信息)")

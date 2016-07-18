@@ -45,20 +45,20 @@ class DynmapAnalysisController: NSObject {
             NSLog("上次解析未完成")
         } else {
             解析中 = true
-            NSNotificationCenter.defaultCenter().postNotificationName("netbusyonce", object: nil)
-            开始时间 = NSDate().timeIntervalSince1970
+            NotificationCenter.default().post(name: Notification.Name(rawValue: "netbusyonce"), object: nil)
+            开始时间 = Date().timeIntervalSince1970
             //NSLog("开始解析...")
             开始解析(true)
         }
     }
     
-    func 写入综合信息(k:String, v:NSObject, c:Int) {
+    func 写入综合信息(_ k:String, v:NSObject, c:Int) {
         综合信息![k] = v
         信息数据量![k] = c
 //        NSLog("解析中 \(综合信息.keys.count) / \(数据量)")
         if (综合信息!.keys.count == 数据量) {
             解析中 = false
-            let 消耗时间:Double = NSDate().timeIntervalSince1970 - 开始时间
+            let 消耗时间:Double = Date().timeIntervalSince1970 - 开始时间
             var log:String = "解析用时 \(消耗时间)"
             for 当前数据名 in 数据名 {
                 log += "，\(当前数据名) \(信息数据量![当前数据名]!)"
@@ -73,20 +73,20 @@ class DynmapAnalysisController: NSObject {
             综合信息 = nil
             信息数据量!.removeAll()
             信息数据量 = nil
-            NSNotificationCenter.defaultCenter().postNotificationName("data", object: nil)
+            NotificationCenter.default().post(name: Notification.Name(rawValue: "data"), object: nil)
         }
     }
     
-    func 开始解析(先校验:Bool) {
+    func 开始解析(_ 先校验:Bool) {
         if (先校验 == true) {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+            DispatchQueue.global(attributes: DispatchQueue.GlobalAttributes.qosDefault).async(execute: {
                 autoreleasepool {
                     var dma:DynmapAnalysis? = DynmapAnalysis()
                     dma!.html = self.html
                     let 返回值:Bool = dma!.有效性校验()
                     dma!.html = nil
                     dma = nil
-                    dispatch_async(dispatch_get_main_queue(), {
+                    DispatchQueue.main.async(execute: {
                         self.有效性校验结果(返回值)
                     })
                 }
@@ -95,7 +95,7 @@ class DynmapAnalysisController: NSObject {
             self.有效性校验结果(true)
         }
     }
-    func 有效性校验结果(有效:Bool) {
+    func 有效性校验结果(_ 有效:Bool) {
         if (有效 == true) {
             综合信息 = Dictionary<String,NSObject>()
             信息数据量 = Dictionary<String,Int>()
@@ -118,14 +118,14 @@ class DynmapAnalysisController: NSObject {
     }
     
     func 取得世界列表线程() {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+        DispatchQueue.global(attributes: DispatchQueue.GlobalAttributes.qosDefault).async(execute: {
             autoreleasepool {
                 var dma:DynmapAnalysis? = DynmapAnalysis()
                 dma!.html = self.html
                 let 返回值:[String] = dma!.取得世界列表()
                 dma!.html = nil
                 dma = nil
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     self.写入综合信息(self.数据名[0],v: 返回值,c: 返回值.count)
                 })
             }
@@ -133,14 +133,14 @@ class DynmapAnalysisController: NSObject {
     }
     
     func 取得弹出提示() {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+        DispatchQueue.global(attributes: DispatchQueue.GlobalAttributes.qosDefault).async(execute: {
             autoreleasepool {
                 var dma:DynmapAnalysis? = DynmapAnalysis()
                 dma!.html = self.html
                 let 返回值:[String] = dma!.取得弹出提示()
                 dma!.html = nil
                 dma = nil
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     self.写入综合信息(self.数据名[1],v: 返回值,c: 返回值.count)
                 })
             }
@@ -148,14 +148,14 @@ class DynmapAnalysisController: NSObject {
     }
     
     func 取得时间和天气() { //[时间字符串,时段,天气]
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+        DispatchQueue.global(attributes: DispatchQueue.GlobalAttributes.qosDefault).async(execute: {
             autoreleasepool {
                 var dma:DynmapAnalysis? = DynmapAnalysis()
                 dma!.html = self.html
                 let 返回值:[String] = dma!.取得时间和天气()
                 dma!.html = nil
                 dma = nil
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     self.写入综合信息(self.数据名[2],v: 返回值,c: 返回值.count)
                 })
             }
@@ -163,14 +163,14 @@ class DynmapAnalysisController: NSObject {
     }
     
     func 取得在线玩家和当前世界活动状态() {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+        DispatchQueue.global(attributes: DispatchQueue.GlobalAttributes.qosDefault).async(execute: {
             autoreleasepool {
                 var dma:DynmapAnalysis? = DynmapAnalysis()
                 dma!.html = self.html
                 let 返回值:Dictionary<String,[String]> = dma!.取得在线玩家和当前世界活动状态()
                 dma!.html = nil
                 dma = nil
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     self.写入综合信息(self.数据名[3],v: 返回值,c: 返回值.count)
                 })
             }
@@ -178,14 +178,14 @@ class DynmapAnalysisController: NSObject {
     }
     
     func 取得当前聊天记录() {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+        DispatchQueue.global(attributes: DispatchQueue.GlobalAttributes.qosDefault).async(execute: {
             autoreleasepool {
                 var dma:DynmapAnalysis? = DynmapAnalysis()
                 dma!.html = self.html
                 let 返回值:[[String]] = dma!.取得当前聊天记录()
                 dma!.html = nil
                 dma = nil
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     self.写入综合信息(self.数据名[4],v: 返回值,c: 返回值.count)
                 })
             }
@@ -193,14 +193,14 @@ class DynmapAnalysisController: NSObject {
     }
     
     func 取得商店和地点列表() {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+        DispatchQueue.global(attributes: DispatchQueue.GlobalAttributes.qosDefault).async(execute: {
             autoreleasepool {
                 var dma:DynmapAnalysis? = DynmapAnalysis()
                 dma!.html = self.html
                 let 返回值:[[[String]]] = dma!.取得商店和地点列表()
                 dma!.html = nil
                 dma = nil
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     self.写入综合信息(self.数据名[5],v: 返回值[0],c: 返回值[0].count)
                     self.写入综合信息(self.数据名[6],v: 返回值[1],c: 返回值[1].count)
                 })

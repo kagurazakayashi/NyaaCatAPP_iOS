@@ -14,11 +14,11 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
     let 允许转义颜色代码:Bool = false //true: 将&视为颜色代码
     
     var 实时聊天数据:[[String]]? = nil
-    var 默认头像:UIImage = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("seting-icon", ofType: "png")!)!
-    var 第三方软件发送头像:UIImage = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("t_logo", ofType: "png")!)!
-    var 动态地图聊天头像:UIImage = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("msg-icon", ofType: "png")!)!
-    var 手机聊天头像:UIImage = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("mobile-2-icon", ofType: "png")!)!
-    var 服务器消息头像:UIImage = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("cloud-icon", ofType: "png")!)!
+    var 默认头像:UIImage = UIImage(contentsOfFile: Bundle.main().pathForResource("seting-icon", ofType: "png")!)!
+    var 第三方软件发送头像:UIImage = UIImage(contentsOfFile: Bundle.main().pathForResource("t_logo", ofType: "png")!)!
+    var 动态地图聊天头像:UIImage = UIImage(contentsOfFile: Bundle.main().pathForResource("msg-icon", ofType: "png")!)!
+    var 手机聊天头像:UIImage = UIImage(contentsOfFile: Bundle.main().pathForResource("mobile-2-icon", ofType: "png")!)!
+    var 服务器消息头像:UIImage = UIImage(contentsOfFile: Bundle.main().pathForResource("cloud-icon", ofType: "png")!)!
     var 左上按钮:UIBarButtonItem? = nil
     var 右上按钮:UIBarButtonItem? = nil
     var 聊天文字输入框:UIAlertController? = nil
@@ -35,24 +35,24 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
     override func viewDidLoad() {
         super.viewDidLoad()
         let 背景图:UIImageView = UIImageView(frame: tableView.frame)
-        背景图.image = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("bg", ofType: "jpg")!)!
-        背景图.contentMode = .ScaleAspectFill
+        背景图.image = UIImage(contentsOfFile: Bundle.main().pathForResource("bg", ofType: "jpg")!)!
+        背景图.contentMode = .scaleAspectFill
 //        self.tableView.insertSubview(背景图, atIndex: 0)
         self.tableView.backgroundView = 背景图
-        self.tableView.backgroundColor = UIColor.clearColor()
-        self.tableView.separatorStyle = .None
+        self.tableView.backgroundColor = UIColor.clear()
+        self.tableView.separatorStyle = .none
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(DMChatTVC.接收数据更新通知), name: "data", object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(DMChatTVC.接收数据更新通知), name: "data", object: nil)
         
 //        初始化WebView()
         
-        左上按钮 = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Trash, target: self, action: #selector(DMChatTVC.左上按钮点击))
+        左上按钮 = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.trash, target: self, action: #selector(DMChatTVC.左上按钮点击))
         navigationItem.leftBarButtonItem = 左上按钮
-        右上按钮 = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: #selector(DMChatTVC.右上按钮点击))
+        右上按钮 = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(DMChatTVC.右上按钮点击))
         navigationItem.rightBarButtonItem = 右上按钮
         
-        左上按钮?.enabled = false
-        右上按钮?.enabled = false
+        左上按钮?.isEnabled = false
+        右上按钮?.isEnabled = false
     }
     
     func 初始化WebView() {
@@ -71,7 +71,7 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
         //        let 用户脚本:WKUserScript = WKUserScript(source: 用户脚本文本, injectionTime: .AtDocumentEnd, forMainFrameOnly: false)
         //        浏览器设置.userContentController.addUserScript(用户脚本)
         浏览器设置.preferences = 浏览器偏好设置
-        浏览器设置.selectionGranularity = .Dynamic
+        浏览器设置.selectionGranularity = .dynamic
         
 //        后台网页加载器 = WKWebView(frame: CGRectMake(0, 0, 300, 300), configuration: 浏览器设置)
 //        后台网页加载器?.alpha = 0.5
@@ -83,7 +83,7 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
         //        后台网页加载器!.addObserver(self, forKeyPath: "title", options: .New, context: nil)
     }
     
-    func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         网络连接完成()
     }
     
@@ -92,17 +92,17 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
             网络模式 = 网络模式选项.发送聊天消息
             //向服务器提交聊天消息
             let 网络参数:NSString = "{\"name\":\"\",\"message\":\"§2" + 全局_手机发送消息关键字 + "§f" + 正在发送的消息! + "\"}"
-            let 要加载的网页URL:NSURL = NSURL(string: 全局_喵窩API["消息发送接口"]!)!
-            let 网络请求:NSMutableURLRequest = NSMutableURLRequest(URL: 要加载的网页URL, cachePolicy: 全局_缓存策略, timeoutInterval: 30)
-            let 网络参数数据:NSData = 网络参数.dataUsingEncoding(NSUTF8StringEncoding)!
-            网络请求.HTTPMethod = "POST"
+            let 要加载的网页URL:URL = URL(string: 全局_喵窩API["消息发送接口"]!)!
+            let 网络请求:NSMutableURLRequest = NSMutableURLRequest(url: 要加载的网页URL, cachePolicy: 全局_缓存策略, timeoutInterval: 30)
+            let 网络参数数据:Data = 网络参数.data(using: String.Encoding.utf8.rawValue)!
+            网络请求.httpMethod = "POST"
             //§2[NyaaCatAPP] §fThis is a test message.
             //[urlRequest setValue: [NSString stringWithFormat:@"%@\r\n", @"http://XXXXXX HTTP/1.1"]];
             //application/json , application/x-www-data-urlencoded
             网络请求.setValue("application/json, text/javascript, */*; q=0.01", forHTTPHeaderField: "accept")
             网络请求.setValue("gzip, deflate", forHTTPHeaderField: "accept-encoding")
             网络请求.setValue("zh-CN,zh;q=0.8,en;q=0.6,ja;q=0.4", forHTTPHeaderField: "accept-language")
-            网络请求.setValue("\(网络参数数据.length)", forHTTPHeaderField: "content-length")
+            网络请求.setValue("\(网络参数数据.count)", forHTTPHeaderField: "content-length")
             网络请求.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "content-type")
             网络请求.setValue("1", forHTTPHeaderField: "dnt")
             网络请求.setValue(全局_喵窩API["动态地图域名"], forHTTPHeaderField: "origin")
@@ -110,16 +110,16 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
             网络请求.setValue("XMLHttpRequest", forHTTPHeaderField: "x-requested-with")
             //网络请求.HTTPBody = 网络参数数据
             //            后台网页加载器!.loadRequest(网络请求)
-            let 上传会话 = NSURLSession.sharedSession()
-            let 上传任务 = 上传会话.uploadTaskWithRequest(网络请求, fromData: 网络参数数据){
-                (data:NSData?, reponse:NSURLResponse?, error:NSError?) ->Void in
+            let 上传会话 = URLSession.shared()
+            let 上传任务 = 上传会话.uploadTask(with: 网络请求 as URLRequest, from: 网络参数数据){
+                (data:Data?, reponse:URLResponse?, error:NSError?) ->Void in
                 
                 if(error != nil){
                     self.网络连接失败(error!.localizedDescription)
                 } else{
-                    let 回应:String = NSString(data: data!, encoding: NSUTF8StringEncoding) as! String
+                    let 回应:String = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) as! String
                     if (回应 == "{\"error\":\"none\"}") {
-                        self.右上按钮?.enabled = true
+                        self.右上按钮?.isEnabled = true
                         self.网络连接完成()
                     } else {
                         self.网络连接失败(回应)
@@ -129,15 +129,15 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
             上传任务.resume()
             
         } else {
-            右上按钮!.enabled = true
+            右上按钮!.isEnabled = true
         }
     }
     
-    func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError) {
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError) {
         网络连接失败(error.localizedDescription)
     }
     
-    func 网络连接失败(错误描述:String) {
+    func 网络连接失败(_ 错误描述:String) {
         NSLog("消息发送失败=%@", 错误描述)
         网络模式 = 网络模式选项.提交登录请求
         if (正在发送的消息 != nil) {
@@ -149,7 +149,7 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
     
     func 左上按钮点击() {
         if (全局_用户名 != nil) {
-            NSNotificationCenter.defaultCenter().postNotificationName("reloadwebview", object: nil)
+            NotificationCenter.default().post(name: Notification.Name(rawValue: "reloadwebview"), object: nil)
         } else {
             //正在以游客身份登录，没有参与聊天的权限
         }
@@ -162,31 +162,31 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
         }
     }
     
-    func 打开发送消息框(重试消息:String?,错误描述:String?) {
+    func 打开发送消息框(_ 重试消息:String?,错误描述:String?) {
         var 标题:String = "输入聊天信息"
         var 内容:String? = nil
         if (重试消息 != nil) {
             标题 = "消息发送失败"
             内容 = 错误描述
         }
-        聊天文字输入框 = UIAlertController(title: 标题, message: 内容, preferredStyle: UIAlertControllerStyle.Alert)
-        let cancelAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: { (动作:UIAlertAction) -> Void in
+        聊天文字输入框 = UIAlertController(title: 标题, message: 内容, preferredStyle: UIAlertControllerStyle.alert)
+        let cancelAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.cancel, handler: { (动作:UIAlertAction) -> Void in
             self.提示框处理(false)
         })
-        let okAction = UIAlertAction(title: "发送", style: UIAlertActionStyle.Default, handler: { (动作:UIAlertAction) -> Void in
+        let okAction = UIAlertAction(title: "发送", style: UIAlertActionStyle.default, handler: { (动作:UIAlertAction) -> Void in
             self.提示框处理(true)
         })
-        聊天文字输入框!.addTextFieldWithConfigurationHandler {
+        聊天文字输入框!.addTextField {
             (textField: UITextField!) -> Void in
             textField.placeholder = "请在此输入要发送的内容"
             textField.text = 重试消息
         }
         聊天文字输入框!.addAction(cancelAction)
         聊天文字输入框!.addAction(okAction)
-        self.presentViewController(聊天文字输入框!, animated: true, completion: nil)
+        self.present(聊天文字输入框!, animated: true, completion: nil)
     }
     
-    func 提示框处理(确定:Bool) {
+    func 提示框处理(_ 确定:Bool) {
         if (确定 == true) {
             let 输入框:UITextField = 聊天文字输入框!.textFields!.first! as UITextField
             let 聊天文本:String? = 输入框.text
@@ -194,44 +194,46 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
                 发送消息(聊天文本!)
             }
         } else {
-            self.右上按钮?.enabled = true
+            self.右上按钮?.isEnabled = true
         }
         聊天文字输入框 = nil
     }
     
-    func 转义颜色代码(转义:Bool, 内容:String) -> String {
+    func 转义颜色代码(_ 转义:Bool, 内容:String) -> String {
         if (转义 == true) {
             if (允许转义颜色代码) {
-                return 内容.stringByReplacingOccurrencesOfString("&", withString: "§", options: NSStringCompareOptions.LiteralSearch, range: nil)
+                return 内容.replacingOccurrences(of: "&", with: "§", options: NSString.CompareOptions.literalSearch, range: nil)
             }
         } else {
-            return 内容.stringByReplacingOccurrencesOfString("§", withString: "&", options: NSStringCompareOptions.LiteralSearch, range: nil)
+            return 内容.replacingOccurrences(of: "§", with: "&", options: NSString.CompareOptions.literalSearch, range: nil)
         }
         return 内容
     }
     
-    func 发送消息(消息:String) {
-        右上按钮!.enabled = false
+    func 发送消息(_ 消息:String) {
+        右上按钮!.isEnabled = false
         正在发送的消息 = 转义颜色代码(true,内容: 消息)
         网络模式 = 网络模式选项.提交登录请求
         let 网络参数:String = "j_username=" + 全局_用户名! + "&j_password=" + 全局_密码!
         let 包含参数的网址:String = 全局_喵窩API["动态地图登录接口"]! + "?" + 网络参数
-        let 要加载的网页URL:NSURL = NSURL(string: 包含参数的网址)!
-        let 网络请求:NSMutableURLRequest = NSMutableURLRequest(URL: 要加载的网页URL, cachePolicy: 全局_缓存策略, timeoutInterval: 10)
-        网络请求.HTTPMethod = "POST"
-        let 上传会话 = NSURLSession.sharedSession()
-        let 上传任务 = 上传会话.dataTaskWithRequest(网络请求) {
-            (data:NSData?, reponse:NSURLResponse?, error:NSError?) ->Void in
-            
-            if(error != nil){
-                self.网络连接失败(error!.localizedDescription)
-            } else{
-                let 回应:String = NSString(data: data!, encoding: NSUTF8StringEncoding) as! String
-                if (回应 == "{\"result\":\"success\"}") {
-                    self.网络连接完成()
+        let 要加载的网页URL:URL = URL(string: 包含参数的网址)!
+        let 网络请求:NSMutableURLRequest = NSMutableURLRequest(url: 要加载的网页URL, cachePolicy: 全局_缓存策略, timeoutInterval: 10)
+        网络请求.httpMethod = "POST"
+        let 上传会话 = URLSession.shared()
+        let 上传任务 = 上传会话.dataTask(with: 网络请求) { (data:Data?, reponse:URLResponse?, error:NSError?) in
+            do {
+                if(error != nil) {
+                    self.网络连接失败(error!.localizedDescription)
                 } else {
-                    self.网络连接失败(回应)
+                    let 回应:String = NSString(data: data!, encoding: String.Encoding.utf8) as! String
+                    if (回应 == "{\"result\":\"success\"}") {
+                        self.网络连接完成()
+                    } else {
+                        self.网络连接失败(回应)
+                    }
                 }
+            } catch {
+                
             }
         }
         上传任务.resume()
@@ -240,9 +242,9 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
     func 接收数据更新通知() {
         if (首次更新数据 == true) {
             首次更新数据 = false
-            if (全局_用户名 != nil && 左上按钮?.enabled == false) {
-                左上按钮?.enabled = true
-                右上按钮?.enabled = true
+            if (全局_用户名 != nil && 左上按钮?.isEnabled == false) {
+                左上按钮?.isEnabled = true
+                右上按钮?.isEnabled = true
             }
             tableView.reloadData()
         }
@@ -260,7 +262,7 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
             if (tableView.contentOffset.y >= tableView.contentSize.height - tableView.frame.size.height) {
                 tableView.reloadData()
                 //self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: true)
-                self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 实时聊天数据!.count-1, inSection: 0), atScrollPosition: .Bottom, animated: true)
+                self.tableView.scrollToRow(at: IndexPath(row: 实时聊天数据!.count-1, section: 0), at: .bottom, animated: true)
             } else {
                 tableView.reloadData()
             }
@@ -268,20 +270,20 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
             tableView.reloadData()
         }
     }
-    override func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
     }
-    override func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         全局_调整计时器延迟(10,外接电源时: 10) //列表被拖动时
     }
-    override func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         全局_调整计时器延迟(3,外接电源时: 1) //列表拖动结束时
     }
-    override func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
+    override func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
     }
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         全局_调整计时器延迟(3,外接电源时: 1) //进入页面时
     }
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         全局_调整计时器延迟(10,外接电源时: 1) //退出页面时
     }
     
@@ -295,11 +297,11 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (首次更新数据 == true) {
             return 0
         }
@@ -309,10 +311,10 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
         return 实时聊天数据!.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-        let cell = tableView.dequeueReusableCellWithIdentifier("chatcell", forIndexPath: indexPath) as! DMChatTCell
-        let row = indexPath.row
+        let cell = tableView.dequeueReusableCell(withIdentifier: "chatcell", for: indexPath) as! DMChatTCell
+        let row = (indexPath as NSIndexPath).row
                 //聊天.append([玩家头像,玩家名称,类型,玩家消息])
         if (实时聊天数据 == nil || 实时聊天数据?.count == 0) {
             cell.头像.image = 默认头像
@@ -333,7 +335,7 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
 //            }
             if (头像相对路径 != "") {
                 头像相对路径 = "\(全局_喵窩API["32px头像接口"]!)\(当前聊天[0])"
-                cell.头像.setImageWithURL(NSURL(string: 头像相对路径)!, placeholderImage: 默认头像)
+                cell.头像.setImageWith(URL(string: 头像相对路径)!, placeholderImage: 默认头像)
             } else {
                 //0=游戏内聊天/动态地图，1=上下线消息，2=Telegram/IRC，3=手机
                 if (当前聊天[1] == " Server: ") {
@@ -353,13 +355,13 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
         return cell
     }
     
-    func 合并html(名字html:String,内容文本:String) -> String { //头像URL:String,
+    func 合并html(_ 名字html:String,内容文本:String) -> String { //头像URL:String,
         //return "<!doctype html><html><head><meta charset=\"UTF-8\"></head><body><table width=\"100%\" border=\"0\"><tbody><tr><td width=\"64\"><img src=\"\(头像URL)\" width=\"64\" height=\"64\" alt=\"\"/></td><td align=\"left\" valign=\"top\">\(名字html)<p><span style=\"color:#FF99CC\">\(内容文本)</span></td></tr></tbody></table></body></html>"
             return "<!doctype html><html><head><meta charset=\"UTF-8\"></head><body><span style=\"color:#FFF\">\(名字html)<p><span style=\"color:#FF99CC\">\(内容文本)</span></body></html>"
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     /*

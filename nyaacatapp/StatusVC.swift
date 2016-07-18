@@ -26,8 +26,8 @@ class StatusVC: UIViewController {
     
     var 数据:[String]? = nil
     var 白天:Bool = true
-    let 白天颜色:UIColor = UIColor.yellowColor()
-    let 夜晚颜色:UIColor = UIColor.lightGrayColor()
+    let 白天颜色:UIColor = UIColor.yellow()
+    let 夜晚颜色:UIColor = UIColor.lightGray()
     var 时:Int = 0
     var 分:Int = 0
     var 闪烁冒号:Bool = true
@@ -47,22 +47,22 @@ class StatusVC: UIViewController {
         for 天气字:String in 天气词Key {
             for 时段字:String in 时段词Key {
                 let 当前图片文件名:String = "\(天气字)_\(时段字)"
-                let 当前图片文件路径:String = NSBundle.mainBundle().pathForResource(当前图片文件名, ofType: "png")!
+                let 当前图片文件路径:String = Bundle.main().pathForResource(当前图片文件名, ofType: "png")!
                 let 当前图片数据:UIImage = UIImage(contentsOfFile: 当前图片文件路径)!
                 天气图标图像[当前图片文件名] = 当前图片数据
             }
         }
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(StatusVC.接收数据更新通知), name: "data", object: nil)
-        时间补偿 = MSWeakTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(StatusVC.时间补偿触发), userInfo: nil, repeats: true, dispatchQueue: dispatch_get_main_queue())
+        NotificationCenter.default().addObserver(self, selector: #selector(StatusVC.接收数据更新通知), name: "data", object: nil)
+        时间补偿 = MSWeakTimer.scheduledTimer(withTimeInterval: 1.0, target: self, selector: #selector(StatusVC.时间补偿触发), userInfo: nil, repeats: true, dispatchQueue: DispatchQueue.main)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         
         self.navigationController?.setNavigationBarHidden(true, animated: true)
 //        UIApplication.sharedApplication().statusBarHidden = true
 //        self.view.frame = CGRectMake(0, -20, oldViewFrame!.size.width, oldViewFrame!.size.height + 20)
     }
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
 //        UIApplication.sharedApplication().statusBarHidden = false
@@ -124,7 +124,7 @@ class StatusVC: UIViewController {
                     let 当前图片文件名:String = "\(天气)_\(时段)"
                     let 当前天气图片:UIImage = 天气图标图像[当前图片文件名]!
                     天气图标.image = 当前天气图片
-                    let 时间数组 = 时间.componentsSeparatedByString(":")
+                    let 时间数组 = 时间.components(separatedBy: ":")
                     时 = Int(时间数组[0])!
                     分 = Int(时间数组[1])!
                     更新时间字符串()
@@ -132,33 +132,33 @@ class StatusVC: UIViewController {
             }
             let 在线玩家字典:Dictionary<String,[String]> = 全局_综合信息!["在线玩家"] as! Dictionary<String,[String]>
             let 在线玩家数据:[String] = Array(在线玩家字典.keys)
-            玩家按钮.setTitle("\(String(在线玩家数据.count)) 位在线玩家 >", forState: .Normal)
+            玩家按钮.setTitle("\(String(在线玩家数据.count)) 位在线玩家 >", for: UIControlState())
             let 在线城市数据:[[String]] = 全局_综合信息!["地点"] as! [[String]]
-            城市按钮.setTitle("\(String(在线城市数据.count)) 个城市坐标 >", forState: .Normal)
+            城市按钮.setTitle("\(String(在线城市数据.count)) 个城市坐标 >", for: UIControlState())
             let 在线商店数据:[[String]] = 全局_综合信息!["商店"] as! [[String]]
-            商店按钮.setTitle("\(String(在线商店数据.count)) 个玩家商店 >", forState: .Normal)
+            商店按钮.setTitle("\(String(在线商店数据.count)) 个玩家商店 >", for: UIControlState())
             let 在线世界数据:[String] = 全局_综合信息!["世界列表"] as! [String]
-            世界按钮.setTitle("\(String(在线世界数据.count)) 个游戏世界 >", forState: .Normal)
+            世界按钮.setTitle("\(String(在线世界数据.count)) 个游戏世界 >", for: UIControlState())
             //数据 = 全局_综合信息!["时间天气"] as? [String]
         }
     }
 
-    @IBAction func 玩家按钮点击(sender: UIButton) {
+    @IBAction func 玩家按钮点击(_ sender: UIButton) {
         let 打开的列表:StatusTVC = self.navigationController?.viewControllers[1] as! StatusTVC
         打开的列表.要呈现的数据 = .玩家列表
     }
     
-    @IBAction func 城市按钮点击(sender: UIButton) {
+    @IBAction func 城市按钮点击(_ sender: UIButton) {
         let 打开的列表:StatusTVC = self.navigationController?.viewControllers[1] as! StatusTVC
         打开的列表.要呈现的数据 = .城市列表
     }
     
-    @IBAction func 商店按钮点击(sender: UIButton) {
+    @IBAction func 商店按钮点击(_ sender: UIButton) {
         let 打开的列表:StatusTVC = self.navigationController?.viewControllers[1] as! StatusTVC
         打开的列表.要呈现的数据 = .商店列表
     }
     
-    @IBAction func 世界按钮点击(sender: UIButton) {
+    @IBAction func 世界按钮点击(_ sender: UIButton) {
         let 打开的列表:StatusTVC = self.navigationController?.viewControllers[1] as! StatusTVC
         打开的列表.要呈现的数据 = .世界列表
     }
