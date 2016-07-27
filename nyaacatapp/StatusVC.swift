@@ -47,12 +47,12 @@ class StatusVC: UIViewController {
         for 天气字:String in 天气词Key {
             for 时段字:String in 时段词Key {
                 let 当前图片文件名:String = "\(天气字)_\(时段字)"
-                let 当前图片文件路径:String = Bundle.main().pathForResource(当前图片文件名, ofType: "png")!
+                let 当前图片文件路径:String = Bundle.main.pathForResource(当前图片文件名, ofType: "png")!
                 let 当前图片数据:UIImage = UIImage(contentsOfFile: 当前图片文件路径)!
                 天气图标图像[当前图片文件名] = 当前图片数据
             }
         }
-        NotificationCenter.default().addObserver(self, selector: #selector(StatusVC.接收数据更新通知), name: "data", object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(StatusVC.接收数据更新通知), name: "data" as NSNotification.Name, object: nil)
         时间补偿 = MSWeakTimer.scheduledTimer(withTimeInterval: 1.0, target: self, selector: #selector(StatusVC.时间补偿触发), userInfo: nil, repeats: true, dispatchQueue: DispatchQueue.main)
     }
     

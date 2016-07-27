@@ -273,7 +273,7 @@
 </p>
 
 <p>
-<a href="http://nyaa.cat" class="urlextern" title="http://nyaa.cat"  rel="nofollow">主页</a> | <a href="https://bbs.nyaa.cat" class="urlextern" title="https://bbs.nyaa.cat"  rel="nofollow">论坛</a> | <a href="/faq" class="wikilink1" title="faq">常见问题</a> | <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E6%96%B0%E6%89%8B%E6%9D%91" class="wikilink1" title="玩家空间:新手村">新手村指引</a> | <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E6%96%B0%E4%BA%BA%E6%8C%87%E5%8D%97" class="wikilink1" title="玩家空间:新人指南">新人指南</a> | <a href="https://mcmap.90g.org" class="urlextern" title="https://mcmap.90g.org"  rel="nofollow">动态地图</a>
+<a href="http://nyaa.cat" class="urlextern" title="http://nyaa.cat"  rel="nofollow">主页</a> | <a href="https://bbs.nyaa.cat" class="urlextern" title="https://bbs.nyaa.cat"  rel="nofollow">论坛</a> | <a href="/faq" class="wikilink1" title="faq">常见问题</a> | <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E6%96%B0%E6%89%8B%E6%9D%91" class="wikilink1" title="玩家空间:新手村">新手村指引</a> | <a href="/%E7%8E%A9%E5%AE%B6%E7%A9%BA%E9%97%B4:%E6%96%B0%E4%BA%BA%E6%8C%87%E5%8D%97" class="wikilink1" title="玩家空间:新人指南">新人指南</a> | <a href="https://map.nyaa.cat" class="urlextern" title="https://map.nyaa.cat"  rel="nofollow">动态地图</a>
 </p>
 
 <p>

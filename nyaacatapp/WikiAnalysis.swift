@@ -63,7 +63,7 @@ class WikiAnalysis: NSObject {
             内容区间 = "未能读取这个维基页面。"
         } else {
             //var filtered = url.stringByReplacingOccurrencesOfString("/", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
-            内容区间 = 内容区间.replacingOccurrences(of: "<a href=\"/", with: "<a href=\"\(域名)/", options: NSString.CompareOptions.literalSearch, range: nil)
+            内容区间 = 内容区间.replacingOccurrences(of: "<a href=\"/", with: "<a href=\"\(域名)/", options: NSString.CompareOptions.literal, range: nil)
         }
         let 返回网页:String = "<!DOCTYPE html><html lang=\"zh\" dir=\"ltr\" class=\"no-js\"><head><meta charset=\"utf-8\" /><title>wikipage</title></head><body>\(内容区间)</body></html>"
         //print(返回网页)

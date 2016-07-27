@@ -45,7 +45,7 @@ class DynmapAnalysisController: NSObject {
             NSLog("上次解析未完成")
         } else {
             解析中 = true
-            NotificationCenter.default().post(name: Notification.Name(rawValue: "netbusyonce"), object: nil)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "netbusyonce"), object: nil)
             开始时间 = Date().timeIntervalSince1970
             //NSLog("开始解析...")
             开始解析(true)
@@ -73,7 +73,7 @@ class DynmapAnalysisController: NSObject {
             综合信息 = nil
             信息数据量!.removeAll()
             信息数据量 = nil
-            NotificationCenter.default().post(name: Notification.Name(rawValue: "data"), object: nil)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "data"), object: nil)
         }
     }
     

@@ -81,7 +81,7 @@ func 全局_调整计时器延迟(_ 电池供电时:TimeInterval,外接电源时
     } else {
         全局_刷新延迟 = 电池供电时
     }
-    NotificationCenter.default().post(name: Notification.Name(rawValue: "timerset"), object: nil)
+    NotificationCenter.default.post(name: Notification.Name(rawValue: "timerset"), object: nil)
 }
 
 //全局

@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6Ti-ue-IEU">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11173.2" systemVersion="16A254g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="6Ti-ue-IEU">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11143.2"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--在线聊天-->
@@ -11,15 +12,15 @@
             <objects>
                 <tableViewController title="在线聊天" id="8IN-wD-EGg" customClass="DMChatTVC" customModule="nyaacatapp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" id="hoo-0u-Dbo">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="chatcell" rowHeight="70" id="IrE-MO-WHt" customClass="DMChatTCell" customModule="nyaacatapp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="70"/>
+                                <frame key="frameInset" minY="92" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IrE-MO-WHt" id="EKM-M9-gct">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="69"/>
+                                    <frame key="frameInset" width="375" height="69"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -61,42 +62,42 @@
                         <viewControllerLayoutGuide type="bottom" id="Shv-F8-1Cn"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="FBC-Er-Fep">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="RQJ-Lh-xe9">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="RQJ-Lh-xe9"/>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="pAr-xm-3gd">
-                                <rect key="frame" x="281" y="514" width="39" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="39" id="QRe-EU-TaW"/>
                                     <constraint firstAttribute="height" constant="37" id="vZv-Jz-kGc"/>
                                 </constraints>
                             </pageControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fiA-7G-xvU">
-                                <rect key="frame" x="20" y="403" width="153" height="140"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="喵窩·主世界" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKW-1c-keD">
-                                        <rect key="frame" x="0.0" y="0.0" width="113" height="31"/>
+                                        <frame key="frameInset" width="113" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="获得天气中" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nzN-7A-6T9">
-                                        <rect key="frame" x="40" y="39" width="113" height="32"/>
+                                        <frame key="frameInset" minX="40" minY="39" width="113" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bIM-Nd-UXg">
-                                        <rect key="frame" x="0.0" y="79" width="153" height="61"/>
+                                        <frame key="frameInset" minY="79" width="153" height="61"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="stormy.png" translatesAutoresizingMaskIntoConstraints="NO" id="VQo-Ul-2Nt">
-                                        <rect key="frame" x="0.0" y="39" width="32" height="32"/>
+                                        <frame key="frameInset" minY="39" width="32" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
@@ -104,13 +105,13 @@
                                     <constraint firstAttribute="height" constant="140" id="uKW-H6-lw9"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HZv-xd-p8l">
-                                <rect key="frame" x="435" y="78" width="145" height="164"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HZv-xd-p8l">
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Pd-L3-ugN">
-                                        <rect key="frame" x="0.0" y="76" width="137" height="30"/>
+                                        <frame key="frameInset" minY="76" width="137" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="城市坐标载入中">
-                                            <color key="titleColor" red="1" green="0.49803921569999998" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="1" green="0.49803921569999998" blue="0.75686274509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="城市按钮点击:" destination="Sia-vI-jGU" eventType="touchUpInside" id="kvT-hZ-6lT"/>
@@ -118,9 +119,10 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="InO-wD-KDh">
-                                        <rect key="frame" x="0.0" y="114" width="137" height="30"/>
+                                        <frame key="frameInset" minY="114" width="137" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="游戏世界载入中">
-                                            <color key="titleColor" red="1" green="0.49803921569999998" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="1" green="0.49803921569999998" blue="0.75686274509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="世界按钮点击:" destination="Sia-vI-jGU" eventType="touchUpInside" id="sMH-Og-6vr"/>
@@ -128,9 +130,10 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Etd-q4-7gY">
-                                        <rect key="frame" x="0.0" y="38" width="137" height="30"/>
+                                        <frame key="frameInset" minY="38" width="137" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="玩家商店载入中">
-                                            <color key="titleColor" red="1" green="0.49803921569999998" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="1" green="0.49803921569999998" blue="0.75686274509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="商店按钮点击:" destination="Sia-vI-jGU" eventType="touchUpInside" id="jiU-YR-Xq6"/>
@@ -138,9 +141,10 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zD0-Oy-2MA">
-                                        <rect key="frame" x="0.0" y="0.0" width="137" height="30"/>
+                                        <frame key="frameInset" width="137" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="在线玩家载入中">
-                                            <color key="titleColor" red="1" green="0.49803921569999998" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="1" green="0.49803921569999998" blue="0.75686274509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="玩家按钮点击:" destination="Sia-vI-jGU" eventType="touchUpInside" id="ar3-Vn-3DF"/>
@@ -160,7 +164,7 @@
                                 </variation>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="RQJ-Lh-xe9" firstAttribute="leading" secondItem="FBC-Er-Fep" secondAttribute="leading" id="0Rd-47-Djc"/>
                             <constraint firstItem="fiA-7G-xvU" firstAttribute="leading" secondItem="FBC-Er-Fep" secondAttribute="leading" constant="20" id="90g-9V-ap4"/>
@@ -196,9 +200,9 @@
             <objects>
                 <tableViewController id="cz8-mf-K3f" customClass="StatusTVC" customModule="nyaacatapp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="M6J-T0-LME">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <connections>
                             <outlet property="dataSource" destination="cz8-mf-K3f" id="0cT-fC-p4u"/>
                             <outlet property="delegate" destination="cz8-mf-K3f" id="IO9-V9-LMY"/>
@@ -232,7 +236,7 @@
             <objects>
                 <navigationController id="Fr4-yS-uB5" customClass="MapNC" customModule="nyaacatapp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="世界地图" image="signshop_icon.png" id="1es-Qt-fWb"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1Mi-kt-kpU">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="1Mi-kt-kpU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -253,9 +257,9 @@
                         <viewControllerLayoutGuide type="bottom" id="v2w-IM-YnW"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Zdc-6y-K2W">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="💻 资料库" id="yNV-IY-7Pu"/>
                 </viewController>
@@ -272,47 +276,50 @@
                         <viewControllerLayoutGuide type="bottom" id="xYH-mo-kve"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="weR-TH-TmD">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kC0-AN-gYy">
-                                <rect key="frame" x="374" y="504" width="226" height="47"/>
+                                <frame key="frameInset" minX="374" minY="504" width="226" height="47"/>
                                 <subviews>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="P9v-Tv-oiY">
-                                        <rect key="frame" x="177" y="8" width="51" height="31"/>
+                                        <frame key="frameInset" minX="177" minY="8" width="51" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <connections>
                                             <action selector="三维开关:" destination="bE3-Ly-iYZ" eventType="valueChanged" id="7yn-4p-Hx1"/>
                                         </connections>
                                     </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="三维" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TCK-zt-sAC">
-                                        <rect key="frame" x="127" y="13" width="42" height="21"/>
+                                        <frame key="frameInset" minX="127" minY="13" width="42" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3f7-gH-7MI">
-                                        <rect key="frame" x="70" y="8" width="51" height="31"/>
+                                        <frame key="frameInset" minX="70" minY="8" width="51" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <connections>
                                             <action selector="动态开关:" destination="bE3-Ly-iYZ" eventType="valueChanged" id="thX-TO-Sbr"/>
                                         </connections>
                                     </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="动态" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5xe-g7-Sha">
-                                        <rect key="frame" x="20" y="13" width="42" height="21"/>
+                                        <frame key="frameInset" minX="20" minY="13" width="42" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zp8-nF-Mqv">
-                                <rect key="frame" x="0.0" y="504" width="46" height="39"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zp8-nF-Mqv">
                                 <state key="normal" title="转到"/>
                                 <connections>
                                     <action selector="转到按钮:" destination="bE3-Ly-iYZ" eventType="touchUpInside" id="kLS-cb-SiL"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="kC0-AN-gYy" secondAttribute="trailing" id="1EN-7t-QGK"/>
                             <constraint firstItem="Zp8-nF-Mqv" firstAttribute="leading" secondItem="weR-TH-TmD" secondAttribute="leadingMargin" id="7rl-26-K2p"/>
@@ -341,9 +348,9 @@
                         <viewControllerLayoutGuide type="bottom" id="gTr-7o-SxU"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="nQ9-T9-dtH">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="💬 喵窩论坛" id="o9A-Jq-lkt"/>
                 </viewController>
@@ -356,7 +363,7 @@
             <objects>
                 <navigationController id="ky0-VG-wX4" customClass="StatusNC" customModule="nyaacatapp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="世界状态" image="stormy_day.png" id="A43-nn-nOv"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Qco-48-Bq2">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Qco-48-Bq2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -373,7 +380,7 @@
             <objects>
                 <navigationController id="Dz2-Df-0tC" customClass="DMChatNC" customModule="nyaacatapp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="聊天" image="tbmsg.png" id="kpT-GW-TOv"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Awd-oO-Ubk">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Awd-oO-Ubk">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -392,7 +399,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" id="HdR-zX-H9C">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="ky0-VG-wX4" kind="relationship" relationship="viewControllers" id="V8m-Ps-2Pz"/>
@@ -409,7 +416,7 @@
     </scenes>
     <resources>
         <image name="bg.jpg" width="1920" height="1080"/>
-        <image name="logobbs.png" width="30" height="24"/>
+        <image name="logobbs.png" width="30" height="23"/>
         <image name="signshop_icon.png" width="16" height="16"/>
         <image name="stormy.png" width="25" height="23"/>
         <image name="stormy_day.png" width="32" height="32"/>

@@ -22,8 +22,8 @@ class MoreMenuVC: UIViewController, MoreMenuCellViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default().addObserver(self, selector: #selector(self.自动点击按钮), name: "MoreMenuVCButton", object: nil)
-        NotificationCenter.default().addObserver(self, selector: #selector(self.下载表格数据), name: "MoreMenuVCReload", object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.自动点击按钮), name: "MoreMenuVCButton" as NSNotification.Name, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.下载表格数据), name: "MoreMenuVCReload" as NSNotification.Name, object: nil)
         右上按钮 = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(self.右上按钮点击))
         navigationItem.rightBarButtonItem = 右上按钮
     }
@@ -178,7 +178,7 @@ class MoreMenuVC: UIViewController, MoreMenuCellViewDelegate {
     }
     
     func 下载表格数据() {
-        URLCache.shared().removeAllCachedResponses()
+        URLCache.shared.removeAllCachedResponses()
         UIApplication.shared().isNetworkActivityIndicatorVisible = true
         if (等待提示 == nil) {
             等待提示 = UIAlertController(title: "⌛️正在下载数据", message: nil, preferredStyle: UIAlertControllerStyle.alert)
@@ -200,7 +200,7 @@ class MoreMenuVC: UIViewController, MoreMenuCellViewDelegate {
                 UIApplication.shared().isNetworkActivityIndicatorVisible = false
                 let 返回数据:Data = responseObject as! Data
                 self.收到html = String(data: 返回数据, encoding: String.Encoding.utf8)!
-                NotificationCenter.default().post(name: Notification.Name(rawValue: "MoreMenuVCButton"), object: nil)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: "MoreMenuVCButton"), object: nil)
                 
         }) { (task:URLSessionDataTask?, error:NSError) in
             //请求失败

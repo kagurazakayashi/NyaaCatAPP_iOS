@@ -92,7 +92,7 @@ class DynmapAnalysis: NSObject {
         }
         /*
          使用 在线玩家头像 时应补充：
-         let 头像网址:String = "https://mcmap.90g.org/tiles/faces/"
+         let 头像网址:String = "https://map.nyaa.cat/tiles/faces/"
          let 图片补路径:String = 头像网址 + "16x16/" + 在线玩家头像 //支持32x32
          
          使用 在线玩家名带字体格式 时应补充：

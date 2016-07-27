@@ -28,7 +28,7 @@ class DMChatTCell: UITableViewCell {
         头像.frame = CGRect(x: 11, y: 11, width: 48, height: 48)
         头像.backgroundColor = UIColor.clear()
         头像.layer.masksToBounds = true
-        头像.layer.cornerRadius = 头像.frame.size.width / 2
+        头像.layer.cornerRadius = 头像.frame.size.width / 3.5
         self.addSubview(头像)
         
         let 浏览器设置:WKWebViewConfiguration = WKWebViewConfiguration()

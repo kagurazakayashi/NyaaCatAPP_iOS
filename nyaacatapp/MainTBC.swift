@@ -21,11 +21,9 @@ class MainTBC: UITabBarController, WKNavigationDelegate, WaitVCDelegate {
     let 登录菜单:LoginMenuVC = LoginMenuVC()
     var 提示框:UIAlertController? = nil
     var 网络模式:网络模式选项 = 网络模式选项.检查是否登录
-    var 定时器:Timer? = nil
     var 新定时器:MSWeakTimer? = nil
     var 菊花定时器:MSWeakTimer? = nil
     var 定时器延迟计时器:TimeInterval = 0
-//    var 新定时器
     var 解析延迟定时器:MSWeakTimer? = nil
     var 解析引擎:DynmapAnalysisController = DynmapAnalysisController()
     var 等待提示框:Bool = false
@@ -76,10 +74,10 @@ class MainTBC: UITabBarController, WKNavigationDelegate, WaitVCDelegate {
 //            testweb.loadRequest(NSURLRequest(URL: NSURL(string: "http://163.com")!, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringCacheData, timeoutInterval: 30))
 //        }
         
-        NotificationCenter.default().addObserver(self, selector: #selector(MainTBC.收到重载通知), name: "reloadwebview", object: nil)
-        NotificationCenter.default().addObserver(self, selector: #selector(MainTBC.应用定时器延迟设置), name: "timerset", object: nil)
-        NotificationCenter.default().addObserver(self, selector: #selector(MainTBC.显示一下网络菊花), name: "netbusyonce", object: nil)
-        NotificationCenter.default().addObserver(self, selector: #selector(MainTBC.游客模式), name: "guest", object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MainTBC.收到重载通知), name: "reloadwebview" as NSNotification.Name, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MainTBC.应用定时器延迟设置), name: "timerset" as NSNotification.Name, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MainTBC.显示一下网络菊花), name: "netbusyonce" as NSNotification.Name, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MainTBC.游客模式), name: "guest" as NSNotification.Name, object: nil)
     }
     
     func 初始化WebView() {
@@ -251,7 +249,7 @@ class MainTBC: UITabBarController, WKNavigationDelegate, WaitVCDelegate {
             解析引擎.html = 源码[1]
             解析引擎.start()
         } else if (网络模式 == 网络模式选项.游客模式) {
-            NotificationCenter.default().post(name: Notification.Name(rawValue: "data"), object: nil)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "data"), object: nil)
         }
     }
     

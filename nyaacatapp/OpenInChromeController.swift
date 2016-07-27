@@ -54,7 +54,7 @@ class OpenInChromeController: NSObject {
         let chromeSimpleURL:URL = URL(string: kGoogleChromeHTTPScheme)!
         let chromeCallbackURL:URL = URL(string: kGoogleChromeCallbackScheme)!
         if (UIApplication.shared().canOpenURL(chromeCallbackURL)) {
-            let appName:String = Bundle.main().infoDictionary![kCFBundleNameKey as String] as! String //NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleDisplayName") as! String
+            let appName:String = Bundle.main.infoDictionary![kCFBundleNameKey as String] as! String //NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleDisplayName") as! String
             let scheme:String = url.scheme!.lowercased()
             // Proceed only if scheme is http or https.
             if (scheme == "http" || scheme == "https") {

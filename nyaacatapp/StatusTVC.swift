@@ -29,9 +29,9 @@ class StatusTVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default().post(name: Notification.Name(rawValue: "netbusyonce"), object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "netbusyonce"), object: nil)
         let 背景图:UIImageView = UIImageView(frame: tableView.frame)
-        背景图.image = UIImage(contentsOfFile: Bundle.main().pathForResource("bg", ofType: "jpg")!)!
+        背景图.image = UIImage(contentsOfFile: Bundle.main.pathForResource("bg", ofType: "jpg")!)!
         背景图.contentMode = .scaleAspectFill
         self.tableView.backgroundView = 背景图
         self.tableView.backgroundColor = UIColor.clear()
@@ -55,7 +55,7 @@ class StatusTVC: UITableViewController {
             }
             行主标题 = 在线玩家数据
 //            行副标题 = nil
-            默认头像 = UIImage(contentsOfFile: Bundle.main().pathForResource("player_face", ofType: "png")!)!
+            默认头像 = UIImage(contentsOfFile: Bundle.main.pathForResource("player_face", ofType: "png")!)!
         } else if (要呈现的数据 == 呈现数据.城市列表) {
             self.title = "坐标列表"
             let 在线城市数据:[[String]] = 全局_综合信息!["地点"] as! [[String]]
@@ -63,7 +63,7 @@ class StatusTVC: UITableViewController {
                 行主标题?.append(在线城市[0])
                 行副标题?.append(坐标修正(在线城市[1]))
             }
-            默认头像 = UIImage(contentsOfFile: Bundle.main().pathForResource("home_icon", ofType: "png")!)!
+            默认头像 = UIImage(contentsOfFile: Bundle.main.pathForResource("home_icon", ofType: "png")!)!
         } else if (要呈现的数据 == 呈现数据.商店列表) {
             self.title = "商店列表"
             let 在线商店数据:[[String]] = 全局_综合信息!["商店"] as! [[String]]
@@ -71,13 +71,13 @@ class StatusTVC: UITableViewController {
                 行主标题?.append(在线商店[0])
                 行副标题?.append(坐标修正(在线商店[1]))
             }
-            默认头像 = UIImage(contentsOfFile: Bundle.main().pathForResource("signshop_icon", ofType: "png")!)!
+            默认头像 = UIImage(contentsOfFile: Bundle.main.pathForResource("signshop_icon", ofType: "png")!)!
         } else if (要呈现的数据 == 呈现数据.世界列表) {
             self.title = "世界列表"
             let 在线世界数据:[String] = 全局_综合信息!["世界列表"] as! [String]
             行主标题 = 在线世界数据
             行副标题 = nil
-            默认头像 = UIImage(contentsOfFile: Bundle.main().pathForResource("follow_on", ofType: "png")!)!
+            默认头像 = UIImage(contentsOfFile: Bundle.main.pathForResource("follow_on", ofType: "png")!)!
         }
         tableView.reloadData();
     }

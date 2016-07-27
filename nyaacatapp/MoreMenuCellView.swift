@@ -57,7 +57,7 @@ class MoreMenuCellView: UIView {
     
     func 设置内容(_ 改文本:String, 图片文件名:String) {
         文本.text = 改文本
-        图片.image = UIImage(contentsOfFile: Bundle.main().pathForResource(图片文件名, ofType: "png")!)!
+        图片.image = UIImage(contentsOfFile: Bundle.main.pathForResource(图片文件名, ofType: "png")!)!
     }
     
     func 卸载() {

@@ -34,7 +34,7 @@ class WaitVC: UIViewController {
         super.viewDidLoad()
         self.view.alpha = 1
         登录按钮.isHidden = true
-        网点.backgroundColor = UIColor(patternImage: UIImage(contentsOfFile: Bundle.main().pathForResource("dot", ofType: "png")!)!)
+        网点.backgroundColor = UIColor(patternImage: UIImage(contentsOfFile: Bundle.main.pathForResource("dot", ofType: "png")!)!)
         登录按钮.backgroundColor = UIColor(red: 0.5372549, green: 0.6745098, blue: 0.84705882, alpha: 0.8)
         图标原始位置 = 图标.frame
         图标缩小位置 = CGRect(x: 图标原始位置!.origin.x, y: 图标原始位置!.origin.y + (图标原始位置!.size.height * 0.1), width: 图标原始位置!.size.width, height: 图标原始位置!.size.height * 0.9)
@@ -91,7 +91,7 @@ class WaitVC: UIViewController {
     @IBAction func 顶部按钮三点击(_ sender: UIButton) {
         登录按钮.isHidden = true
         self.代理!.返回登录请求(nil, 密码: nil)
-        NotificationCenter.default().post(name: Notification.Name(rawValue: "guest"), object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "guest"), object: nil)
     }
     
     func 退出() {
