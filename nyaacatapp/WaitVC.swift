@@ -34,7 +34,7 @@ class WaitVC: UIViewController {
         super.viewDidLoad()
         self.view.alpha = 1
         登录按钮.isHidden = true
-        网点.backgroundColor = UIColor(patternImage: UIImage(contentsOfFile: Bundle.main.pathForResource("dot", ofType: "png")!)!)
+        网点.backgroundColor = UIColor(patternImage: UIImage(contentsOfFile: Bundle.main.path(forResource: "dot", ofType: "png")!)!)
         登录按钮.backgroundColor = UIColor(red: 0.5372549, green: 0.6745098, blue: 0.84705882, alpha: 0.8)
         图标原始位置 = 图标.frame
         图标缩小位置 = CGRect(x: 图标原始位置!.origin.x, y: 图标原始位置!.origin.y + (图标原始位置!.size.height * 0.1), width: 图标原始位置!.size.width, height: 图标原始位置!.size.height * 0.9)
@@ -95,7 +95,7 @@ class WaitVC: UIViewController {
     }
     
     func 退出() {
-        UIApplication.shared().isNetworkActivityIndicatorVisible = false
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
         UIView.animate(withDuration: 0.5, animations: {
             self.view.frame = CGRect(x: 0.5, y: self.view.frame.size.height, width: self.view.frame.size.width, height: self.view.frame.size.height)
             }, completion: { (aniok:Bool) in

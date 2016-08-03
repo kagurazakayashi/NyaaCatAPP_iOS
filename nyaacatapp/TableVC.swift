@@ -77,7 +77,7 @@ class TableVC: UITableViewController {
         if (全局_用户名 == nil && 禁止游客浏览 == 1) {
             let 提示:UIAlertController = UIAlertController(title: "游客模式不能浏览此条目", message: 名称, preferredStyle: UIAlertControllerStyle.alert)
             let 取消按钮 = UIAlertAction(title: "取消", style: UIAlertActionStyle.cancel, handler: { (动作:UIAlertAction) -> Void in
-                UIApplication.shared().isNetworkActivityIndicatorVisible = false
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
             })
             提示.addAction(取消按钮)
             self.present(提示, animated: true, completion: nil)

@@ -54,16 +54,16 @@ class BBSVC: UIViewController, WKNavigationDelegate, WKUIDelegate {
         
         遮盖.backgroundColor = 全局_导航栏颜色
         遮盖文字.textAlignment = .center
-        遮盖文字.textColor = UIColor.white()
+        遮盖文字.textColor = UIColor.white
         
-        if(UIDevice.current().userInterfaceIdiom == UIUserInterfaceIdiom.phone){
+        if(UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.phone){
             遮盖.frame = CGRect(x: 0, y: 0, width: 1366, height: 64)
             进度条.frame = CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y + 64, width: self.view.frame.width,height: 2)
         } else {
             遮盖.frame = CGRect(x: 0, y: 0, width: 1366, height: 69)
             进度条.frame = CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y + 69, width: self.view.frame.width,height: 2)
         }
-        进度条.backgroundColor = UIColor.white()
+        进度条.backgroundColor = UIColor.white
         遮盖文字.frame = CGRect(x: 0, y: 20, width: self.view.frame.width, height: 44)
         
         self.view.addSubview(进度条)
@@ -112,7 +112,7 @@ class BBSVC: UIViewController, WKNavigationDelegate, WKUIDelegate {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         coordinator.animate(alongsideTransition: { (UIViewControllerTransitionCoordinatorContext) -> Void in
             }) { (UIViewControllerTransitionCoordinatorContext) -> Void in
-                if ((UIDevice.current().orientation == UIDeviceOrientation.landscapeLeft || UIDevice.current().orientation == UIDeviceOrientation.landscapeRight) && UIDevice.current().userInterfaceIdiom == UIUserInterfaceIdiom.phone){
+                if ((UIDevice.current.orientation == UIDeviceOrientation.landscapeLeft || UIDevice.current.orientation == UIDeviceOrientation.landscapeRight) && UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.phone){
 //                    UIApplication.sharedApplication().statusBarHidden = true
                     self.遮盖.isHidden = true
                 } else {
@@ -123,10 +123,10 @@ class BBSVC: UIViewController, WKNavigationDelegate, WKUIDelegate {
     }
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        UIApplication.shared().isNetworkActivityIndicatorVisible = true
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
     }
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        UIApplication.shared().isNetworkActivityIndicatorVisible = false
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
         网页超时定时器 = nil
         请求页面源码()
         if (浏览器!.estimatedProgress == 1){
@@ -139,7 +139,7 @@ class BBSVC: UIViewController, WKNavigationDelegate, WKUIDelegate {
             }
         }
     }
-    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: NSError) {
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         网络失败(error)
     }
     func 手工超时() {
@@ -157,14 +157,14 @@ class BBSVC: UIViewController, WKNavigationDelegate, WKUIDelegate {
         }
         let 提示:UIAlertController = UIAlertController(title: "论坛连接失败", message: "\(错误信息)请重新进入本页重试", preferredStyle: UIAlertControllerStyle.alert)
         let 取消按钮 = UIAlertAction(title: "取消", style: UIAlertActionStyle.cancel, handler: { (动作:UIAlertAction) -> Void in
-            UIApplication.shared().isNetworkActivityIndicatorVisible = false
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
         })
         提示.addAction(取消按钮)
         self.present(提示, animated: true, completion: nil)
     }
     
     func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
-        let 即将转到网址:String = navigationAction.request.url!.absoluteString!
+        let 即将转到网址:String = navigationAction.request.url!.absoluteString
         let ob:OpenBrowser = OpenBrowser()
         ob.打开浏览器(即将转到网址)
         return nil
@@ -193,12 +193,12 @@ class BBSVC: UIViewController, WKNavigationDelegate, WKUIDelegate {
         let 获取网页标题JS:String = "document.title"
         let 获取网页源码JS:String = "document.documentElement.innerHTML"
         var 网页源码:[String] = Array<String>()
-        浏览器!.evaluateJavaScript(获取网页标题JS) { (对象:AnyObject?, 错误:NSError?) -> Void in
+        浏览器!.evaluateJavaScript(获取网页标题JS) { (对象:AnyObject?, 错误:Error?) -> Void in
             if (对象 == nil) {
                 return
             }
             网页源码.append(对象 as! String)
-            self.浏览器!.evaluateJavaScript(获取网页源码JS) { (对象:AnyObject?, 错误:NSError?) -> Void in
+            self.浏览器!.evaluateJavaScript(获取网页源码JS) { (对象:AnyObject?, 错误:Error?) -> Void in
                 网页源码.append(对象 as! String)
                 self.处理返回源码(网页源码)
             }
@@ -218,7 +218,7 @@ class BBSVC: UIViewController, WKNavigationDelegate, WKUIDelegate {
                 卸载浏览器()
                 let 提示:UIAlertController = UIAlertController(title: "论坛连接失败", message: "尝试载入完整版本论坛时出错，\n请重新进入本页重试", preferredStyle: UIAlertControllerStyle.alert)
                 let 取消按钮 = UIAlertAction(title: "取消", style: UIAlertActionStyle.cancel, handler: { (动作:UIAlertAction) -> Void in
-                    UIApplication.shared().isNetworkActivityIndicatorVisible = false
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 })
                 提示.addAction(取消按钮)
                 self.present(提示, animated: true, completion: nil)
@@ -226,7 +226,7 @@ class BBSVC: UIViewController, WKNavigationDelegate, WKUIDelegate {
         } else if (网页内容?.range(of: "空空如也，何不创作一个？") != nil || 网页内容?.range(of: "道生一，一生二，二生三，三生萬物") != nil || 网页内容?.range(of: "It looks like there are no discussions here.") != nil) {
             //没有登录 //网页内容?.rangeOfString("关注") == nil
             //替换「空空如也，何不创作一个？」
-            浏览器!.evaluateJavaScript("document.getElementById(\"content\").innerHTML=\"<div class=\\\"Placeholder\\\"><p>尚未登录论坛</p><p>请从菜单登录论坛后继续</p></div>\";", completionHandler: { (obj:AnyObject?, err:NSError?) in
+            浏览器!.evaluateJavaScript("document.getElementById(\"content\").innerHTML=\"<div class=\\\"Placeholder\\\"><p>尚未登录论坛</p><p>请从菜单登录论坛后继续</p></div>\";", completionHandler: { (obj:AnyObject?, err:Error?) in
                 if (err != nil) {
                     NSLog(err!.localizedDescription)
                 }

@@ -53,13 +53,13 @@ class OpenBrowser: NSObject {
     func 使用Google＋打开(_ 网址:String) -> Bool {
         let url:URL = URL(string:网址)!
         let gpScheme:String = "gplus"
-        let absoluteString:String = url.absoluteString!
+        let absoluteString:String = url.absoluteString
         let rangeForScheme = absoluteString.range(of: ":")
         let urlNoScheme:String = absoluteString.substring(from: rangeForScheme!.lowerBound)
         let gpURLString:String = gpScheme + urlNoScheme
         let gpURL:URL = URL(string: gpURLString)!
-        if (UIApplication.shared().canOpenURL(gpURL)) {
-            return UIApplication.shared().openURL(gpURL)
+        if (UIApplication.shared.canOpenURL(gpURL)) {
+            return UIApplication.shared.openURL(gpURL)
         }
         return false
     }
@@ -73,8 +73,8 @@ class OpenBrowser: NSObject {
     func 使用Firefox浏览器打开(_ 网址:String) -> Bool {
         let openurlstr = "firefox://?url=\(网址)"
         let firefoxURL:URL = URL(string: openurlstr)!
-        if (UIApplication.shared().canOpenURL(firefoxURL)) {
-            return UIApplication.shared().openURL(firefoxURL)
+        if (UIApplication.shared.canOpenURL(firefoxURL)) {
+            return UIApplication.shared.openURL(firefoxURL)
         }
         return false
     }
@@ -87,8 +87,8 @@ class OpenBrowser: NSObject {
                 let AV号:String = 解析.抽取区间(网址, 起始字符串: "video/av", 结束字符串: "/", 包含起始字符串: false, 包含结束字符串: false)
                 let BiliURLstr:String = "bilibili://?av=\(AV号)"
                 let BiliURL:URL = URL(string: BiliURLstr)!
-                if (UIApplication.shared().canOpenURL(BiliURL)) {
-                    return UIApplication.shared().openURL(BiliURL)
+                if (UIApplication.shared.canOpenURL(BiliURL)) {
+                    return UIApplication.shared.openURL(BiliURL)
                 }
             }
         }
@@ -97,7 +97,7 @@ class OpenBrowser: NSObject {
     
     func 使用Safari浏览器中打开(_ 网址:String) -> Bool {
         let url:URL = URL(string:网址)!
-        return UIApplication.shared().openURL(url)
+        return UIApplication.shared.openURL(url)
     }
     
     //    func 在内嵌的Safari浏览器中打开(URL:NSURL) {

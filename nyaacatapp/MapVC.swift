@@ -120,7 +120,7 @@ class MapVC: UIViewController , WKNavigationDelegate {
         浏览器设置.selectionGranularity = .dynamic
         let 浏览器坐标:CGRect = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.height)
         浏览器 = WKWebView(frame: 浏览器坐标, configuration: 浏览器设置)
-        浏览器?.backgroundColor = UIColor.black()
+        浏览器?.backgroundColor = UIColor.black
         self.view.insertSubview(浏览器!, at: 0)
         自动登录动态地图()
     }
@@ -140,7 +140,7 @@ class MapVC: UIViewController , WKNavigationDelegate {
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        UIApplication.shared().isNetworkActivityIndicatorVisible = false
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
         if (登录步骤 == 0) {
             登录步骤 += 1
             装入网页(全局_喵窩API["静态地图接口"]!)
@@ -171,12 +171,12 @@ class MapVC: UIViewController , WKNavigationDelegate {
         let 获取网页标题JS:String = "document.title"
         let 获取网页源码JS:String = "document.documentElement.innerHTML"
         var 网页源码:[String] = Array<String>()
-        浏览器!.evaluateJavaScript(获取网页标题JS) { (对象:AnyObject?, 错误:NSError?) -> Void in
+        浏览器!.evaluateJavaScript(获取网页标题JS) { (对象:AnyObject?, 错误:Error?) -> Void in
             if (对象 == nil) {
                 return
             }
             网页源码.append(对象 as! String)
-            self.浏览器!.evaluateJavaScript(获取网页源码JS) { (对象:AnyObject?, 错误:NSError?) -> Void in
+            self.浏览器!.evaluateJavaScript(获取网页源码JS) { (对象:AnyObject?, 错误:Error?) -> Void in
                 网页源码.append(对象 as! String)
                 self.处理返回源码(网页源码)
             }
@@ -192,20 +192,20 @@ class MapVC: UIViewController , WKNavigationDelegate {
             浏览器!.loadHTMLString("", baseURL: nil)
             let 提示:UIAlertController = UIAlertController(title: "地图连接失败", message: "请切换其他地图试试", preferredStyle: UIAlertControllerStyle.alert)
             let 取消按钮 = UIAlertAction(title: "取消", style: UIAlertActionStyle.cancel, handler: { (动作:UIAlertAction) -> Void in
-                UIApplication.shared().isNetworkActivityIndicatorVisible = false
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
             })
             提示.addAction(取消按钮)
         } else if (网页标题 != 全局_喵窩API["地图页面标题"]!) {
             let 提示:UIAlertController = UIAlertController(title: "地图连接失败", message: "错误：\(网页标题)", preferredStyle: UIAlertControllerStyle.alert)
             let 取消按钮 = UIAlertAction(title: "取消", style: UIAlertActionStyle.cancel, handler: { (动作:UIAlertAction) -> Void in
-                UIApplication.shared().isNetworkActivityIndicatorVisible = false
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
             })
             提示.addAction(取消按钮)
         }
     }
     
-    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: NSError) {
-        UIApplication.shared().isNetworkActivityIndicatorVisible = false
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
         浏览器?.loadHTMLString("", baseURL: nil)
         if (等待提示 != nil) {
             等待提示?.dismiss(animated: false, completion: nil)
@@ -220,10 +220,10 @@ class MapVC: UIViewController , WKNavigationDelegate {
     
     func 装入网页(_ 网址:String) {
         if (等待提示 == nil) {
-            UIApplication.shared().isNetworkActivityIndicatorVisible = true
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
             等待提示 = UIAlertController(title: "⌛️正在连接地图服务器", message: nil, preferredStyle: UIAlertControllerStyle.alert)
             let 取消按钮 = UIAlertAction(title: "取消", style: UIAlertActionStyle.cancel, handler: { (动作:UIAlertAction) -> Void in
-                UIApplication.shared().isNetworkActivityIndicatorVisible = false
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 self.浏览器?.reload()
                 self.等待提示 = nil
             })

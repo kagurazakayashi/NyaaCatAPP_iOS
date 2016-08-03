@@ -34,7 +34,7 @@ class MoreMenuVC: UIViewController, MoreMenuCellViewDelegate {
         收到html = ""
         self.表格数据 = MinoriWiki解析.获取主菜单()
         if (self.表格数据 == nil) {
-            UIApplication.shared().isNetworkActivityIndicatorVisible = false
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
             self.等待提示?.title = "数据解析失败"
             //self.等待提示?.message = "服务器暂时工作不正确"
         } else if (正在进入Tag >= 0) {
@@ -179,11 +179,11 @@ class MoreMenuVC: UIViewController, MoreMenuCellViewDelegate {
     
     func 下载表格数据() {
         URLCache.shared.removeAllCachedResponses()
-        UIApplication.shared().isNetworkActivityIndicatorVisible = true
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         if (等待提示 == nil) {
             等待提示 = UIAlertController(title: "⌛️正在下载数据", message: nil, preferredStyle: UIAlertControllerStyle.alert)
             let 取消按钮 = UIAlertAction(title: "取消", style: UIAlertActionStyle.cancel, handler: { (动作:UIAlertAction) -> Void in
-                UIApplication.shared().isNetworkActivityIndicatorVisible = false
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 self.等待提示 = nil
             })
             等待提示!.addAction(取消按钮)
@@ -197,12 +197,12 @@ class MoreMenuVC: UIViewController, MoreMenuCellViewDelegate {
             //self.等待提示?.message = "\(downloadProgress.totalUnitCount)"
             }, success: { (task:URLSessionDataTask, responseObject:AnyObject?) in
                 //请求成功
-                UIApplication.shared().isNetworkActivityIndicatorVisible = false
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 let 返回数据:Data = responseObject as! Data
                 self.收到html = String(data: 返回数据, encoding: String.Encoding.utf8)!
                 NotificationCenter.default.post(name: Notification.Name(rawValue: "MoreMenuVCButton"), object: nil)
                 
-        }) { (task:URLSessionDataTask?, error:NSError) in
+        }) { (task:URLSessionDataTask?, error:Error) in
             //请求失败
 //            self.关闭加载提示()
 //            let 提示:UIAlertController = UIAlertController(title: "信息载入失败", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
@@ -211,7 +211,7 @@ class MoreMenuVC: UIViewController, MoreMenuCellViewDelegate {
 //            })
 //            提示.addAction(取消按钮)
 //            self.presentViewController(提示, animated: true, completion: nil)
-            UIApplication.shared().isNetworkActivityIndicatorVisible = false
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
             self.等待提示?.title = "信息载入失败"
             self.等待提示?.message = error.localizedDescription
         }

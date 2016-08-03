@@ -13,7 +13,7 @@ class StatusNC: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationBar.barTintColor = 全局_导航栏颜色
-        navigationBar.titleTextAttributes = [ NSForegroundColorAttributeName : UIColor.white()]
+        navigationBar.titleTextAttributes = [ NSForegroundColorAttributeName : UIColor.white]
         // Do any additional setup after loading the view.
     }
 

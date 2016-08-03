@@ -64,17 +64,17 @@ class BrowserVC: UIViewController , WKNavigationDelegate, WKUIDelegate {
     
     func 创建UI() {
         当前Tab = self.navigationController!.tabBarController!.selectedIndex
-        self.view.backgroundColor = UIColor.white()
+        self.view.backgroundColor = UIColor.white
         if (允许刷新按钮 == true) {
             右上按钮 = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(self.右上按钮点击))
             navigationItem.rightBarButtonItem = 右上按钮
         }
-        if(UIDevice.current().userInterfaceIdiom == UIUserInterfaceIdiom.phone){
+        if(UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.phone){
             进度条.frame = CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y + 64, width: self.view.frame.width,height: 2)
         } else {
             进度条.frame = CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y + 69, width: self.view.frame.width,height: 2)
         }
-        进度条.backgroundColor = UIColor.white()
+        进度条.backgroundColor = UIColor.white
         self.view.addSubview(进度条)
     }
     
@@ -121,7 +121,7 @@ class BrowserVC: UIViewController , WKNavigationDelegate, WKUIDelegate {
         浏览器设置.selectionGranularity = .dynamic
         let 浏览器坐标:CGRect = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.height)
         浏览器 = WKWebView(frame: 浏览器坐标, configuration: 浏览器设置)
-        浏览器?.backgroundColor = UIColor.white()
+        浏览器?.backgroundColor = UIColor.white
         浏览器!.navigationDelegate = self
         浏览器!.uiDelegate = self
         self.view.insertSubview(浏览器!, at: 0)
@@ -146,17 +146,17 @@ class BrowserVC: UIViewController , WKNavigationDelegate, WKUIDelegate {
     }
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        UIApplication.shared().isNetworkActivityIndicatorVisible = true
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
     }
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         
-        UIApplication.shared().isNetworkActivityIndicatorVisible = false
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
-    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: NSError) {
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         卸载浏览器()
         let 提示:UIAlertController = UIAlertController(title: "信息载入失败", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
         let 取消按钮 = UIAlertAction(title: "取消", style: UIAlertActionStyle.cancel, handler: { (动作:UIAlertAction) -> Void in
-            UIApplication.shared().isNetworkActivityIndicatorVisible = false
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
             self.navigationController?.popViewController(animated: true)
         })
         提示.addAction(取消按钮)
@@ -165,7 +165,7 @@ class BrowserVC: UIViewController , WKNavigationDelegate, WKUIDelegate {
     
     func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
         if (在外部浏览器打开网页中的链接 == true) {
-            let 即将转到网址:String = navigationAction.request.url!.absoluteString!
+            let 即将转到网址:String = navigationAction.request.url!.absoluteString
             let ob:OpenBrowser = OpenBrowser()
             ob.打开浏览器(即将转到网址)
         } else {

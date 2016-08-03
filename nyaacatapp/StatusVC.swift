@@ -26,8 +26,8 @@ class StatusVC: UIViewController {
     
     var 数据:[String]? = nil
     var 白天:Bool = true
-    let 白天颜色:UIColor = UIColor.yellow()
-    let 夜晚颜色:UIColor = UIColor.lightGray()
+    let 白天颜色:UIColor = UIColor.yellow
+    let 夜晚颜色:UIColor = UIColor.lightGray
     var 时:Int = 0
     var 分:Int = 0
     var 闪烁冒号:Bool = true
@@ -47,7 +47,7 @@ class StatusVC: UIViewController {
         for 天气字:String in 天气词Key {
             for 时段字:String in 时段词Key {
                 let 当前图片文件名:String = "\(天气字)_\(时段字)"
-                let 当前图片文件路径:String = Bundle.main.pathForResource(当前图片文件名, ofType: "png")!
+                let 当前图片文件路径:String = Bundle.main.path(forResource: 当前图片文件名, ofType: "png")!
                 let 当前图片数据:UIImage = UIImage(contentsOfFile: 当前图片文件路径)!
                 天气图标图像[当前图片文件名] = 当前图片数据
             }

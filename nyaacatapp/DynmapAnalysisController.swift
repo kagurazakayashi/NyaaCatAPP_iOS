@@ -79,7 +79,7 @@ class DynmapAnalysisController: NSObject {
     
     func 开始解析(_ 先校验:Bool) {
         if (先校验 == true) {
-            DispatchQueue.global(attributes: DispatchQueue.GlobalAttributes.qosDefault).async(execute: {
+            DispatchQueue.global().async(execute: {
                 autoreleasepool {
                     var dma:DynmapAnalysis? = DynmapAnalysis()
                     dma!.html = self.html
@@ -118,7 +118,7 @@ class DynmapAnalysisController: NSObject {
     }
     
     func 取得世界列表线程() {
-        DispatchQueue.global(attributes: DispatchQueue.GlobalAttributes.qosDefault).async(execute: {
+        DispatchQueue.global().async(execute: {
             autoreleasepool {
                 var dma:DynmapAnalysis? = DynmapAnalysis()
                 dma!.html = self.html
@@ -133,7 +133,7 @@ class DynmapAnalysisController: NSObject {
     }
     
     func 取得弹出提示() {
-        DispatchQueue.global(attributes: DispatchQueue.GlobalAttributes.qosDefault).async(execute: {
+        DispatchQueue.global().async(execute: {
             autoreleasepool {
                 var dma:DynmapAnalysis? = DynmapAnalysis()
                 dma!.html = self.html
@@ -148,7 +148,7 @@ class DynmapAnalysisController: NSObject {
     }
     
     func 取得时间和天气() { //[时间字符串,时段,天气]
-        DispatchQueue.global(attributes: DispatchQueue.GlobalAttributes.qosDefault).async(execute: {
+        DispatchQueue.global().async(execute: {
             autoreleasepool {
                 var dma:DynmapAnalysis? = DynmapAnalysis()
                 dma!.html = self.html
@@ -163,7 +163,7 @@ class DynmapAnalysisController: NSObject {
     }
     
     func 取得在线玩家和当前世界活动状态() {
-        DispatchQueue.global(attributes: DispatchQueue.GlobalAttributes.qosDefault).async(execute: {
+        DispatchQueue.global().async(execute: {
             autoreleasepool {
                 var dma:DynmapAnalysis? = DynmapAnalysis()
                 dma!.html = self.html
@@ -178,7 +178,7 @@ class DynmapAnalysisController: NSObject {
     }
     
     func 取得当前聊天记录() {
-        DispatchQueue.global(attributes: DispatchQueue.GlobalAttributes.qosDefault).async(execute: {
+        DispatchQueue.global().async(execute: {
             autoreleasepool {
                 var dma:DynmapAnalysis? = DynmapAnalysis()
                 dma!.html = self.html
@@ -193,7 +193,7 @@ class DynmapAnalysisController: NSObject {
     }
     
     func 取得商店和地点列表() {
-        DispatchQueue.global(attributes: DispatchQueue.GlobalAttributes.qosDefault).async(execute: {
+        DispatchQueue.global().async(execute: {
             autoreleasepool {
                 var dma:DynmapAnalysis? = DynmapAnalysis()
                 dma!.html = self.html

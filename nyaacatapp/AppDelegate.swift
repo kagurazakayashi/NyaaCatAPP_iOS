@@ -16,9 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     var 主视图:MainTBC? = nil
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        UIApplication.shared().isNetworkActivityIndicatorVisible = true
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         应用初始化()
-        let 屏幕尺寸:CGRect = UIScreen.main().bounds
+        let 屏幕尺寸:CGRect = UIScreen.main.bounds
         let 主窗口:UIWindow = UIWindow(frame: 屏幕尺寸)
         let 主故事板:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         主视图 = 主故事板.instantiateViewController(withIdentifier: "MainTBC") as? MainTBC
@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     }
     
     func 应用初始化() {
-        UIApplication.shared().statusBarStyle = .lightContent
+        UIApplication.shared.statusBarStyle = .lightContent
         APILoader().loadPrivateConstant()
         
     }
@@ -92,7 +92,7 @@ var 全局_用户名:String? = nil
 var 全局_密码:String? = nil
 var 全局_游客模式:Bool = false
 let 全局_手机发送消息关键字:String = "[NyaaCatAPP] "
-let 全局_设备信息:UIDevice = UIDevice.current()
+let 全局_设备信息:UIDevice = UIDevice.current
 var 全局_喵窩API:Dictionary<String,String> = Dictionary<String,String>()
 let 全局_浏览器标识:String = "Mozilla/5.0 (kagurazaka-browser)"
 let 全局_缓存策略:NSURLRequest.CachePolicy = .reloadIgnoringLocalCacheData

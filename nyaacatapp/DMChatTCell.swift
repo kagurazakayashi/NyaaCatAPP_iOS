@@ -26,7 +26,7 @@ class DMChatTCell: UITableViewCell {
 //        }
         self.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.3)
         头像.frame = CGRect(x: 11, y: 11, width: 48, height: 48)
-        头像.backgroundColor = UIColor.clear()
+        头像.backgroundColor = UIColor.clear
         头像.layer.masksToBounds = true
         头像.layer.cornerRadius = 头像.frame.size.width / 3.5
         self.addSubview(头像)
@@ -45,7 +45,7 @@ class DMChatTCell: UITableViewCell {
         浏览器设置.preferences = 浏览器偏好设置
         浏览器设置.selectionGranularity = .dynamic
         内容 = WKWebView(frame: CGRect(x: 头像.frame.origin.x + 头像.frame.size.width, y: 头像.frame.origin.y, width: self.frame.size.width - 头像.frame.origin.x*2 - 头像.frame.size.width, height: self.frame.size.height), configuration: 浏览器设置)
-        内容!.backgroundColor = UIColor.clear()
+        内容!.backgroundColor = UIColor.clear
         内容!.isOpaque = false
         内容!.isUserInteractionEnabled = false
         self.addSubview(内容!)

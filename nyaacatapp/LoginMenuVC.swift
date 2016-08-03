@@ -25,10 +25,10 @@ class LoginMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.clear()
-        选项表格.backgroundColor = UIColor.clear()
+        self.view.backgroundColor = UIColor.clear
+        选项表格.backgroundColor = UIColor.clear
         选项表格.separatorStyle = UITableViewCellSeparatorStyle.singleLine
-        选项表格.separatorColor = UIColor.clear()
+        选项表格.separatorColor = UIColor.clear
         选项表格.delegate = self
         选项表格.dataSource = self
     }
@@ -49,17 +49,17 @@ class LoginMenuVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
         var 单元格:UITableViewCell? = tableView.dequeueReusableCell(withIdentifier: 单元格ID)
         if(单元格 == nil) {
             单元格 = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: 单元格ID)
-            单元格?.backgroundColor = UIColor.clear()
-            单元格?.detailTextLabel?.textColor = UIColor.lightGray()
+            单元格?.backgroundColor = UIColor.clear
+            单元格?.detailTextLabel?.textColor = UIColor.lightGray
         }
         if(行数 == 3) {
-            单元格?.textLabel?.textColor = UIColor.red()
+            单元格?.textLabel?.textColor = UIColor.red
             单元格?.frame = CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: tableView.frame.size.height)
             单元格?.textLabel?.frame = 单元格!.frame
             
             单元格?.textLabel?.textAlignment = NSTextAlignment.center
         } else {
-            单元格?.textLabel?.textColor = UIColor.white()
+            单元格?.textLabel?.textColor = UIColor.white
             单元格?.textLabel?.textAlignment = NSTextAlignment.left
         }
         if (行数 == 0) {

@@ -14,11 +14,11 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
     let 允许转义颜色代码:Bool = false //true: 将&视为颜色代码
     
     var 实时聊天数据:[[String]]? = nil
-    var 默认头像:UIImage = UIImage(contentsOfFile: Bundle.main.pathForResource("seting-icon", ofType: "png")!)!
-    var 第三方软件发送头像:UIImage = UIImage(contentsOfFile: Bundle.main.pathForResource("t_logo", ofType: "png")!)!
-    var 动态地图聊天头像:UIImage = UIImage(contentsOfFile: Bundle.main.pathForResource("msg-icon", ofType: "png")!)!
-    var 手机聊天头像:UIImage = UIImage(contentsOfFile: Bundle.main.pathForResource("mobile-2-icon", ofType: "png")!)!
-    var 服务器消息头像:UIImage = UIImage(contentsOfFile: Bundle.main.pathForResource("cloud-icon", ofType: "png")!)!
+    var 默认头像:UIImage = UIImage(contentsOfFile: Bundle.main.path(forResource: "seting-icon", ofType: "png")!)!
+    var 第三方软件发送头像:UIImage = UIImage(contentsOfFile: Bundle.main.path(forResource: "t_logo", ofType: "png")!)!
+    var 动态地图聊天头像:UIImage = UIImage(contentsOfFile: Bundle.main.path(forResource: "msg-icon", ofType: "png")!)!
+    var 手机聊天头像:UIImage = UIImage(contentsOfFile: Bundle.main.path(forResource: "mobile-2-icon", ofType: "png")!)!
+    var 服务器消息头像:UIImage = UIImage(contentsOfFile: Bundle.main.path(forResource: "cloud-icon", ofType: "png")!)!
     var 左上按钮:UIBarButtonItem? = nil
     var 右上按钮:UIBarButtonItem? = nil
     var 聊天文字输入框:UIAlertController? = nil
@@ -35,11 +35,11 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
     override func viewDidLoad() {
         super.viewDidLoad()
         let 背景图:UIImageView = UIImageView(frame: tableView.frame)
-        背景图.image = UIImage(contentsOfFile: Bundle.main.pathForResource("bg", ofType: "jpg")!)!
+        背景图.image = UIImage(contentsOfFile: Bundle.main.path(forResource: "bg", ofType: "jpg")!)!
         背景图.contentMode = .scaleAspectFill
 //        self.tableView.insertSubview(背景图, atIndex: 0)
         self.tableView.backgroundView = 背景图
-        self.tableView.backgroundColor = UIColor.clear()
+        self.tableView.backgroundColor = UIColor.clear
         self.tableView.separatorStyle = .none
         
         NotificationCenter.default.addObserver(self, selector: #selector(DMChatTVC.接收数据更新通知), name: "data" as NSNotification.Name, object: nil)
@@ -112,7 +112,7 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
             //            后台网页加载器!.loadRequest(网络请求)
             let 上传会话 = URLSession.shared
             let 上传任务 = 上传会话.uploadTask(with: 网络请求 as URLRequest, from: 网络参数数据){
-                (data:Data?, reponse:URLResponse?, error:NSError?) ->Void in
+                (data:Data?, reponse:URLResponse?, error:Error?) ->Void in
                 
                 if(error != nil){
                     self.网络连接失败(error!.localizedDescription)
@@ -133,7 +133,7 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
         }
     }
     
-    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError) {
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
         网络连接失败(error.localizedDescription)
     }
     
@@ -220,7 +220,7 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
         let 网络请求:NSMutableURLRequest = NSMutableURLRequest(url: 要加载的网页URL, cachePolicy: 全局_缓存策略, timeoutInterval: 10)
         网络请求.httpMethod = "POST"
         let 上传会话 = URLSession.shared
-        let 上传任务 = 上传会话.dataTask(with: 网络请求 as URLRequest) { (data:Data?, reponse:URLResponse?, error:NSError?) in
+        let 上传任务 = 上传会话.dataTask(with: 网络请求 as URLRequest) { (data:Data?, reponse:URLResponse?, error:Error?) in
             do {
                 if(error != nil) {
                     self.网络连接失败(error!.localizedDescription)
