@@ -52,7 +52,7 @@ class StatusVC: UIViewController {
                 天气图标图像[当前图片文件名] = 当前图片数据
             }
         }
-        NotificationCenter.default.addObserver(self, selector: #selector(StatusVC.接收数据更新通知), name: "data" as NSNotification.Name, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(StatusVC.接收数据更新通知), name: Notification.Name("data"), object: nil)
         时间补偿 = MSWeakTimer.scheduledTimer(withTimeInterval: 1.0, target: self, selector: #selector(StatusVC.时间补偿触发), userInfo: nil, repeats: true, dispatchQueue: DispatchQueue.main)
     }
     

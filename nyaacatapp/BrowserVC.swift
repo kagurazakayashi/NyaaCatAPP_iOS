@@ -134,7 +134,7 @@ class BrowserVC: UIViewController , WKNavigationDelegate, WKUIDelegate {
         浏览器!.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
     }
     
-    override func observeValue(forKeyPath keyPath: String?, of object: AnyObject?, change: [NSKeyValueChangeKey : AnyObject]?, context: UnsafeMutablePointer<Void>?) {
+     func observeValue(forKeyPath keyPath: String?, of object: AnyObject?, change: [NSKeyValueChangeKey : AnyObject]?, context: UnsafeMutableRawPointer) {
         if (keyPath == "estimatedProgress"){
             self.进度条.setProgress(Float(浏览器!.estimatedProgress), animated: true)
         }

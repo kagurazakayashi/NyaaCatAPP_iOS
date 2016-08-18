@@ -42,7 +42,7 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
         self.tableView.backgroundColor = UIColor.clear
         self.tableView.separatorStyle = .none
         
-        NotificationCenter.default.addObserver(self, selector: #selector(DMChatTVC.接收数据更新通知), name: "data" as NSNotification.Name, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(DMChatTVC.接收数据更新通知), name: Notification.Name("data"), object: nil)
         
 //        初始化WebView()
         
@@ -91,7 +91,7 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
         if (网络模式 == 网络模式选项.提交登录请求) {
             网络模式 = 网络模式选项.发送聊天消息
             //向服务器提交聊天消息
-            let 网络参数:NSString = "{\"name\":\"\",\"message\":\"§2" + 全局_手机发送消息关键字 + "§f" + 正在发送的消息! + "\"}"
+            let 网络参数:NSString = "{\"name\":\"\",\"message\":\"§2" + 全局_手机发送消息关键字 + "§f" + 正在发送的消息! + "\"}" as NSString
             let 要加载的网页URL:URL = URL(string: 全局_喵窩API["消息发送接口"]!)!
             let 网络请求:NSMutableURLRequest = NSMutableURLRequest(url: 要加载的网页URL, cachePolicy: 全局_缓存策略, timeoutInterval: 30)
             let 网络参数数据:Data = 网络参数.data(using: String.Encoding.utf8.rawValue)!
@@ -256,7 +256,7 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
     }
     
     func 装入信息() {
-        if (实时聊天数据 != nil && 实时聊天数据?.count > 0) {
+        if (实时聊天数据 != nil && (实时聊天数据?.count)! > 0) {
             if (tableView.contentOffset.y >= tableView.contentSize.height - tableView.frame.size.height) {
                 tableView.reloadData()
                 //self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: true)

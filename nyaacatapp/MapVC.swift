@@ -149,8 +149,8 @@ class MapVC: UIViewController , WKNavigationDelegate {
             等待提示?.dismiss(animated: false, completion: nil)
             等待提示 = nil
         }
-        let 当前网址:NSString = (webView.url?.absoluteString)!
-        let 动态地图域名:NSString = 全局_喵窩API["动态地图域名"]!
+        let 当前网址:NSString = (webView.url?.absoluteString)! as NSString
+        let 动态地图域名:NSString = 全局_喵窩API["动态地图域名"]! as NSString
         var 工具栏可用:Bool = false
         if (当前网址.length > 动态地图域名.length) {
             let 当前网址裁剪:String = 当前网址.substring(to: 动态地图域名.length)
@@ -171,12 +171,12 @@ class MapVC: UIViewController , WKNavigationDelegate {
         let 获取网页标题JS:String = "document.title"
         let 获取网页源码JS:String = "document.documentElement.innerHTML"
         var 网页源码:[String] = Array<String>()
-        浏览器!.evaluateJavaScript(获取网页标题JS) { (对象:AnyObject?, 错误:Error?) -> Void in
+        浏览器!.evaluateJavaScript(获取网页标题JS) { (对象:Any?, 错误:Error?) -> Void in
             if (对象 == nil) {
                 return
             }
             网页源码.append(对象 as! String)
-            self.浏览器!.evaluateJavaScript(获取网页源码JS) { (对象:AnyObject?, 错误:Error?) -> Void in
+            self.浏览器!.evaluateJavaScript(获取网页源码JS) { (对象:Any?, 错误:Error?) -> Void in
                 网页源码.append(对象 as! String)
                 self.处理返回源码(网页源码)
             }

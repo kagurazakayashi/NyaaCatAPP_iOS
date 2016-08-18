@@ -63,7 +63,7 @@ class DynmapAnalysisController: NSObject {
             for 当前数据名 in 数据名 {
                 log += "，\(当前数据名) \(信息数据量![当前数据名]!)"
             }
-            综合信息!["log"] = log
+            综合信息!["log"] = log as NSObject
             //返回综合信息
 //            delegate?.解析完成(综合信息, 信息数据量: 信息数据量)
             全局_综合信息 = 综合信息
@@ -126,7 +126,7 @@ class DynmapAnalysisController: NSObject {
                 dma!.html = nil
                 dma = nil
                 DispatchQueue.main.async(execute: {
-                    self.写入综合信息(self.数据名[0],v: 返回值,c: 返回值.count)
+                    self.写入综合信息(self.数据名[0],v: 返回值 as NSObject,c: 返回值.count)
                 })
             }
         })
@@ -141,7 +141,7 @@ class DynmapAnalysisController: NSObject {
                 dma!.html = nil
                 dma = nil
                 DispatchQueue.main.async(execute: {
-                    self.写入综合信息(self.数据名[1],v: 返回值,c: 返回值.count)
+                    self.写入综合信息(self.数据名[1],v: 返回值 as NSObject,c: 返回值.count)
                 })
             }
         })
@@ -156,7 +156,7 @@ class DynmapAnalysisController: NSObject {
                 dma!.html = nil
                 dma = nil
                 DispatchQueue.main.async(execute: {
-                    self.写入综合信息(self.数据名[2],v: 返回值,c: 返回值.count)
+                    self.写入综合信息(self.数据名[2],v: 返回值 as NSObject,c: 返回值.count)
                 })
             }
         })
@@ -171,7 +171,7 @@ class DynmapAnalysisController: NSObject {
                 dma!.html = nil
                 dma = nil
                 DispatchQueue.main.async(execute: {
-                    self.写入综合信息(self.数据名[3],v: 返回值,c: 返回值.count)
+                    self.写入综合信息(self.数据名[3],v: 返回值 as NSObject,c: 返回值.count)
                 })
             }
         })
@@ -186,7 +186,7 @@ class DynmapAnalysisController: NSObject {
                 dma!.html = nil
                 dma = nil
                 DispatchQueue.main.async(execute: {
-                    self.写入综合信息(self.数据名[4],v: 返回值,c: 返回值.count)
+                    self.写入综合信息(self.数据名[4],v: 返回值 as NSObject,c: 返回值.count)
                 })
             }
         })
@@ -201,8 +201,8 @@ class DynmapAnalysisController: NSObject {
                 dma!.html = nil
                 dma = nil
                 DispatchQueue.main.async(execute: {
-                    self.写入综合信息(self.数据名[5],v: 返回值[0],c: 返回值[0].count)
-                    self.写入综合信息(self.数据名[6],v: 返回值[1],c: 返回值[1].count)
+                    self.写入综合信息(self.数据名[5],v: 返回值[0] as NSObject,c: 返回值[0].count)
+                    self.写入综合信息(self.数据名[6],v: 返回值[1] as NSObject,c: 返回值[1].count)
                 })
             }
         })

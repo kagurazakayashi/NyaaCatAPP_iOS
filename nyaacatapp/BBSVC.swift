@@ -103,7 +103,7 @@ class BBSVC: UIViewController, WKNavigationDelegate, WKUIDelegate {
         self.view.addConstraints([左约束,右约束,上约束,下约束])
     }
     
-    override func observeValue(forKeyPath keyPath: String?, of object: AnyObject?, change: [NSKeyValueChangeKey : AnyObject]?, context: UnsafeMutablePointer<Void>?) {
+    func observeValue(forKeyPath keyPath: String?, of object: AnyObject?, change: [NSKeyValueChangeKey : AnyObject]?, context: UnsafeMutableRawPointer) {
         if (keyPath == "estimatedProgress"){
             self.进度条.setProgress(Float(浏览器!.estimatedProgress), animated: true)
         }
@@ -140,7 +140,7 @@ class BBSVC: UIViewController, WKNavigationDelegate, WKUIDelegate {
         }
     }
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        网络失败(error)
+        网络失败(error as NSError?)
     }
     func 手工超时() {
         网络失败(nil)
@@ -193,12 +193,12 @@ class BBSVC: UIViewController, WKNavigationDelegate, WKUIDelegate {
         let 获取网页标题JS:String = "document.title"
         let 获取网页源码JS:String = "document.documentElement.innerHTML"
         var 网页源码:[String] = Array<String>()
-        浏览器!.evaluateJavaScript(获取网页标题JS) { (对象:AnyObject?, 错误:Error?) -> Void in
+        浏览器!.evaluateJavaScript(获取网页标题JS) { (对象:Any?, 错误:Error?) -> Void in
             if (对象 == nil) {
                 return
             }
             网页源码.append(对象 as! String)
-            self.浏览器!.evaluateJavaScript(获取网页源码JS) { (对象:AnyObject?, 错误:Error?) -> Void in
+            self.浏览器!.evaluateJavaScript(获取网页源码JS) { (对象:Any?, 错误:Error?) -> Void in
                 网页源码.append(对象 as! String)
                 self.处理返回源码(网页源码)
             }
@@ -226,7 +226,7 @@ class BBSVC: UIViewController, WKNavigationDelegate, WKUIDelegate {
         } else if (网页内容?.range(of: "空空如也，何不创作一个？") != nil || 网页内容?.range(of: "道生一，一生二，二生三，三生萬物") != nil || 网页内容?.range(of: "It looks like there are no discussions here.") != nil) {
             //没有登录 //网页内容?.rangeOfString("关注") == nil
             //替换「空空如也，何不创作一个？」
-            浏览器!.evaluateJavaScript("document.getElementById(\"content\").innerHTML=\"<div class=\\\"Placeholder\\\"><p>尚未登录论坛</p><p>请从菜单登录论坛后继续</p></div>\";", completionHandler: { (obj:AnyObject?, err:Error?) in
+            浏览器!.evaluateJavaScript("document.getElementById(\"content\").innerHTML=\"<div class=\\\"Placeholder\\\"><p>尚未登录论坛</p><p>请从菜单登录论坛后继续</p></div>\";", completionHandler: { (obj:Any?, err:Error?) in
                 if (err != nil) {
                     NSLog(err!.localizedDescription)
                 }

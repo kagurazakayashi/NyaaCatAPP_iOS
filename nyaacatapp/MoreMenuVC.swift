@@ -22,8 +22,8 @@ class MoreMenuVC: UIViewController, MoreMenuCellViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.自动点击按钮), name: "MoreMenuVCButton" as NSNotification.Name, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.下载表格数据), name: "MoreMenuVCReload" as NSNotification.Name, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.自动点击按钮), name: Notification.Name("MoreMenuVCButton"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.下载表格数据), name: Notification.Name("MoreMenuVCReload"), object: nil)
         右上按钮 = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(self.右上按钮点击))
         navigationItem.rightBarButtonItem = 右上按钮
     }
@@ -195,7 +195,7 @@ class MoreMenuVC: UIViewController, MoreMenuCellViewDelegate {
         AF任务管理.get(全局_喵窩API["API路径"]!, parameters: nil, progress: { (downloadProgress:Progress) in
             //请求中
             //self.等待提示?.message = "\(downloadProgress.totalUnitCount)"
-            }, success: { (task:URLSessionDataTask, responseObject:AnyObject?) in
+            }, success: { (task:URLSessionDataTask, responseObject:Any?) in
                 //请求成功
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 let 返回数据:Data = responseObject as! Data

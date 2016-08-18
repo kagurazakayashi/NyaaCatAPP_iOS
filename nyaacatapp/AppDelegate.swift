@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     var window: UIWindow?
     var 主视图:MainTBC? = nil
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    private func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         应用初始化()
         let 屏幕尺寸:CGRect = UIScreen.main.bounds
@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [String : AnyObject]) -> Bool {
+    private func application(_ app: UIApplication, open url: URL, options: [String : AnyObject]) -> Bool {
         print("URL scheme:%@", url.scheme);
         //NSLog("URL query: %@", url.query!);
         return true

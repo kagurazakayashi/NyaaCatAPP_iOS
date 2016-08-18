@@ -74,10 +74,10 @@ class MainTBC: UITabBarController, WKNavigationDelegate, WaitVCDelegate {
 //            testweb.loadRequest(NSURLRequest(URL: NSURL(string: "http://163.com")!, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringCacheData, timeoutInterval: 30))
 //        }
         
-        NotificationCenter.default.addObserver(self, selector: #selector(MainTBC.收到重载通知), name: "reloadwebview" as NSNotification.Name, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(MainTBC.应用定时器延迟设置), name: "timerset" as NSNotification.Name, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(MainTBC.显示一下网络菊花), name: "netbusyonce" as NSNotification.Name, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(MainTBC.游客模式), name: "guest" as NSNotification.Name, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MainTBC.收到重载通知), name: Notification.Name("reloadwebview"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MainTBC.应用定时器延迟设置), name: Notification.Name("timerset"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MainTBC.显示一下网络菊花), name: Notification.Name("netbusyonce"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MainTBC.游客模式), name: Notification.Name("guest"), object: nil)
     }
     
     func 初始化WebView() {
@@ -287,12 +287,12 @@ class MainTBC: UITabBarController, WKNavigationDelegate, WaitVCDelegate {
         let 获取网页标题JS:String = "document.title"
         let 获取网页源码JS:String = "document.documentElement.innerHTML"
         var 网页源码:[String] = Array<String>()
-        后台网页加载器!.evaluateJavaScript(获取网页标题JS) { (对象:AnyObject?, 错误:Error?) -> Void in
+        后台网页加载器!.evaluateJavaScript(获取网页标题JS) { (对象:Any?, 错误:Error?) -> Void in
             if (对象 == nil) {
                 return
             }
             网页源码.append(对象 as! String)
-            self.后台网页加载器!.evaluateJavaScript(获取网页源码JS) { (对象:AnyObject?, 错误:Error?) -> Void in
+            self.后台网页加载器!.evaluateJavaScript(获取网页源码JS) { (对象:Any?, 错误:Error?) -> Void in
                 网页源码.append(对象 as! String)
                 self.处理返回源码(网页源码)
             }
