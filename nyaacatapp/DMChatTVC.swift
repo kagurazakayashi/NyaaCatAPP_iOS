@@ -355,7 +355,7 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
     
     func 合并html(_ 名字html:String,内容文本:String) -> String { //头像URL:String,
         //return "<!doctype html><html><head><meta charset=\"UTF-8\"></head><body><table width=\"100%\" border=\"0\"><tbody><tr><td width=\"64\"><img src=\"\(头像URL)\" width=\"64\" height=\"64\" alt=\"\"/></td><td align=\"left\" valign=\"top\">\(名字html)<p><span style=\"color:#FF99CC\">\(内容文本)</span></td></tr></tbody></table></body></html>"
-            return "<!doctype html><html><head><meta charset=\"UTF-8\"></head><body><span style=\"color:#FFF\">\(名字html)<p><span style=\"color:#FF99CC\">\(内容文本)</span></body></html>"
+            return "<!doctype html><html><head><meta charset=\"UTF-8\"></head><body><font size=\"40\"><span style=\"color:#FFF;\">\(名字html)<p><span style=\"color:#FF99CC;\">\(内容文本)</span></font></body></html>"
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

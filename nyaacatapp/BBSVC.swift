@@ -92,7 +92,7 @@ class BBSVC: UIViewController, WKNavigationDelegate, WKUIDelegate {
         let 浏览器坐标:CGRect = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.height)
         浏览器 = WKWebView(frame: 浏览器坐标, configuration: 浏览器设置)
         浏览器!.navigationDelegate = self
-        浏览器!.uiDelegate = self
+//        浏览器!.uiDelegate = self
         self.view.insertSubview(浏览器!, at: 0)
         浏览器!.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
         浏览器!.translatesAutoresizingMaskIntoConstraints = false
@@ -141,6 +141,9 @@ class BBSVC: UIViewController, WKNavigationDelegate, WKUIDelegate {
     }
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         网络失败(error as NSError?)
+    }
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+//        NSLog("observeValue=\(keyPath), object=\(object)")
     }
     func 手工超时() {
         网络失败(nil)

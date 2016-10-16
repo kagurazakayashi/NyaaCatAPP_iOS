@@ -174,6 +174,10 @@ class BrowserVC: UIViewController , WKNavigationDelegate, WKUIDelegate {
         return nil
     }
     
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        //NSLog("observeValue=\(keyPath), object=\(object)")
+    }
+    
     /*
     // MARK: - Navigation
 
