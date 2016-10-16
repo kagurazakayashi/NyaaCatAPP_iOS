@@ -19,6 +19,7 @@ class MapVC: UIViewController , WKNavigationDelegate {
     var 右上按钮:UIBarButtonItem? = nil
     var 等待提示:UIAlertController? = nil
     var 解析延迟定时器:MSWeakTimer? = nil
+//    var 上次请求网址:String = "about:blank"
     
     @IBOutlet weak var 动态地图工具栏: UIView!
     @IBOutlet weak var 动态: UISwitch!
@@ -96,6 +97,7 @@ class MapVC: UIViewController , WKNavigationDelegate {
         if (z != nil) {
             参数串 = "\(参数串)&zoom=\(z!)"
         }
+//        上次请求网址 = 参数串
         self.装入网页(参数串)
     }
     
@@ -144,6 +146,7 @@ class MapVC: UIViewController , WKNavigationDelegate {
         if (登录步骤 == 0) {
             登录步骤 += 1
             装入网页(全局_喵窩API["静态地图接口"]!)
+            return
         }
         if (等待提示 != nil) {
             等待提示?.dismiss(animated: false, completion: nil)
@@ -158,6 +161,7 @@ class MapVC: UIViewController , WKNavigationDelegate {
                 工具栏可用 = true
             }
         }
+        请求页面源码()
         动态地图工具栏可用(工具栏可用)
     }
     
@@ -187,7 +191,15 @@ class MapVC: UIViewController , WKNavigationDelegate {
         let 网页内容:String? = 源码[1]
         if (网页标题 == 全局_喵窩API["注册页面标题"]!) {
             //网页内容?.rangeOfString("Enter user ID and password") != nil
-            自动登录动态地图()
+            if (网页内容?.range(of: "Login Failed") != nil) {
+                let 提示:UIAlertController = UIAlertController(title: "地图连接失败", message: "缓存的登录信息鉴权失败，请重新启动此APP。", preferredStyle: UIAlertControllerStyle.alert)
+                let 取消按钮 = UIAlertAction(title: "取消", style: UIAlertActionStyle.cancel, handler: { (动作:UIAlertAction) -> Void in
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                })
+                提示.addAction(取消按钮)
+            } else {
+                自动登录动态地图()
+            }
         } else if (网页内容?.range(of: "Web files are not matched with plugin version") != nil) {
             浏览器!.loadHTMLString("", baseURL: nil)
             let 提示:UIAlertController = UIAlertController(title: "地图连接失败", message: "请切换其他地图试试", preferredStyle: UIAlertControllerStyle.alert)

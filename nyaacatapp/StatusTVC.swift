@@ -40,6 +40,9 @@ class StatusTVC: UITableViewController {
     }
     
     func 装入数据() {
+        if (全局_综合信息 == nil) {
+            return
+        }
         行主标题 = Array<String>();
         行副标题 = Array<String>();
         图像路径 = Array<String>();
