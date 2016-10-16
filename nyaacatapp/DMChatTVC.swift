@@ -27,6 +27,7 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
     var 网络模式:网络模式选项 = 网络模式选项.提交登录请求
     var 首次更新数据:Bool = true
     var 空白提示信息:UILabel? = nil
+    var 已读聊天数据:Int = 0
     
     enum 网络模式选项 {
         case 提交登录请求
@@ -173,6 +174,9 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
     func 打开发送消息框(_ 重试消息:String?,错误描述:String?) {
         var 标题:String = "输入聊天信息"
         var 内容:String? = nil
+        if (错误描述 != nil) {
+            内容 = "回复给 \(错误描述!): "
+        }
         if (重试消息 != nil) {
             标题 = "消息发送失败"
             内容 = 错误描述
@@ -197,8 +201,11 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
     func 提示框处理(_ 确定:Bool) {
         if (确定 == true) {
             let 输入框:UITextField = 聊天文字输入框!.textFields!.first! as UITextField
-            let 聊天文本:String? = 输入框.text
+            var 聊天文本:String? = 输入框.text
             if (聊天文本 != nil && 聊天文本 != "") {
+                if (聊天文字输入框!.message != nil && 聊天文字输入框!.message != "") {
+                    聊天文本 = 聊天文字输入框!.message! + 聊天文本!
+                }
                 发送消息(聊天文本!)
             }
         } else {
@@ -308,6 +315,10 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (首次更新数据 == true) {
@@ -370,6 +381,15 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        if (全局_用户名 != nil && 实时聊天数据 != nil && (实时聊天数据?.count)! > indexPath.row) {
+            let 当前聊天:[String] = 实时聊天数据![indexPath.row]
+            let 转换器:Analysis = Analysis()
+            let 用户名单数组:[String] = 转换器.去除HTML标签(当前聊天[1], 需要合成: true)
+            let 用户名文本:String = 用户名单数组[0]
+            打开发送消息框(nil,错误描述: 用户名文本)
+        } else {
+            //正在以游客身份登录，没有参与聊天的权限
+        }
     }
 
     /*

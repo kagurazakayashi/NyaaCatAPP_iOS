@@ -44,7 +44,7 @@ class DMChatTCell: UITableViewCell {
         浏览器偏好设置.javaScriptEnabled = false
         浏览器设置.preferences = 浏览器偏好设置
         浏览器设置.selectionGranularity = .dynamic
-        内容 = WKWebView(frame: CGRect(x: 头像.frame.origin.x + 头像.frame.size.width, y: 头像.frame.origin.y, width: self.frame.size.width - 头像.frame.origin.x*2 - 头像.frame.size.width, height: self.frame.size.height), configuration: 浏览器设置)
+        内容 = WKWebView(frame: CGRect(x: 头像.frame.origin.x + 头像.frame.size.width, y: 头像.frame.origin.y, width: self.frame.size.width - 头像.frame.origin.x*2 - 头像.frame.size.width - 头像.frame.origin.x, height: self.frame.size.height), configuration: 浏览器设置)
         内容!.backgroundColor = UIColor.clear
         内容!.isOpaque = false
         内容!.isUserInteractionEnabled = false
