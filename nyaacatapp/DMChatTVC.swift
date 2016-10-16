@@ -26,6 +26,7 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
     var 正在发送的消息:String? = nil
     var 网络模式:网络模式选项 = 网络模式选项.提交登录请求
     var 首次更新数据:Bool = true
+    var 空白提示信息:UILabel? = nil
     
     enum 网络模式选项 {
         case 提交登录请求
@@ -53,6 +54,13 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
         
         左上按钮?.isEnabled = false
         右上按钮?.isEnabled = false
+        
+        空白提示信息 = UILabel(frame: CGRect(x: 0, y: 0-(self.navigationController?.navigationBar.frame.size.height)!, width: self.tableView.frame.size.width, height: self.tableView.frame.size.height))
+        空白提示信息!.backgroundColor = UIColor.clear
+        空白提示信息!.textColor = UIColor.white
+        空白提示信息!.textAlignment = .center
+        空白提示信息!.text = "正在连接聊天服务器"
+        self.view.addSubview(空白提示信息!)
     }
     
     func 初始化WebView() {
@@ -240,6 +248,8 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
     func 接收数据更新通知() {
         if (首次更新数据 == true) {
             首次更新数据 = false
+            空白提示信息?.removeFromSuperview()
+            空白提示信息 = nil
             if (全局_用户名 != nil && 左上按钮?.isEnabled == false) {
                 左上按钮?.isEnabled = true
                 右上按钮?.isEnabled = true

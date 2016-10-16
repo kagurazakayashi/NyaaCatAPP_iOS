@@ -34,6 +34,8 @@ class StatusVC: UIViewController {
     var 时间补偿:MSWeakTimer? = nil
     var 天气图标图像:Dictionary<String,UIImage> = Dictionary<String,UIImage>()
     var 导航栏前一状态:Bool = false
+    var 视图位于前台:Bool = true
+    var 已载入数据:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,38 +59,42 @@ class StatusVC: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
         self.navigationController?.setNavigationBarHidden(true, animated: true)
+        视图位于前台 = true
 //        UIApplication.sharedApplication().statusBarHidden = true
 //        self.view.frame = CGRectMake(0, -20, oldViewFrame!.size.width, oldViewFrame!.size.height + 20)
     }
     override func viewWillDisappear(_ animated: Bool) {
-        
+        视图位于前台 = false
         self.navigationController?.setNavigationBarHidden(false, animated: true)
 //        UIApplication.sharedApplication().statusBarHidden = false
     }
     
     func 时间补偿触发() {
-        if (分 != 0 && 时 != 0) {
-            分 += 1
-            if (分 >= 60) {
+        分 += 1
+        if (分 >= 60) {
+            分 = 0
+            时 += 1
+            if (时 >= 24) {
+                时 = 0
                 分 = 0
-                时 += 1
-                if (时 >= 24) {
-                    时 = 0
-                    分 = 0
-                }
             }
         }
         更新时间字符串()
     }
     
     func 更新时间字符串() {
+        if (视图位于前台 == false) {
+            return
+        }
         let 冒号:String = ":"
-//        闪烁冒号 = !闪烁冒号
-//        if (闪烁冒号 == false) {
-//            冒号 = " "
-//        }
+        if (已载入数据 == false) {
+            世界时间.text = "--\(冒号)--"
+        }
+        //闪烁冒号 = !闪烁冒号
+        //if (闪烁冒号 == false) {
+        //    冒号 = " "
+        //}
         var 时字 = String(时)
         if (时 < 10) {
             时字 = "0\(时字)"
@@ -140,25 +146,40 @@ class StatusVC: UIViewController {
             let 在线世界数据:[String] = 全局_综合信息!["世界列表"] as! [String]
             世界按钮.setTitle("\(String(在线世界数据.count)) 个游戏世界 >", for: UIControlState())
             //数据 = 全局_综合信息!["时间天气"] as? [String]
+            if (已载入数据 == false) {
+                已载入数据 = true
+            }
         }
     }
 
     @IBAction func 玩家按钮点击(_ sender: UIButton) {
+        if (已载入数据 == false) {
+            return
+        }
         let 打开的列表:StatusTVC = self.navigationController?.viewControllers[1] as! StatusTVC
         打开的列表.要呈现的数据 = .玩家列表
     }
     
     @IBAction func 城市按钮点击(_ sender: UIButton) {
+        if (已载入数据 == false) {
+            return
+        }
         let 打开的列表:StatusTVC = self.navigationController?.viewControllers[1] as! StatusTVC
         打开的列表.要呈现的数据 = .城市列表
     }
     
     @IBAction func 商店按钮点击(_ sender: UIButton) {
+        if (已载入数据 == false) {
+            return
+        }
         let 打开的列表:StatusTVC = self.navigationController?.viewControllers[1] as! StatusTVC
         打开的列表.要呈现的数据 = .商店列表
     }
     
     @IBAction func 世界按钮点击(_ sender: UIButton) {
+        if (已载入数据 == false) {
+            return
+        }
         let 打开的列表:StatusTVC = self.navigationController?.viewControllers[1] as! StatusTVC
         打开的列表.要呈现的数据 = .世界列表
     }
