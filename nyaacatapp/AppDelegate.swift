@@ -14,8 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
 
     var window: UIWindow?
     var 主视图:MainTBC? = nil
-
-    private func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    
+    func applicationDidFinishLaunching(_ application: UIApplication) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         应用初始化()
         let 屏幕尺寸:CGRect = UIScreen.main.bounds
@@ -26,8 +26,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         主窗口.rootViewController = 主视图
         self.window = 主窗口
         self.window!.makeKeyAndVisible()
-        return true
     }
+
+//    private func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+//        self.window = 加载测试用窗口()
+//        self.window!.makeKeyAndVisible()
+//        return true
+//    }
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if (全局_用户名 == nil) {
@@ -37,6 +42,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
             }
         }
         return true
+    }
+    
+    func 加载测试用窗口() -> UIWindow {
+        let 屏幕尺寸:CGRect = UIScreen.main.bounds
+        let 主窗口:UIWindow = UIWindow(frame: 屏幕尺寸)
+        let 视图:UIViewController = UIViewController()
+        视图.view.backgroundColor = UIColor.lightGray
+        主窗口.rootViewController = 视图
+        return 主窗口
     }
     
     func 应用初始化() {
