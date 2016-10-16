@@ -65,3 +65,5 @@ fastlane/screenshots
 nyaacatapp/NyaaCatPrivateConstant.swift
 
 .DS_Store
+
+nyaacatapp/PrivateConstant.swift

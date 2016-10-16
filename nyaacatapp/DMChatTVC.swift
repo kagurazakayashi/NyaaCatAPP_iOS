@@ -28,10 +28,20 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
     var 首次更新数据:Bool = true
     var 空白提示信息:UILabel? = nil
     var 已读聊天数据:Int = 0
+    var 上一条玩家消息内容:String = ""
+    var 前台:Bool = false
     
     enum 网络模式选项 {
         case 提交登录请求
         case 发送聊天消息
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        前台 = true
+        清除未读消息数量()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        前台 = false
     }
     
     override func viewDidLoad() {
@@ -266,9 +276,52 @@ class DMChatTVC: UITableViewController,WKNavigationDelegate { //,UIScrollViewDel
         if (全局_综合信息 != nil) {
             实时聊天数据 = 全局_综合信息!["聊天记录"] as? [[String]]
             //显示消息数量
-            let 当前选项卡按钮:UITabBarItem = self.tabBarController!.tabBar.items![1]
-            当前选项卡按钮.badgeValue = String(实时聊天数据!.count)
+            if (实时聊天数据 != nil && 实时聊天数据!.count > 0) {
+                if (前台 == true) {
+                    上一条玩家消息内容 = 实时聊天数据!.last![3]
+                } else {
+                    显示未读消息数量()
+                }
+            }
             装入信息()
+        }
+    }
+    
+    func 清除未读消息数量() {
+        if (全局_综合信息 != nil) {
+            实时聊天数据 = 全局_综合信息!["聊天记录"] as? [[String]]
+            //显示消息数量
+            if (实时聊天数据 != nil && 实时聊天数据!.count > 0) {
+                上一条玩家消息内容 = 实时聊天数据!.last![3]
+            }
+        }
+        let 当前选项卡按钮:UITabBarItem = self.tabBarController!.tabBar.items![1]
+        当前选项卡按钮.badgeValue = nil
+    }
+    
+    func 显示未读消息数量() {
+        let 当前选项卡按钮:UITabBarItem = self.tabBarController!.tabBar.items![1]
+        //if (上一条玩家消息内容 == "") {
+        //    当前选项卡按钮.badgeValue = ""
+        //    return
+        //}
+        let 最后一条消息:String = 实时聊天数据!.last![3]
+        var 未读消息:Int = -1
+        for i:Int in 0...实时聊天数据!.count-1 {
+            let 校对位置:Int = 实时聊天数据!.count - 1 - i
+            let 当前消息:String = 实时聊天数据![校对位置][3]
+            if (当前消息 == 最后一条消息) {
+                未读消息 = i
+            }
+        }
+        
+        NSLog("消息数据量=\(实时聊天数据!.count) , 未读消息=\(String(未读消息))")
+        if (未读消息 == -1) {
+            当前选项卡按钮.badgeValue = "..."
+        } else if (未读消息 == 0) {
+            当前选项卡按钮.badgeValue = nil
+        } else if (未读消息 > 0) {
+            当前选项卡按钮.badgeValue = String(未读消息)
         }
     }
     
